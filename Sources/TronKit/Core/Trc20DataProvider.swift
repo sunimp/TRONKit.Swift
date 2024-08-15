@@ -1,7 +1,7 @@
 import BigInt
 import Foundation
-import HsExtensions
-import HsToolKit
+import WWExtensions
+import WWToolKit
 
 public enum Trc20DataProvider {
     public static func fetchName(networkManager: NetworkManager, network: Network, apiKey: String?, contractAddress: Address) async throws -> String {
@@ -51,7 +51,7 @@ public enum Trc20DataProvider {
             throw TokenError.invalidHex
         }
 
-        guard let bigIntValue = BigUInt(data.prefix(32).hs.hex, radix: 16) else {
+        guard let bigIntValue = BigUInt(data.prefix(32).ww.hex, radix: 16) else {
             throw TokenError.invalidHex
         }
 

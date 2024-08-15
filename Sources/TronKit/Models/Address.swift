@@ -1,7 +1,7 @@
 import Foundation
 import GRDB
-import HsCryptoKit
-import HsExtensions
+import WWCryptoKit
+import WWExtensions
 
 public struct Address {
     public let raw: Data
@@ -18,7 +18,7 @@ public struct Address {
         self.raw = prefixedRaw
 
         let checksum = Crypto.doubleSha256(prefixedRaw).prefix(4)
-        base58 = Data(prefixedRaw + checksum).hs.encodeBase58
+        base58 = Data(prefixedRaw + checksum).ww.encodeBase58
     }
 
     public init(address: String) throws {
@@ -40,7 +40,7 @@ public struct Address {
     }
 
     public var hex: String {
-        raw.hs.hex
+        raw.ww.hex
     }
 
     public var nonPrefixed: Data {

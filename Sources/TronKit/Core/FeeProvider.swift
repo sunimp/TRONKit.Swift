@@ -56,7 +56,7 @@ extension FeeProvider {
                     to: contract.contractAddress,
                     amount: contract.callValue.flatMap { BigUInt($0) },
                     gasPrice: 1,
-                    data: contract.data.hs.hexData!
+                    data: contract.data.ww.hexData!
                 )
             )
 

@@ -1,7 +1,7 @@
 import Alamofire
 import BigInt
 import Foundation
-import HsToolKit
+import WWToolKit
 
 class TronGridProvider {
     private let networkManager: NetworkManager
@@ -253,7 +253,7 @@ extension TronGridProvider {
     func broadcastTransaction(hexData: Data) async throws {
         let urlString = "\(baseUrl)wallet/broadcasthex"
         let parameters: Parameters = [
-            "transaction": hexData.hs.hex,
+            "transaction": hexData.ww.hex,
         ]
 
         _ = try await networkManager.fetchJson(url: urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default, responseCacherBehavior: .doNotCache)

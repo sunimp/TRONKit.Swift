@@ -1,6 +1,6 @@
 import BigInt
 import Combine
-import HsExtensions
+import WWExtensions
 
 class AccountInfoManager {
     private let storage: AccountInfoStorage

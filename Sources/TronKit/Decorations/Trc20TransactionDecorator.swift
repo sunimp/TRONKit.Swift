@@ -12,7 +12,7 @@ class Trc20TransactionDecorator {
 
 extension Trc20TransactionDecorator: ITransactionDecorator {
     func decoration(contract: TriggerSmartContract, internalTransactions _: [InternalTransaction], events: [Event]) -> TransactionDecoration? {
-        guard let contractMethod = factories.createMethod(input: contract.data.hs.hexData!) else {
+        guard let contractMethod = factories.createMethod(input: contract.data.ww.hexData!) else {
             return nil
         }
 

@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
+		A47FAFCE2C6DAB6200230DDD /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = A47FAFCD2C6DAB6200230DDD /* UIExtensions */; };
+		A47FAFD02C6DABA700230DDD /* UIApplication+KeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47FAFCF2C6DABA700230DDD /* UIApplication+KeyWindow.swift */; };
 		D023D24B2A20C524004F65B0 /* BalanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023D2422A20C524004F65B0 /* BalanceController.swift */; };
 		D023D2562A20C57E004F65B0 /* Trc20SendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023D2552A20C57E004F65B0 /* Trc20SendController.swift */; };
 		D023D2582A20C658004F65B0 /* DecorationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023D2572A20C658004F65B0 /* DecorationExtension.swift */; };
 		D023D25A2A20C97D004F65B0 /* SendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023D2592A20C97D004F65B0 /* SendController.swift */; };
 		D0EB74CB29F7DFF300F17DC7 /* TrxAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB74CA29F7DFF300F17DC7 /* TrxAdapter.swift */; };
-		D3604EBB28F3F8B40066C366 /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = D3604EBA28F3F8B40066C366 /* UIExtensions */; };
 		D36AAAC923A237940065B32B /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAAAF23A237940065B32B /* Configuration.swift */; };
 		D36AAACA23A237940065B32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D36AAAB023A237940065B32B /* Assets.xcassets */; };
 		D36AAACB23A237940065B32B /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAAB223A237940065B32B /* Manager.swift */; };
@@ -33,6 +34,7 @@
 		607FACD01AFB9204008FA782 /* TronKit Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TronKit Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A47FAFCF2C6DABA700230DDD /* UIApplication+KeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeyWindow.swift"; sourceTree = "<group>"; };
 		D023D2422A20C524004F65B0 /* BalanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceController.swift; sourceTree = "<group>"; };
 		D023D2552A20C57E004F65B0 /* Trc20SendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trc20SendController.swift; sourceTree = "<group>"; };
 		D023D2572A20C658004F65B0 /* DecorationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecorationExtension.swift; sourceTree = "<group>"; };
@@ -57,7 +59,7 @@
 			files = (
 				D36DFC2928EBDF5B00D2FC62 /* SnapKit in Frameworks */,
 				D36DFC2628EB016100D2FC62 /* TronKit in Frameworks */,
-				D3604EBB28F3F8B40066C366 /* UIExtensions in Frameworks */,
+				A47FAFCE2C6DAB6200230DDD /* UIExtensions in Frameworks */,
 				D3F4CFF328EAE791002DB520 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +93,7 @@
 				D36AAAB023A237940065B32B /* Assets.xcassets */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				D36AAAAF23A237940065B32B /* Configuration.swift */,
+				A47FAFCF2C6DABA700230DDD /* UIApplication+KeyWindow.swift */,
 				D36AAAC823A237940065B32B /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -173,7 +176,7 @@
 				D3F4CFF228EAE791002DB520 /* RxSwift */,
 				D36DFC2528EB016100D2FC62 /* TronKit */,
 				D36DFC2828EBDF5B00D2FC62 /* SnapKit */,
-				D3604EBA28F3F8B40066C366 /* UIExtensions */,
+				A47FAFCD2C6DAB6200230DDD /* UIExtensions */,
 			);
 			productName = TronKit;
 			productReference = 607FACD01AFB9204008FA782 /* TronKit Demo.app */;
@@ -185,8 +188,9 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1540;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -198,17 +202,17 @@
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "iOS Example" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				Base,
+				en,
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			packageReferences = (
 				D3F4CFF128EAE791002DB520 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D36DFC2728EBDF5B00D2FC62 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				D3604EB928F3F7FA0066C366 /* XCRemoteSwiftPackageReference "UIExtensions" */,
+				A47FAFCC2C6DAB6200230DDD /* XCRemoteSwiftPackageReference "UIExtensions.Swift" */,
 			);
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
@@ -239,6 +243,7 @@
 				D36AAAC923A237940065B32B /* Configuration.swift in Sources */,
 				D36AAADB23A237940065B32B /* TransactionsController.swift in Sources */,
 				D0EB74CB29F7DFF300F17DC7 /* TrxAdapter.swift in Sources */,
+				A47FAFD02C6DABA700230DDD /* UIApplication+KeyWindow.swift in Sources */,
 				D023D2562A20C57E004F65B0 /* Trc20SendController.swift in Sources */,
 				D023D24B2A20C524004F65B0 /* BalanceController.swift in Sources */,
 				D36AAACD23A237940065B32B /* TransactionRecord.swift in Sources */,
@@ -268,14 +273,17 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -287,6 +295,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -322,14 +331,17 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -341,6 +353,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -428,12 +441,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D3604EB928F3F7FA0066C366 /* XCRemoteSwiftPackageReference "UIExtensions" */ = {
+		A47FAFCC2C6DAB6200230DDD /* XCRemoteSwiftPackageReference "UIExtensions.Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/horizontalsystems/UIExtensions.Swift";
+			repositoryURL = "https://github.com/sunimp/UIExtensions.Swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.0.2;
 			};
 		};
 		D36DFC2728EBDF5B00D2FC62 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -455,9 +468,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D3604EBA28F3F8B40066C366 /* UIExtensions */ = {
+		A47FAFCD2C6DAB6200230DDD /* UIExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D3604EB928F3F7FA0066C366 /* XCRemoteSwiftPackageReference "UIExtensions" */;
+			package = A47FAFCC2C6DAB6200230DDD /* XCRemoteSwiftPackageReference "UIExtensions.Swift" */;
 			productName = UIExtensions;
 		};
 		D36DFC2528EB016100D2FC62 /* TronKit */ = {

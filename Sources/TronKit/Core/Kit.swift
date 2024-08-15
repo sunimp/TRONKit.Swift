@@ -1,9 +1,9 @@
 import BigInt
 import Combine
 import Foundation
-import HdWalletKit
-import HsCryptoKit
-import HsToolKit
+import HDWalletKit
+import WWCryptoKit
+import WWToolKit
 
 public class Kit {
     private let syncer: Syncer
@@ -99,8 +99,8 @@ public extension Kit {
 
     func transferTrc20TriggerSmartContract(contractAddress: Address, toAddress: Address, amount: BigUInt) -> TriggerSmartContract {
         let transferMethod = TransferMethod(to: toAddress, value: amount)
-        let data = transferMethod.encodedABI().hs.hex
-        let parameter = ContractMethodHelper.encodedABI(methodId: Data(), arguments: transferMethod.arguments).hs.hex
+        let data = transferMethod.encodedABI().ww.hex
+        let parameter = ContractMethodHelper.encodedABI(methodId: Data(), arguments: transferMethod.arguments).ww.hex
 
         return TriggerSmartContract(
             data: data,

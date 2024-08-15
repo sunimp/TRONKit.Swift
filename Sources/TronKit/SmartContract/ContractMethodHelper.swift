@@ -1,7 +1,7 @@
 import BigInt
 import Foundation
-import HsCryptoKit
-import HsExtensions
+import WWCryptoKit
+import WWExtensions
 
 public class ContractMethodHelper {
     public struct DynamicStructParameter {
@@ -29,7 +29,7 @@ public class ContractMethodHelper {
             case let argument as BigUInt:
                 data += pad(data: argument.serialize())
             case let argument as String:
-                data += pad(data: argument.hs.hexData ?? Data())
+                data += pad(data: argument.ww.hexData ?? Data())
             case let argument as Address:
                 data += pad(data: argument.nonPrefixed)
             case let argument as [Address]:
@@ -109,7 +109,7 @@ public class ContractMethodHelper {
     }
 
     private class func parseInt(data: Data) -> Int {
-        Data(data.reversed()).hs.to(type: Int.self)
+        Data(data.reversed()).ww.to(type: Int.self)
     }
 
     private class func parseAddresses(startPosition: Int, inputArguments: Data) throws -> [Address] {

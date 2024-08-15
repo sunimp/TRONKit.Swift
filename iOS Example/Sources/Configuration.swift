@@ -1,4 +1,4 @@
-import HsToolKit
+import WWToolKit
 import TronKit
 
 class Configuration {

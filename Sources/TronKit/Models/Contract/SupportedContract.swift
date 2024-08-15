@@ -25,7 +25,7 @@ extension TriggerSmartContract: SupportedContract {
         var message = Protocol_TriggerSmartContract()
         message.ownerAddress = ownerAddress.raw
         message.contractAddress = contractAddress.raw
-        message.data = data.hs.hexData!
+        message.data = data.ww.hexData!
         message.callValue = Int64(callValue ?? 0)
         message.callTokenValue = Int64(callTokenValue ?? 0)
         message.tokenID = Int64(tokenId ?? 0)

@@ -15,7 +15,7 @@ open class UnknownTransactionDecoration: TransactionDecoration {
     init(contract: TriggerSmartContract?, internalTransactions: [InternalTransaction], events: [Event]) {
         fromAddress = contract?.ownerAddress
         toAddress = contract?.contractAddress
-        data = contract?.data.hs.hexData
+        data = contract?.data.ww.hexData
         value = contract?.callValue
         tokenValue = contract?.callTokenValue
         tokenId = contract?.tokenId
@@ -50,7 +50,7 @@ open class UnknownTransactionDecoration: TransactionDecoration {
 
         var tags = [TransactionTag]()
 
-        var addresses = [fromAddress, toAddress]
+        let addresses = [fromAddress, toAddress]
             .compactMap { $0 }
             .filter { $0 != userAddress }
             .map(\.hex)

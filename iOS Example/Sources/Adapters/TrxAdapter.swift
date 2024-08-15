@@ -17,7 +17,7 @@ class TrxAdapter {
         let transaction = fullTransaction.transaction
 
         return TransactionRecord(
-            transactionHash: transaction.hash.hs.hex,
+            transactionHash: transaction.hash.ww.hex,
             transactionHashData: transaction.hash,
             timestamp: transaction.timestamp,
             isFailed: transaction.isFailed,

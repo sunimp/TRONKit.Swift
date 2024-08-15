@@ -1,8 +1,8 @@
 import BigInt
 import Foundation
-import HdWalletKit
-import HsCryptoKit
-import HsToolKit
+import HDWalletKit
+import WWCryptoKit
+import WWToolKit
 
 public class Signer {
     private let privateKey: Data
@@ -31,7 +31,7 @@ public extension Signer {
     }
 
     static func privateKey(string: String) throws -> Data {
-        guard let data = string.hs.hexData else {
+        guard let data = string.ww.hexData else {
             throw PrivateKeyValidationError.invalidDataString
         }
 

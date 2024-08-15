@@ -5,7 +5,7 @@ class CallJsonRpc: DataJsonRpc {
         super.init(
             method: "eth_call",
             params: [
-                ["to": contractAddress.nonPrefixed.hs.hexString, "data": data.hs.hexString],
+                ["to": contractAddress.nonPrefixed.ww.hexString, "data": data.ww.hexString],
                 "latest",
             ]
         )

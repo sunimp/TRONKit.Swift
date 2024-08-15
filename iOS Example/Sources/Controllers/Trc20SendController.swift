@@ -1,6 +1,6 @@
 import BigInt
 import Combine
-import HsExtensions
+import WWExtensions
 import SnapKit
 import TronKit
 import UIKit

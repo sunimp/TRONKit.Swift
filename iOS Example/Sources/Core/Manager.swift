@@ -1,5 +1,5 @@
 import Foundation
-import HdWalletKit
+import HDWalletKit
 import TronKit
 
 class Manager {

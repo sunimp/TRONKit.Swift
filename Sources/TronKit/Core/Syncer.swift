@@ -1,4 +1,4 @@
-import HsExtensions
+import WWExtensions
 
 class Syncer {
     private var tasks = Set<AnyTask>()
