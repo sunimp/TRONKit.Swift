@@ -1,3 +1,12 @@
+//
+//  NativeTransactionDecoration.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 public class NativeTransactionDecoration: TransactionDecoration {
     public let contract: Contract
 

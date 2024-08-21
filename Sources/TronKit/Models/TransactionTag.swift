@@ -1,3 +1,12 @@
+//
+//  TransactionTag.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 import GRDB
 
 public class TransactionTag {
@@ -47,8 +56,9 @@ extension TransactionTag: Hashable {
     }
 }
 
-public extension TransactionTag {
-    enum TagProtocol: String, DatabaseValueConvertible {
+extension TransactionTag {
+    
+    public enum TagProtocol: String, DatabaseValueConvertible {
         case native
         case trc10
         case eip20
@@ -69,7 +79,7 @@ public extension TransactionTag {
         }
     }
 
-    enum TagType: String, DatabaseValueConvertible {
+    public enum TagType: String, DatabaseValueConvertible {
         case incoming
         case outgoing
         case approve

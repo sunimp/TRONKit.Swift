@@ -1,3 +1,12 @@
+//
+//  ChainParameterManager.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 class ChainParameterManager {
     private let tronGridProvider: TronGridProvider
     private let storage: SyncerStorage

@@ -1,4 +1,12 @@
+//
+//  SyncerStorage.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
+
 import GRDB
 
 class SyncerStorage {

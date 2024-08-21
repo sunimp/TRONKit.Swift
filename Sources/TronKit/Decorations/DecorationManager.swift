@@ -1,5 +1,13 @@
-import BigInt
+//
+//  DecorationManager.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
+
+import BigInt
 
 class DecorationManager {
     private let userAddress: Address

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		A47FAFCE2C6DAB6200230DDD /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = A47FAFCD2C6DAB6200230DDD /* UIExtensions */; };
-		A47FAFD02C6DABA700230DDD /* UIApplication+KeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47FAFCF2C6DABA700230DDD /* UIApplication+KeyWindow.swift */; };
 		D023D24B2A20C524004F65B0 /* BalanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023D2422A20C524004F65B0 /* BalanceController.swift */; };
 		D023D2562A20C57E004F65B0 /* Trc20SendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023D2552A20C57E004F65B0 /* Trc20SendController.swift */; };
 		D023D2582A20C658004F65B0 /* DecorationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D023D2572A20C658004F65B0 /* DecorationExtension.swift */; };
@@ -34,7 +33,6 @@
 		607FACD01AFB9204008FA782 /* TronKit Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TronKit Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A47FAFCF2C6DABA700230DDD /* UIApplication+KeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeyWindow.swift"; sourceTree = "<group>"; };
 		D023D2422A20C524004F65B0 /* BalanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceController.swift; sourceTree = "<group>"; };
 		D023D2552A20C57E004F65B0 /* Trc20SendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trc20SendController.swift; sourceTree = "<group>"; };
 		D023D2572A20C658004F65B0 /* DecorationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecorationExtension.swift; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 				D36AAAB023A237940065B32B /* Assets.xcassets */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				D36AAAAF23A237940065B32B /* Configuration.swift */,
-				A47FAFCF2C6DABA700230DDD /* UIApplication+KeyWindow.swift */,
 				D36AAAC823A237940065B32B /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -195,7 +192,6 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = HC4MCAXJ66;
 						LastSwiftMigration = 0900;
 					};
 				};
@@ -243,7 +239,6 @@
 				D36AAAC923A237940065B32B /* Configuration.swift in Sources */,
 				D36AAADB23A237940065B32B /* TransactionsController.swift in Sources */,
 				D0EB74CB29F7DFF300F17DC7 /* TrxAdapter.swift in Sources */,
-				A47FAFD02C6DABA700230DDD /* UIApplication+KeyWindow.swift in Sources */,
 				D023D2562A20C57E004F65B0 /* Trc20SendController.swift in Sources */,
 				D023D24B2A20C524004F65B0 /* BalanceController.swift in Sources */,
 				D36AAACD23A237940065B32B /* TransactionRecord.swift in Sources */,
@@ -375,7 +370,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HC4MCAXJ66;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -383,7 +378,7 @@
 					"@executable_path/Frameworks",
 				);
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.horizontalsystems.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sunimp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "TronKit Demo";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -398,7 +393,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HC4MCAXJ66;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -406,7 +401,7 @@
 					"@executable_path/Frameworks",
 				);
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.horizontalsystems.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sunimp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "TronKit Demo";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -446,7 +441,7 @@
 			repositoryURL = "https://github.com/sunimp/UIExtensions.Swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				minimumVersion = 1.1.0;
 			};
 		};
 		D36DFC2728EBDF5B00D2FC62 /* XCRemoteSwiftPackageReference "SnapKit" */ = {

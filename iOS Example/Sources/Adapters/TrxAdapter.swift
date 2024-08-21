@@ -1,6 +1,14 @@
-import BigInt
-import Combine
+//
+//  TransactionRecord.swift
+//  TronKit-Example
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
+import Combine
+
+import BigInt
 import TronKit
 
 class TrxAdapter {

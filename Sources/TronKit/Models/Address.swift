@@ -1,4 +1,12 @@
+//
+//  Address.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
+
 import GRDB
 import WWCryptoKit
 import WWExtensions
@@ -90,8 +98,9 @@ extension Address: DatabaseValueConvertible {
     }
 }
 
-public extension Address {
-    enum ValidationError: Error {
+extension Address {
+    
+    public enum ValidationError: Error {
         case invalidHex
         case invalidChecksum
         case invalidAddressLength

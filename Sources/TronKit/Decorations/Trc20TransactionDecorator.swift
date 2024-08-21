@@ -1,3 +1,12 @@
+//
+//  Trc20TransactionDecorator.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 import BigInt
 
 class Trc20TransactionDecorator {

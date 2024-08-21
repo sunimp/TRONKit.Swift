@@ -1,5 +1,13 @@
-import TronKit
+//
+//  MainController.swift
+//  TronKit-Example
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import UIKit
+
+import TronKit
 
 class MainController: UITabBarController {
     override func viewDidLoad() {

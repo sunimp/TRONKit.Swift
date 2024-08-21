@@ -1,8 +1,16 @@
+//
+//  SendController.swift
+//  TronKit-Example
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import UIKit
 import Combine
+
 import WWExtensions
 import SnapKit
 import TronKit
-import UIKit
 
 class SendController: UIViewController {
     private let adapter: TrxAdapter = Manager.shared.adapter

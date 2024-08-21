@@ -1,5 +1,13 @@
-import BigInt
+//
+//  EstimateGasJsonRpc.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
+
+import BigInt
 
 class EstimateGasJsonRpc: IntJsonRpc {
     init(from: Address, to: Address?, amount: BigUInt?, gasPrice: Int, data: Data?) {

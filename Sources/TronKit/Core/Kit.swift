@@ -1,6 +1,14 @@
-import BigInt
-import Combine
+//
+//  Kit.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
+import Combine
+
+import BigInt
 import HDWalletKit
 import WWCryptoKit
 import WWToolKit
@@ -32,72 +40,73 @@ public class Kit {
 
 // Public API Extension
 
-public extension Kit {
-    var lastBlockHeight: Int? {
+extension Kit {
+    
+    public var lastBlockHeight: Int? {
         syncer.lastBlockHeight
     }
 
-    var syncState: SyncState {
+    public var syncState: SyncState {
         syncer.state
     }
 
-    var accountActive: Bool {
+    public var accountActive: Bool {
         accountInfoManager.accountActive
     }
 
-    var trxBalance: BigUInt {
+    public var trxBalance: BigUInt {
         accountInfoManager.trxBalance
     }
 
-    var receiveAddress: Address {
+    public var receiveAddress: Address {
         address
     }
 
-    var lastBlockHeightPublisher: AnyPublisher<Int, Never> {
+    public var lastBlockHeightPublisher: AnyPublisher<Int, Never> {
         syncer.$lastBlockHeight.eraseToAnyPublisher()
     }
 
-    var syncStatePublisher: AnyPublisher<SyncState, Never> {
+    public var syncStatePublisher: AnyPublisher<SyncState, Never> {
         syncer.$state.eraseToAnyPublisher()
     }
 
-    var trxBalancePublisher: AnyPublisher<BigUInt, Never> {
+    public var trxBalancePublisher: AnyPublisher<BigUInt, Never> {
         accountInfoManager.trxBalancePublisher
     }
 
-    var allTransactionsPublisher: AnyPublisher<([FullTransaction], Bool), Never> {
+    public var allTransactionsPublisher: AnyPublisher<([FullTransaction], Bool), Never> {
         transactionManager.fullTransactionsPublisher
     }
 
-    func trc20Balance(contractAddress: Address) -> BigUInt {
+    public func trc20Balance(contractAddress: Address) -> BigUInt {
         accountInfoManager.trc20Balance(contractAddress: contractAddress)
     }
 
-    func trc20BalancePublisher(contractAddress: Address) -> AnyPublisher<BigUInt, Never> {
+    public func trc20BalancePublisher(contractAddress: Address) -> AnyPublisher<BigUInt, Never> {
         accountInfoManager.trc20BalancePublisher(contractAddress: contractAddress)
     }
 
-    func transactionsPublisher(tagQueries: [TransactionTagQuery]) -> AnyPublisher<[FullTransaction], Never> {
+    public func transactionsPublisher(tagQueries: [TransactionTagQuery]) -> AnyPublisher<[FullTransaction], Never> {
         transactionManager.fullTransactionsPublisher(tagQueries: tagQueries)
     }
 
-    func transactions(tagQueries: [TransactionTagQuery], fromHash: Data? = nil, limit: Int? = nil) -> [FullTransaction] {
+    public func transactions(tagQueries: [TransactionTagQuery], fromHash: Data? = nil, limit: Int? = nil) -> [FullTransaction] {
         transactionManager.fullTransactions(tagQueries: tagQueries, fromHash: fromHash, limit: limit)
     }
 
-    func estimateFee(contract: Contract) async throws -> [Fee] {
+    public func estimateFee(contract: Contract) async throws -> [Fee] {
         try await feeProvider.estimateFee(contract: contract)
     }
 
-    func decorate(contract: Contract) -> TransactionDecoration? {
+    public func decorate(contract: Contract) -> TransactionDecoration? {
         transactionManager.decorate(contract: contract)
     }
 
-    func transferContract(toAddress: Address, value: Int) -> TransferContract {
+    public func transferContract(toAddress: Address, value: Int) -> TransferContract {
         TransferContract(amount: value, ownerAddress: address, toAddress: toAddress)
     }
 
-    func transferTrc20TriggerSmartContract(contractAddress: Address, toAddress: Address, amount: BigUInt) -> TriggerSmartContract {
+    public func transferTrc20TriggerSmartContract(contractAddress: Address, toAddress: Address, amount: BigUInt) -> TriggerSmartContract {
         let transferMethod = TransferMethod(to: toAddress, value: amount)
         let data = transferMethod.encodedABI().ww.hex
         let parameter = ContractMethodHelper.encodedABI(methodId: Data(), arguments: transferMethod.arguments).ww.hex
@@ -114,38 +123,39 @@ public extension Kit {
         )
     }
 
-    func tagTokens() -> [TagToken] {
+    public func tagTokens() -> [TagToken] {
         transactionManager.tagTokens()
     }
 
-    func send(contract: Contract, signer: Signer, feeLimit: Int? = 0) async throws {
+    public func send(contract: Contract, signer: Signer, feeLimit: Int? = 0) async throws {
         let newTransaction = try await transactionSender.sendTransaction(contract: contract, signer: signer, feeLimit: feeLimit)
         transactionManager.handle(newTransaction: newTransaction)
     }
 
-    func accountActive(address: Address) async throws -> Bool {
+    public func accountActive(address: Address) async throws -> Bool {
         try await feeProvider.isAccountActive(address: address)
     }
 
-    func start() {
+    public func start() {
         syncer.start()
     }
 
-    func stop() {
+    public func stop() {
         syncer.stop()
     }
 
-    func refresh() {
+    public func refresh() {
         syncer.refresh()
     }
 
-    func fetchTransaction(hash _: Data) async throws -> FullTransaction {
+    public func fetchTransaction(hash _: Data) async throws -> FullTransaction {
         throw SyncError.notStarted
     }
 }
 
-public extension Kit {
-    static func clear(exceptFor excludedFiles: [String]) throws {
+extension Kit {
+    
+    public static func clear(exceptFor excludedFiles: [String]) throws {
         let fileManager = FileManager.default
         let fileUrls = try fileManager.contentsOfDirectory(at: dataDirectoryUrl(), includingPropertiesForKeys: nil)
 
@@ -156,7 +166,7 @@ public extension Kit {
         }
     }
 
-    static func instance(address: Address, network: Network, walletId: String, apiKey: String?, minLogLevel: Logger.Level = .error) throws -> Kit {
+    public static func instance(address: Address, network: Network, walletId: String, apiKey: String?, minLogLevel: Logger.Level = .error) throws -> Kit {
         let logger = Logger(minLogLevel: minLogLevel)
         let uniqueId = "\(walletId)-\(network.rawValue)"
 
@@ -194,7 +204,7 @@ public extension Kit {
         return kit
     }
 
-    static func call(networkManager: NetworkManager, network: Network, contractAddress: Address, data: Data, apiKey: String?) async throws -> Data {
+    public static func call(networkManager: NetworkManager, network: Network, contractAddress: Address, data: Data, apiKey: String?) async throws -> Data {
         let tronGridProvider = TronGridProvider(networkManager: networkManager, baseUrl: providerUrl(network: network), apiKey: apiKey)
         let rpc = CallJsonRpc(contractAddress: contractAddress, data: data)
 
@@ -222,13 +232,13 @@ public extension Kit {
     }
 }
 
-public extension Kit {
-    enum SyncError: Error {
+extension Kit {
+    public enum SyncError: Error {
         case notStarted
         case noNetworkConnection
     }
 
-    enum SendError: Error {
+    public enum SendError: Error {
         case notSupportedContract
         case abnormalSend
         case invalidParameter

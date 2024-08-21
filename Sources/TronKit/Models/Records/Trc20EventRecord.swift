@@ -1,5 +1,13 @@
-import BigInt
+//
+//  Trc20EventRecord.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
+
+import BigInt
 import GRDB
 
 public class Trc20EventRecord: Record {

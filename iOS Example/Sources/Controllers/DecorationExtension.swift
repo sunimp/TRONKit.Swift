@@ -1,4 +1,12 @@
+//
+//  DecorationExtension.swift
+//  TronKit-Example
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
+
 import TronKit
 
 private func shortAddress(address: Address) -> String {

@@ -1,9 +1,17 @@
-import BigInt
+//
+//  ContractMethodHelper.swift
+//  TronKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
+
+import BigInt
 import WWCryptoKit
 import WWExtensions
 
-public class ContractMethodHelper {
+public enum ContractMethodHelper {
     public struct DynamicStructParameter {
         let arguments: [Any]
 
@@ -46,7 +54,7 @@ public class ContractMethodHelper {
         return data + arraysData
     }
 
-    public class func decodeABI(inputArguments: Data, argumentTypes: [Any]) throws -> [Any] {
+    public static func decodeABI(inputArguments: Data, argumentTypes: [Any]) throws -> [Any] {
         var position = 0
         var parsedArguments = [Any]()
 
@@ -108,11 +116,11 @@ public class ContractMethodHelper {
         Crypto.sha3(signature.data(using: .ascii)!)[0 ... 3]
     }
 
-    private class func parseInt(data: Data) -> Int {
+    private static func parseInt(data: Data) -> Int {
         Data(data.reversed()).ww.to(type: Int.self)
     }
 
-    private class func parseAddresses(startPosition: Int, inputArguments: Data) throws -> [Address] {
+    private static func parseAddresses(startPosition: Int, inputArguments: Data) throws -> [Address] {
         let arrayStartPosition = startPosition + 32
         let size = parseInt(data: inputArguments[startPosition ..< arrayStartPosition])
         var addresses = [Address]()
@@ -125,7 +133,7 @@ public class ContractMethodHelper {
         return addresses
     }
 
-    private class func parseBigUInt(startPosition: Int, inputArguments: Data) -> [BigUInt] {
+    private static func parseBigUInt(startPosition: Int, inputArguments: Data) -> [BigUInt] {
         let arrayStartPosition = startPosition + 32
         let size = parseInt(data: inputArguments[startPosition ..< arrayStartPosition])
         var bigUInts = [BigUInt]()
@@ -138,13 +146,13 @@ public class ContractMethodHelper {
         return bigUInts
     }
 
-    private class func parseData(startPosition: Int, inputArguments: Data) -> Data {
+    private static func parseData(startPosition: Int, inputArguments: Data) -> Data {
         let dataStartPosition = startPosition + 32
         let size = parseInt(data: inputArguments[startPosition ..< dataStartPosition])
         return Data(inputArguments[dataStartPosition ..< (dataStartPosition + size)])
     }
 
-    private class func parseDataArray(startPosition: Int, inputArguments: Data) -> [Data] {
+    private static func parseDataArray(startPosition: Int, inputArguments: Data) -> [Data] {
         let arrayStartPosition = startPosition + 32
         let size = parseInt(data: inputArguments[startPosition ..< arrayStartPosition])
         var dataArray = [Data]()

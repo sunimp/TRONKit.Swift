@@ -1,6 +1,6 @@
 # TronKit.Swift
 
-`TronKit.Swift` is a native(Swift) toolkit for TRON network. It's implemented and used by [Unstoppable Wallet](https://github.com/horizontalsystems/unstoppable-wallet-ios), a multi-currency crypto wallet.
+`TronKit.Swift` is a native(Swift) toolkit for TRON network.
 
 ## Core Features
 
@@ -45,7 +45,7 @@ TronKit.stop()
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/horizontalsystems/TronKit.Swift.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/sunimp/TronKit.Swift.git", .upToNextMajor(from: "1.0.8"))
 ]
 ```
 
@@ -62,5 +62,5 @@ All features of the library are used in example project located in `iOS Example`
 
 ## License
 
-The `TronKit.Swift` toolkit is open source and available under the terms of the [MIT License](https://github.com/horizontalsystems/TronKit.Swift/blob/master/LICENSE).
+The `TronKit.Swift` toolkit is open source and available under the terms of the [MIT License](https://github.com/sunimp/TronKit.Swift/blob/master/LICENSE).
 
