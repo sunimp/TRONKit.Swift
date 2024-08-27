@@ -33,7 +33,12 @@ public class Trc20TransferEvent: Event {
         }
 
         if to == userAddress {
-            tags.append(TransactionTag(type: .incoming, protocol: .eip20, contractAddress: contractAddress, addresses: [from.hex]))
+            tags.append(TransactionTag(
+                type: .incoming,
+                protocol: .eip20,
+                contractAddress: contractAddress,
+                addresses: [from.hex]
+            ))
         }
 
         return tags

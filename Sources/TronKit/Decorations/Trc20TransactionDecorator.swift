@@ -9,6 +9,8 @@ import Foundation
 
 import BigInt
 
+// MARK: - Trc20TransactionDecorator
+
 class Trc20TransactionDecorator {
     private let address: Address
     private let factories = ContractMethodFactories()
@@ -19,8 +21,14 @@ class Trc20TransactionDecorator {
     }
 }
 
+// MARK: ITransactionDecorator
+
 extension Trc20TransactionDecorator: ITransactionDecorator {
-    func decoration(contract: TriggerSmartContract, internalTransactions _: [InternalTransaction], events: [Event]) -> TransactionDecoration? {
+    func decoration(
+        contract: TriggerSmartContract,
+        internalTransactions _: [InternalTransaction],
+        events: [Event]
+    ) -> TransactionDecoration? {
         guard let contractMethod = factories.createMethod(input: contract.data.ww.hexData!) else {
             return nil
         }
@@ -32,7 +40,8 @@ extension Trc20TransactionDecorator: ITransactionDecorator {
                     to: transferMethod.to,
                     value: transferMethod.value,
                     sentToSelf: transferMethod.to == address,
-                    tokenInfo: events.compactMap { $0 as? Trc20TransferEvent }.first { $0.contractAddress == contract.contractAddress }?.tokenInfo
+                    tokenInfo: events.compactMap { $0 as? Trc20TransferEvent }
+                        .first { $0.contractAddress == contract.contractAddress }?.tokenInfo
                 )
             }
         }

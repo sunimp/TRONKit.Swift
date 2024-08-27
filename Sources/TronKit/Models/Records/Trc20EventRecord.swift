@@ -22,7 +22,18 @@ public class Trc20EventRecord: Record {
     public let tokenSymbol: String
     public let tokenDecimal: Int
 
-    public init(transactionHash: Data, type: String, blockTimestamp: Int, contractAddress: Address, from: Address, to: Address, value: BigUInt, tokenName: String, tokenSymbol: String, tokenDecimal: Int) {
+    public init(
+        transactionHash: Data,
+        type: String,
+        blockTimestamp: Int,
+        contractAddress: Address,
+        from: Address,
+        to: Address,
+        value: BigUInt,
+        tokenName: String,
+        tokenSymbol: String,
+        tokenDecimal: Int
+    ) {
         self.transactionHash = transactionHash
         self.type = type
         self.blockTimestamp = blockTimestamp

@@ -10,6 +10,8 @@ import Foundation
 import BigInt
 import ObjectMapper
 
+// MARK: - HexIntTransform
+
 struct HexIntTransform: TransformType {
     func transformFromJSON(_ value: Any?) -> Int? {
         guard let hexString = value as? String else {
@@ -24,6 +26,8 @@ struct HexIntTransform: TransformType {
     }
 }
 
+// MARK: - HexStringTransform
+
 struct HexStringTransform: TransformType {
     func transformFromJSON(_ value: Any?) -> String? {
         value as? String
@@ -33,6 +37,8 @@ struct HexStringTransform: TransformType {
         fatalError("transformToJSON(_:) has not been implemented")
     }
 }
+
+// MARK: - HexDataArrayTransform
 
 struct HexDataArrayTransform: TransformType {
     func transformFromJSON(_ value: Any?) -> [Data]? {
@@ -48,6 +54,8 @@ struct HexDataArrayTransform: TransformType {
     }
 }
 
+// MARK: - HexDataTransform
+
 struct HexDataTransform: TransformType {
     func transformFromJSON(_ value: Any?) -> Data? {
         guard let hexString = value as? String else {
@@ -61,6 +69,8 @@ struct HexDataTransform: TransformType {
         fatalError("transformToJSON(_:) has not been implemented")
     }
 }
+
+// MARK: - HexAddressTransform
 
 struct HexAddressTransform: TransformType {
     func transformFromJSON(_ value: Any?) -> Address? {
@@ -76,6 +86,8 @@ struct HexAddressTransform: TransformType {
     }
 }
 
+// MARK: - StringAddressTransform
+
 struct StringAddressTransform: TransformType {
     func transformFromJSON(_ value: Any?) -> Address? {
         guard let base58String = value as? String else {
@@ -89,6 +101,8 @@ struct StringAddressTransform: TransformType {
         fatalError("transformToJSON(_:) has not been implemented")
     }
 }
+
+// MARK: - HexBigUIntTransform
 
 struct HexBigUIntTransform: TransformType {
     func transformFromJSON(_ value: Any?) -> BigUInt? {
@@ -104,6 +118,8 @@ struct HexBigUIntTransform: TransformType {
     }
 }
 
+// MARK: - StringIntTransform
+
 struct StringIntTransform: TransformType {
     func transformFromJSON(_ value: Any?) -> Int? {
         guard let string = value as? String else {
@@ -117,6 +133,8 @@ struct StringIntTransform: TransformType {
         fatalError("transformToJSON(_:) has not been implemented")
     }
 }
+
+// MARK: - StringBigUIntTransform
 
 struct StringBigUIntTransform: TransformType {
     func transformFromJSON(_ value: Any?) -> BigUInt? {

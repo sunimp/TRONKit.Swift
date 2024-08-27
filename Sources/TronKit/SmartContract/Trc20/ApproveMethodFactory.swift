@@ -2,7 +2,7 @@ import BigInt
 import Foundation
 
 class ApproveMethodFactory: IContractMethodFactory {
-    let methodId: Data = ContractMethodHelper.methodId(signature: ApproveMethod.methodSignature)
+    let methodID: Data = ContractMethodHelper.methodID(signature: ApproveMethod.methodSignature)
 
     func createMethod(inputArguments: Data) throws -> ContractMethod {
         let spender = try Address(raw: inputArguments[12 ..< 32])

@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - Event
+
 open class Event {
     public let transactionHash: Data
     public let contractAddress: Address
@@ -20,6 +22,8 @@ open class Event {
         []
     }
 }
+
+// MARK: - TokenInfo
 
 public struct TokenInfo {
     public let tokenName: String

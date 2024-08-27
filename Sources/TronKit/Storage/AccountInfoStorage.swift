@@ -10,11 +10,13 @@ import Foundation
 import BigInt
 import GRDB
 
+// MARK: - AccountInfoStorage
+
 class AccountInfoStorage {
     private let dbPool: DatabasePool
 
-    init(databaseDirectoryUrl: URL, databaseFileName: String) {
-        let databaseURL = databaseDirectoryUrl.appendingPathComponent("\(databaseFileName).sqlite")
+    init(databaseDirectoryURL: URL, databaseFileName: String) {
+        let databaseURL = databaseDirectoryURL.appendingPathComponent("\(databaseFileName).sqlite")
 
         dbPool = try! DatabasePool(path: databaseURL.path)
 
@@ -34,41 +36,41 @@ class AccountInfoStorage {
         return migrator
     }
 
-    private var trxId = "TRX"
-    private func trc10Id(name: String) -> String { "trc10/\(name)" }
-    private func trc20Id(contractAddress: String) -> String { "trc20/\(contractAddress)" }
+    private var trxID = "TRX"
+    private func trc10ID(name: String) -> String { "trc10/\(name)" }
+    private func trc20ID(contractAddress: String) -> String { "trc20/\(contractAddress)" }
 }
 
 extension AccountInfoStorage {
     var trxBalance: BigUInt? {
         try! dbPool.read { db in
-            try Balance.filter(Balance.Columns.id == trxId).fetchOne(db)?.balance
+            try Balance.filter(Balance.Columns.id == trxID).fetchOne(db)?.balance
         }
     }
 
     func trc20Balance(address: String) -> BigUInt? {
         try! dbPool.read { db in
-            try Balance.filter(Balance.Columns.id == trc20Id(contractAddress: address)).fetchOne(db)?.balance
+            try Balance.filter(Balance.Columns.id == trc20ID(contractAddress: address)).fetchOne(db)?.balance
         }
     }
 
     func save(trxBalance: BigUInt) {
         _ = try! dbPool.write { db in
-            let balance = Balance(id: trxId, balance: trxBalance)
+            let balance = Balance(id: trxID, balance: trxBalance)
             try balance.insert(db)
         }
     }
 
     func save(trc20Balance: BigUInt, address: String) {
         _ = try! dbPool.write { db in
-            let balance = Balance(id: trc20Id(contractAddress: address), balance: trc20Balance)
+            let balance = Balance(id: trc20ID(contractAddress: address), balance: trc20Balance)
             try balance.insert(db)
         }
     }
 
     func clearTrc20Balances() {
         _ = try! dbPool.write { db in
-            try Balance.filter(Balance.Columns.id != trxId).deleteAll(db)
+            try Balance.filter(Balance.Columns.id != trxID).deleteAll(db)
         }
     }
 }

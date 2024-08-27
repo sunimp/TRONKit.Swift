@@ -12,6 +12,8 @@ import HDWalletKit
 import WWCryptoKit
 import WWToolKit
 
+// MARK: - Signer
+
 public class Signer {
     private let privateKey: Data
 
@@ -56,6 +58,8 @@ extension Signer {
         return try hdWallet.privateKey(account: 0, index: 0, chain: .external).raw
     }
 }
+
+// MARK: Signer.PrivateKeyValidationError
 
 extension Signer {
     public enum PrivateKeyValidationError: Error {

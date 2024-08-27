@@ -9,10 +9,14 @@ import Foundation
 
 import ObjectMapper
 
+// MARK: - Contract
+
 public protocol Contract: ImmutableMappable {
     var label: String { get }
     func ownTransaction(ownAddress: Address) -> Bool
 }
+
+// MARK: - AccountCreateContract
 
 public struct AccountCreateContract: Contract {
     public static let type = "AccountCreateContract"
@@ -32,6 +36,8 @@ public struct AccountCreateContract: Contract {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - TransferContract
 
 public struct TransferContract: Contract {
     public static let type = "TransferContract"
@@ -58,6 +64,8 @@ public struct TransferContract: Contract {
     }
 }
 
+// MARK: - TransferAssetContract
+
 public struct TransferAssetContract: Contract {
     public static let type = "TransferAssetContract"
     public var label = "Transfer TRC10 Asset"
@@ -78,6 +86,8 @@ public struct TransferAssetContract: Contract {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - VoteWitnessContract
 
 public struct VoteWitnessContract: Contract {
     public static let type = "VoteWitnessContract"
@@ -106,6 +116,8 @@ public struct VoteWitnessContract: Contract {
     }
 }
 
+// MARK: - WitnessCreateContract
+
 public struct WitnessCreateContract: Contract {
     public static let type = "WitnessCreateContract"
     public var label = "Witness Create"
@@ -122,6 +134,8 @@ public struct WitnessCreateContract: Contract {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - AssetIssueContract
 
 public struct AssetIssueContract: Contract {
     public static let type = "AssetIssueContract"
@@ -182,21 +196,25 @@ public struct AssetIssueContract: Contract {
     }
 }
 
+// MARK: - WitnessUpdateContract
+
 public struct WitnessUpdateContract: Contract {
     public static let type = "WitnessUpdateContract"
     public var label = "Witness Update"
     public let ownerAddress: Address
-    public let updateUrl: String
+    public let updateURL: String
 
     public init(map: Map) throws {
         ownerAddress = try map.value("owner_address", using: HexAddressTransform())
-        updateUrl = try map.value("update_url")
+        updateURL = try map.value("update_url")
     }
 
     public func ownTransaction(ownAddress: Address) -> Bool {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - ParticipateAssetIssueContract
 
 public struct ParticipateAssetIssueContract: Contract {
     public static let type = "ParticipateAssetIssueContract"
@@ -219,6 +237,8 @@ public struct ParticipateAssetIssueContract: Contract {
     }
 }
 
+// MARK: - AccountUpdateContract
+
 public struct AccountUpdateContract: Contract {
     public static let type = "AccountUpdateContract"
     public var label = "Account Update"
@@ -235,6 +255,8 @@ public struct AccountUpdateContract: Contract {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - FreezeBalanceContract
 
 public struct FreezeBalanceContract: Contract {
     public static let type = "FreezeBalanceContract"
@@ -259,6 +281,8 @@ public struct FreezeBalanceContract: Contract {
     }
 }
 
+// MARK: - UnfreezeBalanceContract
+
 public struct UnfreezeBalanceContract: Contract {
     public static let type = "UnfreezeBalanceContract"
     public var label = "Unfreeze Balance"
@@ -278,6 +302,8 @@ public struct UnfreezeBalanceContract: Contract {
     }
 }
 
+// MARK: - WithdrawBalanceContract
+
 public struct WithdrawBalanceContract: Contract {
     public static let type = "WithdrawBalanceContract"
     public var label = "Withdraw Balance"
@@ -293,6 +319,8 @@ public struct WithdrawBalanceContract: Contract {
     }
 }
 
+// MARK: - UnfreezeAssetContract
+
 public struct UnfreezeAssetContract: Contract {
     public static let type = "UnfreezeAssetContract"
     public var label = "Unfreeze Asset"
@@ -307,6 +335,8 @@ public struct UnfreezeAssetContract: Contract {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - UpdateAssetContract
 
 public struct UpdateAssetContract: Contract {
     public static let type = "UpdateAssetContract"
@@ -331,6 +361,8 @@ public struct UpdateAssetContract: Contract {
     }
 }
 
+// MARK: - ProposalCreateContract
+
 public struct ProposalCreateContract: Contract {
     public static let type = "ProposalCreateContract"
     public var label = "Proposal Create"
@@ -346,17 +378,19 @@ public struct ProposalCreateContract: Contract {
     }
 }
 
+// MARK: - ProposalApproveContract
+
 public struct ProposalApproveContract: Contract {
     public static let type = "ProposalApproveContract"
     public var label = "Proposal Approve"
 
     public let ownerAddress: Address
-    public let proposalId: Int
+    public let proposalID: Int
     public let isAddApproval: Bool
 
     public init(map: Map) throws {
         ownerAddress = try map.value("owner_address", using: HexAddressTransform())
-        proposalId = try map.value("proposal_id")
+        proposalID = try map.value("proposal_id")
         isAddApproval = try map.value("is_add_approval")
     }
 
@@ -365,16 +399,18 @@ public struct ProposalApproveContract: Contract {
     }
 }
 
+// MARK: - ProposalDeleteContract
+
 public struct ProposalDeleteContract: Contract {
     public static let type = "ProposalDeleteContract"
     public var label = "Proposal Delete"
 
     public let ownerAddress: Address
-    public let proposalId: Int
+    public let proposalID: Int
 
     public init(map: Map) throws {
         ownerAddress = try map.value("owner_address", using: HexAddressTransform())
-        proposalId = try map.value("proposal_id")
+        proposalID = try map.value("proposal_id")
     }
 
     public func ownTransaction(ownAddress: Address) -> Bool {
@@ -382,22 +418,26 @@ public struct ProposalDeleteContract: Contract {
     }
 }
 
-public struct SetAccountIdContract: Contract {
+// MARK: - SetAccountIDContract
+
+public struct SetAccountIDContract: Contract {
     public static let type = "SetAccountIdContract"
     public var label = "Set Account Id"
 
     public let ownerAddress: Address
-    public let accountId: String
+    public let accountID: String
 
     public init(map: Map) throws {
         ownerAddress = try map.value("owner_address", using: HexAddressTransform())
-        accountId = try map.value("account_id")
+        accountID = try map.value("account_id")
     }
 
     public func ownTransaction(ownAddress: Address) -> Bool {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - CreateSmartContract
 
 public struct CreateSmartContract: Contract {
     public static let type = "CreateSmartContract"
@@ -414,6 +454,8 @@ public struct CreateSmartContract: Contract {
     }
 }
 
+// MARK: - TriggerSmartContract
+
 public struct TriggerSmartContract: Contract {
     public static let type = "TriggerSmartContract"
     public var label = "Trigger SmartContract"
@@ -423,17 +465,26 @@ public struct TriggerSmartContract: Contract {
     let contractAddress: Address
     let callValue: Int?
     let callTokenValue: Int?
-    let tokenId: Int?
+    let tokenID: Int?
     let functionSelector: String?
     let parameter: String?
 
-    public init(data: String, ownerAddress: Address, contractAddress: Address, callValue: Int?, callTokenValue: Int?, tokenId: Int?, functionSelector: String?, parameter: String?) {
+    public init(
+        data: String,
+        ownerAddress: Address,
+        contractAddress: Address,
+        callValue: Int?,
+        callTokenValue: Int?,
+        tokenID: Int?,
+        functionSelector: String?,
+        parameter: String?
+    ) {
         self.data = data
         self.ownerAddress = ownerAddress
         self.contractAddress = contractAddress
         self.callValue = callValue
         self.callTokenValue = callTokenValue
-        self.tokenId = tokenId
+        self.tokenID = tokenID
         self.functionSelector = functionSelector
         self.parameter = parameter
     }
@@ -444,7 +495,7 @@ public struct TriggerSmartContract: Contract {
         contractAddress = try map.value("contract_address", using: HexAddressTransform())
         callValue = try map.value("call_value")
         callTokenValue = try map.value("call_token_value")
-        tokenId = try map.value("token_id")
+        tokenID = try map.value("token_id")
         functionSelector = nil
         parameter = nil
     }
@@ -453,6 +504,8 @@ public struct TriggerSmartContract: Contract {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - UpdateSettingContract
 
 public struct UpdateSettingContract: Contract {
     public static let type = "UpdateSettingContract"
@@ -473,6 +526,8 @@ public struct UpdateSettingContract: Contract {
     }
 }
 
+// MARK: - ExchangeCreateContract
+
 public struct ExchangeCreateContract: Contract {
     public static let type = "ExchangeCreateContract"
     public var label = "Exchange Create"
@@ -487,6 +542,8 @@ public struct ExchangeCreateContract: Contract {
         ownerAddress = try map.value("owner_address", using: HexAddressTransform())
     }
 }
+
+// MARK: - ExchangeInjectContract
 
 public struct ExchangeInjectContract: Contract {
     public static let type = "ExchangeInjectContract"
@@ -503,6 +560,8 @@ public struct ExchangeInjectContract: Contract {
     }
 }
 
+// MARK: - ExchangeWithdrawContract
+
 public struct ExchangeWithdrawContract: Contract {
     public static let type = "ExchangeWithdrawContract"
     public var label = "Exchange Withdraw"
@@ -518,6 +577,8 @@ public struct ExchangeWithdrawContract: Contract {
     }
 }
 
+// MARK: - ExchangeTransactionContract
+
 public struct ExchangeTransactionContract: Contract {
     public static let type = "ExchangeTransactionContract"
     public var label = "Exchange Transaction"
@@ -532,6 +593,8 @@ public struct ExchangeTransactionContract: Contract {
         ownerAddress = try map.value("owner_address", using: HexAddressTransform())
     }
 }
+
+// MARK: - ClearABIContract
 
 public struct ClearABIContract: Contract {
     public static let type = "ClearABIContract"
@@ -550,6 +613,8 @@ public struct ClearABIContract: Contract {
     }
 }
 
+// MARK: - UpdateBrokerageContract
+
 public struct UpdateBrokerageContract: Contract {
     public static let type = "UpdateBrokerageContract"
     public var label = "Update Brokerage"
@@ -566,6 +631,8 @@ public struct UpdateBrokerageContract: Contract {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - UpdateEnergyLimitContract
 
 public struct UpdateEnergyLimitContract: Contract {
     public static let type = "UpdateEnergyLimitContract"
@@ -586,6 +653,8 @@ public struct UpdateEnergyLimitContract: Contract {
     }
 }
 
+// MARK: - FreezeBalanceV2Contract
+
 public struct FreezeBalanceV2Contract: Contract {
     public static let type = "FreezeBalanceV2Contract"
     public var label = "Freeze Balance V2"
@@ -604,6 +673,8 @@ public struct FreezeBalanceV2Contract: Contract {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - UnfreezeBalanceV2Contract
 
 public struct UnfreezeBalanceV2Contract: Contract {
     public static let type = "UnfreezeBalanceV2Contract"
@@ -624,6 +695,8 @@ public struct UnfreezeBalanceV2Contract: Contract {
     }
 }
 
+// MARK: - WithdrawExpireUnfreezeContract
+
 public struct WithdrawExpireUnfreezeContract: Contract {
     public static let type = "WithdrawExpireUnfreezeContract"
     public var label = "Withdraw Expire Unfreeze"
@@ -638,6 +711,8 @@ public struct WithdrawExpireUnfreezeContract: Contract {
         ownerAddress = try map.value("owner_address", using: HexAddressTransform())
     }
 }
+
+// MARK: - DelegateResourceContract
 
 public struct DelegateResourceContract: Contract {
     public static let type = "DelegateResourceContract"
@@ -662,6 +737,8 @@ public struct DelegateResourceContract: Contract {
     }
 }
 
+// MARK: - UnDelegateResourceContract
+
 public struct UnDelegateResourceContract: Contract {
     public static let type = "UnDelegateResourceContract"
     public var label = "Undelegate Resource"
@@ -682,6 +759,8 @@ public struct UnDelegateResourceContract: Contract {
         ownerAddress == ownAddress
     }
 }
+
+// MARK: - UnknownContract
 
 public struct UnknownContract: Contract {
     public static let type = "UnknownContract"

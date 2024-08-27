@@ -10,6 +10,8 @@ import Foundation
 import BigInt
 import SwiftProtobuf
 
+// MARK: - FeeProvider
+
 class FeeProvider {
     private let tronGridProvider: TronGridProvider
     private let chainParameterManager: ChainParameterManager
@@ -21,7 +23,10 @@ class FeeProvider {
 
     private func feesForAccountActivation() -> [Fee] {
         [
-            .bandwidth(points: chainParameterManager.сreateAccountFee / chainParameterManager.transactionFee, price: chainParameterManager.transactionFee),
+            .bandwidth(
+                points: chainParameterManager.сreateAccountFee / chainParameterManager.transactionFee,
+                price: chainParameterManager.transactionFee
+            ),
             .accountActivation(amount: chainParameterManager.сreateNewAccountFeeInSystemContract),
         ]
     }
@@ -103,11 +108,15 @@ extension FeeProvider {
     }
 }
 
+// MARK: FeeProvider.FeeError
+
 extension FeeProvider {
     enum FeeError: Error {
         case notSupportedContract
     }
 }
+
+// MARK: - Fee
 
 public enum Fee {
     case bandwidth(points: Int, price: Int)

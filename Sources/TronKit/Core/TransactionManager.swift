@@ -5,8 +5,10 @@
 //  Created by Sun on 2024/8/21.
 //
 
-import Foundation
 import Combine
+import Foundation
+
+// MARK: - TransactionManager
 
 class TransactionManager {
     private let userAddress: Address
@@ -14,7 +16,10 @@ class TransactionManager {
     private let decorationManager: DecorationManager
 
     private let fullTransactionsSubject = PassthroughSubject<([FullTransaction], Bool), Never>()
-    private let fullTransactionsWithTagsSubject = PassthroughSubject<[(transaction: FullTransaction, tags: [TransactionTag])], Never>()
+    private let fullTransactionsWithTagsSubject = PassthroughSubject<
+        [(transaction: FullTransaction, tags: [TransactionTag])],
+        Never
+    >()
 
     init(userAddress: Address, storage: TransactionStorage, decorationManager: DecorationManager) {
         self.userAddress = userAddress
@@ -44,7 +49,7 @@ extension TransactionManager {
                 }
             }
             .filter { transactions in
-                transactions.count > 0
+                !transactions.isEmpty
             }
             .eraseToAnyPublisher()
     }
@@ -65,12 +70,12 @@ extension TransactionManager {
             }
 
             return InternalTransaction(
-                transactionHash: response.txId,
+                transactionHash: response.txID,
                 timestamp: response.blockTimestamp,
                 from: response.fromAddress,
                 to: response.toAddress,
                 value: response.data.value,
-                internalTxId: response.internalTxId
+                internalTxID: response.internalTxID
             )
         }
 
@@ -86,7 +91,7 @@ extension TransactionManager {
             }
 
             return Transaction(
-                hash: response.txId,
+                hash: response.txID,
                 timestamp: response.blockTimestamp,
                 isFailed: response.ret.contains(where: { $0.contractRet != "SUCCESS" }),
                 blockNumber: response.blockNumber,
@@ -106,7 +111,7 @@ extension TransactionManager {
     func save(trc20TransferResponses: [Trc20TransactionResponse]) {
         let trc20TransferRecords = trc20TransferResponses.compactMap { response -> Trc20EventRecord? in
             Trc20EventRecord(
-                transactionHash: response.transactionId,
+                transactionHash: response.transactionID,
                 type: response.type,
                 blockTimestamp: response.blockTimestamp,
                 contractAddress: response.tokenInfo.address,
@@ -178,6 +183,9 @@ extension TransactionManager {
     }
 }
 
+// MARK: - ITransactionDecorator
+
 public protocol ITransactionDecorator {
-    func decoration(contract: TriggerSmartContract, internalTransactions: [InternalTransaction], events: [Event]) -> TransactionDecoration?
+    func decoration(contract: TriggerSmartContract, internalTransactions: [InternalTransaction], events: [Event])
+        -> TransactionDecoration?
 }

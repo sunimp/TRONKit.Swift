@@ -15,7 +15,7 @@ open class UnknownTransactionDecoration: TransactionDecoration {
     public let data: Data?
     public let value: Int?
     public let tokenValue: Int?
-    public let tokenId: Int?
+    public let tokenID: Int?
 
     public let internalTransactions: [InternalTransaction]
     public let events: [Event]
@@ -26,7 +26,7 @@ open class UnknownTransactionDecoration: TransactionDecoration {
         data = contract?.data.ww.hexData
         value = contract?.callValue
         tokenValue = contract?.callTokenValue
-        tokenId = contract?.tokenId
+        tokenID = contract?.tokenID
         self.internalTransactions = internalTransactions
         self.events = events
     }
@@ -47,8 +47,8 @@ open class UnknownTransactionDecoration: TransactionDecoration {
         if toAddress == userAddress {
             incomingValue = value
         }
-        incomingInternalTransactions.forEach {
-            incomingValue += $0.value
+        for incomingInternalTransaction in incomingInternalTransactions {
+            incomingValue += incomingInternalTransaction.value
         }
 
         // if has value or has internalTxs must add Evm tag

@@ -45,15 +45,15 @@ TronKit.stop()
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/sunimp/TronKit.Swift.git", .upToNextMajor(from: "1.0.8"))
+    .package(url: "https://github.com/sunimp/TronKit.Swift.git", .upToNextMajor(from: "1.1.0"))
 ]
 ```
 
 ## Prerequisites
 
-* Xcode 10.0+
-* Swift 5.5+
-* iOS 13+
+* Xcode 15.0+
+* Swift 5.10+
+* iOS 14+
 
 
 ## Example Project

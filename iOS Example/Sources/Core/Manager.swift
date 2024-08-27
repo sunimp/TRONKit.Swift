@@ -32,7 +32,7 @@ class Manager {
         let TronKit = try Kit.instance(
             address: address,
             network: configuration.network,
-            walletId: "walletId",
+            walletID: "walletID",
             apiKey: nil,
             minLogLevel: configuration.minLogLevel
         )

@@ -9,10 +9,14 @@ import Foundation
 
 import SwiftProtobuf
 
+// MARK: - SupportedContract
+
 protocol SupportedContract: Contract {
     var protoMessage: SwiftProtobuf.Message { get }
     var protoContractType: Protocol_Transaction.Contract.ContractType { get }
 }
+
+// MARK: - TransferContract + SupportedContract
 
 extension TransferContract: SupportedContract {
     var protoMessage: Message {
@@ -29,6 +33,8 @@ extension TransferContract: SupportedContract {
     }
 }
 
+// MARK: - TriggerSmartContract + SupportedContract
+
 extension TriggerSmartContract: SupportedContract {
     var protoMessage: Message {
         var message = Protocol_TriggerSmartContract()
@@ -37,7 +43,7 @@ extension TriggerSmartContract: SupportedContract {
         message.data = data.ww.hexData!
         message.callValue = Int64(callValue ?? 0)
         message.callTokenValue = Int64(callTokenValue ?? 0)
-        message.tokenID = Int64(tokenId ?? 0)
+        message.tokenID = Int64(tokenID ?? 0)
 
         return message
     }

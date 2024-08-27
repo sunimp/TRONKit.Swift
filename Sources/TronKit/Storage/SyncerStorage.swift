@@ -9,11 +9,13 @@ import Foundation
 
 import GRDB
 
+// MARK: - SyncerStorage
+
 class SyncerStorage {
     private let dbPool: DatabasePool
 
-    init(databaseDirectoryUrl: URL, databaseFileName: String) {
-        let databaseURL = databaseDirectoryUrl.appendingPathComponent("\(databaseFileName).sqlite")
+    init(databaseDirectoryURL: URL, databaseFileName: String) {
+        let databaseURL = databaseDirectoryURL.appendingPathComponent("\(databaseFileName).sqlite")
 
         dbPool = try! DatabasePool(path: databaseURL.path)
 
@@ -69,7 +71,8 @@ extension SyncerStorage {
 
     func lastTransactionTimestamp(apiPath: String) -> Int? {
         try? dbPool.read { db in
-            try TransactionSyncTimestamp.filter(TransactionSyncTimestamp.Columns.apiPath == apiPath).fetchOne(db)?.lastTransactionTimestamp
+            try TransactionSyncTimestamp.filter(TransactionSyncTimestamp.Columns.apiPath == apiPath).fetchOne(db)?
+                .lastTransactionTimestamp
         }
     }
 

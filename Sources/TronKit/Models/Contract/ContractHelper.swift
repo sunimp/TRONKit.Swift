@@ -24,9 +24,10 @@ enum ContractHelper {
         }
 
         return try array.map { rawMap in
-            guard let type = rawMap["type"] as? String,
-                  let parameter = rawMap["parameter"] as? [String: Any],
-                  let valueMap = parameter["value"] as? [String: Any]
+            guard
+                let type = rawMap["type"] as? String,
+                let parameter = rawMap["parameter"] as? [String: Any],
+                let valueMap = parameter["value"] as? [String: Any]
             else {
                 return try UnknownContract(object: rawMap)
             }
@@ -52,7 +53,7 @@ enum ContractHelper {
                 case ProposalCreateContract.type: contract = try ProposalCreateContract(JSON: valueMap)
                 case ProposalApproveContract.type: contract = try ProposalApproveContract(JSON: valueMap)
                 case ProposalDeleteContract.type: contract = try ProposalDeleteContract(JSON: valueMap)
-                case SetAccountIdContract.type: contract = try SetAccountIdContract(JSON: valueMap)
+                case SetAccountIDContract.type: contract = try SetAccountIDContract(JSON: valueMap)
                 case CreateSmartContract.type: contract = try CreateSmartContract(JSON: valueMap)
                 case TriggerSmartContract.type: contract = try TriggerSmartContract(JSON: valueMap)
                 case UpdateSettingContract.type: contract = try UpdateSettingContract(JSON: valueMap)
