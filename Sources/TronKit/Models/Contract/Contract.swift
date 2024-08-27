@@ -202,11 +202,11 @@ public struct WitnessUpdateContract: Contract {
     public static let type = "WitnessUpdateContract"
     public var label = "Witness Update"
     public let ownerAddress: Address
-    public let updateURL: String
+    public let updateUrl: String
 
     public init(map: Map) throws {
         ownerAddress = try map.value("owner_address", using: HexAddressTransform())
-        updateURL = try map.value("update_url")
+        updateUrl = try map.value("update_url")
     }
 
     public func ownTransaction(ownAddress: Address) -> Bool {

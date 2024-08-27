@@ -75,8 +75,8 @@ struct Protocol_PingMessage {
 
     init() { }
 
-    fileprivate var _from: Protocol_Endpoint? = nil
-    private var _to: Protocol_Endpoint? = nil
+    fileprivate var _from: Protocol_Endpoint?
+    private var _to: Protocol_Endpoint?
 }
 
 // MARK: - Protocol_PongMessage
@@ -104,7 +104,7 @@ struct Protocol_PongMessage {
 
     init() { }
 
-    fileprivate var _from: Protocol_Endpoint? = nil
+    fileprivate var _from: Protocol_Endpoint?
 }
 
 // MARK: - Protocol_FindNeighbours
@@ -132,7 +132,7 @@ struct Protocol_FindNeighbours {
 
     init() { }
 
-    fileprivate var _from: Protocol_Endpoint? = nil
+    fileprivate var _from: Protocol_Endpoint?
 }
 
 // MARK: - Protocol_Neighbours
@@ -160,7 +160,7 @@ struct Protocol_Neighbours {
 
     init() { }
 
-    fileprivate var _from: Protocol_Endpoint? = nil
+    fileprivate var _from: Protocol_Endpoint?
 }
 
 // MARK: - Protocol_BackupMessage

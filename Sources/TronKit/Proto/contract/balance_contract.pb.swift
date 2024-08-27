@@ -170,7 +170,7 @@ struct Protocol_BlockBalanceTrace {
 
     init() { }
 
-    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier? = nil
+    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier?
 }
 
 // MARK: - Protocol_AccountTrace
@@ -234,8 +234,8 @@ struct Protocol_AccountBalanceRequest {
 
     init() { }
 
-    private var _accountIdentifier: Protocol_AccountIdentifier? = nil
-    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier? = nil
+    private var _accountIdentifier: Protocol_AccountIdentifier?
+    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier?
 }
 
 // MARK: - Protocol_AccountBalanceResponse
@@ -261,7 +261,7 @@ struct Protocol_AccountBalanceResponse {
 
     init() { }
 
-    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier? = nil
+    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier?
 }
 
 // MARK: - Protocol_FreezeBalanceV2Contract

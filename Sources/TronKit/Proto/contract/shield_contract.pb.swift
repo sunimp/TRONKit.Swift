@@ -133,8 +133,8 @@ struct Protocol_IncrementalMerkleTree {
 
     init() { }
 
-    fileprivate var _left: Protocol_PedersenHash? = nil
-    fileprivate var _right: Protocol_PedersenHash? = nil
+    fileprivate var _left: Protocol_PedersenHash?
+    fileprivate var _right: Protocol_PedersenHash?
 }
 
 // MARK: - Protocol_IncrementalMerkleVoucher
@@ -184,9 +184,9 @@ struct Protocol_IncrementalMerkleVoucher {
 
     init() { }
 
-    private var _tree: Protocol_IncrementalMerkleTree? = nil
-    private var _cursor: Protocol_IncrementalMerkleTree? = nil
-    private var _outputPoint: Protocol_OutputPoint? = nil
+    private var _tree: Protocol_IncrementalMerkleTree?
+    private var _cursor: Protocol_IncrementalMerkleTree?
+    private var _outputPoint: Protocol_OutputPoint?
 }
 
 // MARK: - Protocol_IncrementalMerkleVoucherInfo

@@ -126,8 +126,8 @@ struct Protocol_AccountPermissionUpdateContract {
 
     init() { }
 
-    private var _owner: Protocol_Permission? = nil
-    private var _witness: Protocol_Permission? = nil
+    private var _owner: Protocol_Permission?
+    private var _witness: Protocol_Permission?
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)

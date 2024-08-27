@@ -883,7 +883,7 @@ struct Protocol_Account {
 
         init() { }
 
-        fileprivate var _frozenBalanceForEnergy: Protocol_Account.Frozen? = nil
+        fileprivate var _frozenBalanceForEnergy: Protocol_Account.Frozen?
     }
 
     struct FreezeV2 {
@@ -984,7 +984,7 @@ struct Protocol_authority {
 
     init() { }
 
-    private var _account: Protocol_AccountID? = nil
+    private var _account: Protocol_AccountID?
 }
 
 // MARK: - Protocol_Permission
@@ -1163,7 +1163,7 @@ struct Protocol_TXInput {
 
     init() { }
 
-    fileprivate var _rawData: Protocol_TXInput.raw? = nil
+    fileprivate var _rawData: Protocol_TXInput.raw?
 }
 
 // MARK: - Protocol_TXOutputs
@@ -1420,7 +1420,7 @@ struct Protocol_Transaction {
 
         init() { }
 
-        fileprivate var _parameter: SwiftProtobuf.Google_Protobuf_Any? = nil
+        fileprivate var _parameter: SwiftProtobuf.Google_Protobuf_Any?
     }
 
     struct Result {
@@ -1592,7 +1592,7 @@ struct Protocol_Transaction {
 
     init() { }
 
-    fileprivate var _rawData: Protocol_Transaction.raw? = nil
+    fileprivate var _rawData: Protocol_Transaction.raw?
 }
 
 #if swift(>=4.2)
@@ -1947,7 +1947,7 @@ struct Protocol_BlockHeader {
 
     init() { }
 
-    fileprivate var _rawData: Protocol_BlockHeader.raw? = nil
+    fileprivate var _rawData: Protocol_BlockHeader.raw?
 }
 
 // MARK: - Protocol_Block
@@ -1974,7 +1974,7 @@ struct Protocol_Block {
 
     init() { }
 
-    private var _blockHeader: Protocol_BlockHeader? = nil
+    private var _blockHeader: Protocol_BlockHeader?
 }
 
 // MARK: - Protocol_ChainInventory
@@ -2309,10 +2309,10 @@ struct Protocol_HelloMessage {
 
     init() { }
 
-    private var _from: Protocol_Endpoint? = nil
-    private var _genesisBlockID: Protocol_HelloMessage.BlockID? = nil
-    private var _solidBlockID: Protocol_HelloMessage.BlockID? = nil
-    private var _headBlockID: Protocol_HelloMessage.BlockID? = nil
+    private var _from: Protocol_Endpoint?
+    private var _genesisBlockID: Protocol_HelloMessage.BlockID?
+    private var _solidBlockID: Protocol_HelloMessage.BlockID?
+    private var _headBlockID: Protocol_HelloMessage.BlockID?
 }
 
 // MARK: - Protocol_InternalTransaction
@@ -3158,16 +3158,16 @@ struct Protocol_MetricsInfo {
 
                 init() { }
 
-                fileprivate var _qps: Protocol_MetricsInfo.RateInfo? = nil
-                fileprivate var _failQps: Protocol_MetricsInfo.RateInfo? = nil
-                fileprivate var _outTraffic: Protocol_MetricsInfo.RateInfo? = nil
+                fileprivate var _qps: Protocol_MetricsInfo.RateInfo?
+                fileprivate var _failQps: Protocol_MetricsInfo.RateInfo?
+                fileprivate var _outTraffic: Protocol_MetricsInfo.RateInfo?
             }
 
             init() { }
 
-            fileprivate var _qps: Protocol_MetricsInfo.RateInfo? = nil
-            fileprivate var _failQps: Protocol_MetricsInfo.RateInfo? = nil
-            fileprivate var _outTraffic: Protocol_MetricsInfo.RateInfo? = nil
+            fileprivate var _qps: Protocol_MetricsInfo.RateInfo?
+            fileprivate var _failQps: Protocol_MetricsInfo.RateInfo?
+            fileprivate var _outTraffic: Protocol_MetricsInfo.RateInfo?
         }
 
         struct DisconnectionDetailInfo {
@@ -3243,9 +3243,9 @@ struct Protocol_MetricsInfo {
 
     init() { }
 
-    private var _node: Protocol_MetricsInfo.NodeInfo? = nil
-    private var _blockchain: Protocol_MetricsInfo.BlockChainInfo? = nil
-    private var _net: Protocol_MetricsInfo.NetInfo? = nil
+    private var _node: Protocol_MetricsInfo.NodeInfo?
+    private var _blockchain: Protocol_MetricsInfo.BlockChainInfo?
+    private var _net: Protocol_MetricsInfo.NetInfo?
 }
 
 // MARK: - Protocol_PBFTMessage
@@ -3354,7 +3354,7 @@ struct Protocol_PBFTMessage {
 
     init() { }
 
-    fileprivate var _rawData: Protocol_PBFTMessage.Raw? = nil
+    fileprivate var _rawData: Protocol_PBFTMessage.Raw?
 }
 
 #if swift(>=4.2)
@@ -4347,7 +4347,7 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
         var _acquiredDelegatedFrozenBalanceForBandwidth: Int64 = 0
         var _delegatedFrozenBalanceForBandwidth: Int64 = 0
         var _oldTronPower: Int64 = 0
-        var _tronPower: Protocol_Account.Frozen? = nil
+        var _tronPower: Protocol_Account.Frozen?
         var _assetOptimized = false
         var _createTime: Int64 = 0
         var _latestOprationTime: Int64 = 0
@@ -4368,10 +4368,10 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
         var _latestConsumeFreeTime: Int64 = 0
         var _accountID: Data = .init()
         var _netWindowSize: Int64 = 0
-        var _accountResource: Protocol_Account.AccountResource? = nil
+        var _accountResource: Protocol_Account.AccountResource?
         var _codeHash: Data = .init()
-        var _ownerPermission: Protocol_Permission? = nil
-        var _witnessPermission: Protocol_Permission? = nil
+        var _ownerPermission: Protocol_Permission?
+        var _witnessPermission: Protocol_Permission?
         var _activePermission: [Protocol_Permission] = []
         var _frozenV2: [Protocol_Account.FreezeV2] = []
         var _unfrozenV2: [Protocol_Account.UnFreezeV2] = []
@@ -6109,7 +6109,7 @@ extension Protocol_TransactionInfo: SwiftProtobuf.Message, SwiftProtobuf._Messag
         var _blockTimeStamp: Int64 = 0
         var _contractResult: [Data] = []
         var _contractAddress: Data = .init()
-        var _receipt: Protocol_ResourceReceipt? = nil
+        var _receipt: Protocol_ResourceReceipt?
         var _log: [Protocol_TransactionInfo.Log] = []
         var _result: Protocol_TransactionInfo.code = .sucess
         var _resMessage: Data = .init()
@@ -7323,8 +7323,8 @@ extension Protocol_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
         var _passiveConnectCount: Int32 = 0
         var _totalFlow: Int64 = 0
         var _peerInfoList: [Protocol_NodeInfo.PeerInfo] = []
-        var _configNodeInfo: Protocol_NodeInfo.ConfigNodeInfo? = nil
-        var _machineInfo: Protocol_NodeInfo.MachineInfo? = nil
+        var _configNodeInfo: Protocol_NodeInfo.ConfigNodeInfo?
+        var _machineInfo: Protocol_NodeInfo.MachineInfo?
         var _cheatWitnessInfoMap: [String: String] = [:]
 
         static let defaultInstance = _StorageClass()
@@ -8331,10 +8331,10 @@ extension Protocol_MetricsInfo.BlockChainInfo: SwiftProtobuf.Message, SwiftProto
         var _headBlockHash: String = .init()
         var _forkCount: Int32 = 0
         var _failForkCount: Int32 = 0
-        var _blockProcessTime: Protocol_MetricsInfo.RateInfo? = nil
-        var _tps: Protocol_MetricsInfo.RateInfo? = nil
+        var _blockProcessTime: Protocol_MetricsInfo.RateInfo?
+        var _tps: Protocol_MetricsInfo.RateInfo?
         var _transactionCacheSize: Int32 = 0
-        var _missedTransaction: Protocol_MetricsInfo.RateInfo? = nil
+        var _missedTransaction: Protocol_MetricsInfo.RateInfo?
         var _witnesses: [Protocol_MetricsInfo.BlockChainInfo.Witness] = []
         var _failProcessBlockNum: Int64 = 0
         var _failProcessBlockReason: String = .init()
@@ -8649,16 +8649,16 @@ extension Protocol_MetricsInfo.NetInfo: SwiftProtobuf.Message, SwiftProtobuf._Me
 
     fileprivate class _StorageClass {
         var _errorProtoCount: Int32 = 0
-        var _api: Protocol_MetricsInfo.NetInfo.ApiInfo? = nil
+        var _api: Protocol_MetricsInfo.NetInfo.ApiInfo?
         var _connectionCount: Int32 = 0
         var _validConnectionCount: Int32 = 0
-        var _tcpInTraffic: Protocol_MetricsInfo.RateInfo? = nil
-        var _tcpOutTraffic: Protocol_MetricsInfo.RateInfo? = nil
+        var _tcpInTraffic: Protocol_MetricsInfo.RateInfo?
+        var _tcpOutTraffic: Protocol_MetricsInfo.RateInfo?
         var _disconnectionCount: Int32 = 0
         var _disconnectionDetail: [Protocol_MetricsInfo.NetInfo.DisconnectionDetailInfo] = []
-        var _udpInTraffic: Protocol_MetricsInfo.RateInfo? = nil
-        var _udpOutTraffic: Protocol_MetricsInfo.RateInfo? = nil
-        var _latency: Protocol_MetricsInfo.NetInfo.LatencyInfo? = nil
+        var _udpInTraffic: Protocol_MetricsInfo.RateInfo?
+        var _udpOutTraffic: Protocol_MetricsInfo.RateInfo?
+        var _latency: Protocol_MetricsInfo.NetInfo.LatencyInfo?
 
         static let defaultInstance = _StorageClass()
 

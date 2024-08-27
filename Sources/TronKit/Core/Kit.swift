@@ -173,9 +173,9 @@ extension Kit {
     
     public static func clear(exceptFor excludedFiles: [String]) throws {
         let fileManager = FileManager.default
-        let fileURLs = try fileManager.contentsOfDirectory(at: dataDirectoryURL(), includingPropertiesForKeys: nil)
+        let fileUrls = try fileManager.contentsOfDirectory(at: dataDirectoryUrl(), includingPropertiesForKeys: nil)
 
-        for filename in fileURLs {
+        for filename in fileUrls {
             if !excludedFiles.contains(where: { filename.lastPathComponent.contains($0) }) {
                 try fileManager.removeItem(at: filename)
             }
@@ -194,17 +194,17 @@ extension Kit {
 
         let networkManager = NetworkManager(logger: logger)
         let reachabilityManager = ReachabilityManager()
-        let databaseDirectoryURL = try dataDirectoryURL()
+        let databaseDirectoryUrl = try dataDirectoryUrl()
         let syncerStorage = SyncerStorage(
-            databaseDirectoryURL: databaseDirectoryURL,
+            databaseDirectoryUrl: databaseDirectoryUrl,
             databaseFileName: "syncer-state-storage-\(uniqueID)"
         )
         let accountInfoStorage = AccountInfoStorage(
-            databaseDirectoryURL: databaseDirectoryURL,
+            databaseDirectoryUrl: databaseDirectoryUrl,
             databaseFileName: "account-info-storage-\(uniqueID)"
         )
         let transactionStorage = TransactionStorage(
-            databaseDirectoryURL: databaseDirectoryURL,
+            databaseDirectoryUrl: databaseDirectoryUrl,
             databaseFileName: "transactions-storage-\(uniqueID)"
         )
 
@@ -218,7 +218,7 @@ extension Kit {
 
         let tronGridProvider = TronGridProvider(
             networkManager: networkManager,
-            baseURL: providerURL(network: network),
+            baseUrl: providerUrl(network: network),
             apiKey: apiKey
         )
         let chainParameterManager = ChainParameterManager(tronGridProvider: tronGridProvider, storage: syncerStorage)
@@ -260,7 +260,7 @@ extension Kit {
     ) async throws -> Data {
         let tronGridProvider = TronGridProvider(
             networkManager: networkManager,
-            baseURL: providerURL(network: network),
+            baseUrl: providerUrl(network: network),
             apiKey: apiKey
         )
         let rpc = CallJsonRpc(contractAddress: contractAddress, data: data)
@@ -268,7 +268,7 @@ extension Kit {
         return try await tronGridProvider.fetch(rpc: rpc)
     }
 
-    private static func dataDirectoryURL() throws -> URL {
+    private static func dataDirectoryUrl() throws -> URL {
         let fileManager = FileManager.default
 
         let url = try fileManager
@@ -280,7 +280,7 @@ extension Kit {
         return url
     }
 
-    private static func providerURL(network: Network) -> String {
+    private static func providerUrl(network: Network) -> String {
         switch network {
         case .mainNet: "https://api.trongrid.io/"
         case .nileTestnet: "https://nile.trongrid.io/"

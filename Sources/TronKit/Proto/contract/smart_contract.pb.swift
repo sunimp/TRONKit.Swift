@@ -196,7 +196,7 @@ struct Protocol_SmartContract {
 
     init() { }
 
-    fileprivate var _abi: Protocol_SmartContract.ABI? = nil
+    fileprivate var _abi: Protocol_SmartContract.ABI?
 }
 
 #if swift(>=4.2)
@@ -272,7 +272,7 @@ struct Protocol_CreateSmartContract {
 
     init() { }
 
-    private var _newContract: Protocol_SmartContract? = nil
+    private var _newContract: Protocol_SmartContract?
 }
 
 // MARK: - Protocol_TriggerSmartContract
@@ -384,8 +384,8 @@ struct Protocol_SmartContractDataWrapper {
 
     init() { }
 
-    private var _smartContract: Protocol_SmartContract? = nil
-    private var _contractState: Protocol_ContractState? = nil
+    private var _smartContract: Protocol_SmartContract?
+    private var _contractState: Protocol_ContractState?
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)

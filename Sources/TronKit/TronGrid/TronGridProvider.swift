@@ -15,15 +15,15 @@ import WWToolKit
 
 class TronGridProvider {
     private let networkManager: NetworkManager
-    private let baseURL: String
+    private let baseUrl: String
 
     private let headers: HTTPHeaders
     private var currentRpcID = 0
     private let pageLimit = 200
 
-    init(networkManager: NetworkManager, baseURL: String, apiKey: String?) {
+    init(networkManager: NetworkManager, baseUrl: String, apiKey: String?) {
         self.networkManager = networkManager
-        self.baseURL = baseURL
+        self.baseUrl = baseUrl
 
         var headers = HTTPHeaders()
 
@@ -36,7 +36,7 @@ class TronGridProvider {
 
     private func rpcApiFetch(parameters: [String: Any]) async throws -> Any {
         try await networkManager.fetchJson(
-            url: baseURL + "jsonrpc",
+            url: baseUrl + "jsonrpc",
             method: .post,
             parameters: parameters,
             encoding: JSONEncoding.default,
@@ -50,7 +50,7 @@ class TronGridProvider {
         path: String,
         parameters: Parameters
     ) async throws -> (data: [[String: Any]], meta: [String: Any]) {
-        let urlString = "\(baseURL)\(path)"
+        let urlString = "\(baseUrl)\(path)"
 
         let json = try await networkManager.fetchJson(
             url: urlString,
@@ -80,7 +80,7 @@ class TronGridProvider {
     }
 
     private func requestNodeApiFetch(path: String, parameters: Parameters) async throws -> [String: Any] {
-        let urlString = "\(baseURL)\(path)"
+        let urlString = "\(baseUrl)\(path)"
 
         let json = try await networkManager.fetchJson(
             url: urlString,
@@ -133,7 +133,7 @@ extension TronGridProvider: RequestInterceptor {
 
 extension TronGridProvider {
     var source: String {
-        baseURL
+        baseUrl
     }
 
     func fetch<T>(rpc: JsonRpc<T>) async throws -> T {
@@ -235,7 +235,7 @@ extension TronGridProvider {
     }
 
     func fetchChainParameters() async throws -> [ChainParameterResponse] {
-        let urlString = "\(baseURL)wallet/getchainparameters"
+        let urlString = "\(baseUrl)wallet/getchainparameters"
         let json = try await networkManager.fetchJson(
             url: urlString,
             method: .get,
@@ -255,7 +255,7 @@ extension TronGridProvider {
     }
 
     func createTransaction(ownerAddress: String, toAddress: String, amount: Int) async throws -> CreatedTransactionResponse {
-        let urlString = "\(baseURL)wallet/createtransaction"
+        let urlString = "\(baseUrl)wallet/createtransaction"
         let parameters: Parameters = [
             "owner_address": ownerAddress,
             "to_address": toAddress,
@@ -304,7 +304,7 @@ extension TronGridProvider {
     }
 
     func broadcastTransaction(hexData: Data) async throws {
-        let urlString = "\(baseURL)wallet/broadcasthex"
+        let urlString = "\(baseUrl)wallet/broadcasthex"
         let parameters: Parameters = [
             "transaction": hexData.ww.hex,
         ]

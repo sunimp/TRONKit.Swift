@@ -22,7 +22,7 @@ protocol ISyncTimerDelegate: AnyObject {
 // MARK: - SyncTimer
 
 class SyncTimer {
-    weak var delegate: ISyncTimerDelegate? = nil
+    weak var delegate: ISyncTimerDelegate?
 
     private let reachabilityManager: ReachabilityManager
     private let syncInterval: TimeInterval
@@ -30,7 +30,7 @@ class SyncTimer {
     private var tasks = Set<AnyTask>()
 
     private var isStarted = false
-    private var timer: Timer? = nil
+    private var timer: Timer?
 
     private(set) var state: State = .notReady(error: Kit.SyncError.notStarted) {
         didSet {
