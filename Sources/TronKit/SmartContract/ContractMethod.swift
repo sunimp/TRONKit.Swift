@@ -8,7 +8,7 @@
 import Foundation
 
 open class ContractMethod {
-    public init() {}
+    public init() { }
 
     open var methodSignature: String {
         fatalError("Subclasses must override.")

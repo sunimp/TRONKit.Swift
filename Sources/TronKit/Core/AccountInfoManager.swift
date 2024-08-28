@@ -5,11 +5,13 @@
 //  Created by Sun on 2024/8/21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 import BigInt
 import WWExtensions
+
+// MARK: - AccountInfoManager
 
 class AccountInfoManager {
     private let storage: AccountInfoStorage
@@ -25,7 +27,7 @@ class AccountInfoManager {
         storage.trxBalance ?? 0
     }
 
-    var accountActive: Bool = true
+    var accountActive = true
 }
 
 extension AccountInfoManager {

@@ -7,10 +7,14 @@
 
 import Foundation
 
+// MARK: - IContractMethodFactory
+
 public protocol IContractMethodFactory {
     var methodId: Data { get }
     func createMethod(inputArguments: Data) throws -> ContractMethod
 }
+
+// MARK: - IContractMethodsFactory
 
 public protocol IContractMethodsFactory: IContractMethodFactory {
     var methodIds: [Data] { get }
@@ -20,12 +24,14 @@ extension IContractMethodsFactory {
     var methodId: Data { Data() }
 }
 
+// MARK: - ContractMethodFactories
+
 open class ContractMethodFactories {
     public enum DecodeError: Error {
         case invalidABI
     }
 
-    public init() {}
+    public init() { }
 
     private var factories = [Data: IContractMethodFactory]()
 

@@ -9,10 +9,14 @@ import Foundation
 
 import SwiftProtobuf
 
+// MARK: - SupportedContract
+
 protocol SupportedContract: Contract {
     var protoMessage: SwiftProtobuf.Message { get }
     var protoContractType: Protocol_Transaction.Contract.ContractType { get }
 }
+
+// MARK: - TransferContract + SupportedContract
 
 extension TransferContract: SupportedContract {
     var protoMessage: Message {
@@ -28,6 +32,8 @@ extension TransferContract: SupportedContract {
         .transferContract
     }
 }
+
+// MARK: - TriggerSmartContract + SupportedContract
 
 extension TriggerSmartContract: SupportedContract {
     var protoMessage: Message {

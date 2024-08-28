@@ -5,17 +5,21 @@
 //  Created by Sun on 2024/8/21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 import BigInt
 import WWExtensions
 import WWToolKit
 
+// MARK: - ISyncTimerDelegate
+
 protocol ISyncTimerDelegate: AnyObject {
     func didUpdate(state: SyncTimer.State)
     func sync()
 }
+
+// MARK: - SyncTimer
 
 class SyncTimer {
     weak var delegate: ISyncTimerDelegate?
@@ -51,7 +55,8 @@ class SyncTimer {
         stop()
     }
 
-    @objc func onFireTimer() {
+    @objc
+    func onFireTimer() {
         Task { [weak self] in
             self?.delegate?.sync()
         }.store(in: &tasks)
@@ -100,6 +105,8 @@ extension SyncTimer {
     }
 }
 
+// MARK: SyncTimer.State
+
 extension SyncTimer {
     enum State: Equatable {
         case ready
@@ -107,9 +114,9 @@ extension SyncTimer {
 
         public static func == (lhs: State, rhs: State) -> Bool {
             switch (lhs, rhs) {
-            case (.ready, .ready): return true
-            case let (.notReady(lhsError), .notReady(rhsError)): return "\(lhsError)" == "\(rhsError)"
-            default: return false
+            case (.ready, .ready): true
+            case (.notReady(let lhsError), .notReady(let rhsError)): "\(lhsError)" == "\(rhsError)"
+            default: false
             }
         }
     }

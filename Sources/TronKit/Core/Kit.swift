@@ -5,13 +5,15 @@
 //  Created by Sun on 2024/8/21.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 import BigInt
 import HDWalletKit
 import WWCryptoKit
 import WWToolKit
+
+// MARK: - Kit
 
 public class Kit {
     private let syncer: Syncer
@@ -25,7 +27,17 @@ public class Kit {
     public let uniqueId: String
     public let logger: Logger
 
-    init(address: Address, network: Network, uniqueId: String, syncer: Syncer, accountInfoManager: AccountInfoManager, transactionManager: TransactionManager, transactionSender: TransactionSender, feeProvider: FeeProvider, logger: Logger) {
+    init(
+        address: Address,
+        network: Network,
+        uniqueId: String,
+        syncer: Syncer,
+        accountInfoManager: AccountInfoManager,
+        transactionManager: TransactionManager,
+        transactionSender: TransactionSender,
+        feeProvider: FeeProvider,
+        logger: Logger
+    ) {
         self.address = address
         self.network = network
         self.uniqueId = uniqueId
@@ -106,7 +118,11 @@ extension Kit {
         TransferContract(amount: value, ownerAddress: address, toAddress: toAddress)
     }
 
-    public func transferTrc20TriggerSmartContract(contractAddress: Address, toAddress: Address, amount: BigUInt) -> TriggerSmartContract {
+    public func transferTrc20TriggerSmartContract(
+        contractAddress: Address,
+        toAddress: Address,
+        amount: BigUInt
+    ) -> TriggerSmartContract {
         let transferMethod = TransferMethod(to: toAddress, value: amount)
         let data = transferMethod.encodedABI().ww.hex
         let parameter = ContractMethodHelper.encodedABI(methodId: Data(), arguments: transferMethod.arguments).ww.hex
@@ -166,27 +182,58 @@ extension Kit {
         }
     }
 
-    public static func instance(address: Address, network: Network, walletId: String, apiKey: String?, minLogLevel: Logger.Level = .error) throws -> Kit {
+    public static func instance(
+        address: Address,
+        network: Network,
+        walletId: String,
+        apiKey: String?,
+        minLogLevel: Logger.Level = .error
+    ) throws -> Kit {
         let logger = Logger(minLogLevel: minLogLevel)
         let uniqueId = "\(walletId)-\(network.rawValue)"
 
         let networkManager = NetworkManager(logger: logger)
         let reachabilityManager = ReachabilityManager()
         let databaseDirectoryUrl = try dataDirectoryUrl()
-        let syncerStorage = SyncerStorage(databaseDirectoryUrl: databaseDirectoryUrl, databaseFileName: "syncer-state-storage-\(uniqueId)")
-        let accountInfoStorage = AccountInfoStorage(databaseDirectoryUrl: databaseDirectoryUrl, databaseFileName: "account-info-storage-\(uniqueId)")
-        let transactionStorage = TransactionStorage(databaseDirectoryUrl: databaseDirectoryUrl, databaseFileName: "transactions-storage-\(uniqueId)")
+        let syncerStorage = SyncerStorage(
+            databaseDirectoryUrl: databaseDirectoryUrl,
+            databaseFileName: "syncer-state-storage-\(uniqueId)"
+        )
+        let accountInfoStorage = AccountInfoStorage(
+            databaseDirectoryUrl: databaseDirectoryUrl,
+            databaseFileName: "account-info-storage-\(uniqueId)"
+        )
+        let transactionStorage = TransactionStorage(
+            databaseDirectoryUrl: databaseDirectoryUrl,
+            databaseFileName: "transactions-storage-\(uniqueId)"
+        )
 
         let accountInfoManager = AccountInfoManager(storage: accountInfoStorage)
         let decorationManager = DecorationManager(userAddress: address, storage: transactionStorage)
-        let transactionManager = TransactionManager(userAddress: address, storage: transactionStorage, decorationManager: decorationManager)
+        let transactionManager = TransactionManager(
+            userAddress: address,
+            storage: transactionStorage,
+            decorationManager: decorationManager
+        )
 
-        let tronGridProvider = TronGridProvider(networkManager: networkManager, baseUrl: providerUrl(network: network), apiKey: apiKey)
+        let tronGridProvider = TronGridProvider(
+            networkManager: networkManager,
+            baseUrl: providerUrl(network: network),
+            apiKey: apiKey
+        )
         let chainParameterManager = ChainParameterManager(tronGridProvider: tronGridProvider, storage: syncerStorage)
         let feeProvider = FeeProvider(tronGridProvider: tronGridProvider, chainParameterManager: chainParameterManager)
 
         let syncTimer = SyncTimer(reachabilityManager: reachabilityManager, syncInterval: 30)
-        let syncer = Syncer(accountInfoManager: accountInfoManager, transactionManager: transactionManager, chainParameterManager: chainParameterManager, syncTimer: syncTimer, tronGridProvider: tronGridProvider, storage: syncerStorage, address: address)
+        let syncer = Syncer(
+            accountInfoManager: accountInfoManager,
+            transactionManager: transactionManager,
+            chainParameterManager: chainParameterManager,
+            syncTimer: syncTimer,
+            tronGridProvider: tronGridProvider,
+            storage: syncerStorage,
+            address: address
+        )
         let transactionSender = TransactionSender(tronGridProvider: tronGridProvider)
 
         let kit = Kit(
@@ -204,8 +251,18 @@ extension Kit {
         return kit
     }
 
-    public static func call(networkManager: NetworkManager, network: Network, contractAddress: Address, data: Data, apiKey: String?) async throws -> Data {
-        let tronGridProvider = TronGridProvider(networkManager: networkManager, baseUrl: providerUrl(network: network), apiKey: apiKey)
+    public static func call(
+        networkManager: NetworkManager,
+        network: Network,
+        contractAddress: Address,
+        data: Data,
+        apiKey: String?
+    ) async throws -> Data {
+        let tronGridProvider = TronGridProvider(
+            networkManager: networkManager,
+            baseUrl: providerUrl(network: network),
+            apiKey: apiKey
+        )
         let rpc = CallJsonRpc(contractAddress: contractAddress, data: data)
 
         return try await tronGridProvider.fetch(rpc: rpc)
@@ -225,9 +282,9 @@ extension Kit {
 
     private static func providerUrl(network: Network) -> String {
         switch network {
-        case .mainNet: return "https://api.trongrid.io/"
-        case .nileTestnet: return "https://nile.trongrid.io/"
-        case .shastaTestnet: return "https://api.shasta.trongrid.io/"
+        case .mainNet: "https://api.trongrid.io/"
+        case .nileTestnet: "https://nile.trongrid.io/"
+        case .shastaTestnet: "https://api.shasta.trongrid.io/"
         }
     }
 }

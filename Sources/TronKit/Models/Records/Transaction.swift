@@ -40,11 +40,20 @@ public class Transaction: Record {
         contract.flatMap { $0.ownTransaction(ownAddress: ownAddress) } ?? false
     }
 
-    public init(hash: Data, timestamp: Int, isFailed: Bool, blockNumber: Int? = nil, confirmed: Bool,
-                fee: Int? = nil, netUsage: Int? = nil, netFee: Int? = nil,
-                energyUsage: Int? = nil, energyFee: Int? = nil, energyUsageTotal: Int? = nil,
-                contractsMap: Any? = nil)
-    {
+    public init(
+        hash: Data,
+        timestamp: Int,
+        isFailed: Bool,
+        blockNumber: Int? = nil,
+        confirmed: Bool,
+        fee: Int? = nil,
+        netUsage: Int? = nil,
+        netFee: Int? = nil,
+        energyUsage: Int? = nil,
+        energyFee: Int? = nil,
+        energyUsageTotal: Int? = nil,
+        contractsMap: Any? = nil
+    ) {
         self.hash = hash
         self.timestamp = timestamp
         self.isFailed = isFailed

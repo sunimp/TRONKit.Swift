@@ -9,6 +9,8 @@ import Foundation
 
 import BigInt
 
+// MARK: - DecorationManager
+
 class DecorationManager {
     private let userAddress: Address
     private let storage: TransactionStorage
@@ -59,7 +61,11 @@ class DecorationManager {
         return map
     }
 
-    private func decoration(contract: Contract?, internalTransactions: [InternalTransaction], events: [Event]) -> TransactionDecoration {
+    private func decoration(
+        contract: Contract?,
+        internalTransactions: [InternalTransaction],
+        events: [Event]
+    ) -> TransactionDecoration {
         guard let contract else {
             return UnknownTransactionDecoration(
                 contract: nil,
@@ -70,7 +76,13 @@ class DecorationManager {
 
         if let contract = contract as? TriggerSmartContract {
             for decorator in transactionDecorators {
-                if let decoration = decorator.decoration(contract: contract, internalTransactions: internalTransactions, events: events) {
+                if
+                    let decoration = decorator.decoration(
+                        contract: contract,
+                        internalTransactions: internalTransactions,
+                        events: events
+                    )
+                {
                     return decoration
                 }
             }

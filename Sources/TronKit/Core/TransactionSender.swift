@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - TransactionSender
+
 class TransactionSender {
     private let tronGridProvider: TronGridProvider
 
@@ -25,12 +27,17 @@ extension TransactionSender {
 
         switch contract {
         case let transfer as TransferContract:
-            createdTransaction = try await tronGridProvider.createTransaction(ownerAddress: transfer.ownerAddress.hex, toAddress: transfer.toAddress.hex, amount: transfer.amount)
+            createdTransaction = try await tronGridProvider.createTransaction(
+                ownerAddress: transfer.ownerAddress.hex,
+                toAddress: transfer.toAddress.hex,
+                amount: transfer.amount
+            )
 
         case let smartContract as TriggerSmartContract:
-            guard let functionSelector = smartContract.functionSelector,
-                  let parameter = smartContract.parameter,
-                  let feeLimit
+            guard
+                let functionSelector = smartContract.functionSelector,
+                let parameter = smartContract.parameter,
+                let feeLimit
             else {
                 throw Kit.SendError.invalidParameter
             }
@@ -48,9 +55,10 @@ extension TransactionSender {
 
         let rawData = try Protocol_Transaction.raw(serializedBytes: createdTransaction.rawDataHex)
 
-        guard rawData.contract.count == 1,
-              let contractMessage = rawData.contract.first,
-              try contractMessage.parameter.value == (contract.protoMessage.serializedData())
+        guard
+            rawData.contract.count == 1,
+            let contractMessage = rawData.contract.first,
+            try contractMessage.parameter.value == (contract.protoMessage.serializedData())
         else {
             throw Kit.SendError.abnormalSend
         }

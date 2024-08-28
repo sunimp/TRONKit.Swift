@@ -24,9 +24,10 @@ enum ContractHelper {
         }
 
         return try array.map { rawMap in
-            guard let type = rawMap["type"] as? String,
-                  let parameter = rawMap["parameter"] as? [String: Any],
-                  let valueMap = parameter["value"] as? [String: Any]
+            guard
+                let type = rawMap["type"] as? String,
+                let parameter = rawMap["parameter"] as? [String: Any],
+                let valueMap = parameter["value"] as? [String: Any]
             else {
                 return try UnknownContract(object: rawMap)
             }

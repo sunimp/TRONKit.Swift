@@ -10,6 +10,8 @@ import Foundation
 import BigInt
 import ObjectMapper
 
+// MARK: - Trc20TransactionResponse
+
 struct Trc20TransactionResponse: ImmutableMappable {
     let transactionId: Data
     let tokenInfo: TokenInfo
@@ -29,6 +31,8 @@ struct Trc20TransactionResponse: ImmutableMappable {
         value = try map.value("value", using: StringBigUIntTransform())
     }
 }
+
+// MARK: Trc20TransactionResponse.TokenInfo
 
 extension Trc20TransactionResponse {
     struct TokenInfo: ImmutableMappable {

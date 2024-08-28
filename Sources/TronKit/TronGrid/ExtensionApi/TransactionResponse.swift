@@ -9,9 +9,13 @@ import Foundation
 
 import ObjectMapper
 
+// MARK: - ITransactionResponse
+
 protocol ITransactionResponse {
     var blockTimestamp: Int { get }
 }
+
+// MARK: - TransactionResponse
 
 struct TransactionResponse: ImmutableMappable, ITransactionResponse {
     let ret: [Ret]
@@ -68,6 +72,8 @@ struct TransactionResponse: ImmutableMappable, ITransactionResponse {
         }
     }
 }
+
+// MARK: - InternalTransactionResponse
 
 struct InternalTransactionResponse: ImmutableMappable, ITransactionResponse {
     let internalTxId: String

@@ -9,6 +9,8 @@ import Foundation
 
 import GRDB
 
+// MARK: - TransactionStorage
+
 class TransactionStorage {
     private let dbPool: DatabasePool
 
@@ -50,7 +52,14 @@ class TransactionStorage {
                 t.column(InternalTransaction.Columns.to.name, .text).notNull()
                 t.column(InternalTransaction.Columns.value.name, .integer).notNull()
 
-                t.foreignKey([InternalTransaction.Columns.transactionHash.name], references: Transaction.databaseTableName, columns: [Transaction.Columns.hash.name], onDelete: .cascade, onUpdate: .cascade, deferred: true)
+                t.foreignKey(
+                    [InternalTransaction.Columns.transactionHash.name],
+                    references: Transaction.databaseTableName,
+                    columns: [Transaction.Columns.hash.name],
+                    onDelete: .cascade,
+                    onUpdate: .cascade,
+                    deferred: true
+                )
             }
         }
 
@@ -67,7 +76,14 @@ class TransactionStorage {
                 t.column(Trc20EventRecord.Columns.tokenSymbol.name, .text).notNull()
                 t.column(Trc20EventRecord.Columns.tokenDecimal.name, .integer).notNull()
 
-                t.foreignKey([Trc20EventRecord.Columns.transactionHash.name], references: Transaction.databaseTableName, columns: [Transaction.Columns.hash.name], onDelete: .cascade, onUpdate: .cascade, deferred: true)
+                t.foreignKey(
+                    [Trc20EventRecord.Columns.transactionHash.name],
+                    references: Transaction.databaseTableName,
+                    columns: [Transaction.Columns.hash.name],
+                    onDelete: .cascade,
+                    onUpdate: .cascade,
+                    deferred: true
+                )
             }
         }
 
@@ -78,7 +94,14 @@ class TransactionStorage {
                 t.column(TransactionTagRecord.Columns.protocol.name, .text)
                 t.column(TransactionTagRecord.Columns.contractAddress.name, .blob)
 
-                t.foreignKey([TransactionTagRecord.Columns.transactionHash.name], references: Transaction.databaseTableName, columns: [Transaction.Columns.hash.name], onDelete: .cascade, onUpdate: .cascade, deferred: true)
+                t.foreignKey(
+                    [TransactionTagRecord.Columns.transactionHash.name],
+                    references: Transaction.databaseTableName,
+                    columns: [Transaction.Columns.hash.name],
+                    onDelete: .cascade,
+                    onUpdate: .cascade,
+                    deferred: true
+                )
             }
         }
 
@@ -101,7 +124,7 @@ extension TransactionStorage {
     func transactionsBefore(tagQueries: [TransactionTagQuery], hash: Data?, limit: Int?) -> [Transaction] {
         try! dbPool.read { db in
             var arguments = [DatabaseValueConvertible]()
-            var whereConditions: [String] = ["\(Transaction.Columns.processed) = 1"]
+            var whereConditions = ["\(Transaction.Columns.processed) = 1"]
             let queries = tagQueries.filter { !$0.isEmpty }
             var joinClause = ""
 
@@ -111,19 +134,31 @@ extension TransactionStorage {
                         var statements = [String]()
 
                         if let type = tagQuery.type {
-                            statements.append("\(TransactionTagRecord.databaseTableName).'\(TransactionTagRecord.Columns.type.name)' = ?")
+                            statements
+                                .append(
+                                    "\(TransactionTagRecord.databaseTableName).'\(TransactionTagRecord.Columns.type.name)' = ?"
+                                )
                             arguments.append(type)
                         }
                         if let `protocol` = tagQuery.protocol {
-                            statements.append("\(TransactionTagRecord.databaseTableName).'\(TransactionTagRecord.Columns.protocol.name)' = ?")
+                            statements
+                                .append(
+                                    "\(TransactionTagRecord.databaseTableName).'\(TransactionTagRecord.Columns.protocol.name)' = ?"
+                                )
                             arguments.append(`protocol`)
                         }
                         if let contractAddress = tagQuery.contractAddress {
-                            statements.append("\(TransactionTagRecord.databaseTableName).'\(TransactionTagRecord.Columns.contractAddress.name)' = ?")
+                            statements
+                                .append(
+                                    "\(TransactionTagRecord.databaseTableName).'\(TransactionTagRecord.Columns.contractAddress.name)' = ?"
+                                )
                             arguments.append(contractAddress)
                         }
                         if let address = tagQuery.address {
-                            statements.append("LOWER(\(TransactionTagRecord.databaseTableName).'\(TransactionTagRecord.Columns.addresses.name)') LIKE ?")
+                            statements
+                                .append(
+                                    "LOWER(\(TransactionTagRecord.databaseTableName).'\(TransactionTagRecord.Columns.addresses.name)') LIKE ?"
+                                )
                             arguments.append("%" + address + "%")
                         }
 
@@ -132,21 +167,23 @@ extension TransactionStorage {
                     .joined(separator: " OR ")
 
                 whereConditions.append(tagConditions)
-                joinClause = "INNER JOIN \(TransactionTagRecord.databaseTableName) ON \(Transaction.databaseTableName).\(Transaction.Columns.hash.name) = \(TransactionTagRecord.databaseTableName).\(TransactionTagRecord.Columns.transactionHash.name)"
+                joinClause =
+                    "INNER JOIN \(TransactionTagRecord.databaseTableName) ON \(Transaction.databaseTableName).\(Transaction.Columns.hash.name) = \(TransactionTagRecord.databaseTableName).\(TransactionTagRecord.Columns.transactionHash.name)"
             }
 
-            if let fromHash = hash,
-               let fromTransaction = try Transaction.filter(Transaction.Columns.hash == fromHash).fetchOne(db)
+            if
+                let fromHash = hash,
+                let fromTransaction = try Transaction.filter(Transaction.Columns.hash == fromHash).fetchOne(db)
             {
                 let fromCondition = """
-                (
-                 \(Transaction.Columns.timestamp.name) < ? OR
-                     (
-                         \(Transaction.databaseTableName).\(Transaction.Columns.timestamp.name) = ? AND
-                         \(Transaction.databaseTableName).\(Transaction.Columns.hash.name) < ?
-                     )
-                )
-                """
+                    (
+                     \(Transaction.Columns.timestamp.name) < ? OR
+                         (
+                             \(Transaction.databaseTableName).\(Transaction.Columns.timestamp.name) = ? AND
+                             \(Transaction.databaseTableName).\(Transaction.Columns.hash.name) < ?
+                         )
+                    )
+                    """
 
                 arguments.append(fromTransaction.timestamp)
                 arguments.append(fromTransaction.timestamp)
@@ -161,20 +198,20 @@ extension TransactionStorage {
             }
 
             let orderClause = """
-            ORDER BY \(Transaction.databaseTableName).\(Transaction.Columns.timestamp.name) DESC,
-            \(Transaction.databaseTableName).\(Transaction.Columns.hash.name) DESC
-            """
+                ORDER BY \(Transaction.databaseTableName).\(Transaction.Columns.timestamp.name) DESC,
+                \(Transaction.databaseTableName).\(Transaction.Columns.hash.name) DESC
+                """
 
             let whereClause = whereConditions.count > 0 ? "WHERE \(whereConditions.joined(separator: " AND "))" : ""
 
             let sql = """
-            SELECT DISTINCT \(Transaction.databaseTableName).*
-            FROM \(Transaction.databaseTableName)
-            \(joinClause)
-            \(whereClause)
-            \(orderClause)
-            \(limitClause)
-            """
+                SELECT DISTINCT \(Transaction.databaseTableName).*
+                FROM \(Transaction.databaseTableName)
+                \(joinClause)
+                \(whereClause)
+                \(orderClause)
+                \(limitClause)
+                """
 
             let rows = try Row.fetchAll(db.makeStatement(sql: sql), arguments: StatementArguments(arguments))
             return try rows.map { row -> Transaction in

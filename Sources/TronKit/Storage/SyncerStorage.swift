@@ -9,6 +9,8 @@ import Foundation
 
 import GRDB
 
+// MARK: - SyncerStorage
+
 class SyncerStorage {
     private let dbPool: DatabasePool
 
@@ -69,7 +71,8 @@ extension SyncerStorage {
 
     func lastTransactionTimestamp(apiPath: String) -> Int? {
         try? dbPool.read { db in
-            try TransactionSyncTimestamp.filter(TransactionSyncTimestamp.Columns.apiPath == apiPath).fetchOne(db)?.lastTransactionTimestamp
+            try TransactionSyncTimestamp.filter(TransactionSyncTimestamp.Columns.apiPath == apiPath).fetchOne(db)?
+                .lastTransactionTimestamp
         }
     }
 

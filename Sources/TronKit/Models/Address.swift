@@ -11,6 +11,8 @@ import GRDB
 import WWCryptoKit
 import WWExtensions
 
+// MARK: - Address
+
 public struct Address {
     public let raw: Data
     public let base58: String
@@ -67,11 +69,15 @@ extension Address {
     }
 }
 
+// MARK: CustomStringConvertible
+
 extension Address: CustomStringConvertible {
     public var description: String {
         hex
     }
 }
+
+// MARK: Hashable
 
 extension Address: Hashable {
     public func hash(into hasher: inout Hasher) {
@@ -83,6 +89,8 @@ extension Address: Hashable {
     }
 }
 
+// MARK: DatabaseValueConvertible
+
 extension Address: DatabaseValueConvertible {
     public var databaseValue: DatabaseValue {
         raw.databaseValue
@@ -90,13 +98,15 @@ extension Address: DatabaseValueConvertible {
 
     public static func fromDatabaseValue(_ dbValue: DatabaseValue) -> Address? {
         switch dbValue.storage {
-        case let .blob(data):
-            return try! Address(raw: data)
+        case .blob(let data):
+            try! Address(raw: data)
         default:
-            return nil
+            nil
         }
     }
 }
+
+// MARK: Address.ValidationError
 
 extension Address {
     

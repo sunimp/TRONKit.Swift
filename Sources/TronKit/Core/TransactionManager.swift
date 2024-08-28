@@ -5,8 +5,10 @@
 //  Created by Sun on 2024/8/21.
 //
 
-import Foundation
 import Combine
+import Foundation
+
+// MARK: - TransactionManager
 
 class TransactionManager {
     private let userAddress: Address
@@ -14,7 +16,10 @@ class TransactionManager {
     private let decorationManager: DecorationManager
 
     private let fullTransactionsSubject = PassthroughSubject<([FullTransaction], Bool), Never>()
-    private let fullTransactionsWithTagsSubject = PassthroughSubject<[(transaction: FullTransaction, tags: [TransactionTag])], Never>()
+    private let fullTransactionsWithTagsSubject = PassthroughSubject<
+        [(transaction: FullTransaction, tags: [TransactionTag])],
+        Never
+    >()
 
     init(userAddress: Address, storage: TransactionStorage, decorationManager: DecorationManager) {
         self.userAddress = userAddress
@@ -44,7 +49,7 @@ extension TransactionManager {
                 }
             }
             .filter { transactions in
-                transactions.count > 0
+                !transactions.isEmpty
             }
             .eraseToAnyPublisher()
     }
@@ -178,6 +183,9 @@ extension TransactionManager {
     }
 }
 
+// MARK: - ITransactionDecorator
+
 public protocol ITransactionDecorator {
-    func decoration(contract: TriggerSmartContract, internalTransactions: [InternalTransaction], events: [Event]) -> TransactionDecoration?
+    func decoration(contract: TriggerSmartContract, internalTransactions: [InternalTransaction], events: [Event])
+        -> TransactionDecoration?
 }

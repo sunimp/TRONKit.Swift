@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - ChainParameterManager
+
 class ChainParameterManager {
     private let tronGridProvider: TronGridProvider
     private let storage: SyncerStorage

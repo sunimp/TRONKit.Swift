@@ -10,6 +10,8 @@ import Foundation
 import BigInt
 import GRDB
 
+// MARK: - AccountInfoStorage
+
 class AccountInfoStorage {
     private let dbPool: DatabasePool
 

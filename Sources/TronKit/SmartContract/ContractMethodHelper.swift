@@ -36,16 +36,21 @@ public enum ContractMethodHelper {
             switch argument {
             case let argument as BigUInt:
                 data += pad(data: argument.serialize())
+
             case let argument as String:
                 data += pad(data: argument.ww.hexData ?? Data())
+
             case let argument as Address:
                 data += pad(data: argument.nonPrefixed)
+
             case let argument as [Address]:
                 data += pad(data: BigUInt(arguments.count * 32 + arraysData.count).serialize())
                 arraysData += encode(array: argument.map(\.raw))
+
             case let argument as Data:
                 data += pad(data: BigUInt(arguments.count * 32 + arraysData.count).serialize())
                 arraysData += pad(data: BigUInt(argument.count).serialize()) + argument
+
             default:
                 ()
             }
@@ -96,12 +101,18 @@ public enum ContractMethodHelper {
 
             case let object as DynamicStructParameter:
                 let argumentsPosition = parseInt(data: inputArguments[position ..< position + 32])
-                let data: [Any] = try decodeABI(inputArguments: Data(inputArguments[argumentsPosition ..< inputArguments.count]), argumentTypes: object.arguments)
+                let data: [Any] = try decodeABI(
+                    inputArguments: Data(inputArguments[argumentsPosition ..< inputArguments.count]),
+                    argumentTypes: object.arguments
+                )
                 parsedArguments.append(data)
                 position += 32
 
             case let object as StaticStructParameter:
-                let data: [Any] = try decodeABI(inputArguments: Data(inputArguments[position ..< inputArguments.count]), argumentTypes: object.arguments)
+                let data: [Any] = try decodeABI(
+                    inputArguments: Data(inputArguments[position ..< inputArguments.count]),
+                    argumentTypes: object.arguments
+                )
                 parsedArguments.append(data)
                 position += 32 * object.arguments.count
 

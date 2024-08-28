@@ -11,9 +11,22 @@ import BigInt
 import WWExtensions
 import WWToolKit
 
+// MARK: - Trc20DataProvider
+
 public enum Trc20DataProvider {
-    public static func fetchName(networkManager: NetworkManager, network: Network, apiKey: String?, contractAddress: Address) async throws -> String {
-        let data = try await TronKit.Kit.call(networkManager: networkManager, network: network, contractAddress: contractAddress, data: NameMethod().encodedABI(), apiKey: apiKey)
+    public static func fetchName(
+        networkManager: NetworkManager,
+        network: Network,
+        apiKey: String?,
+        contractAddress: Address
+    ) async throws -> String {
+        let data = try await TronKit.Kit.call(
+            networkManager: networkManager,
+            network: network,
+            contractAddress: contractAddress,
+            data: NameMethod().encodedABI(),
+            apiKey: apiKey
+        )
 
         guard !data.isEmpty else {
             throw TokenError.invalidHex
@@ -32,8 +45,19 @@ public enum Trc20DataProvider {
         return string
     }
 
-    public static func fetchSymbol(networkManager: NetworkManager, network: Network, apiKey: String?, contractAddress: Address) async throws -> String {
-        let data = try await TronKit.Kit.call(networkManager: networkManager, network: network, contractAddress: contractAddress, data: SymbolMethod().encodedABI(), apiKey: apiKey)
+    public static func fetchSymbol(
+        networkManager: NetworkManager,
+        network: Network,
+        apiKey: String?,
+        contractAddress: Address
+    ) async throws -> String {
+        let data = try await TronKit.Kit.call(
+            networkManager: networkManager,
+            network: network,
+            contractAddress: contractAddress,
+            data: SymbolMethod().encodedABI(),
+            apiKey: apiKey
+        )
 
         guard !data.isEmpty else {
             throw TokenError.invalidHex
@@ -52,8 +76,19 @@ public enum Trc20DataProvider {
         return string
     }
 
-    public static func fetchDecimals(networkManager: NetworkManager, network: Network, apiKey: String?, contractAddress: Address) async throws -> Int {
-        let data = try await TronKit.Kit.call(networkManager: networkManager, network: network, contractAddress: contractAddress, data: DecimalsMethod().encodedABI(), apiKey: apiKey)
+    public static func fetchDecimals(
+        networkManager: NetworkManager,
+        network: Network,
+        apiKey: String?,
+        contractAddress: Address
+    ) async throws -> Int {
+        let data = try await TronKit.Kit.call(
+            networkManager: networkManager,
+            network: network,
+            contractAddress: contractAddress,
+            data: DecimalsMethod().encodedABI(),
+            apiKey: apiKey
+        )
 
         guard !data.isEmpty else {
             throw TokenError.invalidHex
