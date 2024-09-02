@@ -1,3 +1,9 @@
+//
+//  witness_contract.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,6 +31,8 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_WitnessCreateContract
 
 struct Protocol_WitnessCreateContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -35,12 +43,16 @@ struct Protocol_WitnessCreateContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_WitnessUpdateContract
 
 struct Protocol_WitnessUpdateContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -51,12 +63,36 @@ struct Protocol_WitnessUpdateContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_VoteWitnessContract
 
 struct Protocol_VoteWitnessContract {
+    // MARK: Nested Types
+
+    struct Vote {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var voteAddress: Data = .init()
+
+        var voteCount: Int64 = 0
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
+        init() { }
+    }
+
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -69,19 +105,7 @@ struct Protocol_VoteWitnessContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    struct Vote {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        var voteAddress: Data = .init()
-
-        var voteCount: Int64 = 0
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
-    }
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -100,8 +124,7 @@ private let _protobuf_package = "protocol"
 // MARK: - Protocol_WitnessCreateContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_WitnessCreateContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".WitnessCreateContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -132,9 +155,15 @@ extension Protocol_WitnessCreateContract: SwiftProtobuf.Message, SwiftProtobuf._
     }
 
     static func == (lhs: Protocol_WitnessCreateContract, rhs: Protocol_WitnessCreateContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.url != rhs.url { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.url != rhs.url {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -142,8 +171,7 @@ extension Protocol_WitnessCreateContract: SwiftProtobuf.Message, SwiftProtobuf._
 // MARK: - Protocol_WitnessUpdateContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_WitnessUpdateContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".WitnessUpdateContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -174,9 +202,15 @@ extension Protocol_WitnessUpdateContract: SwiftProtobuf.Message, SwiftProtobuf._
     }
 
     static func == (lhs: Protocol_WitnessUpdateContract, rhs: Protocol_WitnessUpdateContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.updateURL != rhs.updateURL { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.updateURL != rhs.updateURL {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -184,8 +218,7 @@ extension Protocol_WitnessUpdateContract: SwiftProtobuf.Message, SwiftProtobuf._
 // MARK: - Protocol_VoteWitnessContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_VoteWitnessContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".VoteWitnessContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -221,10 +254,18 @@ extension Protocol_VoteWitnessContract: SwiftProtobuf.Message, SwiftProtobuf._Me
     }
 
     static func == (lhs: Protocol_VoteWitnessContract, rhs: Protocol_VoteWitnessContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.votes != rhs.votes { return false }
-        if lhs.support != rhs.support { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.votes != rhs.votes {
+            return false
+        }
+        if lhs.support != rhs.support {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -232,8 +273,7 @@ extension Protocol_VoteWitnessContract: SwiftProtobuf.Message, SwiftProtobuf._Me
 // MARK: - Protocol_VoteWitnessContract.Vote + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_VoteWitnessContract.Vote: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_VoteWitnessContract.protoMessageName + ".Vote"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "vote_address"),
@@ -264,9 +304,15 @@ extension Protocol_VoteWitnessContract.Vote: SwiftProtobuf.Message, SwiftProtobu
     }
 
     static func == (lhs: Protocol_VoteWitnessContract.Vote, rhs: Protocol_VoteWitnessContract.Vote) -> Bool {
-        if lhs.voteAddress != rhs.voteAddress { return false }
-        if lhs.voteCount != rhs.voteCount { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.voteAddress != rhs.voteAddress {
+            return false
+        }
+        if lhs.voteCount != rhs.voteCount {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

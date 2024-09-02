@@ -1,8 +1,7 @@
 //
 //  Syncer.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/2.
 //
 
 import Foundation
@@ -12,6 +11,13 @@ import WWExtensions
 // MARK: - Syncer
 
 class Syncer {
+    // MARK: Properties
+
+    @DistinctPublished
+    private(set) var state: SyncState = .notSynced(error: Kit.SyncError.notStarted)
+    @DistinctPublished
+    private(set) var lastBlockHeight = 0
+
     private var tasks = Set<AnyTask>()
 
     private let accountInfoManager: AccountInfoManager
@@ -23,10 +29,7 @@ class Syncer {
     private let address: Address
     private var syncing = false
 
-    @DistinctPublished
-    private(set) var state: SyncState = .notSynced(error: Kit.SyncError.notStarted)
-    @DistinctPublished
-    private(set) var lastBlockHeight = 0
+    // MARK: Lifecycle
 
     init(
         accountInfoManager: AccountInfoManager,
@@ -48,6 +51,8 @@ class Syncer {
         syncTimer.delegate = self
         lastBlockHeight = storage.lastBlockHeight ?? 0
     }
+
+    // MARK: Functions
 
     private func syncChainParameters() {
         Task { [chainParameterManager] in
@@ -97,7 +102,7 @@ extension Syncer: ISyncTimerDelegate {
             set(state: .syncing(progress: nil))
             sync()
 
-        case .notReady(let error):
+        case let .notReady(error):
             tasks = Set()
             set(state: .notSynced(error: error))
         }
@@ -175,8 +180,7 @@ extension Syncer: ISyncTimerDelegate {
             } catch {
                 if
                     let requestError = error as? TronGridProvider.RequestError,
-                    case .failedToFetchAccountInfo = requestError
-                {
+                    case .failedToFetchAccountInfo = requestError {
                     self?.accountInfoManager.handleInactiveAccount()
                     self?.set(state: .synced)
                 } else {

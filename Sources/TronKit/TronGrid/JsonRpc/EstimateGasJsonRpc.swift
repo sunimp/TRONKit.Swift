@@ -1,8 +1,7 @@
 //
 //  EstimateGasJsonRpc.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/6/2.
 //
 
 import Foundation

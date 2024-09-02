@@ -1,8 +1,7 @@
 //
 //  Trc20EventRecord.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
@@ -11,6 +10,29 @@ import BigInt
 import GRDB
 
 public class Trc20EventRecord: Record {
+    // MARK: Nested Types
+
+    enum Columns: String, ColumnExpression {
+        case transactionHash
+        case type
+        case blockNumber
+        case contractAddress
+        case from
+        case to
+        case value
+        case tokenName
+        case tokenSymbol
+        case tokenDecimal
+    }
+
+    // MARK: Overridden Properties
+
+    override public class var databaseTableName: String {
+        "events"
+    }
+
+    // MARK: Properties
+
     public let transactionHash: Data
     public let type: String
     public let blockTimestamp: Int
@@ -21,6 +43,8 @@ public class Trc20EventRecord: Record {
     public let tokenName: String
     public let tokenSymbol: String
     public let tokenDecimal: Int
+
+    // MARK: Lifecycle
 
     public init(
         transactionHash: Data,
@@ -48,23 +72,6 @@ public class Trc20EventRecord: Record {
         super.init()
     }
 
-    override public class var databaseTableName: String {
-        "events"
-    }
-
-    enum Columns: String, ColumnExpression {
-        case transactionHash
-        case type
-        case blockNumber
-        case contractAddress
-        case from
-        case to
-        case value
-        case tokenName
-        case tokenSymbol
-        case tokenDecimal
-    }
-
     public required init(row: Row) throws {
         transactionHash = row[Columns.transactionHash]
         type = row[Columns.type]
@@ -79,6 +86,8 @@ public class Trc20EventRecord: Record {
 
         try super.init(row: row)
     }
+
+    // MARK: Overridden Functions
 
     override public func encode(to container: inout PersistenceContainer) {
         container[Columns.transactionHash] = transactionHash

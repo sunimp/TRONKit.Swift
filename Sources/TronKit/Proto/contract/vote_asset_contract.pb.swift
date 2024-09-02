@@ -1,3 +1,9 @@
+//
+//  vote_asset_contract.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,6 +31,8 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_VoteAssetContract
 
 struct Protocol_VoteAssetContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -38,6 +46,8 @@ struct Protocol_VoteAssetContract {
     var count: Int32 = 0
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -53,8 +63,7 @@ private let _protobuf_package = "protocol"
 // MARK: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_VoteAssetContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".VoteAssetContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -95,11 +104,21 @@ extension Protocol_VoteAssetContract: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
 
     static func == (lhs: Protocol_VoteAssetContract, rhs: Protocol_VoteAssetContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.voteAddress != rhs.voteAddress { return false }
-        if lhs.support != rhs.support { return false }
-        if lhs.count != rhs.count { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.voteAddress != rhs.voteAddress {
+            return false
+        }
+        if lhs.support != rhs.support {
+            return false
+        }
+        if lhs.count != rhs.count {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

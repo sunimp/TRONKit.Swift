@@ -1,3 +1,9 @@
+//
+//  market_contract.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,6 +31,8 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_MarketSellAssetContract
 
 struct Protocol_MarketSellAssetContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -42,12 +50,16 @@ struct Protocol_MarketSellAssetContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_MarketCancelOrderContract
 
 struct Protocol_MarketCancelOrderContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -57,6 +69,8 @@ struct Protocol_MarketCancelOrderContract {
     var orderID: Data = .init()
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -73,8 +87,7 @@ private let _protobuf_package = "protocol"
 // MARK: - Protocol_MarketSellAssetContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MarketSellAssetContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketSellAssetContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -120,12 +133,24 @@ extension Protocol_MarketSellAssetContract: SwiftProtobuf.Message, SwiftProtobuf
     }
 
     static func == (lhs: Protocol_MarketSellAssetContract, rhs: Protocol_MarketSellAssetContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.sellTokenID != rhs.sellTokenID { return false }
-        if lhs.sellTokenQuantity != rhs.sellTokenQuantity { return false }
-        if lhs.buyTokenID != rhs.buyTokenID { return false }
-        if lhs.buyTokenQuantity != rhs.buyTokenQuantity { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.sellTokenID != rhs.sellTokenID {
+            return false
+        }
+        if lhs.sellTokenQuantity != rhs.sellTokenQuantity {
+            return false
+        }
+        if lhs.buyTokenID != rhs.buyTokenID {
+            return false
+        }
+        if lhs.buyTokenQuantity != rhs.buyTokenQuantity {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -133,8 +158,7 @@ extension Protocol_MarketSellAssetContract: SwiftProtobuf.Message, SwiftProtobuf
 // MARK: - Protocol_MarketCancelOrderContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MarketCancelOrderContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketCancelOrderContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -165,9 +189,15 @@ extension Protocol_MarketCancelOrderContract: SwiftProtobuf.Message, SwiftProtob
     }
 
     static func == (lhs: Protocol_MarketCancelOrderContract, rhs: Protocol_MarketCancelOrderContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.orderID != rhs.orderID { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.orderID != rhs.orderID {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

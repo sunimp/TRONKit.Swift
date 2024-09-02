@@ -1,3 +1,9 @@
+//
+//  Tron.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,11 +31,27 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_AccountType
 
 enum Protocol_AccountType: SwiftProtobuf.Enum {
-    typealias RawValue = Int
     case normal // = 0
     case assetIssue // = 1
     case contract // = 2
     case UNRECOGNIZED(Int)
+
+    // MARK: Nested Types
+
+    typealias RawValue = Int
+
+    // MARK: Computed Properties
+
+    var rawValue: Int {
+        switch self {
+        case .normal: 0
+        case .assetIssue: 1
+        case .contract: 2
+        case let .UNRECOGNIZED(i): i
+        }
+    }
+
+    // MARK: Lifecycle
 
     init() {
         self = .normal
@@ -41,15 +63,6 @@ enum Protocol_AccountType: SwiftProtobuf.Enum {
         case 1: self = .assetIssue
         case 2: self = .contract
         default: self = .UNRECOGNIZED(rawValue)
-        }
-    }
-
-    var rawValue: Int {
-        switch self {
-        case .normal: 0
-        case .assetIssue: 1
-        case .contract: 2
-        case .UNRECOGNIZED(let i): i
         }
     }
 }
@@ -70,7 +83,6 @@ extension Protocol_AccountType: CaseIterable {
 // MARK: - Protocol_ReasonCode
 
 enum Protocol_ReasonCode: SwiftProtobuf.Enum {
-    typealias RawValue = Int
     case requested // = 0
     case badProtocol // = 2
     case tooManyPeers // = 4
@@ -97,6 +109,45 @@ enum Protocol_ReasonCode: SwiftProtobuf.Enum {
     case lightNodeSyncFail // = 35
     case unknown // = 255
     case UNRECOGNIZED(Int)
+
+    // MARK: Nested Types
+
+    typealias RawValue = Int
+
+    // MARK: Computed Properties
+
+    var rawValue: Int {
+        switch self {
+        case .requested: 0
+        case .badProtocol: 2
+        case .tooManyPeers: 4
+        case .duplicatePeer: 5
+        case .incompatibleProtocol: 6
+        case .randomElimination: 7
+        case .peerQuiting: 8
+        case .unexpectedIdentity: 9
+        case .localIdentity: 10
+        case .pingTimeout: 11
+        case .userReason: 16
+        case .reset: 17
+        case .syncFail: 18
+        case .fetchFail: 19
+        case .badTx: 20
+        case .badBlock: 21
+        case .forked: 22
+        case .unlinkable: 23
+        case .incompatibleVersion: 24
+        case .incompatibleChain: 25
+        case .timeOut: 32
+        case .connectFail: 33
+        case .tooManyPeersWithSameIp: 34
+        case .lightNodeSyncFail: 35
+        case .unknown: 255
+        case let .UNRECOGNIZED(i): i
+        }
+    }
+
+    // MARK: Lifecycle
 
     init() {
         self = .requested
@@ -130,37 +181,6 @@ enum Protocol_ReasonCode: SwiftProtobuf.Enum {
         case 35: self = .lightNodeSyncFail
         case 255: self = .unknown
         default: self = .UNRECOGNIZED(rawValue)
-        }
-    }
-
-    var rawValue: Int {
-        switch self {
-        case .requested: 0
-        case .badProtocol: 2
-        case .tooManyPeers: 4
-        case .duplicatePeer: 5
-        case .incompatibleProtocol: 6
-        case .randomElimination: 7
-        case .peerQuiting: 8
-        case .unexpectedIdentity: 9
-        case .localIdentity: 10
-        case .pingTimeout: 11
-        case .userReason: 16
-        case .reset: 17
-        case .syncFail: 18
-        case .fetchFail: 19
-        case .badTx: 20
-        case .badBlock: 21
-        case .forked: 22
-        case .unlinkable: 23
-        case .incompatibleVersion: 24
-        case .incompatibleChain: 25
-        case .timeOut: 32
-        case .connectFail: 33
-        case .tooManyPeersWithSameIp: 34
-        case .lightNodeSyncFail: 35
-        case .unknown: 255
-        case .UNRECOGNIZED(let i): i
         }
     }
 }
@@ -200,10 +220,12 @@ extension Protocol_ReasonCode: CaseIterable {
 
 #endif // swift(>=4.2)
 
-// MARK: - Protocol_AccountId
+// MARK: - Protocol_AccountID
 
 /// AccountId, (name, address) use name, (null, address) use address, (name, null) use name,
-struct Protocol_AccountId {
+struct Protocol_AccountID {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -214,6 +236,8 @@ struct Protocol_AccountId {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
@@ -221,6 +245,8 @@ struct Protocol_AccountId {
 
 /// vote message
 struct Protocol_Vote {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -233,6 +259,8 @@ struct Protocol_Vote {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
@@ -240,6 +268,50 @@ struct Protocol_Vote {
 
 /// Proposal
 struct Protocol_Proposal {
+    // MARK: Nested Types
+
+    enum State: SwiftProtobuf.Enum {
+        case pending // = 0
+        case disapproved // = 1
+        case approved // = 2
+        case canceled // = 3
+        case UNRECOGNIZED(Int)
+
+        // MARK: Nested Types
+
+        typealias RawValue = Int
+
+        // MARK: Computed Properties
+
+        var rawValue: Int {
+            switch self {
+            case .pending: 0
+            case .disapproved: 1
+            case .approved: 2
+            case .canceled: 3
+            case let .UNRECOGNIZED(i): i
+            }
+        }
+
+        // MARK: Lifecycle
+
+        init() {
+            self = .pending
+        }
+
+        init?(rawValue: Int) {
+            switch rawValue {
+            case 0: self = .pending
+            case 1: self = .disapproved
+            case 2: self = .approved
+            case 3: self = .canceled
+            default: self = .UNRECOGNIZED(rawValue)
+            }
+        }
+    }
+
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -260,38 +332,7 @@ struct Protocol_Proposal {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    enum State: SwiftProtobuf.Enum {
-        typealias RawValue = Int
-        case pending // = 0
-        case disapproved // = 1
-        case approved // = 2
-        case canceled // = 3
-        case UNRECOGNIZED(Int)
-
-        init() {
-            self = .pending
-        }
-
-        init?(rawValue: Int) {
-            switch rawValue {
-            case 0: self = .pending
-            case 1: self = .disapproved
-            case 2: self = .approved
-            case 3: self = .canceled
-            default: self = .UNRECOGNIZED(rawValue)
-            }
-        }
-
-        var rawValue: Int {
-            switch self {
-            case .pending: 0
-            case .disapproved: 1
-            case .approved: 2
-            case .canceled: 3
-            case .UNRECOGNIZED(let i): i
-            }
-        }
-    }
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -314,6 +355,8 @@ extension Protocol_Proposal.State: CaseIterable {
 
 /// Exchange
 struct Protocol_Exchange {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -334,6 +377,8 @@ struct Protocol_Exchange {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
@@ -341,6 +386,47 @@ struct Protocol_Exchange {
 
 /// market
 struct Protocol_MarketOrder {
+    // MARK: Nested Types
+
+    enum State: SwiftProtobuf.Enum {
+        case active // = 0
+        case inactive // = 1
+        case canceled // = 2
+        case UNRECOGNIZED(Int)
+
+        // MARK: Nested Types
+
+        typealias RawValue = Int
+
+        // MARK: Computed Properties
+
+        var rawValue: Int {
+            switch self {
+            case .active: 0
+            case .inactive: 1
+            case .canceled: 2
+            case let .UNRECOGNIZED(i): i
+            }
+        }
+
+        // MARK: Lifecycle
+
+        init() {
+            self = .active
+        }
+
+        init?(rawValue: Int) {
+            switch rawValue {
+            case 0: self = .active
+            case 1: self = .inactive
+            case 2: self = .canceled
+            default: self = .UNRECOGNIZED(rawValue)
+            }
+        }
+    }
+
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -374,35 +460,7 @@ struct Protocol_MarketOrder {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    enum State: SwiftProtobuf.Enum {
-        typealias RawValue = Int
-        case active // = 0
-        case inactive // = 1
-        case canceled // = 2
-        case UNRECOGNIZED(Int)
-
-        init() {
-            self = .active
-        }
-
-        init?(rawValue: Int) {
-            switch rawValue {
-            case 0: self = .active
-            case 1: self = .inactive
-            case 2: self = .canceled
-            default: self = .UNRECOGNIZED(rawValue)
-            }
-        }
-
-        var rawValue: Int {
-            switch self {
-            case .active: 0
-            case .inactive: 1
-            case .canceled: 2
-            case .UNRECOGNIZED(let i): i
-            }
-        }
-    }
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -423,6 +481,8 @@ extension Protocol_MarketOrder.State: CaseIterable {
 // MARK: - Protocol_MarketOrderList
 
 struct Protocol_MarketOrderList {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -431,12 +491,16 @@ struct Protocol_MarketOrderList {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_MarketOrderPairList
 
 struct Protocol_MarketOrderPairList {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -445,12 +509,16 @@ struct Protocol_MarketOrderPairList {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_MarketOrderPair
 
 struct Protocol_MarketOrderPair {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -461,12 +529,16 @@ struct Protocol_MarketOrderPair {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_MarketAccountOrder
 
 struct Protocol_MarketAccountOrder {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -483,12 +555,16 @@ struct Protocol_MarketAccountOrder {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_MarketPrice
 
 struct Protocol_MarketPrice {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -499,12 +575,16 @@ struct Protocol_MarketPrice {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_MarketPriceList
 
 struct Protocol_MarketPriceList {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -517,12 +597,16 @@ struct Protocol_MarketPriceList {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
-// MARK: - Protocol_MarketOrderIdList
+// MARK: - Protocol_MarketOrderIDList
 
-struct Protocol_MarketOrderIdList {
+struct Protocol_MarketOrderIDList {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -533,21 +617,19 @@ struct Protocol_MarketOrderIdList {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_ChainParameters
 
 struct Protocol_ChainParameters {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var chainParameter: [Protocol_ChainParameters.ChainParameter] = []
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     struct ChainParameter {
+        // MARK: Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -558,8 +640,22 @@ struct Protocol_ChainParameters {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
+        // MARK: Lifecycle
+
         init() { }
     }
+
+    // MARK: Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var chainParameter: [Protocol_ChainParameters.ChainParameter] = []
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -568,6 +664,131 @@ struct Protocol_ChainParameters {
 
 /// Account
 struct Protocol_Account {
+    // MARK: Nested Types
+
+    /// frozen balance
+    struct Frozen {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        /// the frozen trx balance
+        var frozenBalance: Int64 = 0
+
+        /// the expire time
+        var expireTime: Int64 = 0
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
+        init() { }
+    }
+
+    struct AccountResource {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        /// energy resource, get from frozen
+        var energyUsage: Int64 = 0
+
+        var latestConsumeTimeForEnergy: Int64 = 0
+
+        /// Frozen balance provided by other accounts to this account
+        var acquiredDelegatedFrozenBalanceForEnergy: Int64 = 0
+
+        /// Frozen balances provided to other accounts
+        var delegatedFrozenBalanceForEnergy: Int64 = 0
+
+        /// storage resource, get from market
+        var storageLimit: Int64 = 0
+
+        var storageUsage: Int64 = 0
+
+        var latestExchangeStorageTime: Int64 = 0
+
+        var energyWindowSize: Int64 = 0
+
+        var delegatedFrozenV2BalanceForEnergy: Int64 = 0
+
+        var acquiredDelegatedFrozenV2BalanceForEnergy: Int64 = 0
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        fileprivate var _frozenBalanceForEnergy: Protocol_Account.Frozen?
+
+        // MARK: Computed Properties
+
+        /// the frozen balance for energy
+        var frozenBalanceForEnergy: Protocol_Account.Frozen {
+            get { _frozenBalanceForEnergy ?? Protocol_Account.Frozen() }
+            set { _frozenBalanceForEnergy = newValue }
+        }
+
+        /// Returns true if `frozenBalanceForEnergy` has been explicitly set.
+        var hasFrozenBalanceForEnergy: Bool { _frozenBalanceForEnergy != nil }
+
+        // MARK: Lifecycle
+
+        init() { }
+
+        // MARK: Functions
+
+        /// Clears the value of `frozenBalanceForEnergy`. Subsequent reads from it will return its default value.
+        mutating func clearFrozenBalanceForEnergy() { _frozenBalanceForEnergy = nil }
+    }
+
+    struct FreezeV2 {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var type: Protocol_ResourceCode = .bandwidth
+
+        var amount: Int64 = 0
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
+        init() { }
+    }
+
+    struct UnFreezeV2 {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var type: Protocol_ResourceCode = .bandwidth
+
+        var unfreezeAmount: Int64 = 0
+
+        var unfreezeExpireTime: Int64 = 0
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
+        init() { }
+    }
+
+    // MARK: Properties
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+
+    // MARK: Computed Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -607,7 +828,7 @@ struct Protocol_Account {
         set { _uniqueStorage()._asset = newValue }
     }
 
-    /// the other asset owned by this account，key is assetId
+    /// the other asset owned by this account，key is assetID
     var assetV2: [String: Int64] {
         get { _storage._assetV2 }
         set { _uniqueStorage()._assetV2 = newValue }
@@ -649,9 +870,6 @@ struct Protocol_Account {
 
     /// Returns true if `tronPower` has been explicitly set.
     var hasTronPower: Bool { _storage._tronPower != nil }
-    /// Clears the value of `tronPower`. Subsequent reads from it will return its default value.
-    mutating func clearTronPower() { _uniqueStorage()._tronPower = nil }
-
     var assetOptimized: Bool {
         get { _storage._assetOptimized }
         set { _uniqueStorage()._assetOptimized = newValue }
@@ -767,9 +985,6 @@ struct Protocol_Account {
 
     /// Returns true if `accountResource` has been explicitly set.
     var hasAccountResource: Bool { _storage._accountResource != nil }
-    /// Clears the value of `accountResource`. Subsequent reads from it will return its default value.
-    mutating func clearAccountResource() { _uniqueStorage()._accountResource = nil }
-
     var codeHash: Data {
         get { _storage._codeHash }
         set { _uniqueStorage()._codeHash = newValue }
@@ -782,9 +997,6 @@ struct Protocol_Account {
 
     /// Returns true if `ownerPermission` has been explicitly set.
     var hasOwnerPermission: Bool { _storage._ownerPermission != nil }
-    /// Clears the value of `ownerPermission`. Subsequent reads from it will return its default value.
-    mutating func clearOwnerPermission() { _uniqueStorage()._ownerPermission = nil }
-
     var witnessPermission: Protocol_Permission {
         get { _storage._witnessPermission ?? Protocol_Permission() }
         set { _uniqueStorage()._witnessPermission = newValue }
@@ -792,9 +1004,6 @@ struct Protocol_Account {
 
     /// Returns true if `witnessPermission` has been explicitly set.
     var hasWitnessPermission: Bool { _storage._witnessPermission != nil }
-    /// Clears the value of `witnessPermission`. Subsequent reads from it will return its default value.
-    mutating func clearWitnessPermission() { _uniqueStorage()._witnessPermission = nil }
-
     var activePermission: [Protocol_Permission] {
         get { _storage._activePermission }
         set { _uniqueStorage()._activePermission = newValue }
@@ -820,110 +1029,30 @@ struct Protocol_Account {
         set { _uniqueStorage()._acquiredDelegatedFrozenV2BalanceForBandwidth = newValue }
     }
 
-    var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    /// frozen balance
-    struct Frozen {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        /// the frozen trx balance
-        var frozenBalance: Int64 = 0
-
-        /// the expire time
-        var expireTime: Int64 = 0
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
-    }
-
-    struct AccountResource {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        /// energy resource, get from frozen
-        var energyUsage: Int64 = 0
-
-        /// the frozen balance for energy
-        var frozenBalanceForEnergy: Protocol_Account.Frozen {
-            get { _frozenBalanceForEnergy ?? Protocol_Account.Frozen() }
-            set { _frozenBalanceForEnergy = newValue }
-        }
-
-        /// Returns true if `frozenBalanceForEnergy` has been explicitly set.
-        var hasFrozenBalanceForEnergy: Bool { _frozenBalanceForEnergy != nil }
-        /// Clears the value of `frozenBalanceForEnergy`. Subsequent reads from it will return its default value.
-        mutating func clearFrozenBalanceForEnergy() { _frozenBalanceForEnergy = nil }
-
-        var latestConsumeTimeForEnergy: Int64 = 0
-
-        /// Frozen balance provided by other accounts to this account
-        var acquiredDelegatedFrozenBalanceForEnergy: Int64 = 0
-
-        /// Frozen balances provided to other accounts
-        var delegatedFrozenBalanceForEnergy: Int64 = 0
-
-        /// storage resource, get from market
-        var storageLimit: Int64 = 0
-
-        var storageUsage: Int64 = 0
-
-        var latestExchangeStorageTime: Int64 = 0
-
-        var energyWindowSize: Int64 = 0
-
-        var delegatedFrozenV2BalanceForEnergy: Int64 = 0
-
-        var acquiredDelegatedFrozenV2BalanceForEnergy: Int64 = 0
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
-
-        fileprivate var _frozenBalanceForEnergy: Protocol_Account.Frozen?
-    }
-
-    struct FreezeV2 {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        var type: Protocol_ResourceCode = .bandwidth
-
-        var amount: Int64 = 0
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
-    }
-
-    struct UnFreezeV2 {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        var type: Protocol_ResourceCode = .bandwidth
-
-        var unfreezeAmount: Int64 = 0
-
-        var unfreezeExpireTime: Int64 = 0
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
-    }
+    // MARK: Lifecycle
 
     init() { }
 
-    fileprivate var _storage = _StorageClass.defaultInstance
+    // MARK: Functions
+
+    /// Clears the value of `tronPower`. Subsequent reads from it will return its default value.
+    mutating func clearTronPower() { _uniqueStorage()._tronPower = nil }
+
+    /// Clears the value of `accountResource`. Subsequent reads from it will return its default value.
+    mutating func clearAccountResource() { _uniqueStorage()._accountResource = nil }
+
+    /// Clears the value of `ownerPermission`. Subsequent reads from it will return its default value.
+    mutating func clearOwnerPermission() { _uniqueStorage()._ownerPermission = nil }
+
+    /// Clears the value of `witnessPermission`. Subsequent reads from it will return its default value.
+    mutating func clearWitnessPermission() { _uniqueStorage()._witnessPermission = nil }
 }
 
 // MARK: - Protocol_Key
 
 struct Protocol_Key {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -934,12 +1063,16 @@ struct Protocol_Key {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_DelegatedResource
 
 struct Protocol_DelegatedResource {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -958,38 +1091,90 @@ struct Protocol_DelegatedResource {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_authority
 
 struct Protocol_authority {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var account: Protocol_AccountId {
-        get { _account ?? Protocol_AccountId() }
-        set { _account = newValue }
-    }
-
-    /// Returns true if `account` has been explicitly set.
-    var hasAccount: Bool { _account != nil }
-    /// Clears the value of `account`. Subsequent reads from it will return its default value.
-    mutating func clearAccount() { _account = nil }
+    // MARK: Properties
 
     var permissionName: Data = .init()
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    private var _account: Protocol_AccountID?
+
+    // MARK: Computed Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var account: Protocol_AccountID {
+        get { _account ?? Protocol_AccountID() }
+        set { _account = newValue }
+    }
+
+    /// Returns true if `account` has been explicitly set.
+    var hasAccount: Bool { _account != nil }
+
+    // MARK: Lifecycle
+
     init() { }
 
-    private var _account: Protocol_AccountId?
+    // MARK: Functions
+
+    /// Clears the value of `account`. Subsequent reads from it will return its default value.
+    mutating func clearAccount() { _account = nil }
 }
 
 // MARK: - Protocol_Permission
 
 struct Protocol_Permission {
+    // MARK: Nested Types
+
+    enum PermissionType: SwiftProtobuf.Enum {
+        case owner // = 0
+        case witness // = 1
+        case active // = 2
+        case UNRECOGNIZED(Int)
+
+        // MARK: Nested Types
+
+        typealias RawValue = Int
+
+        // MARK: Computed Properties
+
+        var rawValue: Int {
+            switch self {
+            case .owner: 0
+            case .witness: 1
+            case .active: 2
+            case let .UNRECOGNIZED(i): i
+            }
+        }
+
+        // MARK: Lifecycle
+
+        init() {
+            self = .owner
+        }
+
+        init?(rawValue: Int) {
+            switch rawValue {
+            case 0: self = .owner
+            case 1: self = .witness
+            case 2: self = .active
+            default: self = .UNRECOGNIZED(rawValue)
+            }
+        }
+    }
+
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1012,35 +1197,7 @@ struct Protocol_Permission {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    enum PermissionType: SwiftProtobuf.Enum {
-        typealias RawValue = Int
-        case owner // = 0
-        case witness // = 1
-        case active // = 2
-        case UNRECOGNIZED(Int)
-
-        init() {
-            self = .owner
-        }
-
-        init?(rawValue: Int) {
-            switch rawValue {
-            case 0: self = .owner
-            case 1: self = .witness
-            case 2: self = .active
-            default: self = .UNRECOGNIZED(rawValue)
-            }
-        }
-
-        var rawValue: Int {
-            switch self {
-            case .owner: 0
-            case .witness: 1
-            case .active: 2
-            case .UNRECOGNIZED(let i): i
-            }
-        }
-    }
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -1062,6 +1219,8 @@ extension Protocol_Permission.PermissionType: CaseIterable {
 
 /// Witness
 struct Protocol_Witness {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1086,6 +1245,8 @@ struct Protocol_Witness {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
@@ -1093,6 +1254,8 @@ struct Protocol_Witness {
 
 /// Vote Change
 struct Protocol_Votes {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1105,12 +1268,16 @@ struct Protocol_Votes {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_TXOutput
 
 struct Protocol_TXOutput {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1121,31 +1288,19 @@ struct Protocol_TXOutput {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_TXInput
 
 struct Protocol_TXInput {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var rawData: Protocol_TXInput.raw {
-        get { _rawData ?? Protocol_TXInput.raw() }
-        set { _rawData = newValue }
-    }
-
-    /// Returns true if `rawData` has been explicitly set.
-    var hasRawData: Bool { _rawData != nil }
-    /// Clears the value of `rawData`. Subsequent reads from it will return its default value.
-    mutating func clearRawData() { _rawData = nil }
-
-    var signature: Data = .init()
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     struct raw {
+        // MARK: Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -1158,17 +1313,48 @@ struct Protocol_TXInput {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
+        // MARK: Lifecycle
+
         init() { }
     }
 
-    init() { }
+    // MARK: Properties
+
+    var signature: Data = .init()
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
 
     fileprivate var _rawData: Protocol_TXInput.raw?
+
+    // MARK: Computed Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var rawData: Protocol_TXInput.raw {
+        get { _rawData ?? Protocol_TXInput.raw() }
+        set { _rawData = newValue }
+    }
+
+    /// Returns true if `rawData` has been explicitly set.
+    var hasRawData: Bool { _rawData != nil }
+
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Functions
+
+    /// Clears the value of `rawData`. Subsequent reads from it will return its default value.
+    mutating func clearRawData() { _rawData = nil }
 }
 
 // MARK: - Protocol_TXOutputs
 
 struct Protocol_TXOutputs {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1177,12 +1363,16 @@ struct Protocol_TXOutputs {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_ResourceReceipt
 
 struct Protocol_ResourceReceipt {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1205,12 +1395,16 @@ struct Protocol_ResourceReceipt {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_MarketOrderDetail
 
 struct Protocol_MarketOrderDetail {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1225,60 +1419,20 @@ struct Protocol_MarketOrderDetail {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_Transaction
 
 struct Protocol_Transaction {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var rawData: Protocol_Transaction.raw {
-        get { _rawData ?? Protocol_Transaction.raw() }
-        set { _rawData = newValue }
-    }
-
-    /// Returns true if `rawData` has been explicitly set.
-    var hasRawData: Bool { _rawData != nil }
-    /// Clears the value of `rawData`. Subsequent reads from it will return its default value.
-    mutating func clearRawData() { _rawData = nil }
-
-    /// only support size = 1,  repeated list here for muti-sig extension
-    var signature: [Data] = []
-
-    var ret: [Protocol_Transaction.Result] = []
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     struct Contract {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        var type: Protocol_Transaction.Contract.ContractType = .accountCreateContract
-
-        var parameter: SwiftProtobuf.Google_Protobuf_Any {
-            get { _parameter ?? SwiftProtobuf.Google_Protobuf_Any() }
-            set { _parameter = newValue }
-        }
-
-        /// Returns true if `parameter` has been explicitly set.
-        var hasParameter: Bool { _parameter != nil }
-        /// Clears the value of `parameter`. Subsequent reads from it will return its default value.
-        mutating func clearParameter() { _parameter = nil }
-
-        var provider: Data = .init()
-
-        var contractName: Data = .init()
-
-        var permissionID: Int32 = 0
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
+        // MARK: Nested Types
 
         enum ContractType: SwiftProtobuf.Enum {
-            typealias RawValue = Int
             case accountCreateContract // = 0
             case transferContract // = 1
             case transferAssetContract // = 2
@@ -1320,6 +1474,60 @@ struct Protocol_Transaction {
             case delegateResourceContract // = 57
             case unDelegateResourceContract // = 58
             case UNRECOGNIZED(Int)
+
+            // MARK: Nested Types
+
+            typealias RawValue = Int
+
+            // MARK: Computed Properties
+
+            var rawValue: Int {
+                switch self {
+                case .accountCreateContract: 0
+                case .transferContract: 1
+                case .transferAssetContract: 2
+                case .voteAssetContract: 3
+                case .voteWitnessContract: 4
+                case .witnessCreateContract: 5
+                case .assetIssueContract: 6
+                case .witnessUpdateContract: 8
+                case .participateAssetIssueContract: 9
+                case .accountUpdateContract: 10
+                case .freezeBalanceContract: 11
+                case .unfreezeBalanceContract: 12
+                case .withdrawBalanceContract: 13
+                case .unfreezeAssetContract: 14
+                case .updateAssetContract: 15
+                case .proposalCreateContract: 16
+                case .proposalApproveContract: 17
+                case .proposalDeleteContract: 18
+                case .setAccountIDContract: 19
+                case .customContract: 20
+                case .createSmartContract: 30
+                case .triggerSmartContract: 31
+                case .getContract: 32
+                case .updateSettingContract: 33
+                case .exchangeCreateContract: 41
+                case .exchangeInjectContract: 42
+                case .exchangeWithdrawContract: 43
+                case .exchangeTransactionContract: 44
+                case .updateEnergyLimitContract: 45
+                case .accountPermissionUpdateContract: 46
+                case .clearAbicontract: 48
+                case .updateBrokerageContract: 49
+                case .shieldedTransferContract: 51
+                case .marketSellAssetContract: 52
+                case .marketCancelOrderContract: 53
+                case .freezeBalanceV2Contract: 54
+                case .unfreezeBalanceV2Contract: 55
+                case .withdrawExpireUnfreezeContract: 56
+                case .delegateResourceContract: 57
+                case .unDelegateResourceContract: 58
+                case let .UNRECOGNIZED(i): i
+                }
+            }
+
+            // MARK: Lifecycle
 
             init() {
                 self = .accountCreateContract
@@ -1370,60 +1578,161 @@ struct Protocol_Transaction {
                 default: self = .UNRECOGNIZED(rawValue)
                 }
             }
+        }
+
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var type: Protocol_Transaction.Contract.ContractType = .accountCreateContract
+
+        var provider: Data = .init()
+
+        var contractName: Data = .init()
+
+        var permissionID: Int32 = 0
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        fileprivate var _parameter: SwiftProtobuf.Google_Protobuf_Any?
+
+        // MARK: Computed Properties
+
+        var parameter: SwiftProtobuf.Google_Protobuf_Any {
+            get { _parameter ?? SwiftProtobuf.Google_Protobuf_Any() }
+            set { _parameter = newValue }
+        }
+
+        /// Returns true if `parameter` has been explicitly set.
+        var hasParameter: Bool { _parameter != nil }
+
+        // MARK: Lifecycle
+
+        init() { }
+
+        // MARK: Functions
+
+        /// Clears the value of `parameter`. Subsequent reads from it will return its default value.
+        mutating func clearParameter() { _parameter = nil }
+    }
+
+    struct Result {
+        // MARK: Nested Types
+
+        enum code: SwiftProtobuf.Enum {
+            case sucess // = 0
+            case failed // = 1
+            case UNRECOGNIZED(Int)
+
+            // MARK: Nested Types
+
+            typealias RawValue = Int
+
+            // MARK: Computed Properties
 
             var rawValue: Int {
                 switch self {
-                case .accountCreateContract: 0
-                case .transferContract: 1
-                case .transferAssetContract: 2
-                case .voteAssetContract: 3
-                case .voteWitnessContract: 4
-                case .witnessCreateContract: 5
-                case .assetIssueContract: 6
-                case .witnessUpdateContract: 8
-                case .participateAssetIssueContract: 9
-                case .accountUpdateContract: 10
-                case .freezeBalanceContract: 11
-                case .unfreezeBalanceContract: 12
-                case .withdrawBalanceContract: 13
-                case .unfreezeAssetContract: 14
-                case .updateAssetContract: 15
-                case .proposalCreateContract: 16
-                case .proposalApproveContract: 17
-                case .proposalDeleteContract: 18
-                case .setAccountIDContract: 19
-                case .customContract: 20
-                case .createSmartContract: 30
-                case .triggerSmartContract: 31
-                case .getContract: 32
-                case .updateSettingContract: 33
-                case .exchangeCreateContract: 41
-                case .exchangeInjectContract: 42
-                case .exchangeWithdrawContract: 43
-                case .exchangeTransactionContract: 44
-                case .updateEnergyLimitContract: 45
-                case .accountPermissionUpdateContract: 46
-                case .clearAbicontract: 48
-                case .updateBrokerageContract: 49
-                case .shieldedTransferContract: 51
-                case .marketSellAssetContract: 52
-                case .marketCancelOrderContract: 53
-                case .freezeBalanceV2Contract: 54
-                case .unfreezeBalanceV2Contract: 55
-                case .withdrawExpireUnfreezeContract: 56
-                case .delegateResourceContract: 57
-                case .unDelegateResourceContract: 58
-                case .UNRECOGNIZED(let i): i
+                case .sucess: 0
+                case .failed: 1
+                case let .UNRECOGNIZED(i): i
+                }
+            }
+
+            // MARK: Lifecycle
+
+            init() {
+                self = .sucess
+            }
+
+            init?(rawValue: Int) {
+                switch rawValue {
+                case 0: self = .sucess
+                case 1: self = .failed
+                default: self = .UNRECOGNIZED(rawValue)
                 }
             }
         }
 
-        init() { }
+        enum contractResult: SwiftProtobuf.Enum {
+            case `default` // = 0
+            case success // = 1
+            case revert // = 2
+            case badJumpDestination // = 3
+            case outOfMemory // = 4
+            case precompiledContract // = 5
+            case stackTooSmall // = 6
+            case stackTooLarge // = 7
+            case illegalOperation // = 8
+            case stackOverflow // = 9
+            case outOfEnergy // = 10
+            case outOfTime // = 11
+            case jvmStackOverFlow // = 12
+            case unknown // = 13
+            case transferFailed // = 14
+            case invalidCode // = 15
+            case UNRECOGNIZED(Int)
 
-        fileprivate var _parameter: SwiftProtobuf.Google_Protobuf_Any?
-    }
+            // MARK: Nested Types
 
-    struct Result {
+            typealias RawValue = Int
+
+            // MARK: Computed Properties
+
+            var rawValue: Int {
+                switch self {
+                case .default: 0
+                case .success: 1
+                case .revert: 2
+                case .badJumpDestination: 3
+                case .outOfMemory: 4
+                case .precompiledContract: 5
+                case .stackTooSmall: 6
+                case .stackTooLarge: 7
+                case .illegalOperation: 8
+                case .stackOverflow: 9
+                case .outOfEnergy: 10
+                case .outOfTime: 11
+                case .jvmStackOverFlow: 12
+                case .unknown: 13
+                case .transferFailed: 14
+                case .invalidCode: 15
+                case let .UNRECOGNIZED(i): i
+                }
+            }
+
+            // MARK: Lifecycle
+
+            init() {
+                self = .default
+            }
+
+            init?(rawValue: Int) {
+                switch rawValue {
+                case 0: self = .default
+                case 1: self = .success
+                case 2: self = .revert
+                case 3: self = .badJumpDestination
+                case 4: self = .outOfMemory
+                case 5: self = .precompiledContract
+                case 6: self = .stackTooSmall
+                case 7: self = .stackTooLarge
+                case 8: self = .illegalOperation
+                case 9: self = .stackOverflow
+                case 10: self = .outOfEnergy
+                case 11: self = .outOfTime
+                case 12: self = .jvmStackOverFlow
+                case 13: self = .unknown
+                case 14: self = .transferFailed
+                case 15: self = .invalidCode
+                default: self = .UNRECOGNIZED(rawValue)
+                }
+            }
+        }
+
+        // MARK: Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -1458,106 +1767,14 @@ struct Protocol_Transaction {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
-        enum code: SwiftProtobuf.Enum {
-            typealias RawValue = Int
-            case sucess // = 0
-            case failed // = 1
-            case UNRECOGNIZED(Int)
-
-            init() {
-                self = .sucess
-            }
-
-            init?(rawValue: Int) {
-                switch rawValue {
-                case 0: self = .sucess
-                case 1: self = .failed
-                default: self = .UNRECOGNIZED(rawValue)
-                }
-            }
-
-            var rawValue: Int {
-                switch self {
-                case .sucess: 0
-                case .failed: 1
-                case .UNRECOGNIZED(let i): i
-                }
-            }
-        }
-
-        enum contractResult: SwiftProtobuf.Enum {
-            typealias RawValue = Int
-            case `default` // = 0
-            case success // = 1
-            case revert // = 2
-            case badJumpDestination // = 3
-            case outOfMemory // = 4
-            case precompiledContract // = 5
-            case stackTooSmall // = 6
-            case stackTooLarge // = 7
-            case illegalOperation // = 8
-            case stackOverflow // = 9
-            case outOfEnergy // = 10
-            case outOfTime // = 11
-            case jvmStackOverFlow // = 12
-            case unknown // = 13
-            case transferFailed // = 14
-            case invalidCode // = 15
-            case UNRECOGNIZED(Int)
-
-            init() {
-                self = .default
-            }
-
-            init?(rawValue: Int) {
-                switch rawValue {
-                case 0: self = .default
-                case 1: self = .success
-                case 2: self = .revert
-                case 3: self = .badJumpDestination
-                case 4: self = .outOfMemory
-                case 5: self = .precompiledContract
-                case 6: self = .stackTooSmall
-                case 7: self = .stackTooLarge
-                case 8: self = .illegalOperation
-                case 9: self = .stackOverflow
-                case 10: self = .outOfEnergy
-                case 11: self = .outOfTime
-                case 12: self = .jvmStackOverFlow
-                case 13: self = .unknown
-                case 14: self = .transferFailed
-                case 15: self = .invalidCode
-                default: self = .UNRECOGNIZED(rawValue)
-                }
-            }
-
-            var rawValue: Int {
-                switch self {
-                case .default: 0
-                case .success: 1
-                case .revert: 2
-                case .badJumpDestination: 3
-                case .outOfMemory: 4
-                case .precompiledContract: 5
-                case .stackTooSmall: 6
-                case .stackTooLarge: 7
-                case .illegalOperation: 8
-                case .stackOverflow: 9
-                case .outOfEnergy: 10
-                case .outOfTime: 11
-                case .jvmStackOverFlow: 12
-                case .unknown: 13
-                case .transferFailed: 14
-                case .invalidCode: 15
-                case .UNRECOGNIZED(let i): i
-                }
-            }
-        }
+        // MARK: Lifecycle
 
         init() { }
     }
 
     struct raw {
+        // MARK: Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -1587,12 +1804,44 @@ struct Protocol_Transaction {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
+        // MARK: Lifecycle
+
         init() { }
     }
 
-    init() { }
+    // MARK: Properties
+
+    /// only support size = 1,  repeated list here for muti-sig extension
+    var signature: [Data] = []
+
+    var ret: [Protocol_Transaction.Result] = []
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
 
     fileprivate var _rawData: Protocol_Transaction.raw?
+
+    // MARK: Computed Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var rawData: Protocol_Transaction.raw {
+        get { _rawData ?? Protocol_Transaction.raw() }
+        set { _rawData = newValue }
+    }
+
+    /// Returns true if `rawData` has been explicitly set.
+    var hasRawData: Bool { _rawData != nil }
+
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Functions
+
+    /// Clears the value of `rawData`. Subsequent reads from it will return its default value.
+    mutating func clearRawData() { _rawData = nil }
 }
 
 #if swift(>=4.2)
@@ -1678,6 +1927,70 @@ extension Protocol_Transaction.Result.contractResult: CaseIterable {
 // MARK: - Protocol_TransactionInfo
 
 struct Protocol_TransactionInfo {
+    // MARK: Nested Types
+
+    enum code: SwiftProtobuf.Enum {
+        case sucess // = 0
+        case failed // = 1
+        case UNRECOGNIZED(Int)
+
+        // MARK: Nested Types
+
+        typealias RawValue = Int
+
+        // MARK: Computed Properties
+
+        var rawValue: Int {
+            switch self {
+            case .sucess: 0
+            case .failed: 1
+            case let .UNRECOGNIZED(i): i
+            }
+        }
+
+        // MARK: Lifecycle
+
+        init() {
+            self = .sucess
+        }
+
+        init?(rawValue: Int) {
+            switch rawValue {
+            case 0: self = .sucess
+            case 1: self = .failed
+            default: self = .UNRECOGNIZED(rawValue)
+            }
+        }
+    }
+
+    struct Log {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var address: Data = .init()
+
+        var topics: [Data] = []
+
+        var data: Data = .init()
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
+        init() { }
+    }
+
+    // MARK: Properties
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    fileprivate var _storage = _StorageClass.defaultInstance
+
+    // MARK: Computed Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1719,9 +2032,6 @@ struct Protocol_TransactionInfo {
 
     /// Returns true if `receipt` has been explicitly set.
     var hasReceipt: Bool { _storage._receipt != nil }
-    /// Clears the value of `receipt`. Subsequent reads from it will return its default value.
-    mutating func clearReceipt() { _uniqueStorage()._receipt = nil }
-
     var log: [Protocol_TransactionInfo.Log] {
         get { _storage._log }
         set { _uniqueStorage()._log = newValue }
@@ -1802,54 +2112,14 @@ struct Protocol_TransactionInfo {
         set { _uniqueStorage()._withdrawExpireAmount = newValue }
     }
 
-    var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    enum code: SwiftProtobuf.Enum {
-        typealias RawValue = Int
-        case sucess // = 0
-        case failed // = 1
-        case UNRECOGNIZED(Int)
-
-        init() {
-            self = .sucess
-        }
-
-        init?(rawValue: Int) {
-            switch rawValue {
-            case 0: self = .sucess
-            case 1: self = .failed
-            default: self = .UNRECOGNIZED(rawValue)
-            }
-        }
-
-        var rawValue: Int {
-            switch self {
-            case .sucess: 0
-            case .failed: 1
-            case .UNRECOGNIZED(let i): i
-            }
-        }
-    }
-
-    struct Log {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        var address: Data = .init()
-
-        var topics: [Data] = []
-
-        var data: Data = .init()
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
-    }
+    // MARK: Lifecycle
 
     init() { }
 
-    fileprivate var _storage = _StorageClass.defaultInstance
+    // MARK: Functions
+
+    /// Clears the value of `receipt`. Subsequent reads from it will return its default value.
+    mutating func clearReceipt() { _uniqueStorage()._receipt = nil }
 }
 
 #if swift(>=4.2)
@@ -1867,6 +2137,8 @@ extension Protocol_TransactionInfo.code: CaseIterable {
 // MARK: - Protocol_TransactionRet
 
 struct Protocol_TransactionRet {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1879,12 +2151,16 @@ struct Protocol_TransactionRet {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_Transactions
 
 struct Protocol_Transactions {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -1893,31 +2169,19 @@ struct Protocol_Transactions {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_BlockHeader
 
 struct Protocol_BlockHeader {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var rawData: Protocol_BlockHeader.raw {
-        get { _rawData ?? Protocol_BlockHeader.raw() }
-        set { _rawData = newValue }
-    }
-
-    /// Returns true if `rawData` has been explicitly set.
-    var hasRawData: Bool { _rawData != nil }
-    /// Clears the value of `rawData`. Subsequent reads from it will return its default value.
-    mutating func clearRawData() { _rawData = nil }
-
-    var witnessSignature: Data = .init()
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     struct raw {
+        // MARK: Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -1942,23 +2206,60 @@ struct Protocol_BlockHeader {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
+        // MARK: Lifecycle
+
         init() { }
     }
 
-    init() { }
+    // MARK: Properties
+
+    var witnessSignature: Data = .init()
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
 
     fileprivate var _rawData: Protocol_BlockHeader.raw?
+
+    // MARK: Computed Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var rawData: Protocol_BlockHeader.raw {
+        get { _rawData ?? Protocol_BlockHeader.raw() }
+        set { _rawData = newValue }
+    }
+
+    /// Returns true if `rawData` has been explicitly set.
+    var hasRawData: Bool { _rawData != nil }
+
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Functions
+
+    /// Clears the value of `rawData`. Subsequent reads from it will return its default value.
+    mutating func clearRawData() { _rawData = nil }
 }
 
 // MARK: - Protocol_Block
 
 /// block
 struct Protocol_Block {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
     var transactions: [Protocol_Transaction] = []
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    private var _blockHeader: Protocol_BlockHeader?
+
+    // MARK: Computed Properties
 
     var blockHeader: Protocol_BlockHeader {
         get { _blockHeader ?? Protocol_BlockHeader() }
@@ -1967,30 +2268,25 @@ struct Protocol_Block {
 
     /// Returns true if `blockHeader` has been explicitly set.
     var hasBlockHeader: Bool { _blockHeader != nil }
-    /// Clears the value of `blockHeader`. Subsequent reads from it will return its default value.
-    mutating func clearBlockHeader() { _blockHeader = nil }
 
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Lifecycle
 
     init() { }
 
-    private var _blockHeader: Protocol_BlockHeader?
+    // MARK: Functions
+
+    /// Clears the value of `blockHeader`. Subsequent reads from it will return its default value.
+    mutating func clearBlockHeader() { _blockHeader = nil }
 }
 
 // MARK: - Protocol_ChainInventory
 
 struct Protocol_ChainInventory {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+    // MARK: Nested Types
 
-    var ids: [Protocol_ChainInventory.BlockId] = []
+    struct BlockID {
+        // MARK: Properties
 
-    var remainNum: Int64 = 0
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    struct BlockId {
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -2001,8 +2297,24 @@ struct Protocol_ChainInventory {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
+        // MARK: Lifecycle
+
         init() { }
     }
+
+    // MARK: Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var ids: [Protocol_ChainInventory.BlockID] = []
+
+    var remainNum: Int64 = 0
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -2011,22 +2323,30 @@ struct Protocol_ChainInventory {
 
 /// Inventory
 struct Protocol_BlockInventory {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var ids: [Protocol_BlockInventory.BlockId] = []
-
-    var type: Protocol_BlockInventory.TypeEnum = .sync
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     enum TypeEnum: SwiftProtobuf.Enum {
-        typealias RawValue = Int
         case sync // = 0
         case advtise // = 1
         case fetch // = 2
         case UNRECOGNIZED(Int)
+
+        // MARK: Nested Types
+
+        typealias RawValue = Int
+
+        // MARK: Computed Properties
+
+        var rawValue: Int {
+            switch self {
+            case .sync: 0
+            case .advtise: 1
+            case .fetch: 2
+            case let .UNRECOGNIZED(i): i
+            }
+        }
+
+        // MARK: Lifecycle
 
         init() {
             self = .sync
@@ -2040,18 +2360,11 @@ struct Protocol_BlockInventory {
             default: self = .UNRECOGNIZED(rawValue)
             }
         }
-
-        var rawValue: Int {
-            switch self {
-            case .sync: 0
-            case .advtise: 1
-            case .fetch: 2
-            case .UNRECOGNIZED(let i): i
-            }
-        }
     }
 
-    struct BlockId {
+    struct BlockID {
+        // MARK: Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -2062,8 +2375,24 @@ struct Protocol_BlockInventory {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
+        // MARK: Lifecycle
+
         init() { }
     }
+
+    // MARK: Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var ids: [Protocol_BlockInventory.BlockID] = []
+
+    var type: Protocol_BlockInventory.TypeEnum = .sync
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -2084,21 +2413,28 @@ extension Protocol_BlockInventory.TypeEnum: CaseIterable {
 // MARK: - Protocol_Inventory
 
 struct Protocol_Inventory {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var type: Protocol_Inventory.InventoryType = .trx
-
-    var ids: [Data] = []
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     enum InventoryType: SwiftProtobuf.Enum {
-        typealias RawValue = Int
         case trx // = 0
         case block // = 1
         case UNRECOGNIZED(Int)
+
+        // MARK: Nested Types
+
+        typealias RawValue = Int
+
+        // MARK: Computed Properties
+
+        var rawValue: Int {
+            switch self {
+            case .trx: 0
+            case .block: 1
+            case let .UNRECOGNIZED(i): i
+            }
+        }
+
+        // MARK: Lifecycle
 
         init() {
             self = .trx
@@ -2111,15 +2447,21 @@ struct Protocol_Inventory {
             default: self = .UNRECOGNIZED(rawValue)
             }
         }
-
-        var rawValue: Int {
-            switch self {
-            case .trx: 0
-            case .block: 1
-            case .UNRECOGNIZED(let i): i
-            }
-        }
     }
+
+    // MARK: Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var type: Protocol_Inventory.InventoryType = .trx
+
+    var ids: [Data] = []
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -2139,27 +2481,32 @@ extension Protocol_Inventory.InventoryType: CaseIterable {
 // MARK: - Protocol_Items
 
 struct Protocol_Items {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var type: Protocol_Items.ItemType = .err
-
-    var blocks: [Protocol_Block] = []
-
-    var blockHeaders: [Protocol_BlockHeader] = []
-
-    var transactions: [Protocol_Transaction] = []
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     enum ItemType: SwiftProtobuf.Enum {
-        typealias RawValue = Int
         case err // = 0
         case trx // = 1
         case block // = 2
         case blockheader // = 3
         case UNRECOGNIZED(Int)
+
+        // MARK: Nested Types
+
+        typealias RawValue = Int
+
+        // MARK: Computed Properties
+
+        var rawValue: Int {
+            switch self {
+            case .err: 0
+            case .trx: 1
+            case .block: 2
+            case .blockheader: 3
+            case let .UNRECOGNIZED(i): i
+            }
+        }
+
+        // MARK: Lifecycle
 
         init() {
             self = .err
@@ -2174,17 +2521,25 @@ struct Protocol_Items {
             default: self = .UNRECOGNIZED(rawValue)
             }
         }
-
-        var rawValue: Int {
-            switch self {
-            case .err: 0
-            case .trx: 1
-            case .block: 2
-            case .blockheader: 3
-            case .UNRECOGNIZED(let i): i
-            }
-        }
     }
+
+    // MARK: Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var type: Protocol_Items.ItemType = .err
+
+    var blocks: [Protocol_Block] = []
+
+    var blockHeaders: [Protocol_BlockHeader] = []
+
+    var transactions: [Protocol_Transaction] = []
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -2207,6 +2562,8 @@ extension Protocol_Items.ItemType: CaseIterable {
 
 /// DynamicProperties
 struct Protocol_DynamicProperties {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -2215,12 +2572,16 @@ struct Protocol_DynamicProperties {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_DisconnectMessage
 
 struct Protocol_DisconnectMessage {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -2229,59 +2590,39 @@ struct Protocol_DisconnectMessage {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_HelloMessage
 
 struct Protocol_HelloMessage {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+    // MARK: Nested Types
 
-    var from: Protocol_Endpoint {
-        get { _from ?? Protocol_Endpoint() }
-        set { _from = newValue }
+    struct BlockID {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var hash: Data = .init()
+
+        var number: Int64 = 0
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
+        init() { }
     }
 
-    /// Returns true if `from` has been explicitly set.
-    var hasFrom: Bool { _from != nil }
-    /// Clears the value of `from`. Subsequent reads from it will return its default value.
-    mutating func clearFrom() { _from = nil }
+    // MARK: Properties
 
     var version: Int32 = 0
 
     var timestamp: Int64 = 0
-
-    var genesisBlockID: Protocol_HelloMessage.BlockId {
-        get { _genesisBlockID ?? Protocol_HelloMessage.BlockId() }
-        set { _genesisBlockID = newValue }
-    }
-
-    /// Returns true if `genesisBlockID` has been explicitly set.
-    var hasGenesisBlockID: Bool { _genesisBlockID != nil }
-    /// Clears the value of `genesisBlockID`. Subsequent reads from it will return its default value.
-    mutating func clearGenesisBlockID() { _genesisBlockID = nil }
-
-    var solidBlockID: Protocol_HelloMessage.BlockId {
-        get { _solidBlockID ?? Protocol_HelloMessage.BlockId() }
-        set { _solidBlockID = newValue }
-    }
-
-    /// Returns true if `solidBlockID` has been explicitly set.
-    var hasSolidBlockID: Bool { _solidBlockID != nil }
-    /// Clears the value of `solidBlockID`. Subsequent reads from it will return its default value.
-    mutating func clearSolidBlockID() { _solidBlockID = nil }
-
-    var headBlockID: Protocol_HelloMessage.BlockId {
-        get { _headBlockID ?? Protocol_HelloMessage.BlockId() }
-        set { _headBlockID = newValue }
-    }
-
-    /// Returns true if `headBlockID` has been explicitly set.
-    var hasHeadBlockID: Bool { _headBlockID != nil }
-    /// Clears the value of `headBlockID`. Subsequent reads from it will return its default value.
-    mutating func clearHeadBlockID() { _headBlockID = nil }
 
     var address: Data = .init()
 
@@ -2293,31 +2634,92 @@ struct Protocol_HelloMessage {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    struct BlockId {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
+    private var _from: Protocol_Endpoint?
+    private var _genesisBlockID: Protocol_HelloMessage.BlockID?
+    private var _solidBlockID: Protocol_HelloMessage.BlockID?
+    private var _headBlockID: Protocol_HelloMessage.BlockID?
 
-        var hash: Data = .init()
+    // MARK: Computed Properties
 
-        var number: Int64 = 0
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
 
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
+    var from: Protocol_Endpoint {
+        get { _from ?? Protocol_Endpoint() }
+        set { _from = newValue }
     }
+
+    /// Returns true if `from` has been explicitly set.
+    var hasFrom: Bool { _from != nil }
+    var genesisBlockID: Protocol_HelloMessage.BlockID {
+        get { _genesisBlockID ?? Protocol_HelloMessage.BlockID() }
+        set { _genesisBlockID = newValue }
+    }
+
+    /// Returns true if `genesisBlockID` has been explicitly set.
+    var hasGenesisBlockID: Bool { _genesisBlockID != nil }
+    var solidBlockID: Protocol_HelloMessage.BlockID {
+        get { _solidBlockID ?? Protocol_HelloMessage.BlockID() }
+        set { _solidBlockID = newValue }
+    }
+
+    /// Returns true if `solidBlockID` has been explicitly set.
+    var hasSolidBlockID: Bool { _solidBlockID != nil }
+    var headBlockID: Protocol_HelloMessage.BlockID {
+        get { _headBlockID ?? Protocol_HelloMessage.BlockID() }
+        set { _headBlockID = newValue }
+    }
+
+    /// Returns true if `headBlockID` has been explicitly set.
+    var hasHeadBlockID: Bool { _headBlockID != nil }
+
+    // MARK: Lifecycle
 
     init() { }
 
-    private var _from: Protocol_Endpoint?
-    private var _genesisBlockID: Protocol_HelloMessage.BlockId?
-    private var _solidBlockID: Protocol_HelloMessage.BlockId?
-    private var _headBlockID: Protocol_HelloMessage.BlockId?
+    // MARK: Functions
+
+    /// Clears the value of `from`. Subsequent reads from it will return its default value.
+    mutating func clearFrom() { _from = nil }
+
+    /// Clears the value of `genesisBlockID`. Subsequent reads from it will return its default value.
+    mutating func clearGenesisBlockID() { _genesisBlockID = nil }
+
+    /// Clears the value of `solidBlockID`. Subsequent reads from it will return its default value.
+    mutating func clearSolidBlockID() { _solidBlockID = nil }
+
+    /// Clears the value of `headBlockID`. Subsequent reads from it will return its default value.
+    mutating func clearHeadBlockID() { _headBlockID = nil }
 }
 
 // MARK: - Protocol_InternalTransaction
 
 struct Protocol_InternalTransaction {
+    // MARK: Nested Types
+
+    struct CallValueInfo {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        /// trx (TBD: or token) value
+        var callValue: Int64 = 0
+
+        /// TBD: tokenName, trx should be empty
+        var tokenID: String = .init()
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
+        init() { }
+    }
+
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -2342,21 +2744,7 @@ struct Protocol_InternalTransaction {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    struct CallValueInfo {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        /// trx (TBD: or token) value
-        var callValue: Int64 = 0
-
-        /// TBD: tokenName, trx should be empty
-        var tokenID: String = .init()
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
-    }
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -2364,6 +2752,8 @@ struct Protocol_InternalTransaction {
 // MARK: - Protocol_DelegatedResourceAccountIndex
 
 struct Protocol_DelegatedResourceAccountIndex {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -2378,85 +2768,25 @@ struct Protocol_DelegatedResourceAccountIndex {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_NodeInfo
 
 struct Protocol_NodeInfo {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var beginSyncNum: Int64 {
-        get { _storage._beginSyncNum }
-        set { _uniqueStorage()._beginSyncNum = newValue }
-    }
-
-    var block: String {
-        get { _storage._block }
-        set { _uniqueStorage()._block = newValue }
-    }
-
-    var solidityBlock: String {
-        get { _storage._solidityBlock }
-        set { _uniqueStorage()._solidityBlock = newValue }
-    }
-
-    /// connect information
-    var currentConnectCount: Int32 {
-        get { _storage._currentConnectCount }
-        set { _uniqueStorage()._currentConnectCount = newValue }
-    }
-
-    var activeConnectCount: Int32 {
-        get { _storage._activeConnectCount }
-        set { _uniqueStorage()._activeConnectCount = newValue }
-    }
-
-    var passiveConnectCount: Int32 {
-        get { _storage._passiveConnectCount }
-        set { _uniqueStorage()._passiveConnectCount = newValue }
-    }
-
-    var totalFlow: Int64 {
-        get { _storage._totalFlow }
-        set { _uniqueStorage()._totalFlow = newValue }
-    }
-
-    var peerInfoList: [Protocol_NodeInfo.PeerInfo] {
-        get { _storage._peerInfoList }
-        set { _uniqueStorage()._peerInfoList = newValue }
-    }
-
-    var configNodeInfo: Protocol_NodeInfo.ConfigNodeInfo {
-        get { _storage._configNodeInfo ?? Protocol_NodeInfo.ConfigNodeInfo() }
-        set { _uniqueStorage()._configNodeInfo = newValue }
-    }
-
-    /// Returns true if `configNodeInfo` has been explicitly set.
-    var hasConfigNodeInfo: Bool { _storage._configNodeInfo != nil }
-    /// Clears the value of `configNodeInfo`. Subsequent reads from it will return its default value.
-    mutating func clearConfigNodeInfo() { _uniqueStorage()._configNodeInfo = nil }
-
-    var machineInfo: Protocol_NodeInfo.MachineInfo {
-        get { _storage._machineInfo ?? Protocol_NodeInfo.MachineInfo() }
-        set { _uniqueStorage()._machineInfo = newValue }
-    }
-
-    /// Returns true if `machineInfo` has been explicitly set.
-    var hasMachineInfo: Bool { _storage._machineInfo != nil }
-    /// Clears the value of `machineInfo`. Subsequent reads from it will return its default value.
-    mutating func clearMachineInfo() { _uniqueStorage()._machineInfo = nil }
-
-    var cheatWitnessInfoMap: [String: String] {
-        get { _storage._cheatWitnessInfoMap }
-        set { _uniqueStorage()._cheatWitnessInfoMap = newValue }
-    }
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     struct PeerInfo {
+        // MARK: Properties
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        fileprivate var _storage = _StorageClass.defaultInstance
+
+        // MARK: Computed Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -2586,14 +2916,20 @@ struct Protocol_NodeInfo {
             set { _uniqueStorage()._remoteDisconnectReason = newValue }
         }
 
-        var unknownFields = SwiftProtobuf.UnknownStorage()
+        // MARK: Lifecycle
 
         init() { }
-
-        fileprivate var _storage = _StorageClass.defaultInstance
     }
 
     struct ConfigNodeInfo {
+        // MARK: Properties
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        fileprivate var _storage = _StorageClass.defaultInstance
+
+        // MARK: Computed Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -2693,14 +3029,68 @@ struct Protocol_NodeInfo {
             set { _uniqueStorage()._allowAdaptiveEnergy = newValue }
         }
 
-        var unknownFields = SwiftProtobuf.UnknownStorage()
+        // MARK: Lifecycle
 
         init() { }
-
-        fileprivate var _storage = _StorageClass.defaultInstance
     }
 
     struct MachineInfo {
+        // MARK: Nested Types
+
+        struct MemoryDescInfo {
+            // MARK: Properties
+
+            // SwiftProtobuf.Message conformance is added in an extension below. See the
+            // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+            // methods supported on all messages.
+
+            var name: String = .init()
+
+            var initSize: Int64 = 0
+
+            var useSize: Int64 = 0
+
+            var maxSize: Int64 = 0
+
+            var useRate: Double = 0
+
+            var unknownFields = SwiftProtobuf.UnknownStorage()
+
+            // MARK: Lifecycle
+
+            init() { }
+        }
+
+        struct DeadLockThreadInfo {
+            // MARK: Properties
+
+            // SwiftProtobuf.Message conformance is added in an extension below. See the
+            // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+            // methods supported on all messages.
+
+            var name: String = .init()
+
+            var lockName: String = .init()
+
+            var lockOwner: String = .init()
+
+            var state: String = .init()
+
+            var blockTime: Int64 = 0
+
+            var waitTime: Int64 = 0
+
+            var stackTrace: String = .init()
+
+            var unknownFields = SwiftProtobuf.UnknownStorage()
+
+            // MARK: Lifecycle
+
+            init() { }
+        }
+
+        // MARK: Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -2733,100 +3123,104 @@ struct Protocol_NodeInfo {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
-        struct MemoryDescInfo {
-            // SwiftProtobuf.Message conformance is added in an extension below. See the
-            // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-            // methods supported on all messages.
-
-            var name: String = .init()
-
-            var initSize: Int64 = 0
-
-            var useSize: Int64 = 0
-
-            var maxSize: Int64 = 0
-
-            var useRate: Double = 0
-
-            var unknownFields = SwiftProtobuf.UnknownStorage()
-
-            init() { }
-        }
-
-        struct DeadLockThreadInfo {
-            // SwiftProtobuf.Message conformance is added in an extension below. See the
-            // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-            // methods supported on all messages.
-
-            var name: String = .init()
-
-            var lockName: String = .init()
-
-            var lockOwner: String = .init()
-
-            var state: String = .init()
-
-            var blockTime: Int64 = 0
-
-            var waitTime: Int64 = 0
-
-            var stackTrace: String = .init()
-
-            var unknownFields = SwiftProtobuf.UnknownStorage()
-
-            init() { }
-        }
+        // MARK: Lifecycle
 
         init() { }
     }
 
-    init() { }
+    // MARK: Properties
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
 
     fileprivate var _storage = _StorageClass.defaultInstance
+
+    // MARK: Computed Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var beginSyncNum: Int64 {
+        get { _storage._beginSyncNum }
+        set { _uniqueStorage()._beginSyncNum = newValue }
+    }
+
+    var block: String {
+        get { _storage._block }
+        set { _uniqueStorage()._block = newValue }
+    }
+
+    var solidityBlock: String {
+        get { _storage._solidityBlock }
+        set { _uniqueStorage()._solidityBlock = newValue }
+    }
+
+    /// connect information
+    var currentConnectCount: Int32 {
+        get { _storage._currentConnectCount }
+        set { _uniqueStorage()._currentConnectCount = newValue }
+    }
+
+    var activeConnectCount: Int32 {
+        get { _storage._activeConnectCount }
+        set { _uniqueStorage()._activeConnectCount = newValue }
+    }
+
+    var passiveConnectCount: Int32 {
+        get { _storage._passiveConnectCount }
+        set { _uniqueStorage()._passiveConnectCount = newValue }
+    }
+
+    var totalFlow: Int64 {
+        get { _storage._totalFlow }
+        set { _uniqueStorage()._totalFlow = newValue }
+    }
+
+    var peerInfoList: [Protocol_NodeInfo.PeerInfo] {
+        get { _storage._peerInfoList }
+        set { _uniqueStorage()._peerInfoList = newValue }
+    }
+
+    var configNodeInfo: Protocol_NodeInfo.ConfigNodeInfo {
+        get { _storage._configNodeInfo ?? Protocol_NodeInfo.ConfigNodeInfo() }
+        set { _uniqueStorage()._configNodeInfo = newValue }
+    }
+
+    /// Returns true if `configNodeInfo` has been explicitly set.
+    var hasConfigNodeInfo: Bool { _storage._configNodeInfo != nil }
+    var machineInfo: Protocol_NodeInfo.MachineInfo {
+        get { _storage._machineInfo ?? Protocol_NodeInfo.MachineInfo() }
+        set { _uniqueStorage()._machineInfo = newValue }
+    }
+
+    /// Returns true if `machineInfo` has been explicitly set.
+    var hasMachineInfo: Bool { _storage._machineInfo != nil }
+    var cheatWitnessInfoMap: [String: String] {
+        get { _storage._cheatWitnessInfoMap }
+        set { _uniqueStorage()._cheatWitnessInfoMap = newValue }
+    }
+
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Functions
+
+    /// Clears the value of `configNodeInfo`. Subsequent reads from it will return its default value.
+    mutating func clearConfigNodeInfo() { _uniqueStorage()._configNodeInfo = nil }
+
+    /// Clears the value of `machineInfo`. Subsequent reads from it will return its default value.
+    mutating func clearMachineInfo() { _uniqueStorage()._machineInfo = nil }
 }
 
 // MARK: - Protocol_MetricsInfo
 
 struct Protocol_MetricsInfo {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var interval: Int64 = 0
-
-    var node: Protocol_MetricsInfo.NodeInfo {
-        get { _node ?? Protocol_MetricsInfo.NodeInfo() }
-        set { _node = newValue }
-    }
-
-    /// Returns true if `node` has been explicitly set.
-    var hasNode: Bool { _node != nil }
-    /// Clears the value of `node`. Subsequent reads from it will return its default value.
-    mutating func clearNode() { _node = nil }
-
-    var blockchain: Protocol_MetricsInfo.BlockChainInfo {
-        get { _blockchain ?? Protocol_MetricsInfo.BlockChainInfo() }
-        set { _blockchain = newValue }
-    }
-
-    /// Returns true if `blockchain` has been explicitly set.
-    var hasBlockchain: Bool { _blockchain != nil }
-    /// Clears the value of `blockchain`. Subsequent reads from it will return its default value.
-    mutating func clearBlockchain() { _blockchain = nil }
-
-    var net: Protocol_MetricsInfo.NetInfo {
-        get { _net ?? Protocol_MetricsInfo.NetInfo() }
-        set { _net = newValue }
-    }
-
-    /// Returns true if `net` has been explicitly set.
-    var hasNet: Bool { _net != nil }
-    /// Clears the value of `net`. Subsequent reads from it will return its default value.
-    mutating func clearNet() { _net = nil }
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     struct NodeInfo {
+        // MARK: Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -2841,10 +3235,60 @@ struct Protocol_MetricsInfo {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
+        // MARK: Lifecycle
+
         init() { }
     }
 
     struct BlockChainInfo {
+        // MARK: Nested Types
+
+        struct Witness {
+            // MARK: Properties
+
+            // SwiftProtobuf.Message conformance is added in an extension below. See the
+            // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+            // methods supported on all messages.
+
+            var address: String = .init()
+
+            var version: Int32 = 0
+
+            var unknownFields = SwiftProtobuf.UnknownStorage()
+
+            // MARK: Lifecycle
+
+            init() { }
+        }
+
+        struct DupWitness {
+            // MARK: Properties
+
+            // SwiftProtobuf.Message conformance is added in an extension below. See the
+            // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+            // methods supported on all messages.
+
+            var address: String = .init()
+
+            var blockNum: Int64 = 0
+
+            var count: Int32 = 0
+
+            var unknownFields = SwiftProtobuf.UnknownStorage()
+
+            // MARK: Lifecycle
+
+            init() { }
+        }
+
+        // MARK: Properties
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        fileprivate var _storage = _StorageClass.defaultInstance
+
+        // MARK: Computed Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -2881,9 +3325,6 @@ struct Protocol_MetricsInfo {
 
         /// Returns true if `blockProcessTime` has been explicitly set.
         var hasBlockProcessTime: Bool { _storage._blockProcessTime != nil }
-        /// Clears the value of `blockProcessTime`. Subsequent reads from it will return its default value.
-        mutating func clearBlockProcessTime() { _uniqueStorage()._blockProcessTime = nil }
-
         var tps: Protocol_MetricsInfo.RateInfo {
             get { _storage._tps ?? Protocol_MetricsInfo.RateInfo() }
             set { _uniqueStorage()._tps = newValue }
@@ -2891,9 +3332,6 @@ struct Protocol_MetricsInfo {
 
         /// Returns true if `tps` has been explicitly set.
         var hasTps: Bool { _storage._tps != nil }
-        /// Clears the value of `tps`. Subsequent reads from it will return its default value.
-        mutating func clearTps() { _uniqueStorage()._tps = nil }
-
         var transactionCacheSize: Int32 {
             get { _storage._transactionCacheSize }
             set { _uniqueStorage()._transactionCacheSize = newValue }
@@ -2906,9 +3344,6 @@ struct Protocol_MetricsInfo {
 
         /// Returns true if `missedTransaction` has been explicitly set.
         var hasMissedTransaction: Bool { _storage._missedTransaction != nil }
-        /// Clears the value of `missedTransaction`. Subsequent reads from it will return its default value.
-        mutating func clearMissedTransaction() { _uniqueStorage()._missedTransaction = nil }
-
         var witnesses: [Protocol_MetricsInfo.BlockChainInfo.Witness] {
             get { _storage._witnesses }
             set { _uniqueStorage()._witnesses = newValue }
@@ -2929,44 +3364,25 @@ struct Protocol_MetricsInfo {
             set { _uniqueStorage()._dupWitness = newValue }
         }
 
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        struct Witness {
-            // SwiftProtobuf.Message conformance is added in an extension below. See the
-            // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-            // methods supported on all messages.
-
-            var address: String = .init()
-
-            var version: Int32 = 0
-
-            var unknownFields = SwiftProtobuf.UnknownStorage()
-
-            init() { }
-        }
-
-        struct DupWitness {
-            // SwiftProtobuf.Message conformance is added in an extension below. See the
-            // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-            // methods supported on all messages.
-
-            var address: String = .init()
-
-            var blockNum: Int64 = 0
-
-            var count: Int32 = 0
-
-            var unknownFields = SwiftProtobuf.UnknownStorage()
-
-            init() { }
-        }
+        // MARK: Lifecycle
 
         init() { }
 
-        fileprivate var _storage = _StorageClass.defaultInstance
+        // MARK: Functions
+
+        /// Clears the value of `blockProcessTime`. Subsequent reads from it will return its default value.
+        mutating func clearBlockProcessTime() { _uniqueStorage()._blockProcessTime = nil }
+
+        /// Clears the value of `tps`. Subsequent reads from it will return its default value.
+        mutating func clearTps() { _uniqueStorage()._tps = nil }
+
+        /// Clears the value of `missedTransaction`. Subsequent reads from it will return its default value.
+        mutating func clearMissedTransaction() { _uniqueStorage()._missedTransaction = nil }
     }
 
     struct RateInfo {
+        // MARK: Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -2983,102 +3399,84 @@ struct Protocol_MetricsInfo {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
+        // MARK: Lifecycle
+
         init() { }
     }
 
     struct NetInfo {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        var errorProtoCount: Int32 {
-            get { _storage._errorProtoCount }
-            set { _uniqueStorage()._errorProtoCount = newValue }
-        }
-
-        var api: Protocol_MetricsInfo.NetInfo.ApiInfo {
-            get { _storage._api ?? Protocol_MetricsInfo.NetInfo.ApiInfo() }
-            set { _uniqueStorage()._api = newValue }
-        }
-
-        /// Returns true if `api` has been explicitly set.
-        var hasApi: Bool { _storage._api != nil }
-        /// Clears the value of `api`. Subsequent reads from it will return its default value.
-        mutating func clearApi() { _uniqueStorage()._api = nil }
-
-        var connectionCount: Int32 {
-            get { _storage._connectionCount }
-            set { _uniqueStorage()._connectionCount = newValue }
-        }
-
-        var validConnectionCount: Int32 {
-            get { _storage._validConnectionCount }
-            set { _uniqueStorage()._validConnectionCount = newValue }
-        }
-
-        var tcpInTraffic: Protocol_MetricsInfo.RateInfo {
-            get { _storage._tcpInTraffic ?? Protocol_MetricsInfo.RateInfo() }
-            set { _uniqueStorage()._tcpInTraffic = newValue }
-        }
-
-        /// Returns true if `tcpInTraffic` has been explicitly set.
-        var hasTcpInTraffic: Bool { _storage._tcpInTraffic != nil }
-        /// Clears the value of `tcpInTraffic`. Subsequent reads from it will return its default value.
-        mutating func clearTcpInTraffic() { _uniqueStorage()._tcpInTraffic = nil }
-
-        var tcpOutTraffic: Protocol_MetricsInfo.RateInfo {
-            get { _storage._tcpOutTraffic ?? Protocol_MetricsInfo.RateInfo() }
-            set { _uniqueStorage()._tcpOutTraffic = newValue }
-        }
-
-        /// Returns true if `tcpOutTraffic` has been explicitly set.
-        var hasTcpOutTraffic: Bool { _storage._tcpOutTraffic != nil }
-        /// Clears the value of `tcpOutTraffic`. Subsequent reads from it will return its default value.
-        mutating func clearTcpOutTraffic() { _uniqueStorage()._tcpOutTraffic = nil }
-
-        var disconnectionCount: Int32 {
-            get { _storage._disconnectionCount }
-            set { _uniqueStorage()._disconnectionCount = newValue }
-        }
-
-        var disconnectionDetail: [Protocol_MetricsInfo.NetInfo.DisconnectionDetailInfo] {
-            get { _storage._disconnectionDetail }
-            set { _uniqueStorage()._disconnectionDetail = newValue }
-        }
-
-        var udpInTraffic: Protocol_MetricsInfo.RateInfo {
-            get { _storage._udpInTraffic ?? Protocol_MetricsInfo.RateInfo() }
-            set { _uniqueStorage()._udpInTraffic = newValue }
-        }
-
-        /// Returns true if `udpInTraffic` has been explicitly set.
-        var hasUdpInTraffic: Bool { _storage._udpInTraffic != nil }
-        /// Clears the value of `udpInTraffic`. Subsequent reads from it will return its default value.
-        mutating func clearUdpInTraffic() { _uniqueStorage()._udpInTraffic = nil }
-
-        var udpOutTraffic: Protocol_MetricsInfo.RateInfo {
-            get { _storage._udpOutTraffic ?? Protocol_MetricsInfo.RateInfo() }
-            set { _uniqueStorage()._udpOutTraffic = newValue }
-        }
-
-        /// Returns true if `udpOutTraffic` has been explicitly set.
-        var hasUdpOutTraffic: Bool { _storage._udpOutTraffic != nil }
-        /// Clears the value of `udpOutTraffic`. Subsequent reads from it will return its default value.
-        mutating func clearUdpOutTraffic() { _uniqueStorage()._udpOutTraffic = nil }
-
-        var latency: Protocol_MetricsInfo.NetInfo.LatencyInfo {
-            get { _storage._latency ?? Protocol_MetricsInfo.NetInfo.LatencyInfo() }
-            set { _uniqueStorage()._latency = newValue }
-        }
-
-        /// Returns true if `latency` has been explicitly set.
-        var hasLatency: Bool { _storage._latency != nil }
-        /// Clears the value of `latency`. Subsequent reads from it will return its default value.
-        mutating func clearLatency() { _uniqueStorage()._latency = nil }
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
+        // MARK: Nested Types
 
         struct ApiInfo {
+            // MARK: Nested Types
+
+            struct ApiDetailInfo {
+                // MARK: Properties
+
+                // SwiftProtobuf.Message conformance is added in an extension below. See the
+                // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+                // methods supported on all messages.
+
+                var name: String = .init()
+
+                var unknownFields = SwiftProtobuf.UnknownStorage()
+
+                fileprivate var _qps: Protocol_MetricsInfo.RateInfo?
+                fileprivate var _failQps: Protocol_MetricsInfo.RateInfo?
+                fileprivate var _outTraffic: Protocol_MetricsInfo.RateInfo?
+
+                // MARK: Computed Properties
+
+                var qps: Protocol_MetricsInfo.RateInfo {
+                    get { _qps ?? Protocol_MetricsInfo.RateInfo() }
+                    set { _qps = newValue }
+                }
+
+                /// Returns true if `qps` has been explicitly set.
+                var hasQps: Bool { _qps != nil }
+                var failQps: Protocol_MetricsInfo.RateInfo {
+                    get { _failQps ?? Protocol_MetricsInfo.RateInfo() }
+                    set { _failQps = newValue }
+                }
+
+                /// Returns true if `failQps` has been explicitly set.
+                var hasFailQps: Bool { _failQps != nil }
+                var outTraffic: Protocol_MetricsInfo.RateInfo {
+                    get { _outTraffic ?? Protocol_MetricsInfo.RateInfo() }
+                    set { _outTraffic = newValue }
+                }
+
+                /// Returns true if `outTraffic` has been explicitly set.
+                var hasOutTraffic: Bool { _outTraffic != nil }
+
+                // MARK: Lifecycle
+
+                init() { }
+
+                // MARK: Functions
+
+                /// Clears the value of `qps`. Subsequent reads from it will return its default value.
+                mutating func clearQps() { _qps = nil }
+
+                /// Clears the value of `failQps`. Subsequent reads from it will return its default value.
+                mutating func clearFailQps() { _failQps = nil }
+
+                /// Clears the value of `outTraffic`. Subsequent reads from it will return its default value.
+                mutating func clearOutTraffic() { _outTraffic = nil }
+            }
+
+            // MARK: Properties
+
+            var detail: [Protocol_MetricsInfo.NetInfo.ApiInfo.ApiDetailInfo] = []
+
+            var unknownFields = SwiftProtobuf.UnknownStorage()
+
+            fileprivate var _qps: Protocol_MetricsInfo.RateInfo?
+            fileprivate var _failQps: Protocol_MetricsInfo.RateInfo?
+            fileprivate var _outTraffic: Protocol_MetricsInfo.RateInfo?
+
+            // MARK: Computed Properties
+
             // SwiftProtobuf.Message conformance is added in an extension below. See the
             // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
             // methods supported on all messages.
@@ -3090,9 +3488,6 @@ struct Protocol_MetricsInfo {
 
             /// Returns true if `qps` has been explicitly set.
             var hasQps: Bool { _qps != nil }
-            /// Clears the value of `qps`. Subsequent reads from it will return its default value.
-            mutating func clearQps() { _qps = nil }
-
             var failQps: Protocol_MetricsInfo.RateInfo {
                 get { _failQps ?? Protocol_MetricsInfo.RateInfo() }
                 set { _failQps = newValue }
@@ -3100,9 +3495,6 @@ struct Protocol_MetricsInfo {
 
             /// Returns true if `failQps` has been explicitly set.
             var hasFailQps: Bool { _failQps != nil }
-            /// Clears the value of `failQps`. Subsequent reads from it will return its default value.
-            mutating func clearFailQps() { _failQps = nil }
-
             var outTraffic: Protocol_MetricsInfo.RateInfo {
                 get { _outTraffic ?? Protocol_MetricsInfo.RateInfo() }
                 set { _outTraffic = newValue }
@@ -3110,67 +3502,26 @@ struct Protocol_MetricsInfo {
 
             /// Returns true if `outTraffic` has been explicitly set.
             var hasOutTraffic: Bool { _outTraffic != nil }
-            /// Clears the value of `outTraffic`. Subsequent reads from it will return its default value.
-            mutating func clearOutTraffic() { _outTraffic = nil }
 
-            var detail: [Protocol_MetricsInfo.NetInfo.ApiInfo.ApiDetailInfo] = []
-
-            var unknownFields = SwiftProtobuf.UnknownStorage()
-
-            struct ApiDetailInfo {
-                // SwiftProtobuf.Message conformance is added in an extension below. See the
-                // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-                // methods supported on all messages.
-
-                var name: String = .init()
-
-                var qps: Protocol_MetricsInfo.RateInfo {
-                    get { _qps ?? Protocol_MetricsInfo.RateInfo() }
-                    set { _qps = newValue }
-                }
-
-                /// Returns true if `qps` has been explicitly set.
-                var hasQps: Bool { _qps != nil }
-                /// Clears the value of `qps`. Subsequent reads from it will return its default value.
-                mutating func clearQps() { _qps = nil }
-
-                var failQps: Protocol_MetricsInfo.RateInfo {
-                    get { _failQps ?? Protocol_MetricsInfo.RateInfo() }
-                    set { _failQps = newValue }
-                }
-
-                /// Returns true if `failQps` has been explicitly set.
-                var hasFailQps: Bool { _failQps != nil }
-                /// Clears the value of `failQps`. Subsequent reads from it will return its default value.
-                mutating func clearFailQps() { _failQps = nil }
-
-                var outTraffic: Protocol_MetricsInfo.RateInfo {
-                    get { _outTraffic ?? Protocol_MetricsInfo.RateInfo() }
-                    set { _outTraffic = newValue }
-                }
-
-                /// Returns true if `outTraffic` has been explicitly set.
-                var hasOutTraffic: Bool { _outTraffic != nil }
-                /// Clears the value of `outTraffic`. Subsequent reads from it will return its default value.
-                mutating func clearOutTraffic() { _outTraffic = nil }
-
-                var unknownFields = SwiftProtobuf.UnknownStorage()
-
-                init() { }
-
-                fileprivate var _qps: Protocol_MetricsInfo.RateInfo?
-                fileprivate var _failQps: Protocol_MetricsInfo.RateInfo?
-                fileprivate var _outTraffic: Protocol_MetricsInfo.RateInfo?
-            }
+            // MARK: Lifecycle
 
             init() { }
 
-            fileprivate var _qps: Protocol_MetricsInfo.RateInfo?
-            fileprivate var _failQps: Protocol_MetricsInfo.RateInfo?
-            fileprivate var _outTraffic: Protocol_MetricsInfo.RateInfo?
+            // MARK: Functions
+
+            /// Clears the value of `qps`. Subsequent reads from it will return its default value.
+            mutating func clearQps() { _qps = nil }
+
+            /// Clears the value of `failQps`. Subsequent reads from it will return its default value.
+            mutating func clearFailQps() { _failQps = nil }
+
+            /// Clears the value of `outTraffic`. Subsequent reads from it will return its default value.
+            mutating func clearOutTraffic() { _outTraffic = nil }
         }
 
         struct DisconnectionDetailInfo {
+            // MARK: Properties
+
             // SwiftProtobuf.Message conformance is added in an extension below. See the
             // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
             // methods supported on all messages.
@@ -3181,33 +3532,17 @@ struct Protocol_MetricsInfo {
 
             var unknownFields = SwiftProtobuf.UnknownStorage()
 
+            // MARK: Lifecycle
+
             init() { }
         }
 
         struct LatencyInfo {
-            // SwiftProtobuf.Message conformance is added in an extension below. See the
-            // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-            // methods supported on all messages.
-
-            var top99: Int32 = 0
-
-            var top95: Int32 = 0
-
-            var top75: Int32 = 0
-
-            var totalCount: Int32 = 0
-
-            var delay1S: Int32 = 0
-
-            var delay2S: Int32 = 0
-
-            var delay3S: Int32 = 0
-
-            var detail: [Protocol_MetricsInfo.NetInfo.LatencyInfo.LatencyDetailInfo] = []
-
-            var unknownFields = SwiftProtobuf.UnknownStorage()
+            // MARK: Nested Types
 
             struct LatencyDetailInfo {
+                // MARK: Properties
+
                 // SwiftProtobuf.Message conformance is added in an extension below. See the
                 // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
                 // methods supported on all messages.
@@ -3230,53 +3565,230 @@ struct Protocol_MetricsInfo {
 
                 var unknownFields = SwiftProtobuf.UnknownStorage()
 
+                // MARK: Lifecycle
+
                 init() { }
             }
+
+            // MARK: Properties
+
+            // SwiftProtobuf.Message conformance is added in an extension below. See the
+            // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+            // methods supported on all messages.
+
+            var top99: Int32 = 0
+
+            var top95: Int32 = 0
+
+            var top75: Int32 = 0
+
+            var totalCount: Int32 = 0
+
+            var delay1S: Int32 = 0
+
+            var delay2S: Int32 = 0
+
+            var delay3S: Int32 = 0
+
+            var detail: [Protocol_MetricsInfo.NetInfo.LatencyInfo.LatencyDetailInfo] = []
+
+            var unknownFields = SwiftProtobuf.UnknownStorage()
+
+            // MARK: Lifecycle
 
             init() { }
         }
 
-        init() { }
+        // MARK: Properties
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
 
         fileprivate var _storage = _StorageClass.defaultInstance
+
+        // MARK: Computed Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var errorProtoCount: Int32 {
+            get { _storage._errorProtoCount }
+            set { _uniqueStorage()._errorProtoCount = newValue }
+        }
+
+        var api: Protocol_MetricsInfo.NetInfo.ApiInfo {
+            get { _storage._api ?? Protocol_MetricsInfo.NetInfo.ApiInfo() }
+            set { _uniqueStorage()._api = newValue }
+        }
+
+        /// Returns true if `api` has been explicitly set.
+        var hasApi: Bool { _storage._api != nil }
+        var connectionCount: Int32 {
+            get { _storage._connectionCount }
+            set { _uniqueStorage()._connectionCount = newValue }
+        }
+
+        var validConnectionCount: Int32 {
+            get { _storage._validConnectionCount }
+            set { _uniqueStorage()._validConnectionCount = newValue }
+        }
+
+        var tcpInTraffic: Protocol_MetricsInfo.RateInfo {
+            get { _storage._tcpInTraffic ?? Protocol_MetricsInfo.RateInfo() }
+            set { _uniqueStorage()._tcpInTraffic = newValue }
+        }
+
+        /// Returns true if `tcpInTraffic` has been explicitly set.
+        var hasTcpInTraffic: Bool { _storage._tcpInTraffic != nil }
+        var tcpOutTraffic: Protocol_MetricsInfo.RateInfo {
+            get { _storage._tcpOutTraffic ?? Protocol_MetricsInfo.RateInfo() }
+            set { _uniqueStorage()._tcpOutTraffic = newValue }
+        }
+
+        /// Returns true if `tcpOutTraffic` has been explicitly set.
+        var hasTcpOutTraffic: Bool { _storage._tcpOutTraffic != nil }
+        var disconnectionCount: Int32 {
+            get { _storage._disconnectionCount }
+            set { _uniqueStorage()._disconnectionCount = newValue }
+        }
+
+        var disconnectionDetail: [Protocol_MetricsInfo.NetInfo.DisconnectionDetailInfo] {
+            get { _storage._disconnectionDetail }
+            set { _uniqueStorage()._disconnectionDetail = newValue }
+        }
+
+        var udpInTraffic: Protocol_MetricsInfo.RateInfo {
+            get { _storage._udpInTraffic ?? Protocol_MetricsInfo.RateInfo() }
+            set { _uniqueStorage()._udpInTraffic = newValue }
+        }
+
+        /// Returns true if `udpInTraffic` has been explicitly set.
+        var hasUdpInTraffic: Bool { _storage._udpInTraffic != nil }
+        var udpOutTraffic: Protocol_MetricsInfo.RateInfo {
+            get { _storage._udpOutTraffic ?? Protocol_MetricsInfo.RateInfo() }
+            set { _uniqueStorage()._udpOutTraffic = newValue }
+        }
+
+        /// Returns true if `udpOutTraffic` has been explicitly set.
+        var hasUdpOutTraffic: Bool { _storage._udpOutTraffic != nil }
+        var latency: Protocol_MetricsInfo.NetInfo.LatencyInfo {
+            get { _storage._latency ?? Protocol_MetricsInfo.NetInfo.LatencyInfo() }
+            set { _uniqueStorage()._latency = newValue }
+        }
+
+        /// Returns true if `latency` has been explicitly set.
+        var hasLatency: Bool { _storage._latency != nil }
+
+        // MARK: Lifecycle
+
+        init() { }
+
+        // MARK: Functions
+
+        /// Clears the value of `api`. Subsequent reads from it will return its default value.
+        mutating func clearApi() { _uniqueStorage()._api = nil }
+
+        /// Clears the value of `tcpInTraffic`. Subsequent reads from it will return its default value.
+        mutating func clearTcpInTraffic() { _uniqueStorage()._tcpInTraffic = nil }
+
+        /// Clears the value of `tcpOutTraffic`. Subsequent reads from it will return its default value.
+        mutating func clearTcpOutTraffic() { _uniqueStorage()._tcpOutTraffic = nil }
+
+        /// Clears the value of `udpInTraffic`. Subsequent reads from it will return its default value.
+        mutating func clearUdpInTraffic() { _uniqueStorage()._udpInTraffic = nil }
+
+        /// Clears the value of `udpOutTraffic`. Subsequent reads from it will return its default value.
+        mutating func clearUdpOutTraffic() { _uniqueStorage()._udpOutTraffic = nil }
+
+        /// Clears the value of `latency`. Subsequent reads from it will return its default value.
+        mutating func clearLatency() { _uniqueStorage()._latency = nil }
     }
 
-    init() { }
+    // MARK: Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var interval: Int64 = 0
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
 
     private var _node: Protocol_MetricsInfo.NodeInfo?
     private var _blockchain: Protocol_MetricsInfo.BlockChainInfo?
     private var _net: Protocol_MetricsInfo.NetInfo?
+
+    // MARK: Computed Properties
+
+    var node: Protocol_MetricsInfo.NodeInfo {
+        get { _node ?? Protocol_MetricsInfo.NodeInfo() }
+        set { _node = newValue }
+    }
+
+    /// Returns true if `node` has been explicitly set.
+    var hasNode: Bool { _node != nil }
+    var blockchain: Protocol_MetricsInfo.BlockChainInfo {
+        get { _blockchain ?? Protocol_MetricsInfo.BlockChainInfo() }
+        set { _blockchain = newValue }
+    }
+
+    /// Returns true if `blockchain` has been explicitly set.
+    var hasBlockchain: Bool { _blockchain != nil }
+    var net: Protocol_MetricsInfo.NetInfo {
+        get { _net ?? Protocol_MetricsInfo.NetInfo() }
+        set { _net = newValue }
+    }
+
+    /// Returns true if `net` has been explicitly set.
+    var hasNet: Bool { _net != nil }
+
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Functions
+
+    /// Clears the value of `node`. Subsequent reads from it will return its default value.
+    mutating func clearNode() { _node = nil }
+
+    /// Clears the value of `blockchain`. Subsequent reads from it will return its default value.
+    mutating func clearBlockchain() { _blockchain = nil }
+
+    /// Clears the value of `net`. Subsequent reads from it will return its default value.
+    mutating func clearNet() { _net = nil }
 }
 
 // MARK: - Protocol_PBFTMessage
 
 struct Protocol_PBFTMessage {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var rawData: Protocol_PBFTMessage.Raw {
-        get { _rawData ?? Protocol_PBFTMessage.Raw() }
-        set { _rawData = newValue }
-    }
-
-    /// Returns true if `rawData` has been explicitly set.
-    var hasRawData: Bool { _rawData != nil }
-    /// Clears the value of `rawData`. Subsequent reads from it will return its default value.
-    mutating func clearRawData() { _rawData = nil }
-
-    var signature: Data = .init()
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     enum MsgType: SwiftProtobuf.Enum {
-        typealias RawValue = Int
         case viewChange // = 0
         case request // = 1
         case preprepare // = 2
         case prepare // = 3
         case commit // = 4
         case UNRECOGNIZED(Int)
+
+        // MARK: Nested Types
+
+        typealias RawValue = Int
+
+        // MARK: Computed Properties
+
+        var rawValue: Int {
+            switch self {
+            case .viewChange: 0
+            case .request: 1
+            case .preprepare: 2
+            case .prepare: 3
+            case .commit: 4
+            case let .UNRECOGNIZED(i): i
+            }
+        }
+
+        // MARK: Lifecycle
 
         init() {
             self = .viewChange
@@ -3292,24 +3804,28 @@ struct Protocol_PBFTMessage {
             default: self = .UNRECOGNIZED(rawValue)
             }
         }
-
-        var rawValue: Int {
-            switch self {
-            case .viewChange: 0
-            case .request: 1
-            case .preprepare: 2
-            case .prepare: 3
-            case .commit: 4
-            case .UNRECOGNIZED(let i): i
-            }
-        }
     }
 
     enum DataType: SwiftProtobuf.Enum {
-        typealias RawValue = Int
         case block // = 0
         case srl // = 1
         case UNRECOGNIZED(Int)
+
+        // MARK: Nested Types
+
+        typealias RawValue = Int
+
+        // MARK: Computed Properties
+
+        var rawValue: Int {
+            switch self {
+            case .block: 0
+            case .srl: 1
+            case let .UNRECOGNIZED(i): i
+            }
+        }
+
+        // MARK: Lifecycle
 
         init() {
             self = .block
@@ -3322,17 +3838,11 @@ struct Protocol_PBFTMessage {
             default: self = .UNRECOGNIZED(rawValue)
             }
         }
-
-        var rawValue: Int {
-            switch self {
-            case .block: 0
-            case .srl: 1
-            case .UNRECOGNIZED(let i): i
-            }
-        }
     }
 
     struct Raw {
+        // MARK: Properties
+
         // SwiftProtobuf.Message conformance is added in an extension below. See the
         // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
         // methods supported on all messages.
@@ -3349,12 +3859,41 @@ struct Protocol_PBFTMessage {
 
         var unknownFields = SwiftProtobuf.UnknownStorage()
 
+        // MARK: Lifecycle
+
         init() { }
     }
 
-    init() { }
+    // MARK: Properties
+
+    var signature: Data = .init()
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
 
     fileprivate var _rawData: Protocol_PBFTMessage.Raw?
+
+    // MARK: Computed Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var rawData: Protocol_PBFTMessage.Raw {
+        get { _rawData ?? Protocol_PBFTMessage.Raw() }
+        set { _rawData = newValue }
+    }
+
+    /// Returns true if `rawData` has been explicitly set.
+    var hasRawData: Bool { _rawData != nil }
+
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Functions
+
+    /// Clears the value of `rawData`. Subsequent reads from it will return its default value.
+    mutating func clearRawData() { _rawData = nil }
 }
 
 #if swift(>=4.2)
@@ -3383,6 +3922,8 @@ extension Protocol_PBFTMessage.DataType: CaseIterable {
 // MARK: - Protocol_PBFTCommitResult
 
 struct Protocol_PBFTCommitResult {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -3393,12 +3934,16 @@ struct Protocol_PBFTCommitResult {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_SRL
 
 struct Protocol_SRL {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -3407,13 +3952,15 @@ struct Protocol_SRL {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
 extension Protocol_AccountType: @unchecked Sendable { }
 extension Protocol_ReasonCode: @unchecked Sendable { }
-extension Protocol_AccountId: @unchecked Sendable { }
+extension Protocol_AccountID: @unchecked Sendable { }
 extension Protocol_Vote: @unchecked Sendable { }
 extension Protocol_Proposal: @unchecked Sendable { }
 extension Protocol_Proposal.State: @unchecked Sendable { }
@@ -3426,7 +3973,7 @@ extension Protocol_MarketOrderPair: @unchecked Sendable { }
 extension Protocol_MarketAccountOrder: @unchecked Sendable { }
 extension Protocol_MarketPrice: @unchecked Sendable { }
 extension Protocol_MarketPriceList: @unchecked Sendable { }
-extension Protocol_MarketOrderIdList: @unchecked Sendable { }
+extension Protocol_MarketOrderIDList: @unchecked Sendable { }
 extension Protocol_ChainParameters: @unchecked Sendable { }
 extension Protocol_ChainParameters.ChainParameter: @unchecked Sendable { }
 extension Protocol_Account: @unchecked Sendable { }
@@ -3463,10 +4010,10 @@ extension Protocol_BlockHeader: @unchecked Sendable { }
 extension Protocol_BlockHeader.raw: @unchecked Sendable { }
 extension Protocol_Block: @unchecked Sendable { }
 extension Protocol_ChainInventory: @unchecked Sendable { }
-extension Protocol_ChainInventory.BlockId: @unchecked Sendable { }
+extension Protocol_ChainInventory.BlockID: @unchecked Sendable { }
 extension Protocol_BlockInventory: @unchecked Sendable { }
 extension Protocol_BlockInventory.TypeEnum: @unchecked Sendable { }
-extension Protocol_BlockInventory.BlockId: @unchecked Sendable { }
+extension Protocol_BlockInventory.BlockID: @unchecked Sendable { }
 extension Protocol_Inventory: @unchecked Sendable { }
 extension Protocol_Inventory.InventoryType: @unchecked Sendable { }
 extension Protocol_Items: @unchecked Sendable { }
@@ -3474,7 +4021,7 @@ extension Protocol_Items.ItemType: @unchecked Sendable { }
 extension Protocol_DynamicProperties: @unchecked Sendable { }
 extension Protocol_DisconnectMessage: @unchecked Sendable { }
 extension Protocol_HelloMessage: @unchecked Sendable { }
-extension Protocol_HelloMessage.BlockId: @unchecked Sendable { }
+extension Protocol_HelloMessage.BlockID: @unchecked Sendable { }
 extension Protocol_InternalTransaction: @unchecked Sendable { }
 extension Protocol_InternalTransaction.CallValueInfo: @unchecked Sendable { }
 extension Protocol_DelegatedResourceAccountIndex: @unchecked Sendable { }
@@ -3550,9 +4097,10 @@ extension Protocol_ReasonCode: SwiftProtobuf._ProtoNameProviding {
     ]
 }
 
-// MARK: - Protocol_AccountId + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
+// MARK: - Protocol_AccountID + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_AccountId: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_AccountID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".AccountId"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "name"),
@@ -3582,17 +4130,24 @@ extension Protocol_AccountId: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_AccountId, rhs: Protocol_AccountId) -> Bool {
-        if lhs.name != rhs.name { return false }
-        if lhs.address != rhs.address { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (lhs: Protocol_AccountID, rhs: Protocol_AccountID) -> Bool {
+        if lhs.name != rhs.name {
+            return false
+        }
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_Vote + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Vote: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Vote: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Vote"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "vote_address"),
@@ -3623,16 +4178,23 @@ extension Protocol_Vote: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     }
 
     static func == (lhs: Protocol_Vote, rhs: Protocol_Vote) -> Bool {
-        if lhs.voteAddress != rhs.voteAddress { return false }
-        if lhs.voteCount != rhs.voteCount { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.voteAddress != rhs.voteAddress {
+            return false
+        }
+        if lhs.voteCount != rhs.voteCount {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_Proposal + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Proposal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Proposal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Proposal"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "proposal_id"),
@@ -3655,7 +4217,8 @@ extension Protocol_Proposal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
             case 2: try decoder.decodeSingularBytesField(value: &proposerAddress)
 
             case 3: try decoder.decodeMapField(
-                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufInt64, SwiftProtobuf.ProtobufInt64>.self,
+                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufInt64, SwiftProtobuf.ProtobufInt64>
+                        .self,
                     value: &parameters
                 )
 
@@ -3702,14 +4265,30 @@ extension Protocol_Proposal: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     }
 
     static func == (lhs: Protocol_Proposal, rhs: Protocol_Proposal) -> Bool {
-        if lhs.proposalID != rhs.proposalID { return false }
-        if lhs.proposerAddress != rhs.proposerAddress { return false }
-        if lhs.parameters != rhs.parameters { return false }
-        if lhs.expirationTime != rhs.expirationTime { return false }
-        if lhs.createTime != rhs.createTime { return false }
-        if lhs.approvals != rhs.approvals { return false }
-        if lhs.state != rhs.state { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.proposalID != rhs.proposalID {
+            return false
+        }
+        if lhs.proposerAddress != rhs.proposerAddress {
+            return false
+        }
+        if lhs.parameters != rhs.parameters {
+            return false
+        }
+        if lhs.expirationTime != rhs.expirationTime {
+            return false
+        }
+        if lhs.createTime != rhs.createTime {
+            return false
+        }
+        if lhs.approvals != rhs.approvals {
+            return false
+        }
+        if lhs.state != rhs.state {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -3727,7 +4306,8 @@ extension Protocol_Proposal.State: SwiftProtobuf._ProtoNameProviding {
 
 // MARK: - Protocol_Exchange + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Exchange: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Exchange: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Exchange"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "exchange_id"),
@@ -3783,14 +4363,30 @@ extension Protocol_Exchange: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     }
 
     static func == (lhs: Protocol_Exchange, rhs: Protocol_Exchange) -> Bool {
-        if lhs.exchangeID != rhs.exchangeID { return false }
-        if lhs.creatorAddress != rhs.creatorAddress { return false }
-        if lhs.createTime != rhs.createTime { return false }
-        if lhs.firstTokenID != rhs.firstTokenID { return false }
-        if lhs.firstTokenBalance != rhs.firstTokenBalance { return false }
-        if lhs.secondTokenID != rhs.secondTokenID { return false }
-        if lhs.secondTokenBalance != rhs.secondTokenBalance { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.exchangeID != rhs.exchangeID {
+            return false
+        }
+        if lhs.creatorAddress != rhs.creatorAddress {
+            return false
+        }
+        if lhs.createTime != rhs.createTime {
+            return false
+        }
+        if lhs.firstTokenID != rhs.firstTokenID {
+            return false
+        }
+        if lhs.firstTokenBalance != rhs.firstTokenBalance {
+            return false
+        }
+        if lhs.secondTokenID != rhs.secondTokenID {
+            return false
+        }
+        if lhs.secondTokenBalance != rhs.secondTokenBalance {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -3798,8 +4394,7 @@ extension Protocol_Exchange: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 // MARK: - Protocol_MarketOrder + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MarketOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketOrder"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "order_id"),
@@ -3880,19 +4475,45 @@ extension Protocol_MarketOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
 
     static func == (lhs: Protocol_MarketOrder, rhs: Protocol_MarketOrder) -> Bool {
-        if lhs.orderID != rhs.orderID { return false }
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.createTime != rhs.createTime { return false }
-        if lhs.sellTokenID != rhs.sellTokenID { return false }
-        if lhs.sellTokenQuantity != rhs.sellTokenQuantity { return false }
-        if lhs.buyTokenID != rhs.buyTokenID { return false }
-        if lhs.buyTokenQuantity != rhs.buyTokenQuantity { return false }
-        if lhs.sellTokenQuantityRemain != rhs.sellTokenQuantityRemain { return false }
-        if lhs.sellTokenQuantityReturn != rhs.sellTokenQuantityReturn { return false }
-        if lhs.state != rhs.state { return false }
-        if lhs.prev != rhs.prev { return false }
-        if lhs.next != rhs.next { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.orderID != rhs.orderID {
+            return false
+        }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.createTime != rhs.createTime {
+            return false
+        }
+        if lhs.sellTokenID != rhs.sellTokenID {
+            return false
+        }
+        if lhs.sellTokenQuantity != rhs.sellTokenQuantity {
+            return false
+        }
+        if lhs.buyTokenID != rhs.buyTokenID {
+            return false
+        }
+        if lhs.buyTokenQuantity != rhs.buyTokenQuantity {
+            return false
+        }
+        if lhs.sellTokenQuantityRemain != rhs.sellTokenQuantityRemain {
+            return false
+        }
+        if lhs.sellTokenQuantityReturn != rhs.sellTokenQuantityReturn {
+            return false
+        }
+        if lhs.state != rhs.state {
+            return false
+        }
+        if lhs.prev != rhs.prev {
+            return false
+        }
+        if lhs.next != rhs.next {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -3910,8 +4531,7 @@ extension Protocol_MarketOrder.State: SwiftProtobuf._ProtoNameProviding {
 // MARK: - Protocol_MarketOrderList + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MarketOrderList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketOrderList"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "orders"),
@@ -3937,8 +4557,12 @@ extension Protocol_MarketOrderList: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
 
     static func == (lhs: Protocol_MarketOrderList, rhs: Protocol_MarketOrderList) -> Bool {
-        if lhs.orders != rhs.orders { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.orders != rhs.orders {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -3946,8 +4570,7 @@ extension Protocol_MarketOrderList: SwiftProtobuf.Message, SwiftProtobuf._Messag
 // MARK: - Protocol_MarketOrderPairList + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MarketOrderPairList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketOrderPairList"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "orderPair"),
@@ -3973,8 +4596,12 @@ extension Protocol_MarketOrderPairList: SwiftProtobuf.Message, SwiftProtobuf._Me
     }
 
     static func == (lhs: Protocol_MarketOrderPairList, rhs: Protocol_MarketOrderPairList) -> Bool {
-        if lhs.orderPair != rhs.orderPair { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.orderPair != rhs.orderPair {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -3982,8 +4609,7 @@ extension Protocol_MarketOrderPairList: SwiftProtobuf.Message, SwiftProtobuf._Me
 // MARK: - Protocol_MarketOrderPair + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MarketOrderPair: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketOrderPair"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "sell_token_id"),
@@ -4014,9 +4640,15 @@ extension Protocol_MarketOrderPair: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
 
     static func == (lhs: Protocol_MarketOrderPair, rhs: Protocol_MarketOrderPair) -> Bool {
-        if lhs.sellTokenID != rhs.sellTokenID { return false }
-        if lhs.buyTokenID != rhs.buyTokenID { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.sellTokenID != rhs.sellTokenID {
+            return false
+        }
+        if lhs.buyTokenID != rhs.buyTokenID {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -4024,8 +4656,7 @@ extension Protocol_MarketOrderPair: SwiftProtobuf.Message, SwiftProtobuf._Messag
 // MARK: - Protocol_MarketAccountOrder + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MarketAccountOrder: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketAccountOrder"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -4066,11 +4697,21 @@ extension Protocol_MarketAccountOrder: SwiftProtobuf.Message, SwiftProtobuf._Mes
     }
 
     static func == (lhs: Protocol_MarketAccountOrder, rhs: Protocol_MarketAccountOrder) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.orders != rhs.orders { return false }
-        if lhs.count != rhs.count { return false }
-        if lhs.totalCount != rhs.totalCount { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.orders != rhs.orders {
+            return false
+        }
+        if lhs.count != rhs.count {
+            return false
+        }
+        if lhs.totalCount != rhs.totalCount {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -4078,8 +4719,7 @@ extension Protocol_MarketAccountOrder: SwiftProtobuf.Message, SwiftProtobuf._Mes
 // MARK: - Protocol_MarketPrice + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MarketPrice: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketPrice"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "sell_token_quantity"),
@@ -4110,9 +4750,15 @@ extension Protocol_MarketPrice: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
 
     static func == (lhs: Protocol_MarketPrice, rhs: Protocol_MarketPrice) -> Bool {
-        if lhs.sellTokenQuantity != rhs.sellTokenQuantity { return false }
-        if lhs.buyTokenQuantity != rhs.buyTokenQuantity { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.sellTokenQuantity != rhs.sellTokenQuantity {
+            return false
+        }
+        if lhs.buyTokenQuantity != rhs.buyTokenQuantity {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -4120,8 +4766,7 @@ extension Protocol_MarketPrice: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 // MARK: - Protocol_MarketPriceList + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MarketPriceList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketPriceList"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "sell_token_id"),
@@ -4157,19 +4802,26 @@ extension Protocol_MarketPriceList: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
 
     static func == (lhs: Protocol_MarketPriceList, rhs: Protocol_MarketPriceList) -> Bool {
-        if lhs.sellTokenID != rhs.sellTokenID { return false }
-        if lhs.buyTokenID != rhs.buyTokenID { return false }
-        if lhs.prices != rhs.prices { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.sellTokenID != rhs.sellTokenID {
+            return false
+        }
+        if lhs.buyTokenID != rhs.buyTokenID {
+            return false
+        }
+        if lhs.prices != rhs.prices {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
-// MARK: - Protocol_MarketOrderIdList + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
+// MARK: - Protocol_MarketOrderIDList + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_MarketOrderIdList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+extension Protocol_MarketOrderIDList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketOrderIdList"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "head"),
@@ -4199,10 +4851,16 @@ extension Protocol_MarketOrderIdList: SwiftProtobuf.Message, SwiftProtobuf._Mess
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_MarketOrderIdList, rhs: Protocol_MarketOrderIdList) -> Bool {
-        if lhs.head != rhs.head { return false }
-        if lhs.tail != rhs.tail { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (lhs: Protocol_MarketOrderIDList, rhs: Protocol_MarketOrderIDList) -> Bool {
+        if lhs.head != rhs.head {
+            return false
+        }
+        if lhs.tail != rhs.tail {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -4210,8 +4868,7 @@ extension Protocol_MarketOrderIdList: SwiftProtobuf.Message, SwiftProtobuf._Mess
 // MARK: - Protocol_ChainParameters + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_ChainParameters: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".ChainParameters"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "chainParameter"),
@@ -4237,8 +4894,12 @@ extension Protocol_ChainParameters: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
 
     static func == (lhs: Protocol_ChainParameters, rhs: Protocol_ChainParameters) -> Bool {
-        if lhs.chainParameter != rhs.chainParameter { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.chainParameter != rhs.chainParameter {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -4246,8 +4907,7 @@ extension Protocol_ChainParameters: SwiftProtobuf.Message, SwiftProtobuf._Messag
 // MARK: - Protocol_ChainParameters.ChainParameter + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_ChainParameters.ChainParameter: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_ChainParameters.protoMessageName + ".ChainParameter"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "key"),
@@ -4277,17 +4937,28 @@ extension Protocol_ChainParameters.ChainParameter: SwiftProtobuf.Message, SwiftP
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_ChainParameters.ChainParameter, rhs: Protocol_ChainParameters.ChainParameter) -> Bool {
-        if lhs.key != rhs.key { return false }
-        if lhs.value != rhs.value { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (
+        lhs: Protocol_ChainParameters.ChainParameter,
+        rhs: Protocol_ChainParameters.ChainParameter
+    )
+        -> Bool {
+        if lhs.key != rhs.key {
+            return false
+        }
+        if lhs.value != rhs.value {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_Account + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Account"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "account_name"),
@@ -4335,6 +5006,12 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     ]
 
     fileprivate class _StorageClass {
+        // MARK: Static Properties
+
+        static let defaultInstance = _StorageClass()
+
+        // MARK: Properties
+
         var _accountName: Data = .init()
         var _type: Protocol_AccountType = .normal
         var _address: Data = .init()
@@ -4378,9 +5055,7 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
         var _delegatedFrozenV2BalanceForBandwidth: Int64 = 0
         var _acquiredDelegatedFrozenV2BalanceForBandwidth: Int64 = 0
 
-        static let defaultInstance = _StorageClass()
-
-        private init() { }
+        // MARK: Lifecycle
 
         init(copying source: _StorageClass) {
             _accountName = source._accountName
@@ -4426,6 +5101,8 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
             _delegatedFrozenV2BalanceForBandwidth = source._delegatedFrozenV2BalanceForBandwidth
             _acquiredDelegatedFrozenV2BalanceForBandwidth = source._acquiredDelegatedFrozenV2BalanceForBandwidth
         }
+
+        private init() { }
     }
 
     fileprivate mutating func _uniqueStorage() -> _StorageClass {
@@ -4454,7 +5131,8 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
                 case 5: try decoder.decodeRepeatedMessageField(value: &_storage._votes)
 
                 case 6: try decoder.decodeMapField(
-                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                            .self,
                         value: &_storage._asset
                     )
 
@@ -4481,14 +5159,16 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
                 case 17: try decoder.decodeSingularBytesField(value: &_storage._assetIssuedName)
 
                 case 18: try decoder.decodeMapField(
-                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                            .self,
                         value: &_storage._latestAssetOperationTime
                     )
 
                 case 19: try decoder.decodeSingularInt64Field(value: &_storage._freeNetUsage)
 
                 case 20: try decoder.decodeMapField(
-                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                            .self,
                         value: &_storage._freeAssetNetUsage
                     )
 
@@ -4516,9 +5196,11 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
 
                 case 36: try decoder.decodeSingularInt64Field(value: &_storage._delegatedFrozenV2BalanceForBandwidth)
 
-                case 37: try decoder.decodeSingularInt64Field(value: &_storage._acquiredDelegatedFrozenV2BalanceForBandwidth)
+                case 37: try decoder
+                    .decodeSingularInt64Field(value: &_storage._acquiredDelegatedFrozenV2BalanceForBandwidth)
 
-                case 41: try decoder.decodeSingularInt64Field(value: &_storage._acquiredDelegatedFrozenBalanceForBandwidth)
+                case 41: try decoder
+                    .decodeSingularInt64Field(value: &_storage._acquiredDelegatedFrozenBalanceForBandwidth)
 
                 case 42: try decoder.decodeSingularInt64Field(value: &_storage._delegatedFrozenBalanceForBandwidth)
 
@@ -4527,19 +5209,22 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
                 case 47: try decoder.decodeSingularMessageField(value: &_storage._tronPower)
 
                 case 56: try decoder.decodeMapField(
-                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                            .self,
                         value: &_storage._assetV2
                     )
 
                 case 57: try decoder.decodeSingularBytesField(value: &_storage._assetIssuedID)
 
                 case 58: try decoder.decodeMapField(
-                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                            .self,
                         value: &_storage._latestAssetOperationTimeV2
                     )
 
                 case 59: try decoder.decodeMapField(
-                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                            .self,
                         value: &_storage._freeAssetNetUsageV2
                     )
 
@@ -4574,7 +5259,8 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
             }
             if !_storage._asset.isEmpty {
                 try visitor.visitMapField(
-                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                        .self,
                     value: _storage._asset,
                     fieldNumber: 6
                 )
@@ -4614,7 +5300,8 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
             }
             if !_storage._latestAssetOperationTime.isEmpty {
                 try visitor.visitMapField(
-                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                        .self,
                     value: _storage._latestAssetOperationTime,
                     fieldNumber: 18
                 )
@@ -4624,7 +5311,8 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
             }
             if !_storage._freeAssetNetUsage.isEmpty {
                 try visitor.visitMapField(
-                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                        .self,
                     value: _storage._freeAssetNetUsage,
                     fieldNumber: 20
                 )
@@ -4663,7 +5351,10 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
                 try visitor.visitRepeatedMessageField(value: _storage._unfrozenV2, fieldNumber: 35)
             }
             if _storage._delegatedFrozenV2BalanceForBandwidth != 0 {
-                try visitor.visitSingularInt64Field(value: _storage._delegatedFrozenV2BalanceForBandwidth, fieldNumber: 36)
+                try visitor.visitSingularInt64Field(
+                    value: _storage._delegatedFrozenV2BalanceForBandwidth,
+                    fieldNumber: 36
+                )
             }
             if _storage._acquiredDelegatedFrozenV2BalanceForBandwidth != 0 {
                 try visitor.visitSingularInt64Field(
@@ -4672,10 +5363,16 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
                 )
             }
             if _storage._acquiredDelegatedFrozenBalanceForBandwidth != 0 {
-                try visitor.visitSingularInt64Field(value: _storage._acquiredDelegatedFrozenBalanceForBandwidth, fieldNumber: 41)
+                try visitor.visitSingularInt64Field(
+                    value: _storage._acquiredDelegatedFrozenBalanceForBandwidth,
+                    fieldNumber: 41
+                )
             }
             if _storage._delegatedFrozenBalanceForBandwidth != 0 {
-                try visitor.visitSingularInt64Field(value: _storage._delegatedFrozenBalanceForBandwidth, fieldNumber: 42)
+                try visitor.visitSingularInt64Field(
+                    value: _storage._delegatedFrozenBalanceForBandwidth,
+                    fieldNumber: 42
+                )
             }
             if _storage._oldTronPower != 0 {
                 try visitor.visitSingularInt64Field(value: _storage._oldTronPower, fieldNumber: 46)
@@ -4685,7 +5382,8 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
             } }()
             if !_storage._assetV2.isEmpty {
                 try visitor.visitMapField(
-                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                        .self,
                     value: _storage._assetV2,
                     fieldNumber: 56
                 )
@@ -4695,14 +5393,16 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
             }
             if !_storage._latestAssetOperationTimeV2.isEmpty {
                 try visitor.visitMapField(
-                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                        .self,
                     value: _storage._latestAssetOperationTimeV2,
                     fieldNumber: 58
                 )
             }
             if !_storage._freeAssetNetUsageV2.isEmpty {
                 try visitor.visitMapField(
-                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>.self,
+                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufInt64>
+                        .self,
                     value: _storage._freeAssetNetUsageV2,
                     fieldNumber: 59
                 )
@@ -4722,61 +5422,149 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
             )) { (_args: (_StorageClass, _StorageClass)) in
                 let _storage = _args.0
                 let rhs_storage = _args.1
-                if _storage._accountName != rhs_storage._accountName { return false }
-                if _storage._type != rhs_storage._type { return false }
-                if _storage._address != rhs_storage._address { return false }
-                if _storage._balance != rhs_storage._balance { return false }
-                if _storage._votes != rhs_storage._votes { return false }
-                if _storage._asset != rhs_storage._asset { return false }
-                if _storage._assetV2 != rhs_storage._assetV2 { return false }
-                if _storage._frozen != rhs_storage._frozen { return false }
-                if _storage._netUsage != rhs_storage._netUsage { return false }
+                if _storage._accountName != rhs_storage._accountName {
+                    return false
+                }
+                if _storage._type != rhs_storage._type {
+                    return false
+                }
+                if _storage._address != rhs_storage._address {
+                    return false
+                }
+                if _storage._balance != rhs_storage._balance {
+                    return false
+                }
+                if _storage._votes != rhs_storage._votes {
+                    return false
+                }
+                if _storage._asset != rhs_storage._asset {
+                    return false
+                }
+                if _storage._assetV2 != rhs_storage._assetV2 {
+                    return false
+                }
+                if _storage._frozen != rhs_storage._frozen {
+                    return false
+                }
+                if _storage._netUsage != rhs_storage._netUsage {
+                    return false
+                }
                 if
                     _storage._acquiredDelegatedFrozenBalanceForBandwidth != rhs_storage
-                        ._acquiredDelegatedFrozenBalanceForBandwidth { return false }
+                        ._acquiredDelegatedFrozenBalanceForBandwidth {
+                    return false
+                }
                 if
                     _storage._delegatedFrozenBalanceForBandwidth != rhs_storage
-                        ._delegatedFrozenBalanceForBandwidth { return false }
-                if _storage._oldTronPower != rhs_storage._oldTronPower { return false }
-                if _storage._tronPower != rhs_storage._tronPower { return false }
-                if _storage._assetOptimized != rhs_storage._assetOptimized { return false }
-                if _storage._createTime != rhs_storage._createTime { return false }
-                if _storage._latestOprationTime != rhs_storage._latestOprationTime { return false }
-                if _storage._allowance != rhs_storage._allowance { return false }
-                if _storage._latestWithdrawTime != rhs_storage._latestWithdrawTime { return false }
-                if _storage._code != rhs_storage._code { return false }
-                if _storage._isWitness != rhs_storage._isWitness { return false }
-                if _storage._isCommittee != rhs_storage._isCommittee { return false }
-                if _storage._frozenSupply != rhs_storage._frozenSupply { return false }
-                if _storage._assetIssuedName != rhs_storage._assetIssuedName { return false }
-                if _storage._assetIssuedID != rhs_storage._assetIssuedID { return false }
-                if _storage._latestAssetOperationTime != rhs_storage._latestAssetOperationTime { return false }
-                if _storage._latestAssetOperationTimeV2 != rhs_storage._latestAssetOperationTimeV2 { return false }
-                if _storage._freeNetUsage != rhs_storage._freeNetUsage { return false }
-                if _storage._freeAssetNetUsage != rhs_storage._freeAssetNetUsage { return false }
-                if _storage._freeAssetNetUsageV2 != rhs_storage._freeAssetNetUsageV2 { return false }
-                if _storage._latestConsumeTime != rhs_storage._latestConsumeTime { return false }
-                if _storage._latestConsumeFreeTime != rhs_storage._latestConsumeFreeTime { return false }
-                if _storage._accountID != rhs_storage._accountID { return false }
-                if _storage._netWindowSize != rhs_storage._netWindowSize { return false }
-                if _storage._accountResource != rhs_storage._accountResource { return false }
-                if _storage._codeHash != rhs_storage._codeHash { return false }
-                if _storage._ownerPermission != rhs_storage._ownerPermission { return false }
-                if _storage._witnessPermission != rhs_storage._witnessPermission { return false }
-                if _storage._activePermission != rhs_storage._activePermission { return false }
-                if _storage._frozenV2 != rhs_storage._frozenV2 { return false }
-                if _storage._unfrozenV2 != rhs_storage._unfrozenV2 { return false }
+                        ._delegatedFrozenBalanceForBandwidth {
+                    return false
+                }
+                if _storage._oldTronPower != rhs_storage._oldTronPower {
+                    return false
+                }
+                if _storage._tronPower != rhs_storage._tronPower {
+                    return false
+                }
+                if _storage._assetOptimized != rhs_storage._assetOptimized {
+                    return false
+                }
+                if _storage._createTime != rhs_storage._createTime {
+                    return false
+                }
+                if _storage._latestOprationTime != rhs_storage._latestOprationTime {
+                    return false
+                }
+                if _storage._allowance != rhs_storage._allowance {
+                    return false
+                }
+                if _storage._latestWithdrawTime != rhs_storage._latestWithdrawTime {
+                    return false
+                }
+                if _storage._code != rhs_storage._code {
+                    return false
+                }
+                if _storage._isWitness != rhs_storage._isWitness {
+                    return false
+                }
+                if _storage._isCommittee != rhs_storage._isCommittee {
+                    return false
+                }
+                if _storage._frozenSupply != rhs_storage._frozenSupply {
+                    return false
+                }
+                if _storage._assetIssuedName != rhs_storage._assetIssuedName {
+                    return false
+                }
+                if _storage._assetIssuedID != rhs_storage._assetIssuedID {
+                    return false
+                }
+                if _storage._latestAssetOperationTime != rhs_storage._latestAssetOperationTime {
+                    return false
+                }
+                if _storage._latestAssetOperationTimeV2 != rhs_storage._latestAssetOperationTimeV2 {
+                    return false
+                }
+                if _storage._freeNetUsage != rhs_storage._freeNetUsage {
+                    return false
+                }
+                if _storage._freeAssetNetUsage != rhs_storage._freeAssetNetUsage {
+                    return false
+                }
+                if _storage._freeAssetNetUsageV2 != rhs_storage._freeAssetNetUsageV2 {
+                    return false
+                }
+                if _storage._latestConsumeTime != rhs_storage._latestConsumeTime {
+                    return false
+                }
+                if _storage._latestConsumeFreeTime != rhs_storage._latestConsumeFreeTime {
+                    return false
+                }
+                if _storage._accountID != rhs_storage._accountID {
+                    return false
+                }
+                if _storage._netWindowSize != rhs_storage._netWindowSize {
+                    return false
+                }
+                if _storage._accountResource != rhs_storage._accountResource {
+                    return false
+                }
+                if _storage._codeHash != rhs_storage._codeHash {
+                    return false
+                }
+                if _storage._ownerPermission != rhs_storage._ownerPermission {
+                    return false
+                }
+                if _storage._witnessPermission != rhs_storage._witnessPermission {
+                    return false
+                }
+                if _storage._activePermission != rhs_storage._activePermission {
+                    return false
+                }
+                if _storage._frozenV2 != rhs_storage._frozenV2 {
+                    return false
+                }
+                if _storage._unfrozenV2 != rhs_storage._unfrozenV2 {
+                    return false
+                }
                 if
                     _storage._delegatedFrozenV2BalanceForBandwidth != rhs_storage
-                        ._delegatedFrozenV2BalanceForBandwidth { return false }
+                        ._delegatedFrozenV2BalanceForBandwidth {
+                    return false
+                }
                 if
                     _storage._acquiredDelegatedFrozenV2BalanceForBandwidth != rhs_storage
-                        ._acquiredDelegatedFrozenV2BalanceForBandwidth { return false }
+                        ._acquiredDelegatedFrozenV2BalanceForBandwidth {
+                    return false
+                }
                 return true
             }
-            if !storagesAreEqual { return false }
+            if !storagesAreEqual {
+                return false
+            }
         }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -4784,8 +5572,7 @@ extension Protocol_Account: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
 // MARK: - Protocol_Account.Frozen + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Account.Frozen: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_Account.protoMessageName + ".Frozen"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "frozen_balance"),
@@ -4816,9 +5603,15 @@ extension Protocol_Account.Frozen: SwiftProtobuf.Message, SwiftProtobuf._Message
     }
 
     static func == (lhs: Protocol_Account.Frozen, rhs: Protocol_Account.Frozen) -> Bool {
-        if lhs.frozenBalance != rhs.frozenBalance { return false }
-        if lhs.expireTime != rhs.expireTime { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.frozenBalance != rhs.frozenBalance {
+            return false
+        }
+        if lhs.expireTime != rhs.expireTime {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -4826,8 +5619,7 @@ extension Protocol_Account.Frozen: SwiftProtobuf.Message, SwiftProtobuf._Message
 // MARK: - Protocol_Account.AccountResource + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Account.AccountResource: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_Account.protoMessageName + ".AccountResource"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "energy_usage"),
@@ -4907,18 +5699,44 @@ extension Protocol_Account.AccountResource: SwiftProtobuf.Message, SwiftProtobuf
     }
 
     static func == (lhs: Protocol_Account.AccountResource, rhs: Protocol_Account.AccountResource) -> Bool {
-        if lhs.energyUsage != rhs.energyUsage { return false }
-        if lhs._frozenBalanceForEnergy != rhs._frozenBalanceForEnergy { return false }
-        if lhs.latestConsumeTimeForEnergy != rhs.latestConsumeTimeForEnergy { return false }
-        if lhs.acquiredDelegatedFrozenBalanceForEnergy != rhs.acquiredDelegatedFrozenBalanceForEnergy { return false }
-        if lhs.delegatedFrozenBalanceForEnergy != rhs.delegatedFrozenBalanceForEnergy { return false }
-        if lhs.storageLimit != rhs.storageLimit { return false }
-        if lhs.storageUsage != rhs.storageUsage { return false }
-        if lhs.latestExchangeStorageTime != rhs.latestExchangeStorageTime { return false }
-        if lhs.energyWindowSize != rhs.energyWindowSize { return false }
-        if lhs.delegatedFrozenV2BalanceForEnergy != rhs.delegatedFrozenV2BalanceForEnergy { return false }
-        if lhs.acquiredDelegatedFrozenV2BalanceForEnergy != rhs.acquiredDelegatedFrozenV2BalanceForEnergy { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.energyUsage != rhs.energyUsage {
+            return false
+        }
+        if lhs._frozenBalanceForEnergy != rhs._frozenBalanceForEnergy {
+            return false
+        }
+        if lhs.latestConsumeTimeForEnergy != rhs.latestConsumeTimeForEnergy {
+            return false
+        }
+        if lhs.acquiredDelegatedFrozenBalanceForEnergy != rhs.acquiredDelegatedFrozenBalanceForEnergy {
+            return false
+        }
+        if lhs.delegatedFrozenBalanceForEnergy != rhs.delegatedFrozenBalanceForEnergy {
+            return false
+        }
+        if lhs.storageLimit != rhs.storageLimit {
+            return false
+        }
+        if lhs.storageUsage != rhs.storageUsage {
+            return false
+        }
+        if lhs.latestExchangeStorageTime != rhs.latestExchangeStorageTime {
+            return false
+        }
+        if lhs.energyWindowSize != rhs.energyWindowSize {
+            return false
+        }
+        if lhs.delegatedFrozenV2BalanceForEnergy != rhs.delegatedFrozenV2BalanceForEnergy {
+            return false
+        }
+        if
+            lhs.acquiredDelegatedFrozenV2BalanceForEnergy != rhs
+                .acquiredDelegatedFrozenV2BalanceForEnergy {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -4926,8 +5744,7 @@ extension Protocol_Account.AccountResource: SwiftProtobuf.Message, SwiftProtobuf
 // MARK: - Protocol_Account.FreezeV2 + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Account.FreezeV2: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_Account.protoMessageName + ".FreezeV2"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "type"),
@@ -4958,9 +5775,15 @@ extension Protocol_Account.FreezeV2: SwiftProtobuf.Message, SwiftProtobuf._Messa
     }
 
     static func == (lhs: Protocol_Account.FreezeV2, rhs: Protocol_Account.FreezeV2) -> Bool {
-        if lhs.type != rhs.type { return false }
-        if lhs.amount != rhs.amount { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.amount != rhs.amount {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -4968,8 +5791,7 @@ extension Protocol_Account.FreezeV2: SwiftProtobuf.Message, SwiftProtobuf._Messa
 // MARK: - Protocol_Account.UnFreezeV2 + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Account.UnFreezeV2: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_Account.protoMessageName + ".UnFreezeV2"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "type"),
@@ -5005,17 +5827,26 @@ extension Protocol_Account.UnFreezeV2: SwiftProtobuf.Message, SwiftProtobuf._Mes
     }
 
     static func == (lhs: Protocol_Account.UnFreezeV2, rhs: Protocol_Account.UnFreezeV2) -> Bool {
-        if lhs.type != rhs.type { return false }
-        if lhs.unfreezeAmount != rhs.unfreezeAmount { return false }
-        if lhs.unfreezeExpireTime != rhs.unfreezeExpireTime { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.unfreezeAmount != rhs.unfreezeAmount {
+            return false
+        }
+        if lhs.unfreezeExpireTime != rhs.unfreezeExpireTime {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_Key + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Key: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Key: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Key"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "address"),
@@ -5046,9 +5877,15 @@ extension Protocol_Key: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementat
     }
 
     static func == (lhs: Protocol_Key, rhs: Protocol_Key) -> Bool {
-        if lhs.address != rhs.address { return false }
-        if lhs.weight != rhs.weight { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.weight != rhs.weight {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -5056,8 +5893,7 @@ extension Protocol_Key: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementat
 // MARK: - Protocol_DelegatedResource + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_DelegatedResource: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".DelegatedResource"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "from"),
@@ -5108,20 +5944,35 @@ extension Protocol_DelegatedResource: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
 
     static func == (lhs: Protocol_DelegatedResource, rhs: Protocol_DelegatedResource) -> Bool {
-        if lhs.from != rhs.from { return false }
-        if lhs.to != rhs.to { return false }
-        if lhs.frozenBalanceForBandwidth != rhs.frozenBalanceForBandwidth { return false }
-        if lhs.frozenBalanceForEnergy != rhs.frozenBalanceForEnergy { return false }
-        if lhs.expireTimeForBandwidth != rhs.expireTimeForBandwidth { return false }
-        if lhs.expireTimeForEnergy != rhs.expireTimeForEnergy { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.from != rhs.from {
+            return false
+        }
+        if lhs.to != rhs.to {
+            return false
+        }
+        if lhs.frozenBalanceForBandwidth != rhs.frozenBalanceForBandwidth {
+            return false
+        }
+        if lhs.frozenBalanceForEnergy != rhs.frozenBalanceForEnergy {
+            return false
+        }
+        if lhs.expireTimeForBandwidth != rhs.expireTimeForBandwidth {
+            return false
+        }
+        if lhs.expireTimeForEnergy != rhs.expireTimeForEnergy {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_authority + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_authority: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_authority: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".authority"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "account"),
@@ -5156,9 +6007,15 @@ extension Protocol_authority: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     }
 
     static func == (lhs: Protocol_authority, rhs: Protocol_authority) -> Bool {
-        if lhs._account != rhs._account { return false }
-        if lhs.permissionName != rhs.permissionName { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._account != rhs._account {
+            return false
+        }
+        if lhs.permissionName != rhs.permissionName {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -5166,8 +6023,7 @@ extension Protocol_authority: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 // MARK: - Protocol_Permission + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Permission: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Permission"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "type"),
@@ -5223,14 +6079,30 @@ extension Protocol_Permission: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     }
 
     static func == (lhs: Protocol_Permission, rhs: Protocol_Permission) -> Bool {
-        if lhs.type != rhs.type { return false }
-        if lhs.id != rhs.id { return false }
-        if lhs.permissionName != rhs.permissionName { return false }
-        if lhs.threshold != rhs.threshold { return false }
-        if lhs.parentID != rhs.parentID { return false }
-        if lhs.operations != rhs.operations { return false }
-        if lhs.keys != rhs.keys { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.id != rhs.id {
+            return false
+        }
+        if lhs.permissionName != rhs.permissionName {
+            return false
+        }
+        if lhs.threshold != rhs.threshold {
+            return false
+        }
+        if lhs.parentID != rhs.parentID {
+            return false
+        }
+        if lhs.operations != rhs.operations {
+            return false
+        }
+        if lhs.keys != rhs.keys {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -5247,7 +6119,8 @@ extension Protocol_Permission.PermissionType: SwiftProtobuf._ProtoNameProviding 
 
 // MARK: - Protocol_Witness + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Witness: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Witness: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Witness"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "address"),
@@ -5313,23 +6186,44 @@ extension Protocol_Witness: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     }
 
     static func == (lhs: Protocol_Witness, rhs: Protocol_Witness) -> Bool {
-        if lhs.address != rhs.address { return false }
-        if lhs.voteCount != rhs.voteCount { return false }
-        if lhs.pubKey != rhs.pubKey { return false }
-        if lhs.url != rhs.url { return false }
-        if lhs.totalProduced != rhs.totalProduced { return false }
-        if lhs.totalMissed != rhs.totalMissed { return false }
-        if lhs.latestBlockNum != rhs.latestBlockNum { return false }
-        if lhs.latestSlotNum != rhs.latestSlotNum { return false }
-        if lhs.isJobs != rhs.isJobs { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.voteCount != rhs.voteCount {
+            return false
+        }
+        if lhs.pubKey != rhs.pubKey {
+            return false
+        }
+        if lhs.url != rhs.url {
+            return false
+        }
+        if lhs.totalProduced != rhs.totalProduced {
+            return false
+        }
+        if lhs.totalMissed != rhs.totalMissed {
+            return false
+        }
+        if lhs.latestBlockNum != rhs.latestBlockNum {
+            return false
+        }
+        if lhs.latestSlotNum != rhs.latestSlotNum {
+            return false
+        }
+        if lhs.isJobs != rhs.isJobs {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_Votes + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Votes: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Votes: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Votes"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "address"),
@@ -5365,17 +6259,26 @@ extension Protocol_Votes: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     }
 
     static func == (lhs: Protocol_Votes, rhs: Protocol_Votes) -> Bool {
-        if lhs.address != rhs.address { return false }
-        if lhs.oldVotes != rhs.oldVotes { return false }
-        if lhs.newVotes != rhs.newVotes { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.oldVotes != rhs.oldVotes {
+            return false
+        }
+        if lhs.newVotes != rhs.newVotes {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_TXOutput + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_TXOutput: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_TXOutput: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".TXOutput"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "value"),
@@ -5406,16 +6309,23 @@ extension Protocol_TXOutput: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     }
 
     static func == (lhs: Protocol_TXOutput, rhs: Protocol_TXOutput) -> Bool {
-        if lhs.value != rhs.value { return false }
-        if lhs.pubKeyHash != rhs.pubKeyHash { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.value != rhs.value {
+            return false
+        }
+        if lhs.pubKeyHash != rhs.pubKeyHash {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_TXInput + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_TXInput: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_TXInput: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".TXInput"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "raw_data"),
@@ -5450,9 +6360,15 @@ extension Protocol_TXInput: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
     }
 
     static func == (lhs: Protocol_TXInput, rhs: Protocol_TXInput) -> Bool {
-        if lhs._rawData != rhs._rawData { return false }
-        if lhs.signature != rhs.signature { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._rawData != rhs._rawData {
+            return false
+        }
+        if lhs.signature != rhs.signature {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -5460,8 +6376,7 @@ extension Protocol_TXInput: SwiftProtobuf.Message, SwiftProtobuf._MessageImpleme
 // MARK: - Protocol_TXInput.raw + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_TXInput.raw: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_TXInput.protoMessageName + ".raw"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "txID"),
@@ -5497,17 +6412,26 @@ extension Protocol_TXInput.raw: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
 
     static func == (lhs: Protocol_TXInput.raw, rhs: Protocol_TXInput.raw) -> Bool {
-        if lhs.txID != rhs.txID { return false }
-        if lhs.vout != rhs.vout { return false }
-        if lhs.pubKey != rhs.pubKey { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.txID != rhs.txID {
+            return false
+        }
+        if lhs.vout != rhs.vout {
+            return false
+        }
+        if lhs.pubKey != rhs.pubKey {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_TXOutputs + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_TXOutputs: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_TXOutputs: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".TXOutputs"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "outputs"),
@@ -5533,8 +6457,12 @@ extension Protocol_TXOutputs: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     }
 
     static func == (lhs: Protocol_TXOutputs, rhs: Protocol_TXOutputs) -> Bool {
-        if lhs.outputs != rhs.outputs { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.outputs != rhs.outputs {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -5542,8 +6470,7 @@ extension Protocol_TXOutputs: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 // MARK: - Protocol_ResourceReceipt + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_ResourceReceipt: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".ResourceReceipt"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "energy_usage"),
@@ -5604,15 +6531,33 @@ extension Protocol_ResourceReceipt: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
 
     static func == (lhs: Protocol_ResourceReceipt, rhs: Protocol_ResourceReceipt) -> Bool {
-        if lhs.energyUsage != rhs.energyUsage { return false }
-        if lhs.energyFee != rhs.energyFee { return false }
-        if lhs.originEnergyUsage != rhs.originEnergyUsage { return false }
-        if lhs.energyUsageTotal != rhs.energyUsageTotal { return false }
-        if lhs.netUsage != rhs.netUsage { return false }
-        if lhs.netFee != rhs.netFee { return false }
-        if lhs.result != rhs.result { return false }
-        if lhs.energyPenaltyTotal != rhs.energyPenaltyTotal { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.energyUsage != rhs.energyUsage {
+            return false
+        }
+        if lhs.energyFee != rhs.energyFee {
+            return false
+        }
+        if lhs.originEnergyUsage != rhs.originEnergyUsage {
+            return false
+        }
+        if lhs.energyUsageTotal != rhs.energyUsageTotal {
+            return false
+        }
+        if lhs.netUsage != rhs.netUsage {
+            return false
+        }
+        if lhs.netFee != rhs.netFee {
+            return false
+        }
+        if lhs.result != rhs.result {
+            return false
+        }
+        if lhs.energyPenaltyTotal != rhs.energyPenaltyTotal {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -5620,8 +6565,7 @@ extension Protocol_ResourceReceipt: SwiftProtobuf.Message, SwiftProtobuf._Messag
 // MARK: - Protocol_MarketOrderDetail + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MarketOrderDetail: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MarketOrderDetail"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "makerOrderId"),
@@ -5662,11 +6606,21 @@ extension Protocol_MarketOrderDetail: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
 
     static func == (lhs: Protocol_MarketOrderDetail, rhs: Protocol_MarketOrderDetail) -> Bool {
-        if lhs.makerOrderID != rhs.makerOrderID { return false }
-        if lhs.takerOrderID != rhs.takerOrderID { return false }
-        if lhs.fillSellQuantity != rhs.fillSellQuantity { return false }
-        if lhs.fillBuyQuantity != rhs.fillBuyQuantity { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.makerOrderID != rhs.makerOrderID {
+            return false
+        }
+        if lhs.takerOrderID != rhs.takerOrderID {
+            return false
+        }
+        if lhs.fillSellQuantity != rhs.fillSellQuantity {
+            return false
+        }
+        if lhs.fillBuyQuantity != rhs.fillBuyQuantity {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -5674,8 +6628,7 @@ extension Protocol_MarketOrderDetail: SwiftProtobuf.Message, SwiftProtobuf._Mess
 // MARK: - Protocol_Transaction + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Transaction"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "raw_data"),
@@ -5715,10 +6668,18 @@ extension Protocol_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
 
     static func == (lhs: Protocol_Transaction, rhs: Protocol_Transaction) -> Bool {
-        if lhs._rawData != rhs._rawData { return false }
-        if lhs.signature != rhs.signature { return false }
-        if lhs.ret != rhs.ret { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._rawData != rhs._rawData {
+            return false
+        }
+        if lhs.signature != rhs.signature {
+            return false
+        }
+        if lhs.ret != rhs.ret {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -5726,8 +6687,7 @@ extension Protocol_Transaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 // MARK: - Protocol_Transaction.Contract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Transaction.Contract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_Transaction.protoMessageName + ".Contract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "type"),
@@ -5777,12 +6737,24 @@ extension Protocol_Transaction.Contract: SwiftProtobuf.Message, SwiftProtobuf._M
     }
 
     static func == (lhs: Protocol_Transaction.Contract, rhs: Protocol_Transaction.Contract) -> Bool {
-        if lhs.type != rhs.type { return false }
-        if lhs._parameter != rhs._parameter { return false }
-        if lhs.provider != rhs.provider { return false }
-        if lhs.contractName != rhs.contractName { return false }
-        if lhs.permissionID != rhs.permissionID { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs._parameter != rhs._parameter {
+            return false
+        }
+        if lhs.provider != rhs.provider {
+            return false
+        }
+        if lhs.contractName != rhs.contractName {
+            return false
+        }
+        if lhs.permissionID != rhs.permissionID {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -5837,8 +6809,7 @@ extension Protocol_Transaction.Contract.ContractType: SwiftProtobuf._ProtoNamePr
 // MARK: - Protocol_Transaction.Result + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Transaction.Result: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_Transaction.protoMessageName + ".Result"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "fee"),
@@ -5929,21 +6900,51 @@ extension Protocol_Transaction.Result: SwiftProtobuf.Message, SwiftProtobuf._Mes
     }
 
     static func == (lhs: Protocol_Transaction.Result, rhs: Protocol_Transaction.Result) -> Bool {
-        if lhs.fee != rhs.fee { return false }
-        if lhs.ret != rhs.ret { return false }
-        if lhs.contractRet != rhs.contractRet { return false }
-        if lhs.assetIssueID != rhs.assetIssueID { return false }
-        if lhs.withdrawAmount != rhs.withdrawAmount { return false }
-        if lhs.unfreezeAmount != rhs.unfreezeAmount { return false }
-        if lhs.exchangeReceivedAmount != rhs.exchangeReceivedAmount { return false }
-        if lhs.exchangeInjectAnotherAmount != rhs.exchangeInjectAnotherAmount { return false }
-        if lhs.exchangeWithdrawAnotherAmount != rhs.exchangeWithdrawAnotherAmount { return false }
-        if lhs.exchangeID != rhs.exchangeID { return false }
-        if lhs.shieldedTransactionFee != rhs.shieldedTransactionFee { return false }
-        if lhs.orderID != rhs.orderID { return false }
-        if lhs.orderDetails != rhs.orderDetails { return false }
-        if lhs.withdrawExpireAmount != rhs.withdrawExpireAmount { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.fee != rhs.fee {
+            return false
+        }
+        if lhs.ret != rhs.ret {
+            return false
+        }
+        if lhs.contractRet != rhs.contractRet {
+            return false
+        }
+        if lhs.assetIssueID != rhs.assetIssueID {
+            return false
+        }
+        if lhs.withdrawAmount != rhs.withdrawAmount {
+            return false
+        }
+        if lhs.unfreezeAmount != rhs.unfreezeAmount {
+            return false
+        }
+        if lhs.exchangeReceivedAmount != rhs.exchangeReceivedAmount {
+            return false
+        }
+        if lhs.exchangeInjectAnotherAmount != rhs.exchangeInjectAnotherAmount {
+            return false
+        }
+        if lhs.exchangeWithdrawAnotherAmount != rhs.exchangeWithdrawAnotherAmount {
+            return false
+        }
+        if lhs.exchangeID != rhs.exchangeID {
+            return false
+        }
+        if lhs.shieldedTransactionFee != rhs.shieldedTransactionFee {
+            return false
+        }
+        if lhs.orderID != rhs.orderID {
+            return false
+        }
+        if lhs.orderDetails != rhs.orderDetails {
+            return false
+        }
+        if lhs.withdrawExpireAmount != rhs.withdrawExpireAmount {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -5983,8 +6984,7 @@ extension Protocol_Transaction.Result.contractResult: SwiftProtobuf._ProtoNamePr
 // MARK: - Protocol_Transaction.raw + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Transaction.raw: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_Transaction.protoMessageName + ".raw"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "ref_block_bytes"),
@@ -6055,17 +7055,39 @@ extension Protocol_Transaction.raw: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
 
     static func == (lhs: Protocol_Transaction.raw, rhs: Protocol_Transaction.raw) -> Bool {
-        if lhs.refBlockBytes != rhs.refBlockBytes { return false }
-        if lhs.refBlockNum != rhs.refBlockNum { return false }
-        if lhs.refBlockHash != rhs.refBlockHash { return false }
-        if lhs.expiration != rhs.expiration { return false }
-        if lhs.auths != rhs.auths { return false }
-        if lhs.data != rhs.data { return false }
-        if lhs.contract != rhs.contract { return false }
-        if lhs.scripts != rhs.scripts { return false }
-        if lhs.timestamp != rhs.timestamp { return false }
-        if lhs.feeLimit != rhs.feeLimit { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.refBlockBytes != rhs.refBlockBytes {
+            return false
+        }
+        if lhs.refBlockNum != rhs.refBlockNum {
+            return false
+        }
+        if lhs.refBlockHash != rhs.refBlockHash {
+            return false
+        }
+        if lhs.expiration != rhs.expiration {
+            return false
+        }
+        if lhs.auths != rhs.auths {
+            return false
+        }
+        if lhs.data != rhs.data {
+            return false
+        }
+        if lhs.contract != rhs.contract {
+            return false
+        }
+        if lhs.scripts != rhs.scripts {
+            return false
+        }
+        if lhs.timestamp != rhs.timestamp {
+            return false
+        }
+        if lhs.feeLimit != rhs.feeLimit {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6073,8 +7095,7 @@ extension Protocol_Transaction.raw: SwiftProtobuf.Message, SwiftProtobuf._Messag
 // MARK: - Protocol_TransactionInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_TransactionInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".TransactionInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "id"),
@@ -6103,6 +7124,12 @@ extension Protocol_TransactionInfo: SwiftProtobuf.Message, SwiftProtobuf._Messag
     ]
 
     fileprivate class _StorageClass {
+        // MARK: Static Properties
+
+        static let defaultInstance = _StorageClass()
+
+        // MARK: Properties
+
         var _id: Data = .init()
         var _fee: Int64 = 0
         var _blockNumber: Int64 = 0
@@ -6127,9 +7154,7 @@ extension Protocol_TransactionInfo: SwiftProtobuf.Message, SwiftProtobuf._Messag
         var _packingFee: Int64 = 0
         var _withdrawExpireAmount: Int64 = 0
 
-        static let defaultInstance = _StorageClass()
-
-        private init() { }
+        // MARK: Lifecycle
 
         init(copying source: _StorageClass) {
             _id = source._id
@@ -6156,6 +7181,8 @@ extension Protocol_TransactionInfo: SwiftProtobuf.Message, SwiftProtobuf._Messag
             _packingFee = source._packingFee
             _withdrawExpireAmount = source._withdrawExpireAmount
         }
+
+        private init() { }
     }
 
     fileprivate mutating func _uniqueStorage() -> _StorageClass {
@@ -6289,34 +7316,86 @@ extension Protocol_TransactionInfo: SwiftProtobuf.Message, SwiftProtobuf._Messag
             )) { (_args: (_StorageClass, _StorageClass)) in
                 let _storage = _args.0
                 let rhs_storage = _args.1
-                if _storage._id != rhs_storage._id { return false }
-                if _storage._fee != rhs_storage._fee { return false }
-                if _storage._blockNumber != rhs_storage._blockNumber { return false }
-                if _storage._blockTimeStamp != rhs_storage._blockTimeStamp { return false }
-                if _storage._contractResult != rhs_storage._contractResult { return false }
-                if _storage._contractAddress != rhs_storage._contractAddress { return false }
-                if _storage._receipt != rhs_storage._receipt { return false }
-                if _storage._log != rhs_storage._log { return false }
-                if _storage._result != rhs_storage._result { return false }
-                if _storage._resMessage != rhs_storage._resMessage { return false }
-                if _storage._assetIssueID != rhs_storage._assetIssueID { return false }
-                if _storage._withdrawAmount != rhs_storage._withdrawAmount { return false }
-                if _storage._unfreezeAmount != rhs_storage._unfreezeAmount { return false }
-                if _storage._internalTransactions != rhs_storage._internalTransactions { return false }
-                if _storage._exchangeReceivedAmount != rhs_storage._exchangeReceivedAmount { return false }
-                if _storage._exchangeInjectAnotherAmount != rhs_storage._exchangeInjectAnotherAmount { return false }
-                if _storage._exchangeWithdrawAnotherAmount != rhs_storage._exchangeWithdrawAnotherAmount { return false }
-                if _storage._exchangeID != rhs_storage._exchangeID { return false }
-                if _storage._shieldedTransactionFee != rhs_storage._shieldedTransactionFee { return false }
-                if _storage._orderID != rhs_storage._orderID { return false }
-                if _storage._orderDetails != rhs_storage._orderDetails { return false }
-                if _storage._packingFee != rhs_storage._packingFee { return false }
-                if _storage._withdrawExpireAmount != rhs_storage._withdrawExpireAmount { return false }
+                if _storage._id != rhs_storage._id {
+                    return false
+                }
+                if _storage._fee != rhs_storage._fee {
+                    return false
+                }
+                if _storage._blockNumber != rhs_storage._blockNumber {
+                    return false
+                }
+                if _storage._blockTimeStamp != rhs_storage._blockTimeStamp {
+                    return false
+                }
+                if _storage._contractResult != rhs_storage._contractResult {
+                    return false
+                }
+                if _storage._contractAddress != rhs_storage._contractAddress {
+                    return false
+                }
+                if _storage._receipt != rhs_storage._receipt {
+                    return false
+                }
+                if _storage._log != rhs_storage._log {
+                    return false
+                }
+                if _storage._result != rhs_storage._result {
+                    return false
+                }
+                if _storage._resMessage != rhs_storage._resMessage {
+                    return false
+                }
+                if _storage._assetIssueID != rhs_storage._assetIssueID {
+                    return false
+                }
+                if _storage._withdrawAmount != rhs_storage._withdrawAmount {
+                    return false
+                }
+                if _storage._unfreezeAmount != rhs_storage._unfreezeAmount {
+                    return false
+                }
+                if _storage._internalTransactions != rhs_storage._internalTransactions {
+                    return false
+                }
+                if _storage._exchangeReceivedAmount != rhs_storage._exchangeReceivedAmount {
+                    return false
+                }
+                if _storage._exchangeInjectAnotherAmount != rhs_storage._exchangeInjectAnotherAmount {
+                    return false
+                }
+                if
+                    _storage._exchangeWithdrawAnotherAmount != rhs_storage
+                        ._exchangeWithdrawAnotherAmount {
+                    return false
+                }
+                if _storage._exchangeID != rhs_storage._exchangeID {
+                    return false
+                }
+                if _storage._shieldedTransactionFee != rhs_storage._shieldedTransactionFee {
+                    return false
+                }
+                if _storage._orderID != rhs_storage._orderID {
+                    return false
+                }
+                if _storage._orderDetails != rhs_storage._orderDetails {
+                    return false
+                }
+                if _storage._packingFee != rhs_storage._packingFee {
+                    return false
+                }
+                if _storage._withdrawExpireAmount != rhs_storage._withdrawExpireAmount {
+                    return false
+                }
                 return true
             }
-            if !storagesAreEqual { return false }
+            if !storagesAreEqual {
+                return false
+            }
         }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6333,8 +7412,7 @@ extension Protocol_TransactionInfo.code: SwiftProtobuf._ProtoNameProviding {
 // MARK: - Protocol_TransactionInfo.Log + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_TransactionInfo.Log: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_TransactionInfo.protoMessageName + ".Log"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "address"),
@@ -6370,10 +7448,18 @@ extension Protocol_TransactionInfo.Log: SwiftProtobuf.Message, SwiftProtobuf._Me
     }
 
     static func == (lhs: Protocol_TransactionInfo.Log, rhs: Protocol_TransactionInfo.Log) -> Bool {
-        if lhs.address != rhs.address { return false }
-        if lhs.topics != rhs.topics { return false }
-        if lhs.data != rhs.data { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.topics != rhs.topics {
+            return false
+        }
+        if lhs.data != rhs.data {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6381,8 +7467,7 @@ extension Protocol_TransactionInfo.Log: SwiftProtobuf.Message, SwiftProtobuf._Me
 // MARK: - Protocol_TransactionRet + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_TransactionRet: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".TransactionRet"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "blockNumber"),
@@ -6418,10 +7503,18 @@ extension Protocol_TransactionRet: SwiftProtobuf.Message, SwiftProtobuf._Message
     }
 
     static func == (lhs: Protocol_TransactionRet, rhs: Protocol_TransactionRet) -> Bool {
-        if lhs.blockNumber != rhs.blockNumber { return false }
-        if lhs.blockTimeStamp != rhs.blockTimeStamp { return false }
-        if lhs.transactioninfo != rhs.transactioninfo { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.blockNumber != rhs.blockNumber {
+            return false
+        }
+        if lhs.blockTimeStamp != rhs.blockTimeStamp {
+            return false
+        }
+        if lhs.transactioninfo != rhs.transactioninfo {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6429,8 +7522,7 @@ extension Protocol_TransactionRet: SwiftProtobuf.Message, SwiftProtobuf._Message
 // MARK: - Protocol_Transactions + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Transactions: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Transactions"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "transactions"),
@@ -6456,8 +7548,12 @@ extension Protocol_Transactions: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     }
 
     static func == (lhs: Protocol_Transactions, rhs: Protocol_Transactions) -> Bool {
-        if lhs.transactions != rhs.transactions { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.transactions != rhs.transactions {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6465,8 +7561,7 @@ extension Protocol_Transactions: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 // MARK: - Protocol_BlockHeader + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_BlockHeader: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".BlockHeader"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "raw_data"),
@@ -6501,9 +7596,15 @@ extension Protocol_BlockHeader: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
 
     static func == (lhs: Protocol_BlockHeader, rhs: Protocol_BlockHeader) -> Bool {
-        if lhs._rawData != rhs._rawData { return false }
-        if lhs.witnessSignature != rhs.witnessSignature { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._rawData != rhs._rawData {
+            return false
+        }
+        if lhs.witnessSignature != rhs.witnessSignature {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6511,8 +7612,7 @@ extension Protocol_BlockHeader: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 // MARK: - Protocol_BlockHeader.raw + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_BlockHeader.raw: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_BlockHeader.protoMessageName + ".raw"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "timestamp"),
@@ -6573,22 +7673,41 @@ extension Protocol_BlockHeader.raw: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
 
     static func == (lhs: Protocol_BlockHeader.raw, rhs: Protocol_BlockHeader.raw) -> Bool {
-        if lhs.timestamp != rhs.timestamp { return false }
-        if lhs.txTrieRoot != rhs.txTrieRoot { return false }
-        if lhs.parentHash != rhs.parentHash { return false }
-        if lhs.number != rhs.number { return false }
-        if lhs.witnessID != rhs.witnessID { return false }
-        if lhs.witnessAddress != rhs.witnessAddress { return false }
-        if lhs.version != rhs.version { return false }
-        if lhs.accountStateRoot != rhs.accountStateRoot { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.timestamp != rhs.timestamp {
+            return false
+        }
+        if lhs.txTrieRoot != rhs.txTrieRoot {
+            return false
+        }
+        if lhs.parentHash != rhs.parentHash {
+            return false
+        }
+        if lhs.number != rhs.number {
+            return false
+        }
+        if lhs.witnessID != rhs.witnessID {
+            return false
+        }
+        if lhs.witnessAddress != rhs.witnessAddress {
+            return false
+        }
+        if lhs.version != rhs.version {
+            return false
+        }
+        if lhs.accountStateRoot != rhs.accountStateRoot {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_Block + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Block: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Block: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Block"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "transactions"),
@@ -6623,9 +7742,15 @@ extension Protocol_Block: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     }
 
     static func == (lhs: Protocol_Block, rhs: Protocol_Block) -> Bool {
-        if lhs.transactions != rhs.transactions { return false }
-        if lhs._blockHeader != rhs._blockHeader { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.transactions != rhs.transactions {
+            return false
+        }
+        if lhs._blockHeader != rhs._blockHeader {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6633,8 +7758,7 @@ extension Protocol_Block: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
 // MARK: - Protocol_ChainInventory + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_ChainInventory: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".ChainInventory"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "ids"),
@@ -6665,18 +7789,23 @@ extension Protocol_ChainInventory: SwiftProtobuf.Message, SwiftProtobuf._Message
     }
 
     static func == (lhs: Protocol_ChainInventory, rhs: Protocol_ChainInventory) -> Bool {
-        if lhs.ids != rhs.ids { return false }
-        if lhs.remainNum != rhs.remainNum { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ids != rhs.ids {
+            return false
+        }
+        if lhs.remainNum != rhs.remainNum {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
-// MARK: - Protocol_ChainInventory.BlockId + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
+// MARK: - Protocol_ChainInventory.BlockID + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_ChainInventory.BlockId: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+extension Protocol_ChainInventory.BlockID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_ChainInventory.protoMessageName + ".BlockId"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "hash"),
@@ -6706,10 +7835,16 @@ extension Protocol_ChainInventory.BlockId: SwiftProtobuf.Message, SwiftProtobuf.
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_ChainInventory.BlockId, rhs: Protocol_ChainInventory.BlockId) -> Bool {
-        if lhs.hash != rhs.hash { return false }
-        if lhs.number != rhs.number { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (lhs: Protocol_ChainInventory.BlockID, rhs: Protocol_ChainInventory.BlockID) -> Bool {
+        if lhs.hash != rhs.hash {
+            return false
+        }
+        if lhs.number != rhs.number {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6717,8 +7852,7 @@ extension Protocol_ChainInventory.BlockId: SwiftProtobuf.Message, SwiftProtobuf.
 // MARK: - Protocol_BlockInventory + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_BlockInventory: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".BlockInventory"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "ids"),
@@ -6749,9 +7883,15 @@ extension Protocol_BlockInventory: SwiftProtobuf.Message, SwiftProtobuf._Message
     }
 
     static func == (lhs: Protocol_BlockInventory, rhs: Protocol_BlockInventory) -> Bool {
-        if lhs.ids != rhs.ids { return false }
-        if lhs.type != rhs.type { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ids != rhs.ids {
+            return false
+        }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6766,11 +7906,10 @@ extension Protocol_BlockInventory.TypeEnum: SwiftProtobuf._ProtoNameProviding {
     ]
 }
 
-// MARK: - Protocol_BlockInventory.BlockId + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
+// MARK: - Protocol_BlockInventory.BlockID + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_BlockInventory.BlockId: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+extension Protocol_BlockInventory.BlockID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_BlockInventory.protoMessageName + ".BlockId"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "hash"),
@@ -6800,17 +7939,24 @@ extension Protocol_BlockInventory.BlockId: SwiftProtobuf.Message, SwiftProtobuf.
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_BlockInventory.BlockId, rhs: Protocol_BlockInventory.BlockId) -> Bool {
-        if lhs.hash != rhs.hash { return false }
-        if lhs.number != rhs.number { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (lhs: Protocol_BlockInventory.BlockID, rhs: Protocol_BlockInventory.BlockID) -> Bool {
+        if lhs.hash != rhs.hash {
+            return false
+        }
+        if lhs.number != rhs.number {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_Inventory + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Inventory: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Inventory: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Inventory"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "type"),
@@ -6841,9 +7987,15 @@ extension Protocol_Inventory: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
     }
 
     static func == (lhs: Protocol_Inventory, rhs: Protocol_Inventory) -> Bool {
-        if lhs.type != rhs.type { return false }
-        if lhs.ids != rhs.ids { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.ids != rhs.ids {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6859,7 +8011,8 @@ extension Protocol_Inventory.InventoryType: SwiftProtobuf._ProtoNameProviding {
 
 // MARK: - Protocol_Items + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Items: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Items: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Items"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "type"),
@@ -6900,11 +8053,21 @@ extension Protocol_Items: SwiftProtobuf.Message, SwiftProtobuf._MessageImplement
     }
 
     static func == (lhs: Protocol_Items, rhs: Protocol_Items) -> Bool {
-        if lhs.type != rhs.type { return false }
-        if lhs.blocks != rhs.blocks { return false }
-        if lhs.blockHeaders != rhs.blockHeaders { return false }
-        if lhs.transactions != rhs.transactions { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.blocks != rhs.blocks {
+            return false
+        }
+        if lhs.blockHeaders != rhs.blockHeaders {
+            return false
+        }
+        if lhs.transactions != rhs.transactions {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6923,8 +8086,7 @@ extension Protocol_Items.ItemType: SwiftProtobuf._ProtoNameProviding {
 // MARK: - Protocol_DynamicProperties + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_DynamicProperties: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".DynamicProperties"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "last_solidity_block_num"),
@@ -6950,8 +8112,12 @@ extension Protocol_DynamicProperties: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
 
     static func == (lhs: Protocol_DynamicProperties, rhs: Protocol_DynamicProperties) -> Bool {
-        if lhs.lastSolidityBlockNum != rhs.lastSolidityBlockNum { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.lastSolidityBlockNum != rhs.lastSolidityBlockNum {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6959,8 +8125,7 @@ extension Protocol_DynamicProperties: SwiftProtobuf.Message, SwiftProtobuf._Mess
 // MARK: - Protocol_DisconnectMessage + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_DisconnectMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".DisconnectMessage"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "reason"),
@@ -6986,8 +8151,12 @@ extension Protocol_DisconnectMessage: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
 
     static func == (lhs: Protocol_DisconnectMessage, rhs: Protocol_DisconnectMessage) -> Bool {
-        if lhs.reason != rhs.reason { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.reason != rhs.reason {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -6995,8 +8164,7 @@ extension Protocol_DisconnectMessage: SwiftProtobuf.Message, SwiftProtobuf._Mess
 // MARK: - Protocol_HelloMessage + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_HelloMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".HelloMessage"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "from"),
@@ -7071,26 +8239,47 @@ extension Protocol_HelloMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     }
 
     static func == (lhs: Protocol_HelloMessage, rhs: Protocol_HelloMessage) -> Bool {
-        if lhs._from != rhs._from { return false }
-        if lhs.version != rhs.version { return false }
-        if lhs.timestamp != rhs.timestamp { return false }
-        if lhs._genesisBlockID != rhs._genesisBlockID { return false }
-        if lhs._solidBlockID != rhs._solidBlockID { return false }
-        if lhs._headBlockID != rhs._headBlockID { return false }
-        if lhs.address != rhs.address { return false }
-        if lhs.signature != rhs.signature { return false }
-        if lhs.nodeType != rhs.nodeType { return false }
-        if lhs.lowestBlockNum != rhs.lowestBlockNum { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._from != rhs._from {
+            return false
+        }
+        if lhs.version != rhs.version {
+            return false
+        }
+        if lhs.timestamp != rhs.timestamp {
+            return false
+        }
+        if lhs._genesisBlockID != rhs._genesisBlockID {
+            return false
+        }
+        if lhs._solidBlockID != rhs._solidBlockID {
+            return false
+        }
+        if lhs._headBlockID != rhs._headBlockID {
+            return false
+        }
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.signature != rhs.signature {
+            return false
+        }
+        if lhs.nodeType != rhs.nodeType {
+            return false
+        }
+        if lhs.lowestBlockNum != rhs.lowestBlockNum {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
-// MARK: - Protocol_HelloMessage.BlockId + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
+// MARK: - Protocol_HelloMessage.BlockID + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_HelloMessage.BlockId: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+extension Protocol_HelloMessage.BlockID: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_HelloMessage.protoMessageName + ".BlockId"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "hash"),
@@ -7120,10 +8309,16 @@ extension Protocol_HelloMessage.BlockId: SwiftProtobuf.Message, SwiftProtobuf._M
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_HelloMessage.BlockId, rhs: Protocol_HelloMessage.BlockId) -> Bool {
-        if lhs.hash != rhs.hash { return false }
-        if lhs.number != rhs.number { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (lhs: Protocol_HelloMessage.BlockID, rhs: Protocol_HelloMessage.BlockID) -> Bool {
+        if lhs.hash != rhs.hash {
+            return false
+        }
+        if lhs.number != rhs.number {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -7131,8 +8326,7 @@ extension Protocol_HelloMessage.BlockId: SwiftProtobuf.Message, SwiftProtobuf._M
 // MARK: - Protocol_InternalTransaction + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_InternalTransaction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".InternalTransaction"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "hash"),
@@ -7188,14 +8382,30 @@ extension Protocol_InternalTransaction: SwiftProtobuf.Message, SwiftProtobuf._Me
     }
 
     static func == (lhs: Protocol_InternalTransaction, rhs: Protocol_InternalTransaction) -> Bool {
-        if lhs.hash != rhs.hash { return false }
-        if lhs.callerAddress != rhs.callerAddress { return false }
-        if lhs.transferToAddress != rhs.transferToAddress { return false }
-        if lhs.callValueInfo != rhs.callValueInfo { return false }
-        if lhs.note != rhs.note { return false }
-        if lhs.rejected != rhs.rejected { return false }
-        if lhs.extra != rhs.extra { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.hash != rhs.hash {
+            return false
+        }
+        if lhs.callerAddress != rhs.callerAddress {
+            return false
+        }
+        if lhs.transferToAddress != rhs.transferToAddress {
+            return false
+        }
+        if lhs.callValueInfo != rhs.callValueInfo {
+            return false
+        }
+        if lhs.note != rhs.note {
+            return false
+        }
+        if lhs.rejected != rhs.rejected {
+            return false
+        }
+        if lhs.extra != rhs.extra {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -7203,8 +8413,7 @@ extension Protocol_InternalTransaction: SwiftProtobuf.Message, SwiftProtobuf._Me
 // MARK: - Protocol_InternalTransaction.CallValueInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_InternalTransaction.CallValueInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_InternalTransaction.protoMessageName + ".CallValueInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "callValue"),
@@ -7234,10 +8443,20 @@ extension Protocol_InternalTransaction.CallValueInfo: SwiftProtobuf.Message, Swi
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_InternalTransaction.CallValueInfo, rhs: Protocol_InternalTransaction.CallValueInfo) -> Bool {
-        if lhs.callValue != rhs.callValue { return false }
-        if lhs.tokenID != rhs.tokenID { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (
+        lhs: Protocol_InternalTransaction.CallValueInfo,
+        rhs: Protocol_InternalTransaction.CallValueInfo
+    )
+        -> Bool {
+        if lhs.callValue != rhs.callValue {
+            return false
+        }
+        if lhs.tokenID != rhs.tokenID {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -7245,8 +8464,7 @@ extension Protocol_InternalTransaction.CallValueInfo: SwiftProtobuf.Message, Swi
 // MARK: - Protocol_DelegatedResourceAccountIndex + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_DelegatedResourceAccountIndex: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".DelegatedResourceAccountIndex"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "account"),
@@ -7287,18 +8505,29 @@ extension Protocol_DelegatedResourceAccountIndex: SwiftProtobuf.Message, SwiftPr
     }
 
     static func == (lhs: Protocol_DelegatedResourceAccountIndex, rhs: Protocol_DelegatedResourceAccountIndex) -> Bool {
-        if lhs.account != rhs.account { return false }
-        if lhs.fromAccounts != rhs.fromAccounts { return false }
-        if lhs.toAccounts != rhs.toAccounts { return false }
-        if lhs.timestamp != rhs.timestamp { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.account != rhs.account {
+            return false
+        }
+        if lhs.fromAccounts != rhs.fromAccounts {
+            return false
+        }
+        if lhs.toAccounts != rhs.toAccounts {
+            return false
+        }
+        if lhs.timestamp != rhs.timestamp {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_NodeInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".NodeInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "beginSyncNum"),
@@ -7315,6 +8544,12 @@ extension Protocol_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     ]
 
     fileprivate class _StorageClass {
+        // MARK: Static Properties
+
+        static let defaultInstance = _StorageClass()
+
+        // MARK: Properties
+
         var _beginSyncNum: Int64 = 0
         var _block: String = .init()
         var _solidityBlock: String = .init()
@@ -7327,9 +8562,7 @@ extension Protocol_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
         var _machineInfo: Protocol_NodeInfo.MachineInfo?
         var _cheatWitnessInfoMap: [String: String] = [:]
 
-        static let defaultInstance = _StorageClass()
-
-        private init() { }
+        // MARK: Lifecycle
 
         init(copying source: _StorageClass) {
             _beginSyncNum = source._beginSyncNum
@@ -7344,6 +8577,8 @@ extension Protocol_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
             _machineInfo = source._machineInfo
             _cheatWitnessInfoMap = source._cheatWitnessInfoMap
         }
+
+        private init() { }
     }
 
     fileprivate mutating func _uniqueStorage() -> _StorageClass {
@@ -7382,7 +8617,8 @@ extension Protocol_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
                 case 10: try decoder.decodeSingularMessageField(value: &_storage._machineInfo)
 
                 case 11: try decoder.decodeMapField(
-                        fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufString>.self,
+                        fieldType: SwiftProtobuf
+                            ._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufString>.self,
                         value: &_storage._cheatWitnessInfoMap
                     )
 
@@ -7430,7 +8666,8 @@ extension Protocol_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
             } }()
             if !_storage._cheatWitnessInfoMap.isEmpty {
                 try visitor.visitMapField(
-                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufString>.self,
+                    fieldType: SwiftProtobuf._ProtobufMap<SwiftProtobuf.ProtobufString, SwiftProtobuf.ProtobufString>
+                        .self,
                     value: _storage._cheatWitnessInfoMap,
                     fieldNumber: 11
                 )
@@ -7447,22 +8684,48 @@ extension Protocol_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
             )) { (_args: (_StorageClass, _StorageClass)) in
                 let _storage = _args.0
                 let rhs_storage = _args.1
-                if _storage._beginSyncNum != rhs_storage._beginSyncNum { return false }
-                if _storage._block != rhs_storage._block { return false }
-                if _storage._solidityBlock != rhs_storage._solidityBlock { return false }
-                if _storage._currentConnectCount != rhs_storage._currentConnectCount { return false }
-                if _storage._activeConnectCount != rhs_storage._activeConnectCount { return false }
-                if _storage._passiveConnectCount != rhs_storage._passiveConnectCount { return false }
-                if _storage._totalFlow != rhs_storage._totalFlow { return false }
-                if _storage._peerInfoList != rhs_storage._peerInfoList { return false }
-                if _storage._configNodeInfo != rhs_storage._configNodeInfo { return false }
-                if _storage._machineInfo != rhs_storage._machineInfo { return false }
-                if _storage._cheatWitnessInfoMap != rhs_storage._cheatWitnessInfoMap { return false }
+                if _storage._beginSyncNum != rhs_storage._beginSyncNum {
+                    return false
+                }
+                if _storage._block != rhs_storage._block {
+                    return false
+                }
+                if _storage._solidityBlock != rhs_storage._solidityBlock {
+                    return false
+                }
+                if _storage._currentConnectCount != rhs_storage._currentConnectCount {
+                    return false
+                }
+                if _storage._activeConnectCount != rhs_storage._activeConnectCount {
+                    return false
+                }
+                if _storage._passiveConnectCount != rhs_storage._passiveConnectCount {
+                    return false
+                }
+                if _storage._totalFlow != rhs_storage._totalFlow {
+                    return false
+                }
+                if _storage._peerInfoList != rhs_storage._peerInfoList {
+                    return false
+                }
+                if _storage._configNodeInfo != rhs_storage._configNodeInfo {
+                    return false
+                }
+                if _storage._machineInfo != rhs_storage._machineInfo {
+                    return false
+                }
+                if _storage._cheatWitnessInfoMap != rhs_storage._cheatWitnessInfoMap {
+                    return false
+                }
                 return true
             }
-            if !storagesAreEqual { return false }
+            if !storagesAreEqual {
+                return false
+            }
         }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -7470,8 +8733,7 @@ extension Protocol_NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 // MARK: - Protocol_NodeInfo.PeerInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_NodeInfo.PeerInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_NodeInfo.protoMessageName + ".PeerInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "lastSyncBlock"),
@@ -7502,6 +8764,12 @@ extension Protocol_NodeInfo.PeerInfo: SwiftProtobuf.Message, SwiftProtobuf._Mess
     ]
 
     fileprivate class _StorageClass {
+        // MARK: Static Properties
+
+        static let defaultInstance = _StorageClass()
+
+        // MARK: Properties
+
         var _lastSyncBlock: String = .init()
         var _remainNum: Int64 = 0
         var _lastBlockUpdateTime: Int64 = 0
@@ -7528,9 +8796,7 @@ extension Protocol_NodeInfo.PeerInfo: SwiftProtobuf.Message, SwiftProtobuf._Mess
         var _localDisconnectReason: String = .init()
         var _remoteDisconnectReason: String = .init()
 
-        static let defaultInstance = _StorageClass()
-
-        private init() { }
+        // MARK: Lifecycle
 
         init(copying source: _StorageClass) {
             _lastSyncBlock = source._lastSyncBlock
@@ -7559,6 +8825,8 @@ extension Protocol_NodeInfo.PeerInfo: SwiftProtobuf.Message, SwiftProtobuf._Mess
             _localDisconnectReason = source._localDisconnectReason
             _remoteDisconnectReason = source._remoteDisconnectReason
         }
+
+        private init() { }
     }
 
     fileprivate mutating func _uniqueStorage() -> _StorageClass {
@@ -7696,36 +8964,90 @@ extension Protocol_NodeInfo.PeerInfo: SwiftProtobuf.Message, SwiftProtobuf._Mess
             )) { (_args: (_StorageClass, _StorageClass)) in
                 let _storage = _args.0
                 let rhs_storage = _args.1
-                if _storage._lastSyncBlock != rhs_storage._lastSyncBlock { return false }
-                if _storage._remainNum != rhs_storage._remainNum { return false }
-                if _storage._lastBlockUpdateTime != rhs_storage._lastBlockUpdateTime { return false }
-                if _storage._syncFlag != rhs_storage._syncFlag { return false }
-                if _storage._headBlockTimeWeBothHave != rhs_storage._headBlockTimeWeBothHave { return false }
-                if _storage._needSyncFromPeer != rhs_storage._needSyncFromPeer { return false }
-                if _storage._needSyncFromUs != rhs_storage._needSyncFromUs { return false }
-                if _storage._host != rhs_storage._host { return false }
-                if _storage._port != rhs_storage._port { return false }
-                if _storage._nodeID != rhs_storage._nodeID { return false }
-                if _storage._connectTime != rhs_storage._connectTime { return false }
-                if _storage._avgLatency != rhs_storage._avgLatency { return false }
-                if _storage._syncToFetchSize != rhs_storage._syncToFetchSize { return false }
-                if _storage._syncToFetchSizePeekNum != rhs_storage._syncToFetchSizePeekNum { return false }
-                if _storage._syncBlockRequestedSize != rhs_storage._syncBlockRequestedSize { return false }
-                if _storage._unFetchSynNum != rhs_storage._unFetchSynNum { return false }
-                if _storage._blockInPorcSize != rhs_storage._blockInPorcSize { return false }
-                if _storage._headBlockWeBothHave != rhs_storage._headBlockWeBothHave { return false }
-                if _storage._isActive != rhs_storage._isActive { return false }
-                if _storage._score != rhs_storage._score { return false }
-                if _storage._nodeCount != rhs_storage._nodeCount { return false }
-                if _storage._inFlow != rhs_storage._inFlow { return false }
-                if _storage._disconnectTimes != rhs_storage._disconnectTimes { return false }
-                if _storage._localDisconnectReason != rhs_storage._localDisconnectReason { return false }
-                if _storage._remoteDisconnectReason != rhs_storage._remoteDisconnectReason { return false }
+                if _storage._lastSyncBlock != rhs_storage._lastSyncBlock {
+                    return false
+                }
+                if _storage._remainNum != rhs_storage._remainNum {
+                    return false
+                }
+                if _storage._lastBlockUpdateTime != rhs_storage._lastBlockUpdateTime {
+                    return false
+                }
+                if _storage._syncFlag != rhs_storage._syncFlag {
+                    return false
+                }
+                if _storage._headBlockTimeWeBothHave != rhs_storage._headBlockTimeWeBothHave {
+                    return false
+                }
+                if _storage._needSyncFromPeer != rhs_storage._needSyncFromPeer {
+                    return false
+                }
+                if _storage._needSyncFromUs != rhs_storage._needSyncFromUs {
+                    return false
+                }
+                if _storage._host != rhs_storage._host {
+                    return false
+                }
+                if _storage._port != rhs_storage._port {
+                    return false
+                }
+                if _storage._nodeID != rhs_storage._nodeID {
+                    return false
+                }
+                if _storage._connectTime != rhs_storage._connectTime {
+                    return false
+                }
+                if _storage._avgLatency != rhs_storage._avgLatency {
+                    return false
+                }
+                if _storage._syncToFetchSize != rhs_storage._syncToFetchSize {
+                    return false
+                }
+                if _storage._syncToFetchSizePeekNum != rhs_storage._syncToFetchSizePeekNum {
+                    return false
+                }
+                if _storage._syncBlockRequestedSize != rhs_storage._syncBlockRequestedSize {
+                    return false
+                }
+                if _storage._unFetchSynNum != rhs_storage._unFetchSynNum {
+                    return false
+                }
+                if _storage._blockInPorcSize != rhs_storage._blockInPorcSize {
+                    return false
+                }
+                if _storage._headBlockWeBothHave != rhs_storage._headBlockWeBothHave {
+                    return false
+                }
+                if _storage._isActive != rhs_storage._isActive {
+                    return false
+                }
+                if _storage._score != rhs_storage._score {
+                    return false
+                }
+                if _storage._nodeCount != rhs_storage._nodeCount {
+                    return false
+                }
+                if _storage._inFlow != rhs_storage._inFlow {
+                    return false
+                }
+                if _storage._disconnectTimes != rhs_storage._disconnectTimes {
+                    return false
+                }
+                if _storage._localDisconnectReason != rhs_storage._localDisconnectReason {
+                    return false
+                }
+                if _storage._remoteDisconnectReason != rhs_storage._remoteDisconnectReason {
+                    return false
+                }
                 return true
             }
-            if !storagesAreEqual { return false }
+            if !storagesAreEqual {
+                return false
+            }
         }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -7733,8 +9055,7 @@ extension Protocol_NodeInfo.PeerInfo: SwiftProtobuf.Message, SwiftProtobuf._Mess
 // MARK: - Protocol_NodeInfo.ConfigNodeInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_NodeInfo.ConfigNodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_NodeInfo.protoMessageName + ".ConfigNodeInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "codeVersion"),
@@ -7759,6 +9080,12 @@ extension Protocol_NodeInfo.ConfigNodeInfo: SwiftProtobuf.Message, SwiftProtobuf
     ]
 
     fileprivate class _StorageClass {
+        // MARK: Static Properties
+
+        static let defaultInstance = _StorageClass()
+
+        // MARK: Properties
+
         var _codeVersion: String = .init()
         var _p2PVersion: String = .init()
         var _listenPort: Int32 = 0
@@ -7779,9 +9106,7 @@ extension Protocol_NodeInfo.ConfigNodeInfo: SwiftProtobuf.Message, SwiftProtobuf
         var _allowCreationOfContracts: Int64 = 0
         var _allowAdaptiveEnergy: Int64 = 0
 
-        static let defaultInstance = _StorageClass()
-
-        private init() { }
+        // MARK: Lifecycle
 
         init(copying source: _StorageClass) {
             _codeVersion = source._codeVersion
@@ -7804,6 +9129,8 @@ extension Protocol_NodeInfo.ConfigNodeInfo: SwiftProtobuf.Message, SwiftProtobuf
             _allowCreationOfContracts = source._allowCreationOfContracts
             _allowAdaptiveEnergy = source._allowAdaptiveEnergy
         }
+
+        private init() { }
     }
 
     fileprivate mutating func _uniqueStorage() -> _StorageClass {
@@ -7917,30 +9244,72 @@ extension Protocol_NodeInfo.ConfigNodeInfo: SwiftProtobuf.Message, SwiftProtobuf
             )) { (_args: (_StorageClass, _StorageClass)) in
                 let _storage = _args.0
                 let rhs_storage = _args.1
-                if _storage._codeVersion != rhs_storage._codeVersion { return false }
-                if _storage._p2PVersion != rhs_storage._p2PVersion { return false }
-                if _storage._listenPort != rhs_storage._listenPort { return false }
-                if _storage._discoverEnable != rhs_storage._discoverEnable { return false }
-                if _storage._activeNodeSize != rhs_storage._activeNodeSize { return false }
-                if _storage._passiveNodeSize != rhs_storage._passiveNodeSize { return false }
-                if _storage._sendNodeSize != rhs_storage._sendNodeSize { return false }
-                if _storage._maxConnectCount != rhs_storage._maxConnectCount { return false }
-                if _storage._sameIpMaxConnectCount != rhs_storage._sameIpMaxConnectCount { return false }
-                if _storage._backupListenPort != rhs_storage._backupListenPort { return false }
-                if _storage._backupMemberSize != rhs_storage._backupMemberSize { return false }
-                if _storage._backupPriority != rhs_storage._backupPriority { return false }
-                if _storage._dbVersion != rhs_storage._dbVersion { return false }
-                if _storage._minParticipationRate != rhs_storage._minParticipationRate { return false }
-                if _storage._supportConstant != rhs_storage._supportConstant { return false }
-                if _storage._minTimeRatio != rhs_storage._minTimeRatio { return false }
-                if _storage._maxTimeRatio != rhs_storage._maxTimeRatio { return false }
-                if _storage._allowCreationOfContracts != rhs_storage._allowCreationOfContracts { return false }
-                if _storage._allowAdaptiveEnergy != rhs_storage._allowAdaptiveEnergy { return false }
+                if _storage._codeVersion != rhs_storage._codeVersion {
+                    return false
+                }
+                if _storage._p2PVersion != rhs_storage._p2PVersion {
+                    return false
+                }
+                if _storage._listenPort != rhs_storage._listenPort {
+                    return false
+                }
+                if _storage._discoverEnable != rhs_storage._discoverEnable {
+                    return false
+                }
+                if _storage._activeNodeSize != rhs_storage._activeNodeSize {
+                    return false
+                }
+                if _storage._passiveNodeSize != rhs_storage._passiveNodeSize {
+                    return false
+                }
+                if _storage._sendNodeSize != rhs_storage._sendNodeSize {
+                    return false
+                }
+                if _storage._maxConnectCount != rhs_storage._maxConnectCount {
+                    return false
+                }
+                if _storage._sameIpMaxConnectCount != rhs_storage._sameIpMaxConnectCount {
+                    return false
+                }
+                if _storage._backupListenPort != rhs_storage._backupListenPort {
+                    return false
+                }
+                if _storage._backupMemberSize != rhs_storage._backupMemberSize {
+                    return false
+                }
+                if _storage._backupPriority != rhs_storage._backupPriority {
+                    return false
+                }
+                if _storage._dbVersion != rhs_storage._dbVersion {
+                    return false
+                }
+                if _storage._minParticipationRate != rhs_storage._minParticipationRate {
+                    return false
+                }
+                if _storage._supportConstant != rhs_storage._supportConstant {
+                    return false
+                }
+                if _storage._minTimeRatio != rhs_storage._minTimeRatio {
+                    return false
+                }
+                if _storage._maxTimeRatio != rhs_storage._maxTimeRatio {
+                    return false
+                }
+                if _storage._allowCreationOfContracts != rhs_storage._allowCreationOfContracts {
+                    return false
+                }
+                if _storage._allowAdaptiveEnergy != rhs_storage._allowAdaptiveEnergy {
+                    return false
+                }
                 return true
             }
-            if !storagesAreEqual { return false }
+            if !storagesAreEqual {
+                return false
+            }
         }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -7948,8 +9317,7 @@ extension Protocol_NodeInfo.ConfigNodeInfo: SwiftProtobuf.Message, SwiftProtobuf
 // MARK: - Protocol_NodeInfo.MachineInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_NodeInfo.MachineInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_NodeInfo.protoMessageName + ".MachineInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "threadCount"),
@@ -8035,20 +9403,48 @@ extension Protocol_NodeInfo.MachineInfo: SwiftProtobuf.Message, SwiftProtobuf._M
     }
 
     static func == (lhs: Protocol_NodeInfo.MachineInfo, rhs: Protocol_NodeInfo.MachineInfo) -> Bool {
-        if lhs.threadCount != rhs.threadCount { return false }
-        if lhs.deadLockThreadCount != rhs.deadLockThreadCount { return false }
-        if lhs.cpuCount != rhs.cpuCount { return false }
-        if lhs.totalMemory != rhs.totalMemory { return false }
-        if lhs.freeMemory != rhs.freeMemory { return false }
-        if lhs.cpuRate != rhs.cpuRate { return false }
-        if lhs.javaVersion != rhs.javaVersion { return false }
-        if lhs.osName != rhs.osName { return false }
-        if lhs.jvmTotalMemory != rhs.jvmTotalMemory { return false }
-        if lhs.jvmFreeMemory != rhs.jvmFreeMemory { return false }
-        if lhs.processCpuRate != rhs.processCpuRate { return false }
-        if lhs.memoryDescInfoList != rhs.memoryDescInfoList { return false }
-        if lhs.deadLockThreadInfoList != rhs.deadLockThreadInfoList { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.threadCount != rhs.threadCount {
+            return false
+        }
+        if lhs.deadLockThreadCount != rhs.deadLockThreadCount {
+            return false
+        }
+        if lhs.cpuCount != rhs.cpuCount {
+            return false
+        }
+        if lhs.totalMemory != rhs.totalMemory {
+            return false
+        }
+        if lhs.freeMemory != rhs.freeMemory {
+            return false
+        }
+        if lhs.cpuRate != rhs.cpuRate {
+            return false
+        }
+        if lhs.javaVersion != rhs.javaVersion {
+            return false
+        }
+        if lhs.osName != rhs.osName {
+            return false
+        }
+        if lhs.jvmTotalMemory != rhs.jvmTotalMemory {
+            return false
+        }
+        if lhs.jvmFreeMemory != rhs.jvmFreeMemory {
+            return false
+        }
+        if lhs.processCpuRate != rhs.processCpuRate {
+            return false
+        }
+        if lhs.memoryDescInfoList != rhs.memoryDescInfoList {
+            return false
+        }
+        if lhs.deadLockThreadInfoList != rhs.deadLockThreadInfoList {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -8056,8 +9452,7 @@ extension Protocol_NodeInfo.MachineInfo: SwiftProtobuf.Message, SwiftProtobuf._M
 // MARK: - Protocol_NodeInfo.MachineInfo.MemoryDescInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_NodeInfo.MachineInfo.MemoryDescInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_NodeInfo.MachineInfo.protoMessageName + ".MemoryDescInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "name"),
@@ -8105,22 +9500,35 @@ extension Protocol_NodeInfo.MachineInfo.MemoryDescInfo: SwiftProtobuf.Message, S
     static func == (
         lhs: Protocol_NodeInfo.MachineInfo.MemoryDescInfo,
         rhs: Protocol_NodeInfo.MachineInfo.MemoryDescInfo
-    ) -> Bool {
-        if lhs.name != rhs.name { return false }
-        if lhs.initSize != rhs.initSize { return false }
-        if lhs.useSize != rhs.useSize { return false }
-        if lhs.maxSize != rhs.maxSize { return false }
-        if lhs.useRate != rhs.useRate { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    )
+        -> Bool {
+        if lhs.name != rhs.name {
+            return false
+        }
+        if lhs.initSize != rhs.initSize {
+            return false
+        }
+        if lhs.useSize != rhs.useSize {
+            return false
+        }
+        if lhs.maxSize != rhs.maxSize {
+            return false
+        }
+        if lhs.useRate != rhs.useRate {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_NodeInfo.MachineInfo.DeadLockThreadInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_NodeInfo.MachineInfo.DeadLockThreadInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+extension Protocol_NodeInfo.MachineInfo.DeadLockThreadInfo: SwiftProtobuf.Message,
+    SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_NodeInfo.MachineInfo.protoMessageName + ".DeadLockThreadInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "name"),
@@ -8178,15 +9586,32 @@ extension Protocol_NodeInfo.MachineInfo.DeadLockThreadInfo: SwiftProtobuf.Messag
     static func == (
         lhs: Protocol_NodeInfo.MachineInfo.DeadLockThreadInfo,
         rhs: Protocol_NodeInfo.MachineInfo.DeadLockThreadInfo
-    ) -> Bool {
-        if lhs.name != rhs.name { return false }
-        if lhs.lockName != rhs.lockName { return false }
-        if lhs.lockOwner != rhs.lockOwner { return false }
-        if lhs.state != rhs.state { return false }
-        if lhs.blockTime != rhs.blockTime { return false }
-        if lhs.waitTime != rhs.waitTime { return false }
-        if lhs.stackTrace != rhs.stackTrace { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    )
+        -> Bool {
+        if lhs.name != rhs.name {
+            return false
+        }
+        if lhs.lockName != rhs.lockName {
+            return false
+        }
+        if lhs.lockOwner != rhs.lockOwner {
+            return false
+        }
+        if lhs.state != rhs.state {
+            return false
+        }
+        if lhs.blockTime != rhs.blockTime {
+            return false
+        }
+        if lhs.waitTime != rhs.waitTime {
+            return false
+        }
+        if lhs.stackTrace != rhs.stackTrace {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -8194,8 +9619,7 @@ extension Protocol_NodeInfo.MachineInfo.DeadLockThreadInfo: SwiftProtobuf.Messag
 // MARK: - Protocol_MetricsInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MetricsInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MetricsInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "interval"),
@@ -8240,11 +9664,21 @@ extension Protocol_MetricsInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
 
     static func == (lhs: Protocol_MetricsInfo, rhs: Protocol_MetricsInfo) -> Bool {
-        if lhs.interval != rhs.interval { return false }
-        if lhs._node != rhs._node { return false }
-        if lhs._blockchain != rhs._blockchain { return false }
-        if lhs._net != rhs._net { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.interval != rhs.interval {
+            return false
+        }
+        if lhs._node != rhs._node {
+            return false
+        }
+        if lhs._blockchain != rhs._blockchain {
+            return false
+        }
+        if lhs._net != rhs._net {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -8252,8 +9686,7 @@ extension Protocol_MetricsInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 // MARK: - Protocol_MetricsInfo.NodeInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MetricsInfo.NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_MetricsInfo.protoMessageName + ".NodeInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "ip"),
@@ -8294,11 +9727,21 @@ extension Protocol_MetricsInfo.NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._M
     }
 
     static func == (lhs: Protocol_MetricsInfo.NodeInfo, rhs: Protocol_MetricsInfo.NodeInfo) -> Bool {
-        if lhs.ip != rhs.ip { return false }
-        if lhs.nodeType != rhs.nodeType { return false }
-        if lhs.version != rhs.version { return false }
-        if lhs.backupStatus != rhs.backupStatus { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ip != rhs.ip {
+            return false
+        }
+        if lhs.nodeType != rhs.nodeType {
+            return false
+        }
+        if lhs.version != rhs.version {
+            return false
+        }
+        if lhs.backupStatus != rhs.backupStatus {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -8306,8 +9749,7 @@ extension Protocol_MetricsInfo.NodeInfo: SwiftProtobuf.Message, SwiftProtobuf._M
 // MARK: - Protocol_MetricsInfo.BlockChainInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MetricsInfo.BlockChainInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_MetricsInfo.protoMessageName + ".BlockChainInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "headBlockNum"),
@@ -8326,6 +9768,12 @@ extension Protocol_MetricsInfo.BlockChainInfo: SwiftProtobuf.Message, SwiftProto
     ]
 
     fileprivate class _StorageClass {
+        // MARK: Static Properties
+
+        static let defaultInstance = _StorageClass()
+
+        // MARK: Properties
+
         var _headBlockNum: Int64 = 0
         var _headBlockTimestamp: Int64 = 0
         var _headBlockHash: String = .init()
@@ -8340,9 +9788,7 @@ extension Protocol_MetricsInfo.BlockChainInfo: SwiftProtobuf.Message, SwiftProto
         var _failProcessBlockReason: String = .init()
         var _dupWitness: [Protocol_MetricsInfo.BlockChainInfo.DupWitness] = []
 
-        static let defaultInstance = _StorageClass()
-
-        private init() { }
+        // MARK: Lifecycle
 
         init(copying source: _StorageClass) {
             _headBlockNum = source._headBlockNum
@@ -8359,6 +9805,8 @@ extension Protocol_MetricsInfo.BlockChainInfo: SwiftProtobuf.Message, SwiftProto
             _failProcessBlockReason = source._failProcessBlockReason
             _dupWitness = source._dupWitness
         }
+
+        private init() { }
     }
 
     fileprivate mutating func _uniqueStorage() -> _StorageClass {
@@ -8452,24 +9900,54 @@ extension Protocol_MetricsInfo.BlockChainInfo: SwiftProtobuf.Message, SwiftProto
             )) { (_args: (_StorageClass, _StorageClass)) in
                 let _storage = _args.0
                 let rhs_storage = _args.1
-                if _storage._headBlockNum != rhs_storage._headBlockNum { return false }
-                if _storage._headBlockTimestamp != rhs_storage._headBlockTimestamp { return false }
-                if _storage._headBlockHash != rhs_storage._headBlockHash { return false }
-                if _storage._forkCount != rhs_storage._forkCount { return false }
-                if _storage._failForkCount != rhs_storage._failForkCount { return false }
-                if _storage._blockProcessTime != rhs_storage._blockProcessTime { return false }
-                if _storage._tps != rhs_storage._tps { return false }
-                if _storage._transactionCacheSize != rhs_storage._transactionCacheSize { return false }
-                if _storage._missedTransaction != rhs_storage._missedTransaction { return false }
-                if _storage._witnesses != rhs_storage._witnesses { return false }
-                if _storage._failProcessBlockNum != rhs_storage._failProcessBlockNum { return false }
-                if _storage._failProcessBlockReason != rhs_storage._failProcessBlockReason { return false }
-                if _storage._dupWitness != rhs_storage._dupWitness { return false }
+                if _storage._headBlockNum != rhs_storage._headBlockNum {
+                    return false
+                }
+                if _storage._headBlockTimestamp != rhs_storage._headBlockTimestamp {
+                    return false
+                }
+                if _storage._headBlockHash != rhs_storage._headBlockHash {
+                    return false
+                }
+                if _storage._forkCount != rhs_storage._forkCount {
+                    return false
+                }
+                if _storage._failForkCount != rhs_storage._failForkCount {
+                    return false
+                }
+                if _storage._blockProcessTime != rhs_storage._blockProcessTime {
+                    return false
+                }
+                if _storage._tps != rhs_storage._tps {
+                    return false
+                }
+                if _storage._transactionCacheSize != rhs_storage._transactionCacheSize {
+                    return false
+                }
+                if _storage._missedTransaction != rhs_storage._missedTransaction {
+                    return false
+                }
+                if _storage._witnesses != rhs_storage._witnesses {
+                    return false
+                }
+                if _storage._failProcessBlockNum != rhs_storage._failProcessBlockNum {
+                    return false
+                }
+                if _storage._failProcessBlockReason != rhs_storage._failProcessBlockReason {
+                    return false
+                }
+                if _storage._dupWitness != rhs_storage._dupWitness {
+                    return false
+                }
                 return true
             }
-            if !storagesAreEqual { return false }
+            if !storagesAreEqual {
+                return false
+            }
         }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -8477,8 +9955,7 @@ extension Protocol_MetricsInfo.BlockChainInfo: SwiftProtobuf.Message, SwiftProto
 // MARK: - Protocol_MetricsInfo.BlockChainInfo.Witness + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MetricsInfo.BlockChainInfo.Witness: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_MetricsInfo.BlockChainInfo.protoMessageName + ".Witness"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "address"),
@@ -8508,19 +9985,29 @@ extension Protocol_MetricsInfo.BlockChainInfo.Witness: SwiftProtobuf.Message, Sw
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_MetricsInfo.BlockChainInfo.Witness, rhs: Protocol_MetricsInfo.BlockChainInfo.Witness) -> Bool {
-        if lhs.address != rhs.address { return false }
-        if lhs.version != rhs.version { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (
+        lhs: Protocol_MetricsInfo.BlockChainInfo.Witness,
+        rhs: Protocol_MetricsInfo.BlockChainInfo.Witness
+    )
+        -> Bool {
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.version != rhs.version {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_MetricsInfo.BlockChainInfo.DupWitness + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_MetricsInfo.BlockChainInfo.DupWitness: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+extension Protocol_MetricsInfo.BlockChainInfo.DupWitness: SwiftProtobuf.Message,
+    SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_MetricsInfo.BlockChainInfo.protoMessageName + ".DupWitness"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "address"),
@@ -8558,11 +10045,20 @@ extension Protocol_MetricsInfo.BlockChainInfo.DupWitness: SwiftProtobuf.Message,
     static func == (
         lhs: Protocol_MetricsInfo.BlockChainInfo.DupWitness,
         rhs: Protocol_MetricsInfo.BlockChainInfo.DupWitness
-    ) -> Bool {
-        if lhs.address != rhs.address { return false }
-        if lhs.blockNum != rhs.blockNum { return false }
-        if lhs.count != rhs.count { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    )
+        -> Bool {
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.blockNum != rhs.blockNum {
+            return false
+        }
+        if lhs.count != rhs.count {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -8570,8 +10066,7 @@ extension Protocol_MetricsInfo.BlockChainInfo.DupWitness: SwiftProtobuf.Message,
 // MARK: - Protocol_MetricsInfo.RateInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MetricsInfo.RateInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_MetricsInfo.protoMessageName + ".RateInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "count"),
@@ -8617,12 +10112,24 @@ extension Protocol_MetricsInfo.RateInfo: SwiftProtobuf.Message, SwiftProtobuf._M
     }
 
     static func == (lhs: Protocol_MetricsInfo.RateInfo, rhs: Protocol_MetricsInfo.RateInfo) -> Bool {
-        if lhs.count != rhs.count { return false }
-        if lhs.meanRate != rhs.meanRate { return false }
-        if lhs.oneMinuteRate != rhs.oneMinuteRate { return false }
-        if lhs.fiveMinuteRate != rhs.fiveMinuteRate { return false }
-        if lhs.fifteenMinuteRate != rhs.fifteenMinuteRate { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.count != rhs.count {
+            return false
+        }
+        if lhs.meanRate != rhs.meanRate {
+            return false
+        }
+        if lhs.oneMinuteRate != rhs.oneMinuteRate {
+            return false
+        }
+        if lhs.fiveMinuteRate != rhs.fiveMinuteRate {
+            return false
+        }
+        if lhs.fifteenMinuteRate != rhs.fifteenMinuteRate {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -8630,8 +10137,7 @@ extension Protocol_MetricsInfo.RateInfo: SwiftProtobuf.Message, SwiftProtobuf._M
 // MARK: - Protocol_MetricsInfo.NetInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MetricsInfo.NetInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_MetricsInfo.protoMessageName + ".NetInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "errorProtoCount"),
@@ -8648,6 +10154,12 @@ extension Protocol_MetricsInfo.NetInfo: SwiftProtobuf.Message, SwiftProtobuf._Me
     ]
 
     fileprivate class _StorageClass {
+        // MARK: Static Properties
+
+        static let defaultInstance = _StorageClass()
+
+        // MARK: Properties
+
         var _errorProtoCount: Int32 = 0
         var _api: Protocol_MetricsInfo.NetInfo.ApiInfo?
         var _connectionCount: Int32 = 0
@@ -8660,9 +10172,7 @@ extension Protocol_MetricsInfo.NetInfo: SwiftProtobuf.Message, SwiftProtobuf._Me
         var _udpOutTraffic: Protocol_MetricsInfo.RateInfo?
         var _latency: Protocol_MetricsInfo.NetInfo.LatencyInfo?
 
-        static let defaultInstance = _StorageClass()
-
-        private init() { }
+        // MARK: Lifecycle
 
         init(copying source: _StorageClass) {
             _errorProtoCount = source._errorProtoCount
@@ -8677,6 +10187,8 @@ extension Protocol_MetricsInfo.NetInfo: SwiftProtobuf.Message, SwiftProtobuf._Me
             _udpOutTraffic = source._udpOutTraffic
             _latency = source._latency
         }
+
+        private init() { }
     }
 
     fileprivate mutating func _uniqueStorage() -> _StorageClass {
@@ -8762,22 +10274,48 @@ extension Protocol_MetricsInfo.NetInfo: SwiftProtobuf.Message, SwiftProtobuf._Me
             )) { (_args: (_StorageClass, _StorageClass)) in
                 let _storage = _args.0
                 let rhs_storage = _args.1
-                if _storage._errorProtoCount != rhs_storage._errorProtoCount { return false }
-                if _storage._api != rhs_storage._api { return false }
-                if _storage._connectionCount != rhs_storage._connectionCount { return false }
-                if _storage._validConnectionCount != rhs_storage._validConnectionCount { return false }
-                if _storage._tcpInTraffic != rhs_storage._tcpInTraffic { return false }
-                if _storage._tcpOutTraffic != rhs_storage._tcpOutTraffic { return false }
-                if _storage._disconnectionCount != rhs_storage._disconnectionCount { return false }
-                if _storage._disconnectionDetail != rhs_storage._disconnectionDetail { return false }
-                if _storage._udpInTraffic != rhs_storage._udpInTraffic { return false }
-                if _storage._udpOutTraffic != rhs_storage._udpOutTraffic { return false }
-                if _storage._latency != rhs_storage._latency { return false }
+                if _storage._errorProtoCount != rhs_storage._errorProtoCount {
+                    return false
+                }
+                if _storage._api != rhs_storage._api {
+                    return false
+                }
+                if _storage._connectionCount != rhs_storage._connectionCount {
+                    return false
+                }
+                if _storage._validConnectionCount != rhs_storage._validConnectionCount {
+                    return false
+                }
+                if _storage._tcpInTraffic != rhs_storage._tcpInTraffic {
+                    return false
+                }
+                if _storage._tcpOutTraffic != rhs_storage._tcpOutTraffic {
+                    return false
+                }
+                if _storage._disconnectionCount != rhs_storage._disconnectionCount {
+                    return false
+                }
+                if _storage._disconnectionDetail != rhs_storage._disconnectionDetail {
+                    return false
+                }
+                if _storage._udpInTraffic != rhs_storage._udpInTraffic {
+                    return false
+                }
+                if _storage._udpOutTraffic != rhs_storage._udpOutTraffic {
+                    return false
+                }
+                if _storage._latency != rhs_storage._latency {
+                    return false
+                }
                 return true
             }
-            if !storagesAreEqual { return false }
+            if !storagesAreEqual {
+                return false
+            }
         }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -8785,8 +10323,7 @@ extension Protocol_MetricsInfo.NetInfo: SwiftProtobuf.Message, SwiftProtobuf._Me
 // MARK: - Protocol_MetricsInfo.NetInfo.ApiInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MetricsInfo.NetInfo.ApiInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_MetricsInfo.NetInfo.protoMessageName + ".ApiInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "qps"),
@@ -8831,20 +10368,30 @@ extension Protocol_MetricsInfo.NetInfo.ApiInfo: SwiftProtobuf.Message, SwiftProt
     }
 
     static func == (lhs: Protocol_MetricsInfo.NetInfo.ApiInfo, rhs: Protocol_MetricsInfo.NetInfo.ApiInfo) -> Bool {
-        if lhs._qps != rhs._qps { return false }
-        if lhs._failQps != rhs._failQps { return false }
-        if lhs._outTraffic != rhs._outTraffic { return false }
-        if lhs.detail != rhs.detail { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._qps != rhs._qps {
+            return false
+        }
+        if lhs._failQps != rhs._failQps {
+            return false
+        }
+        if lhs._outTraffic != rhs._outTraffic {
+            return false
+        }
+        if lhs.detail != rhs.detail {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_MetricsInfo.NetInfo.ApiInfo.ApiDetailInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_MetricsInfo.NetInfo.ApiInfo.ApiDetailInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+extension Protocol_MetricsInfo.NetInfo.ApiInfo.ApiDetailInfo: SwiftProtobuf.Message,
+    SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_MetricsInfo.NetInfo.ApiInfo.protoMessageName + ".ApiDetailInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "name"),
@@ -8891,21 +10438,32 @@ extension Protocol_MetricsInfo.NetInfo.ApiInfo.ApiDetailInfo: SwiftProtobuf.Mess
     static func == (
         lhs: Protocol_MetricsInfo.NetInfo.ApiInfo.ApiDetailInfo,
         rhs: Protocol_MetricsInfo.NetInfo.ApiInfo.ApiDetailInfo
-    ) -> Bool {
-        if lhs.name != rhs.name { return false }
-        if lhs._qps != rhs._qps { return false }
-        if lhs._failQps != rhs._failQps { return false }
-        if lhs._outTraffic != rhs._outTraffic { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    )
+        -> Bool {
+        if lhs.name != rhs.name {
+            return false
+        }
+        if lhs._qps != rhs._qps {
+            return false
+        }
+        if lhs._failQps != rhs._failQps {
+            return false
+        }
+        if lhs._outTraffic != rhs._outTraffic {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_MetricsInfo.NetInfo.DisconnectionDetailInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_MetricsInfo.NetInfo.DisconnectionDetailInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+extension Protocol_MetricsInfo.NetInfo.DisconnectionDetailInfo: SwiftProtobuf.Message,
+    SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_MetricsInfo.NetInfo.protoMessageName + ".DisconnectionDetailInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "reason"),
@@ -8938,10 +10496,17 @@ extension Protocol_MetricsInfo.NetInfo.DisconnectionDetailInfo: SwiftProtobuf.Me
     static func == (
         lhs: Protocol_MetricsInfo.NetInfo.DisconnectionDetailInfo,
         rhs: Protocol_MetricsInfo.NetInfo.DisconnectionDetailInfo
-    ) -> Bool {
-        if lhs.reason != rhs.reason { return false }
-        if lhs.count != rhs.count { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    )
+        -> Bool {
+        if lhs.reason != rhs.reason {
+            return false
+        }
+        if lhs.count != rhs.count {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -8949,8 +10514,7 @@ extension Protocol_MetricsInfo.NetInfo.DisconnectionDetailInfo: SwiftProtobuf.Me
 // MARK: - Protocol_MetricsInfo.NetInfo.LatencyInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MetricsInfo.NetInfo.LatencyInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_MetricsInfo.NetInfo.protoMessageName + ".LatencyInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "top99"),
@@ -9010,16 +10574,38 @@ extension Protocol_MetricsInfo.NetInfo.LatencyInfo: SwiftProtobuf.Message, Swift
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_MetricsInfo.NetInfo.LatencyInfo, rhs: Protocol_MetricsInfo.NetInfo.LatencyInfo) -> Bool {
-        if lhs.top99 != rhs.top99 { return false }
-        if lhs.top95 != rhs.top95 { return false }
-        if lhs.top75 != rhs.top75 { return false }
-        if lhs.totalCount != rhs.totalCount { return false }
-        if lhs.delay1S != rhs.delay1S { return false }
-        if lhs.delay2S != rhs.delay2S { return false }
-        if lhs.delay3S != rhs.delay3S { return false }
-        if lhs.detail != rhs.detail { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (
+        lhs: Protocol_MetricsInfo.NetInfo.LatencyInfo,
+        rhs: Protocol_MetricsInfo.NetInfo.LatencyInfo
+    )
+        -> Bool {
+        if lhs.top99 != rhs.top99 {
+            return false
+        }
+        if lhs.top95 != rhs.top95 {
+            return false
+        }
+        if lhs.top75 != rhs.top75 {
+            return false
+        }
+        if lhs.totalCount != rhs.totalCount {
+            return false
+        }
+        if lhs.delay1S != rhs.delay1S {
+            return false
+        }
+        if lhs.delay2S != rhs.delay2S {
+            return false
+        }
+        if lhs.delay3S != rhs.delay3S {
+            return false
+        }
+        if lhs.detail != rhs.detail {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -9027,9 +10613,9 @@ extension Protocol_MetricsInfo.NetInfo.LatencyInfo: SwiftProtobuf.Message, Swift
 // MARK: - Protocol_MetricsInfo.NetInfo.LatencyInfo.LatencyDetailInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MetricsInfo.NetInfo.LatencyInfo.LatencyDetailInfo: SwiftProtobuf.Message,
-    SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
-{
-    static let protoMessageName: String = Protocol_MetricsInfo.NetInfo.LatencyInfo.protoMessageName + ".LatencyDetailInfo"
+    SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+    static let protoMessageName: String = Protocol_MetricsInfo.NetInfo.LatencyInfo
+        .protoMessageName + ".LatencyDetailInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "witness"),
         2: .same(proto: "top99"),
@@ -9091,16 +10677,35 @@ extension Protocol_MetricsInfo.NetInfo.LatencyInfo.LatencyDetailInfo: SwiftProto
     static func == (
         lhs: Protocol_MetricsInfo.NetInfo.LatencyInfo.LatencyDetailInfo,
         rhs: Protocol_MetricsInfo.NetInfo.LatencyInfo.LatencyDetailInfo
-    ) -> Bool {
-        if lhs.witness != rhs.witness { return false }
-        if lhs.top99 != rhs.top99 { return false }
-        if lhs.top95 != rhs.top95 { return false }
-        if lhs.top75 != rhs.top75 { return false }
-        if lhs.count != rhs.count { return false }
-        if lhs.delay1S != rhs.delay1S { return false }
-        if lhs.delay2S != rhs.delay2S { return false }
-        if lhs.delay3S != rhs.delay3S { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    )
+        -> Bool {
+        if lhs.witness != rhs.witness {
+            return false
+        }
+        if lhs.top99 != rhs.top99 {
+            return false
+        }
+        if lhs.top95 != rhs.top95 {
+            return false
+        }
+        if lhs.top75 != rhs.top75 {
+            return false
+        }
+        if lhs.count != rhs.count {
+            return false
+        }
+        if lhs.delay1S != rhs.delay1S {
+            return false
+        }
+        if lhs.delay2S != rhs.delay2S {
+            return false
+        }
+        if lhs.delay3S != rhs.delay3S {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -9108,8 +10713,7 @@ extension Protocol_MetricsInfo.NetInfo.LatencyInfo.LatencyDetailInfo: SwiftProto
 // MARK: - Protocol_PBFTMessage + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_PBFTMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".PBFTMessage"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "raw_data"),
@@ -9144,9 +10748,15 @@ extension Protocol_PBFTMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
 
     static func == (lhs: Protocol_PBFTMessage, rhs: Protocol_PBFTMessage) -> Bool {
-        if lhs._rawData != rhs._rawData { return false }
-        if lhs.signature != rhs.signature { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._rawData != rhs._rawData {
+            return false
+        }
+        if lhs.signature != rhs.signature {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -9175,8 +10785,7 @@ extension Protocol_PBFTMessage.DataType: SwiftProtobuf._ProtoNameProviding {
 // MARK: - Protocol_PBFTMessage.Raw + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_PBFTMessage.Raw: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_PBFTMessage.protoMessageName + ".Raw"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "msg_type"),
@@ -9222,12 +10831,24 @@ extension Protocol_PBFTMessage.Raw: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
 
     static func == (lhs: Protocol_PBFTMessage.Raw, rhs: Protocol_PBFTMessage.Raw) -> Bool {
-        if lhs.msgType != rhs.msgType { return false }
-        if lhs.dataType != rhs.dataType { return false }
-        if lhs.viewN != rhs.viewN { return false }
-        if lhs.epoch != rhs.epoch { return false }
-        if lhs.data != rhs.data { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.msgType != rhs.msgType {
+            return false
+        }
+        if lhs.dataType != rhs.dataType {
+            return false
+        }
+        if lhs.viewN != rhs.viewN {
+            return false
+        }
+        if lhs.epoch != rhs.epoch {
+            return false
+        }
+        if lhs.data != rhs.data {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -9235,8 +10856,7 @@ extension Protocol_PBFTMessage.Raw: SwiftProtobuf.Message, SwiftProtobuf._Messag
 // MARK: - Protocol_PBFTCommitResult + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_PBFTCommitResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".PBFTCommitResult"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "data"),
@@ -9267,16 +10887,23 @@ extension Protocol_PBFTCommitResult: SwiftProtobuf.Message, SwiftProtobuf._Messa
     }
 
     static func == (lhs: Protocol_PBFTCommitResult, rhs: Protocol_PBFTCommitResult) -> Bool {
-        if lhs.data != rhs.data { return false }
-        if lhs.signature != rhs.signature { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.data != rhs.data {
+            return false
+        }
+        if lhs.signature != rhs.signature {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
 // MARK: - Protocol_SRL + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_SRL: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_SRL: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".SRL"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "srAddress"),
@@ -9302,8 +10929,12 @@ extension Protocol_SRL: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementat
     }
 
     static func == (lhs: Protocol_SRL, rhs: Protocol_SRL) -> Bool {
-        if lhs.srAddress != rhs.srAddress { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.srAddress != rhs.srAddress {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

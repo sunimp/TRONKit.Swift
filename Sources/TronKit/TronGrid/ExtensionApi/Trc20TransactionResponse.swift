@@ -1,8 +1,7 @@
 //
 //  Trc20TransactionResponse.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/2.
 //
 
 import Foundation
@@ -13,7 +12,9 @@ import ObjectMapper
 // MARK: - Trc20TransactionResponse
 
 struct Trc20TransactionResponse: ImmutableMappable {
-    let transactionId: Data
+    // MARK: Properties
+
+    let transactionID: Data
     let tokenInfo: TokenInfo
     let blockTimestamp: Int
     let from: Address
@@ -21,8 +22,10 @@ struct Trc20TransactionResponse: ImmutableMappable {
     let type: String
     let value: BigUInt
 
+    // MARK: Lifecycle
+
     public init(map: Map) throws {
-        transactionId = try map.value("transaction_id", using: HexDataTransform())
+        transactionID = try map.value("transaction_id", using: HexDataTransform())
         tokenInfo = try map.value("token_info")
         blockTimestamp = try map.value("block_timestamp")
         from = try map.value("from", using: StringAddressTransform())
@@ -36,10 +39,14 @@ struct Trc20TransactionResponse: ImmutableMappable {
 
 extension Trc20TransactionResponse {
     struct TokenInfo: ImmutableMappable {
+        // MARK: Properties
+
         let symbol: String
         let address: Address
         let decimals: Int
         let name: String
+
+        // MARK: Lifecycle
 
         public init(map: Map) throws {
             symbol = try map.value("symbol")

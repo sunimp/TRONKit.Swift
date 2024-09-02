@@ -1,12 +1,13 @@
 //
 //  Network.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/4/26.
 //
 
 import Foundation
 
 public enum Network: String {
-    case mainNet, shastaTestnet, nileTestnet
+    case mainNet
+    case shastaTestnet
+    case nileTestnet
 }

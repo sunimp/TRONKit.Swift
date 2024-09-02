@@ -1,8 +1,7 @@
 //
 //  Trc20TransactionDecorator.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
@@ -12,8 +11,12 @@ import BigInt
 // MARK: - Trc20TransactionDecorator
 
 class Trc20TransactionDecorator {
+    // MARK: Properties
+
     private let address: Address
     private let factories = ContractMethodFactories()
+
+    // MARK: Lifecycle
 
     init(address: Address) {
         self.address = address
@@ -28,7 +31,8 @@ extension Trc20TransactionDecorator: ITransactionDecorator {
         contract: TriggerSmartContract,
         internalTransactions _: [InternalTransaction],
         events: [Event]
-    ) -> TransactionDecoration? {
+    )
+        -> TransactionDecoration? {
         guard let contractMethod = factories.createMethod(input: contract.data.ww.hexData!) else {
             return nil
         }

@@ -1,8 +1,7 @@
 //
 //  DecorationManager.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
@@ -12,14 +11,20 @@ import BigInt
 // MARK: - DecorationManager
 
 class DecorationManager {
+    // MARK: Properties
+
     private let userAddress: Address
     private let storage: TransactionStorage
     private var transactionDecorators = [ITransactionDecorator]()
+
+    // MARK: Lifecycle
 
     init(userAddress: Address, storage: TransactionStorage) {
         self.userAddress = userAddress
         self.storage = storage
     }
+
+    // MARK: Functions
 
     private func internalTransactionsMap(transactions: [Transaction]) -> [Data: [InternalTransaction]] {
         let internalTransactions: [InternalTransaction]
@@ -34,7 +39,8 @@ class DecorationManager {
         var map = [Data: [InternalTransaction]]()
 
         for internalTransaction in internalTransactions {
-            map[internalTransaction.transactionHash] = (map[internalTransaction.transactionHash] ?? []) + [internalTransaction]
+            map[internalTransaction.transactionHash] = (map[internalTransaction.transactionHash] ?? []) +
+                [internalTransaction]
         }
 
         return map
@@ -65,7 +71,8 @@ class DecorationManager {
         contract: Contract?,
         internalTransactions: [InternalTransaction],
         events: [Event]
-    ) -> TransactionDecoration {
+    )
+        -> TransactionDecoration {
         guard let contract else {
             return UnknownTransactionDecoration(
                 contract: nil,
@@ -81,8 +88,7 @@ class DecorationManager {
                         contract: contract,
                         internalTransactions: internalTransactions,
                         events: events
-                    )
-                {
+                    ) {
                     return decoration
                 }
             }

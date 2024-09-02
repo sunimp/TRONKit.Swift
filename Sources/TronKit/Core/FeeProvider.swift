@@ -1,8 +1,7 @@
 //
 //  FeeProvider.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/26.
 //
 
 import Foundation
@@ -13,23 +12,19 @@ import SwiftProtobuf
 // MARK: - FeeProvider
 
 class FeeProvider {
+    // MARK: Properties
+
     private let tronGridProvider: TronGridProvider
     private let chainParameterManager: ChainParameterManager
+
+    // MARK: Lifecycle
 
     init(tronGridProvider: TronGridProvider, chainParameterManager: ChainParameterManager) {
         self.tronGridProvider = tronGridProvider
         self.chainParameterManager = chainParameterManager
     }
 
-    private func feesForAccountActivation() -> [Fee] {
-        [
-            .bandwidth(
-                points: chainParameterManager.сreateAccountFee / chainParameterManager.transactionFee,
-                price: chainParameterManager.transactionFee
-            ),
-            .accountActivation(amount: chainParameterManager.сreateNewAccountFeeInSystemContract),
-        ]
-    }
+    // MARK: Functions
 
     func isAccountActive(address: Address) async throws -> Bool {
         do {
@@ -42,6 +37,16 @@ class FeeProvider {
 
             return false
         }
+    }
+
+    private func feesForAccountActivation() -> [Fee] {
+        [
+            .bandwidth(
+                points: chainParameterManager.сreateAccountFee / chainParameterManager.transactionFee,
+                price: chainParameterManager.transactionFee
+            ),
+            .accountActivation(amount: chainParameterManager.сreateNewAccountFeeInSystemContract),
+        ]
     }
 }
 

@@ -1,8 +1,7 @@
 //
 //  SupportedContract.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/26.
 //
 
 import Foundation
@@ -43,7 +42,7 @@ extension TriggerSmartContract: SupportedContract {
         message.data = data.ww.hexData!
         message.callValue = Int64(callValue ?? 0)
         message.callTokenValue = Int64(callTokenValue ?? 0)
-        message.tokenID = Int64(tokenId ?? 0)
+        message.tokenID = Int64(tokenID ?? 0)
 
         return message
     }

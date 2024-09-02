@@ -1,6 +1,6 @@
 //
 //  Manager.swift
-//  TronKit-Example
+//  TronKit-Demo
 //
 //  Created by Sun on 2024/8/21.
 //
@@ -32,7 +32,7 @@ class Manager {
         let TronKit = try Kit.instance(
             address: address,
             network: configuration.network,
-            walletId: "walletId",
+            walletID: "walletID",
             apiKey: nil,
             minLogLevel: configuration.minLogLevel
         )
@@ -102,14 +102,14 @@ class Manager {
 
 extension Manager {
     func login(words: [String]) throws {
-        try Kit.clear(exceptFor: ["walletId"])
+        try Kit.clear(exceptFor: ["walletID"])
 
         save(words: words)
         try initKit(words: words)
     }
 
     func watch(address: Address) throws {
-        try Kit.clear(exceptFor: ["walletId"])
+        try Kit.clear(exceptFor: ["walletID"])
 
         save(address: address.base58)
         try initKit(address: address)

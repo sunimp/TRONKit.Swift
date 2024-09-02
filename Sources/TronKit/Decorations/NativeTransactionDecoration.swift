@@ -1,18 +1,23 @@
 //
 //  NativeTransactionDecoration.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
 
 public class NativeTransactionDecoration: TransactionDecoration {
+    // MARK: Properties
+
     public let contract: Contract
+
+    // MARK: Lifecycle
 
     init(contract: Contract) {
         self.contract = contract
     }
+
+    // MARK: Overridden Functions
 
     override public func tags(userAddress: Address) -> [TransactionTag] {
         var tags = [TransactionTag]()

@@ -1,3 +1,9 @@
+//
+//  shield_contract.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,6 +31,8 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_AuthenticationPath
 
 struct Protocol_AuthenticationPath {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -33,12 +41,16 @@ struct Protocol_AuthenticationPath {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_MerklePath
 
 struct Protocol_MerklePath {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -51,12 +63,16 @@ struct Protocol_MerklePath {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_OutputPoint
 
 struct Protocol_OutputPoint {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -67,12 +83,16 @@ struct Protocol_OutputPoint {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_OutputPointInfo
 
 struct Protocol_OutputPointInfo {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -83,12 +103,16 @@ struct Protocol_OutputPointInfo {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_PedersenHash
 
 struct Protocol_PedersenHash {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -97,12 +121,25 @@ struct Protocol_PedersenHash {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_IncrementalMerkleTree
 
 struct Protocol_IncrementalMerkleTree {
+    // MARK: Properties
+
+    var parents: [Protocol_PedersenHash] = []
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    fileprivate var _left: Protocol_PedersenHash?
+    fileprivate var _right: Protocol_PedersenHash?
+
+    // MARK: Computed Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -114,9 +151,6 @@ struct Protocol_IncrementalMerkleTree {
 
     /// Returns true if `left` has been explicitly set.
     var hasLeft: Bool { _left != nil }
-    /// Clears the value of `left`. Subsequent reads from it will return its default value.
-    mutating func clearLeft() { _left = nil }
-
     var right: Protocol_PedersenHash {
         get { _right ?? Protocol_PedersenHash() }
         set { _right = newValue }
@@ -124,22 +158,39 @@ struct Protocol_IncrementalMerkleTree {
 
     /// Returns true if `right` has been explicitly set.
     var hasRight: Bool { _right != nil }
-    /// Clears the value of `right`. Subsequent reads from it will return its default value.
-    mutating func clearRight() { _right = nil }
 
-    var parents: [Protocol_PedersenHash] = []
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Lifecycle
 
     init() { }
 
-    fileprivate var _left: Protocol_PedersenHash?
-    fileprivate var _right: Protocol_PedersenHash?
+    // MARK: Functions
+
+    /// Clears the value of `left`. Subsequent reads from it will return its default value.
+    mutating func clearLeft() { _left = nil }
+
+    /// Clears the value of `right`. Subsequent reads from it will return its default value.
+    mutating func clearRight() { _right = nil }
 }
 
 // MARK: - Protocol_IncrementalMerkleVoucher
 
 struct Protocol_IncrementalMerkleVoucher {
+    // MARK: Properties
+
+    var filled: [Protocol_PedersenHash] = []
+
+    var cursorDepth: Int64 = 0
+
+    var rt: Data = .init()
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    private var _tree: Protocol_IncrementalMerkleTree?
+    private var _cursor: Protocol_IncrementalMerkleTree?
+    private var _outputPoint: Protocol_OutputPoint?
+
+    // MARK: Computed Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -151,11 +202,6 @@ struct Protocol_IncrementalMerkleVoucher {
 
     /// Returns true if `tree` has been explicitly set.
     var hasTree: Bool { _tree != nil }
-    /// Clears the value of `tree`. Subsequent reads from it will return its default value.
-    mutating func clearTree() { _tree = nil }
-
-    var filled: [Protocol_PedersenHash] = []
-
     var cursor: Protocol_IncrementalMerkleTree {
         get { _cursor ?? Protocol_IncrementalMerkleTree() }
         set { _cursor = newValue }
@@ -163,13 +209,6 @@ struct Protocol_IncrementalMerkleVoucher {
 
     /// Returns true if `cursor` has been explicitly set.
     var hasCursor: Bool { _cursor != nil }
-    /// Clears the value of `cursor`. Subsequent reads from it will return its default value.
-    mutating func clearCursor() { _cursor = nil }
-
-    var cursorDepth: Int64 = 0
-
-    var rt: Data = .init()
-
     var outputPoint: Protocol_OutputPoint {
         get { _outputPoint ?? Protocol_OutputPoint() }
         set { _outputPoint = newValue }
@@ -177,21 +216,28 @@ struct Protocol_IncrementalMerkleVoucher {
 
     /// Returns true if `outputPoint` has been explicitly set.
     var hasOutputPoint: Bool { _outputPoint != nil }
-    /// Clears the value of `outputPoint`. Subsequent reads from it will return its default value.
-    mutating func clearOutputPoint() { _outputPoint = nil }
 
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Lifecycle
 
     init() { }
 
-    private var _tree: Protocol_IncrementalMerkleTree?
-    private var _cursor: Protocol_IncrementalMerkleTree?
-    private var _outputPoint: Protocol_OutputPoint?
+    // MARK: Functions
+
+    /// Clears the value of `tree`. Subsequent reads from it will return its default value.
+    mutating func clearTree() { _tree = nil }
+
+    /// Clears the value of `cursor`. Subsequent reads from it will return its default value.
+    mutating func clearCursor() { _cursor = nil }
+
+    /// Clears the value of `outputPoint`. Subsequent reads from it will return its default value.
+    mutating func clearOutputPoint() { _outputPoint = nil }
 }
 
 // MARK: - Protocol_IncrementalMerkleVoucherInfo
 
 struct Protocol_IncrementalMerkleVoucherInfo {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -202,12 +248,16 @@ struct Protocol_IncrementalMerkleVoucherInfo {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_SpendDescription
 
 struct Protocol_SpendDescription {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -229,12 +279,16 @@ struct Protocol_SpendDescription {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_ReceiveDescription
 
 struct Protocol_ReceiveDescription {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -256,12 +310,16 @@ struct Protocol_ReceiveDescription {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_ShieldedTransferContract
 
 struct Protocol_ShieldedTransferContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -284,6 +342,8 @@ struct Protocol_ShieldedTransferContract {
     var toAmount: Int64 = 0
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -309,8 +369,7 @@ private let _protobuf_package = "protocol"
 // MARK: - Protocol_AuthenticationPath + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_AuthenticationPath: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".AuthenticationPath"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "value"),
@@ -336,8 +395,12 @@ extension Protocol_AuthenticationPath: SwiftProtobuf.Message, SwiftProtobuf._Mes
     }
 
     static func == (lhs: Protocol_AuthenticationPath, rhs: Protocol_AuthenticationPath) -> Bool {
-        if lhs.value != rhs.value { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.value != rhs.value {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -345,8 +408,7 @@ extension Protocol_AuthenticationPath: SwiftProtobuf.Message, SwiftProtobuf._Mes
 // MARK: - Protocol_MerklePath + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_MerklePath: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".MerklePath"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "authentication_paths"),
@@ -382,10 +444,18 @@ extension Protocol_MerklePath: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     }
 
     static func == (lhs: Protocol_MerklePath, rhs: Protocol_MerklePath) -> Bool {
-        if lhs.authenticationPaths != rhs.authenticationPaths { return false }
-        if lhs.index != rhs.index { return false }
-        if lhs.rt != rhs.rt { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.authenticationPaths != rhs.authenticationPaths {
+            return false
+        }
+        if lhs.index != rhs.index {
+            return false
+        }
+        if lhs.rt != rhs.rt {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -393,8 +463,7 @@ extension Protocol_MerklePath: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
 // MARK: - Protocol_OutputPoint + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_OutputPoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".OutputPoint"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "hash"),
@@ -425,9 +494,15 @@ extension Protocol_OutputPoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
 
     static func == (lhs: Protocol_OutputPoint, rhs: Protocol_OutputPoint) -> Bool {
-        if lhs.hash != rhs.hash { return false }
-        if lhs.index != rhs.index { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.hash != rhs.hash {
+            return false
+        }
+        if lhs.index != rhs.index {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -435,8 +510,7 @@ extension Protocol_OutputPoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 // MARK: - Protocol_OutputPointInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_OutputPointInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".OutputPointInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "out_points"),
@@ -467,9 +541,15 @@ extension Protocol_OutputPointInfo: SwiftProtobuf.Message, SwiftProtobuf._Messag
     }
 
     static func == (lhs: Protocol_OutputPointInfo, rhs: Protocol_OutputPointInfo) -> Bool {
-        if lhs.outPoints != rhs.outPoints { return false }
-        if lhs.blockNum != rhs.blockNum { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.outPoints != rhs.outPoints {
+            return false
+        }
+        if lhs.blockNum != rhs.blockNum {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -477,8 +557,7 @@ extension Protocol_OutputPointInfo: SwiftProtobuf.Message, SwiftProtobuf._Messag
 // MARK: - Protocol_PedersenHash + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_PedersenHash: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".PedersenHash"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "content"),
@@ -504,8 +583,12 @@ extension Protocol_PedersenHash: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     }
 
     static func == (lhs: Protocol_PedersenHash, rhs: Protocol_PedersenHash) -> Bool {
-        if lhs.content != rhs.content { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.content != rhs.content {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -513,8 +596,7 @@ extension Protocol_PedersenHash: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 // MARK: - Protocol_IncrementalMerkleTree + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_IncrementalMerkleTree: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".IncrementalMerkleTree"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "left"),
@@ -554,10 +636,18 @@ extension Protocol_IncrementalMerkleTree: SwiftProtobuf.Message, SwiftProtobuf._
     }
 
     static func == (lhs: Protocol_IncrementalMerkleTree, rhs: Protocol_IncrementalMerkleTree) -> Bool {
-        if lhs._left != rhs._left { return false }
-        if lhs._right != rhs._right { return false }
-        if lhs.parents != rhs.parents { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._left != rhs._left {
+            return false
+        }
+        if lhs._right != rhs._right {
+            return false
+        }
+        if lhs.parents != rhs.parents {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -565,8 +655,7 @@ extension Protocol_IncrementalMerkleTree: SwiftProtobuf.Message, SwiftProtobuf._
 // MARK: - Protocol_IncrementalMerkleVoucher + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_IncrementalMerkleVoucher: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".IncrementalMerkleVoucher"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "tree"),
@@ -621,13 +710,27 @@ extension Protocol_IncrementalMerkleVoucher: SwiftProtobuf.Message, SwiftProtobu
     }
 
     static func == (lhs: Protocol_IncrementalMerkleVoucher, rhs: Protocol_IncrementalMerkleVoucher) -> Bool {
-        if lhs._tree != rhs._tree { return false }
-        if lhs.filled != rhs.filled { return false }
-        if lhs._cursor != rhs._cursor { return false }
-        if lhs.cursorDepth != rhs.cursorDepth { return false }
-        if lhs.rt != rhs.rt { return false }
-        if lhs._outputPoint != rhs._outputPoint { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._tree != rhs._tree {
+            return false
+        }
+        if lhs.filled != rhs.filled {
+            return false
+        }
+        if lhs._cursor != rhs._cursor {
+            return false
+        }
+        if lhs.cursorDepth != rhs.cursorDepth {
+            return false
+        }
+        if lhs.rt != rhs.rt {
+            return false
+        }
+        if lhs._outputPoint != rhs._outputPoint {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -635,8 +738,7 @@ extension Protocol_IncrementalMerkleVoucher: SwiftProtobuf.Message, SwiftProtobu
 // MARK: - Protocol_IncrementalMerkleVoucherInfo + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_IncrementalMerkleVoucherInfo: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".IncrementalMerkleVoucherInfo"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "vouchers"),
@@ -667,9 +769,15 @@ extension Protocol_IncrementalMerkleVoucherInfo: SwiftProtobuf.Message, SwiftPro
     }
 
     static func == (lhs: Protocol_IncrementalMerkleVoucherInfo, rhs: Protocol_IncrementalMerkleVoucherInfo) -> Bool {
-        if lhs.vouchers != rhs.vouchers { return false }
-        if lhs.paths != rhs.paths { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.vouchers != rhs.vouchers {
+            return false
+        }
+        if lhs.paths != rhs.paths {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -677,8 +785,7 @@ extension Protocol_IncrementalMerkleVoucherInfo: SwiftProtobuf.Message, SwiftPro
 // MARK: - Protocol_SpendDescription + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_SpendDescription: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".SpendDescription"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "value_commitment"),
@@ -729,13 +836,27 @@ extension Protocol_SpendDescription: SwiftProtobuf.Message, SwiftProtobuf._Messa
     }
 
     static func == (lhs: Protocol_SpendDescription, rhs: Protocol_SpendDescription) -> Bool {
-        if lhs.valueCommitment != rhs.valueCommitment { return false }
-        if lhs.anchor != rhs.anchor { return false }
-        if lhs.nullifier != rhs.nullifier { return false }
-        if lhs.rk != rhs.rk { return false }
-        if lhs.zkproof != rhs.zkproof { return false }
-        if lhs.spendAuthoritySignature != rhs.spendAuthoritySignature { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.valueCommitment != rhs.valueCommitment {
+            return false
+        }
+        if lhs.anchor != rhs.anchor {
+            return false
+        }
+        if lhs.nullifier != rhs.nullifier {
+            return false
+        }
+        if lhs.rk != rhs.rk {
+            return false
+        }
+        if lhs.zkproof != rhs.zkproof {
+            return false
+        }
+        if lhs.spendAuthoritySignature != rhs.spendAuthoritySignature {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -743,8 +864,7 @@ extension Protocol_SpendDescription: SwiftProtobuf.Message, SwiftProtobuf._Messa
 // MARK: - Protocol_ReceiveDescription + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_ReceiveDescription: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".ReceiveDescription"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "value_commitment"),
@@ -795,13 +915,27 @@ extension Protocol_ReceiveDescription: SwiftProtobuf.Message, SwiftProtobuf._Mes
     }
 
     static func == (lhs: Protocol_ReceiveDescription, rhs: Protocol_ReceiveDescription) -> Bool {
-        if lhs.valueCommitment != rhs.valueCommitment { return false }
-        if lhs.noteCommitment != rhs.noteCommitment { return false }
-        if lhs.epk != rhs.epk { return false }
-        if lhs.cEnc != rhs.cEnc { return false }
-        if lhs.cOut != rhs.cOut { return false }
-        if lhs.zkproof != rhs.zkproof { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.valueCommitment != rhs.valueCommitment {
+            return false
+        }
+        if lhs.noteCommitment != rhs.noteCommitment {
+            return false
+        }
+        if lhs.epk != rhs.epk {
+            return false
+        }
+        if lhs.cEnc != rhs.cEnc {
+            return false
+        }
+        if lhs.cOut != rhs.cOut {
+            return false
+        }
+        if lhs.zkproof != rhs.zkproof {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -809,8 +943,7 @@ extension Protocol_ReceiveDescription: SwiftProtobuf.Message, SwiftProtobuf._Mes
 // MARK: - Protocol_ShieldedTransferContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_ShieldedTransferContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".ShieldedTransferContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "transparent_from_address"),
@@ -866,14 +999,30 @@ extension Protocol_ShieldedTransferContract: SwiftProtobuf.Message, SwiftProtobu
     }
 
     static func == (lhs: Protocol_ShieldedTransferContract, rhs: Protocol_ShieldedTransferContract) -> Bool {
-        if lhs.transparentFromAddress != rhs.transparentFromAddress { return false }
-        if lhs.fromAmount != rhs.fromAmount { return false }
-        if lhs.spendDescription != rhs.spendDescription { return false }
-        if lhs.receiveDescription != rhs.receiveDescription { return false }
-        if lhs.bindingSignature != rhs.bindingSignature { return false }
-        if lhs.transparentToAddress != rhs.transparentToAddress { return false }
-        if lhs.toAmount != rhs.toAmount { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.transparentFromAddress != rhs.transparentFromAddress {
+            return false
+        }
+        if lhs.fromAmount != rhs.fromAmount {
+            return false
+        }
+        if lhs.spendDescription != rhs.spendDescription {
+            return false
+        }
+        if lhs.receiveDescription != rhs.receiveDescription {
+            return false
+        }
+        if lhs.bindingSignature != rhs.bindingSignature {
+            return false
+        }
+        if lhs.transparentToAddress != rhs.transparentToAddress {
+            return false
+        }
+        if lhs.toAmount != rhs.toAmount {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

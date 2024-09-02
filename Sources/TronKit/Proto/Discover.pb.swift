@@ -1,3 +1,9 @@
+//
+//  Discover.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,6 +31,8 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_Endpoint
 
 struct Protocol_Endpoint {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -37,35 +45,15 @@ struct Protocol_Endpoint {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_PingMessage
 
 struct Protocol_PingMessage {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var from: Protocol_Endpoint {
-        get { _from ?? Protocol_Endpoint() }
-        set { _from = newValue }
-    }
-
-    /// Returns true if `from` has been explicitly set.
-    var hasFrom: Bool { _from != nil }
-    /// Clears the value of `from`. Subsequent reads from it will return its default value.
-    mutating func clearFrom() { _from = nil }
-
-    var to: Protocol_Endpoint {
-        get { _to ?? Protocol_Endpoint() }
-        set { _to = newValue }
-    }
-
-    /// Returns true if `to` has been explicitly set.
-    var hasTo: Bool { _to != nil }
-    /// Clears the value of `to`. Subsequent reads from it will return its default value.
-    mutating func clearTo() { _to = nil }
+    // MARK: Properties
 
     var version: Int32 = 0
 
@@ -73,15 +61,12 @@ struct Protocol_PingMessage {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    init() { }
-
     fileprivate var _from: Protocol_Endpoint?
+
     private var _to: Protocol_Endpoint?
-}
 
-// MARK: - Protocol_PongMessage
+    // MARK: Computed Properties
 
-struct Protocol_PongMessage {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -93,8 +78,31 @@ struct Protocol_PongMessage {
 
     /// Returns true if `from` has been explicitly set.
     var hasFrom: Bool { _from != nil }
+    var to: Protocol_Endpoint {
+        get { _to ?? Protocol_Endpoint() }
+        set { _to = newValue }
+    }
+
+    /// Returns true if `to` has been explicitly set.
+    var hasTo: Bool { _to != nil }
+
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Functions
+
     /// Clears the value of `from`. Subsequent reads from it will return its default value.
     mutating func clearFrom() { _from = nil }
+
+    /// Clears the value of `to`. Subsequent reads from it will return its default value.
+    mutating func clearTo() { _to = nil }
+}
+
+// MARK: - Protocol_PongMessage
+
+struct Protocol_PongMessage {
+    // MARK: Properties
 
     var echo: Int32 = 0
 
@@ -102,14 +110,10 @@ struct Protocol_PongMessage {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    init() { }
-
     fileprivate var _from: Protocol_Endpoint?
-}
 
-// MARK: - Protocol_FindNeighbours
+    // MARK: Computed Properties
 
-struct Protocol_FindNeighbours {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -121,8 +125,21 @@ struct Protocol_FindNeighbours {
 
     /// Returns true if `from` has been explicitly set.
     var hasFrom: Bool { _from != nil }
+
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Functions
+
     /// Clears the value of `from`. Subsequent reads from it will return its default value.
     mutating func clearFrom() { _from = nil }
+}
+
+// MARK: - Protocol_FindNeighbours
+
+struct Protocol_FindNeighbours {
+    // MARK: Properties
 
     var targetID: Data = .init()
 
@@ -130,14 +147,10 @@ struct Protocol_FindNeighbours {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    init() { }
-
     fileprivate var _from: Protocol_Endpoint?
-}
 
-// MARK: - Protocol_Neighbours
+    // MARK: Computed Properties
 
-struct Protocol_Neighbours {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -149,8 +162,21 @@ struct Protocol_Neighbours {
 
     /// Returns true if `from` has been explicitly set.
     var hasFrom: Bool { _from != nil }
+
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Functions
+
     /// Clears the value of `from`. Subsequent reads from it will return its default value.
     mutating func clearFrom() { _from = nil }
+}
+
+// MARK: - Protocol_Neighbours
+
+struct Protocol_Neighbours {
+    // MARK: Properties
 
     var neighbours: [Protocol_Endpoint] = []
 
@@ -158,14 +184,37 @@ struct Protocol_Neighbours {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    fileprivate var _from: Protocol_Endpoint?
+
+    // MARK: Computed Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var from: Protocol_Endpoint {
+        get { _from ?? Protocol_Endpoint() }
+        set { _from = newValue }
+    }
+
+    /// Returns true if `from` has been explicitly set.
+    var hasFrom: Bool { _from != nil }
+
+    // MARK: Lifecycle
+
     init() { }
 
-    fileprivate var _from: Protocol_Endpoint?
+    // MARK: Functions
+
+    /// Clears the value of `from`. Subsequent reads from it will return its default value.
+    mutating func clearFrom() { _from = nil }
 }
 
 // MARK: - Protocol_BackupMessage
 
 struct Protocol_BackupMessage {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -175,6 +224,8 @@ struct Protocol_BackupMessage {
     var priority: Int32 = 0
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -194,7 +245,8 @@ private let _protobuf_package = "protocol"
 
 // MARK: - Protocol_Endpoint + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_Endpoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+extension Protocol_Endpoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Endpoint"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "address"),
@@ -230,10 +282,18 @@ extension Protocol_Endpoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
     }
 
     static func == (lhs: Protocol_Endpoint, rhs: Protocol_Endpoint) -> Bool {
-        if lhs.address != rhs.address { return false }
-        if lhs.port != rhs.port { return false }
-        if lhs.nodeID != rhs.nodeID { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.port != rhs.port {
+            return false
+        }
+        if lhs.nodeID != rhs.nodeID {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -241,8 +301,7 @@ extension Protocol_Endpoint: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 // MARK: - Protocol_PingMessage + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_PingMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".PingMessage"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "from"),
@@ -287,11 +346,21 @@ extension Protocol_PingMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
 
     static func == (lhs: Protocol_PingMessage, rhs: Protocol_PingMessage) -> Bool {
-        if lhs._from != rhs._from { return false }
-        if lhs._to != rhs._to { return false }
-        if lhs.version != rhs.version { return false }
-        if lhs.timestamp != rhs.timestamp { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._from != rhs._from {
+            return false
+        }
+        if lhs._to != rhs._to {
+            return false
+        }
+        if lhs.version != rhs.version {
+            return false
+        }
+        if lhs.timestamp != rhs.timestamp {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -299,8 +368,7 @@ extension Protocol_PingMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 // MARK: - Protocol_PongMessage + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_PongMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".PongMessage"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "from"),
@@ -340,10 +408,18 @@ extension Protocol_PongMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
     }
 
     static func == (lhs: Protocol_PongMessage, rhs: Protocol_PongMessage) -> Bool {
-        if lhs._from != rhs._from { return false }
-        if lhs.echo != rhs.echo { return false }
-        if lhs.timestamp != rhs.timestamp { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._from != rhs._from {
+            return false
+        }
+        if lhs.echo != rhs.echo {
+            return false
+        }
+        if lhs.timestamp != rhs.timestamp {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -351,8 +427,7 @@ extension Protocol_PongMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImp
 // MARK: - Protocol_FindNeighbours + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_FindNeighbours: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".FindNeighbours"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "from"),
@@ -392,10 +467,18 @@ extension Protocol_FindNeighbours: SwiftProtobuf.Message, SwiftProtobuf._Message
     }
 
     static func == (lhs: Protocol_FindNeighbours, rhs: Protocol_FindNeighbours) -> Bool {
-        if lhs._from != rhs._from { return false }
-        if lhs.targetID != rhs.targetID { return false }
-        if lhs.timestamp != rhs.timestamp { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._from != rhs._from {
+            return false
+        }
+        if lhs.targetID != rhs.targetID {
+            return false
+        }
+        if lhs.timestamp != rhs.timestamp {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -403,8 +486,7 @@ extension Protocol_FindNeighbours: SwiftProtobuf.Message, SwiftProtobuf._Message
 // MARK: - Protocol_Neighbours + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_Neighbours: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".Neighbours"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "from"),
@@ -444,10 +526,18 @@ extension Protocol_Neighbours: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
     }
 
     static func == (lhs: Protocol_Neighbours, rhs: Protocol_Neighbours) -> Bool {
-        if lhs._from != rhs._from { return false }
-        if lhs.neighbours != rhs.neighbours { return false }
-        if lhs.timestamp != rhs.timestamp { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._from != rhs._from {
+            return false
+        }
+        if lhs.neighbours != rhs.neighbours {
+            return false
+        }
+        if lhs.timestamp != rhs.timestamp {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -455,8 +545,7 @@ extension Protocol_Neighbours: SwiftProtobuf.Message, SwiftProtobuf._MessageImpl
 // MARK: - Protocol_BackupMessage + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_BackupMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".BackupMessage"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "flag"),
@@ -487,9 +576,15 @@ extension Protocol_BackupMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     }
 
     static func == (lhs: Protocol_BackupMessage, rhs: Protocol_BackupMessage) -> Bool {
-        if lhs.flag != rhs.flag { return false }
-        if lhs.priority != rhs.priority { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.flag != rhs.flag {
+            return false
+        }
+        if lhs.priority != rhs.priority {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

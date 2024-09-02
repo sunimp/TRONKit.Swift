@@ -1,8 +1,7 @@
 //
 //  Trc20DataProvider.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/6/9.
 //
 
 import Foundation
@@ -19,7 +18,8 @@ public enum Trc20DataProvider {
         network: Network,
         apiKey: String?,
         contractAddress: Address
-    ) async throws -> String {
+    ) async throws
+        -> String {
         let data = try await TronKit.Kit.call(
             networkManager: networkManager,
             network: network,
@@ -50,7 +50,8 @@ public enum Trc20DataProvider {
         network: Network,
         apiKey: String?,
         contractAddress: Address
-    ) async throws -> String {
+    ) async throws
+        -> String {
         let data = try await TronKit.Kit.call(
             networkManager: networkManager,
             network: network,
@@ -81,7 +82,8 @@ public enum Trc20DataProvider {
         network: Network,
         apiKey: String?,
         contractAddress: Address
-    ) async throws -> Int {
+    ) async throws
+        -> Int {
         let data = try await TronKit.Kit.call(
             networkManager: networkManager,
             network: network,

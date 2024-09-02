@@ -1,3 +1,9 @@
+//
+//  balance_contract.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,6 +31,8 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_FreezeBalanceContract
 
 struct Protocol_FreezeBalanceContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -41,12 +49,16 @@ struct Protocol_FreezeBalanceContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_UnfreezeBalanceContract
 
 struct Protocol_UnfreezeBalanceContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -59,12 +71,16 @@ struct Protocol_UnfreezeBalanceContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_WithdrawBalanceContract
 
 struct Protocol_WithdrawBalanceContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -73,12 +89,16 @@ struct Protocol_WithdrawBalanceContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_TransferContract
 
 struct Protocol_TransferContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -91,12 +111,38 @@ struct Protocol_TransferContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_TransactionBalanceTrace
 
 struct Protocol_TransactionBalanceTrace {
+    // MARK: Nested Types
+
+    struct Operation {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var operationIdentifier: Int64 = 0
+
+        var address: Data = .init()
+
+        var amount: Int64 = 0
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
+        init() { }
+    }
+
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -111,21 +157,7 @@ struct Protocol_TransactionBalanceTrace {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
-    struct Operation {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        var operationIdentifier: Int64 = 0
-
-        var address: Data = .init()
-
-        var amount: Int64 = 0
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
-    }
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -133,6 +165,39 @@ struct Protocol_TransactionBalanceTrace {
 // MARK: - Protocol_BlockBalanceTrace
 
 struct Protocol_BlockBalanceTrace {
+    // MARK: Nested Types
+
+    struct BlockIdentifier {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var hash: Data = .init()
+
+        var number: Int64 = 0
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
+        init() { }
+    }
+
+    // MARK: Properties
+
+    var timestamp: Int64 = 0
+
+    ///  BlockIdentifier parent_block_identifier = 4;
+    var transactionBalanceTrace: [Protocol_TransactionBalanceTrace] = []
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier?
+
+    // MARK: Computed Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -144,38 +209,22 @@ struct Protocol_BlockBalanceTrace {
 
     /// Returns true if `blockIdentifier` has been explicitly set.
     var hasBlockIdentifier: Bool { _blockIdentifier != nil }
-    /// Clears the value of `blockIdentifier`. Subsequent reads from it will return its default value.
-    mutating func clearBlockIdentifier() { _blockIdentifier = nil }
 
-    var timestamp: Int64 = 0
-
-    ///  BlockIdentifier parent_block_identifier = 4;
-    var transactionBalanceTrace: [Protocol_TransactionBalanceTrace] = []
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    struct BlockIdentifier {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        var hash: Data = .init()
-
-        var number: Int64 = 0
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
-    }
+    // MARK: Lifecycle
 
     init() { }
 
-    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier?
+    // MARK: Functions
+
+    /// Clears the value of `blockIdentifier`. Subsequent reads from it will return its default value.
+    mutating func clearBlockIdentifier() { _blockIdentifier = nil }
 }
 
 // MARK: - Protocol_AccountTrace
 
 struct Protocol_AccountTrace {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -186,12 +235,16 @@ struct Protocol_AccountTrace {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_AccountIdentifier
 
 struct Protocol_AccountIdentifier {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -200,12 +253,24 @@ struct Protocol_AccountIdentifier {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_AccountBalanceRequest
 
 struct Protocol_AccountBalanceRequest {
+    // MARK: Properties
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier?
+
+    private var _accountIdentifier: Protocol_AccountIdentifier?
+
+    // MARK: Computed Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -217,9 +282,6 @@ struct Protocol_AccountBalanceRequest {
 
     /// Returns true if `accountIdentifier` has been explicitly set.
     var hasAccountIdentifier: Bool { _accountIdentifier != nil }
-    /// Clears the value of `accountIdentifier`. Subsequent reads from it will return its default value.
-    mutating func clearAccountIdentifier() { _accountIdentifier = nil }
-
     var blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier {
         get { _blockIdentifier ?? Protocol_BlockBalanceTrace.BlockIdentifier() }
         set { _blockIdentifier = newValue }
@@ -227,26 +289,37 @@ struct Protocol_AccountBalanceRequest {
 
     /// Returns true if `blockIdentifier` has been explicitly set.
     var hasBlockIdentifier: Bool { _blockIdentifier != nil }
-    /// Clears the value of `blockIdentifier`. Subsequent reads from it will return its default value.
-    mutating func clearBlockIdentifier() { _blockIdentifier = nil }
 
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Lifecycle
 
     init() { }
 
-    private var _accountIdentifier: Protocol_AccountIdentifier?
-    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier?
+    // MARK: Functions
+
+    /// Clears the value of `accountIdentifier`. Subsequent reads from it will return its default value.
+    mutating func clearAccountIdentifier() { _accountIdentifier = nil }
+
+    /// Clears the value of `blockIdentifier`. Subsequent reads from it will return its default value.
+    mutating func clearBlockIdentifier() { _blockIdentifier = nil }
 }
 
 // MARK: - Protocol_AccountBalanceResponse
 
 struct Protocol_AccountBalanceResponse {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
     var balance: Int64 = 0
 
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier?
+
+    // MARK: Computed Properties
+
     var blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier {
         get { _blockIdentifier ?? Protocol_BlockBalanceTrace.BlockIdentifier() }
         set { _blockIdentifier = newValue }
@@ -254,19 +327,22 @@ struct Protocol_AccountBalanceResponse {
 
     /// Returns true if `blockIdentifier` has been explicitly set.
     var hasBlockIdentifier: Bool { _blockIdentifier != nil }
-    /// Clears the value of `blockIdentifier`. Subsequent reads from it will return its default value.
-    mutating func clearBlockIdentifier() { _blockIdentifier = nil }
 
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Lifecycle
 
     init() { }
 
-    fileprivate var _blockIdentifier: Protocol_BlockBalanceTrace.BlockIdentifier?
+    // MARK: Functions
+
+    /// Clears the value of `blockIdentifier`. Subsequent reads from it will return its default value.
+    mutating func clearBlockIdentifier() { _blockIdentifier = nil }
 }
 
 // MARK: - Protocol_FreezeBalanceV2Contract
 
 struct Protocol_FreezeBalanceV2Contract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -279,12 +355,16 @@ struct Protocol_FreezeBalanceV2Contract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_UnfreezeBalanceV2Contract
 
 struct Protocol_UnfreezeBalanceV2Contract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -297,12 +377,16 @@ struct Protocol_UnfreezeBalanceV2Contract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_WithdrawExpireUnfreezeContract
 
 struct Protocol_WithdrawExpireUnfreezeContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -311,12 +395,16 @@ struct Protocol_WithdrawExpireUnfreezeContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_DelegateResourceContract
 
 struct Protocol_DelegateResourceContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -333,12 +421,16 @@ struct Protocol_DelegateResourceContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_UnDelegateResourceContract
 
 struct Protocol_UnDelegateResourceContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -352,6 +444,8 @@ struct Protocol_UnDelegateResourceContract {
     var receiverAddress: Data = .init()
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -383,8 +477,7 @@ private let _protobuf_package = "protocol"
 // MARK: - Protocol_FreezeBalanceContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_FreezeBalanceContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".FreezeBalanceContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -430,12 +523,24 @@ extension Protocol_FreezeBalanceContract: SwiftProtobuf.Message, SwiftProtobuf._
     }
 
     static func == (lhs: Protocol_FreezeBalanceContract, rhs: Protocol_FreezeBalanceContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.frozenBalance != rhs.frozenBalance { return false }
-        if lhs.frozenDuration != rhs.frozenDuration { return false }
-        if lhs.resource != rhs.resource { return false }
-        if lhs.receiverAddress != rhs.receiverAddress { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.frozenBalance != rhs.frozenBalance {
+            return false
+        }
+        if lhs.frozenDuration != rhs.frozenDuration {
+            return false
+        }
+        if lhs.resource != rhs.resource {
+            return false
+        }
+        if lhs.receiverAddress != rhs.receiverAddress {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -443,8 +548,7 @@ extension Protocol_FreezeBalanceContract: SwiftProtobuf.Message, SwiftProtobuf._
 // MARK: - Protocol_UnfreezeBalanceContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_UnfreezeBalanceContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".UnfreezeBalanceContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -480,10 +584,18 @@ extension Protocol_UnfreezeBalanceContract: SwiftProtobuf.Message, SwiftProtobuf
     }
 
     static func == (lhs: Protocol_UnfreezeBalanceContract, rhs: Protocol_UnfreezeBalanceContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.resource != rhs.resource { return false }
-        if lhs.receiverAddress != rhs.receiverAddress { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.resource != rhs.resource {
+            return false
+        }
+        if lhs.receiverAddress != rhs.receiverAddress {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -491,8 +603,7 @@ extension Protocol_UnfreezeBalanceContract: SwiftProtobuf.Message, SwiftProtobuf
 // MARK: - Protocol_WithdrawBalanceContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_WithdrawBalanceContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".WithdrawBalanceContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -518,8 +629,12 @@ extension Protocol_WithdrawBalanceContract: SwiftProtobuf.Message, SwiftProtobuf
     }
 
     static func == (lhs: Protocol_WithdrawBalanceContract, rhs: Protocol_WithdrawBalanceContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -527,8 +642,7 @@ extension Protocol_WithdrawBalanceContract: SwiftProtobuf.Message, SwiftProtobuf
 // MARK: - Protocol_TransferContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_TransferContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".TransferContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -564,10 +678,18 @@ extension Protocol_TransferContract: SwiftProtobuf.Message, SwiftProtobuf._Messa
     }
 
     static func == (lhs: Protocol_TransferContract, rhs: Protocol_TransferContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.toAddress != rhs.toAddress { return false }
-        if lhs.amount != rhs.amount { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.toAddress != rhs.toAddress {
+            return false
+        }
+        if lhs.amount != rhs.amount {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -575,8 +697,7 @@ extension Protocol_TransferContract: SwiftProtobuf.Message, SwiftProtobuf._Messa
 // MARK: - Protocol_TransactionBalanceTrace + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_TransactionBalanceTrace: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".TransactionBalanceTrace"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "transaction_identifier"),
@@ -617,11 +738,21 @@ extension Protocol_TransactionBalanceTrace: SwiftProtobuf.Message, SwiftProtobuf
     }
 
     static func == (lhs: Protocol_TransactionBalanceTrace, rhs: Protocol_TransactionBalanceTrace) -> Bool {
-        if lhs.transactionIdentifier != rhs.transactionIdentifier { return false }
-        if lhs.operation != rhs.operation { return false }
-        if lhs.type != rhs.type { return false }
-        if lhs.status != rhs.status { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.transactionIdentifier != rhs.transactionIdentifier {
+            return false
+        }
+        if lhs.operation != rhs.operation {
+            return false
+        }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.status != rhs.status {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -629,8 +760,7 @@ extension Protocol_TransactionBalanceTrace: SwiftProtobuf.Message, SwiftProtobuf
 // MARK: - Protocol_TransactionBalanceTrace.Operation + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_TransactionBalanceTrace.Operation: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_TransactionBalanceTrace.protoMessageName + ".Operation"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "operation_identifier"),
@@ -665,11 +795,23 @@ extension Protocol_TransactionBalanceTrace.Operation: SwiftProtobuf.Message, Swi
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_TransactionBalanceTrace.Operation, rhs: Protocol_TransactionBalanceTrace.Operation) -> Bool {
-        if lhs.operationIdentifier != rhs.operationIdentifier { return false }
-        if lhs.address != rhs.address { return false }
-        if lhs.amount != rhs.amount { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (
+        lhs: Protocol_TransactionBalanceTrace.Operation,
+        rhs: Protocol_TransactionBalanceTrace.Operation
+    )
+        -> Bool {
+        if lhs.operationIdentifier != rhs.operationIdentifier {
+            return false
+        }
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.amount != rhs.amount {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -677,8 +819,7 @@ extension Protocol_TransactionBalanceTrace.Operation: SwiftProtobuf.Message, Swi
 // MARK: - Protocol_BlockBalanceTrace + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_BlockBalanceTrace: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".BlockBalanceTrace"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "block_identifier"),
@@ -718,10 +859,18 @@ extension Protocol_BlockBalanceTrace: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
 
     static func == (lhs: Protocol_BlockBalanceTrace, rhs: Protocol_BlockBalanceTrace) -> Bool {
-        if lhs._blockIdentifier != rhs._blockIdentifier { return false }
-        if lhs.timestamp != rhs.timestamp { return false }
-        if lhs.transactionBalanceTrace != rhs.transactionBalanceTrace { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._blockIdentifier != rhs._blockIdentifier {
+            return false
+        }
+        if lhs.timestamp != rhs.timestamp {
+            return false
+        }
+        if lhs.transactionBalanceTrace != rhs.transactionBalanceTrace {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -729,8 +878,7 @@ extension Protocol_BlockBalanceTrace: SwiftProtobuf.Message, SwiftProtobuf._Mess
 // MARK: - Protocol_BlockBalanceTrace.BlockIdentifier + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_BlockBalanceTrace.BlockIdentifier: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_BlockBalanceTrace.protoMessageName + ".BlockIdentifier"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "hash"),
@@ -760,10 +908,20 @@ extension Protocol_BlockBalanceTrace.BlockIdentifier: SwiftProtobuf.Message, Swi
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_BlockBalanceTrace.BlockIdentifier, rhs: Protocol_BlockBalanceTrace.BlockIdentifier) -> Bool {
-        if lhs.hash != rhs.hash { return false }
-        if lhs.number != rhs.number { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (
+        lhs: Protocol_BlockBalanceTrace.BlockIdentifier,
+        rhs: Protocol_BlockBalanceTrace.BlockIdentifier
+    )
+        -> Bool {
+        if lhs.hash != rhs.hash {
+            return false
+        }
+        if lhs.number != rhs.number {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -771,8 +929,7 @@ extension Protocol_BlockBalanceTrace.BlockIdentifier: SwiftProtobuf.Message, Swi
 // MARK: - Protocol_AccountTrace + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_AccountTrace: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".AccountTrace"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "balance"),
@@ -803,9 +960,15 @@ extension Protocol_AccountTrace: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     }
 
     static func == (lhs: Protocol_AccountTrace, rhs: Protocol_AccountTrace) -> Bool {
-        if lhs.balance != rhs.balance { return false }
-        if lhs.placeholder != rhs.placeholder { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.balance != rhs.balance {
+            return false
+        }
+        if lhs.placeholder != rhs.placeholder {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -813,8 +976,7 @@ extension Protocol_AccountTrace: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
 // MARK: - Protocol_AccountIdentifier + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_AccountIdentifier: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".AccountIdentifier"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "address"),
@@ -840,8 +1002,12 @@ extension Protocol_AccountIdentifier: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
 
     static func == (lhs: Protocol_AccountIdentifier, rhs: Protocol_AccountIdentifier) -> Bool {
-        if lhs.address != rhs.address { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.address != rhs.address {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -849,8 +1015,7 @@ extension Protocol_AccountIdentifier: SwiftProtobuf.Message, SwiftProtobuf._Mess
 // MARK: - Protocol_AccountBalanceRequest + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_AccountBalanceRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".AccountBalanceRequest"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "account_identifier"),
@@ -885,9 +1050,15 @@ extension Protocol_AccountBalanceRequest: SwiftProtobuf.Message, SwiftProtobuf._
     }
 
     static func == (lhs: Protocol_AccountBalanceRequest, rhs: Protocol_AccountBalanceRequest) -> Bool {
-        if lhs._accountIdentifier != rhs._accountIdentifier { return false }
-        if lhs._blockIdentifier != rhs._blockIdentifier { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._accountIdentifier != rhs._accountIdentifier {
+            return false
+        }
+        if lhs._blockIdentifier != rhs._blockIdentifier {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -895,8 +1066,7 @@ extension Protocol_AccountBalanceRequest: SwiftProtobuf.Message, SwiftProtobuf._
 // MARK: - Protocol_AccountBalanceResponse + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_AccountBalanceResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".AccountBalanceResponse"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "balance"),
@@ -931,9 +1101,15 @@ extension Protocol_AccountBalanceResponse: SwiftProtobuf.Message, SwiftProtobuf.
     }
 
     static func == (lhs: Protocol_AccountBalanceResponse, rhs: Protocol_AccountBalanceResponse) -> Bool {
-        if lhs.balance != rhs.balance { return false }
-        if lhs._blockIdentifier != rhs._blockIdentifier { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.balance != rhs.balance {
+            return false
+        }
+        if lhs._blockIdentifier != rhs._blockIdentifier {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -941,8 +1117,7 @@ extension Protocol_AccountBalanceResponse: SwiftProtobuf.Message, SwiftProtobuf.
 // MARK: - Protocol_FreezeBalanceV2Contract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_FreezeBalanceV2Contract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".FreezeBalanceV2Contract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -978,10 +1153,18 @@ extension Protocol_FreezeBalanceV2Contract: SwiftProtobuf.Message, SwiftProtobuf
     }
 
     static func == (lhs: Protocol_FreezeBalanceV2Contract, rhs: Protocol_FreezeBalanceV2Contract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.frozenBalance != rhs.frozenBalance { return false }
-        if lhs.resource != rhs.resource { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.frozenBalance != rhs.frozenBalance {
+            return false
+        }
+        if lhs.resource != rhs.resource {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -989,8 +1172,7 @@ extension Protocol_FreezeBalanceV2Contract: SwiftProtobuf.Message, SwiftProtobuf
 // MARK: - Protocol_UnfreezeBalanceV2Contract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_UnfreezeBalanceV2Contract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".UnfreezeBalanceV2Contract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -1026,10 +1208,18 @@ extension Protocol_UnfreezeBalanceV2Contract: SwiftProtobuf.Message, SwiftProtob
     }
 
     static func == (lhs: Protocol_UnfreezeBalanceV2Contract, rhs: Protocol_UnfreezeBalanceV2Contract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.unfreezeBalance != rhs.unfreezeBalance { return false }
-        if lhs.resource != rhs.resource { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.unfreezeBalance != rhs.unfreezeBalance {
+            return false
+        }
+        if lhs.resource != rhs.resource {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -1037,8 +1227,7 @@ extension Protocol_UnfreezeBalanceV2Contract: SwiftProtobuf.Message, SwiftProtob
 // MARK: - Protocol_WithdrawExpireUnfreezeContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_WithdrawExpireUnfreezeContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".WithdrawExpireUnfreezeContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -1063,9 +1252,17 @@ extension Protocol_WithdrawExpireUnfreezeContract: SwiftProtobuf.Message, SwiftP
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_WithdrawExpireUnfreezeContract, rhs: Protocol_WithdrawExpireUnfreezeContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (
+        lhs: Protocol_WithdrawExpireUnfreezeContract,
+        rhs: Protocol_WithdrawExpireUnfreezeContract
+    )
+        -> Bool {
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -1073,8 +1270,7 @@ extension Protocol_WithdrawExpireUnfreezeContract: SwiftProtobuf.Message, SwiftP
 // MARK: - Protocol_DelegateResourceContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_DelegateResourceContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".DelegateResourceContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -1120,12 +1316,24 @@ extension Protocol_DelegateResourceContract: SwiftProtobuf.Message, SwiftProtobu
     }
 
     static func == (lhs: Protocol_DelegateResourceContract, rhs: Protocol_DelegateResourceContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.resource != rhs.resource { return false }
-        if lhs.balance != rhs.balance { return false }
-        if lhs.receiverAddress != rhs.receiverAddress { return false }
-        if lhs.lock != rhs.lock { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.resource != rhs.resource {
+            return false
+        }
+        if lhs.balance != rhs.balance {
+            return false
+        }
+        if lhs.receiverAddress != rhs.receiverAddress {
+            return false
+        }
+        if lhs.lock != rhs.lock {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -1133,8 +1341,7 @@ extension Protocol_DelegateResourceContract: SwiftProtobuf.Message, SwiftProtobu
 // MARK: - Protocol_UnDelegateResourceContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_UnDelegateResourceContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".UnDelegateResourceContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -1175,11 +1382,21 @@ extension Protocol_UnDelegateResourceContract: SwiftProtobuf.Message, SwiftProto
     }
 
     static func == (lhs: Protocol_UnDelegateResourceContract, rhs: Protocol_UnDelegateResourceContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.resource != rhs.resource { return false }
-        if lhs.balance != rhs.balance { return false }
-        if lhs.receiverAddress != rhs.receiverAddress { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.resource != rhs.resource {
+            return false
+        }
+        if lhs.balance != rhs.balance {
+            return false
+        }
+        if lhs.receiverAddress != rhs.receiverAddress {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

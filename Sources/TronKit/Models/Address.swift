@@ -1,8 +1,7 @@
 //
 //  Address.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/4/26.
 //
 
 import Foundation
@@ -14,8 +13,22 @@ import WWExtensions
 // MARK: - Address
 
 public struct Address {
+    // MARK: Properties
+
     public let raw: Data
     public let base58: String
+
+    // MARK: Computed Properties
+
+    public var hex: String {
+        raw.ww.hex
+    }
+
+    public var nonPrefixed: Data {
+        raw.suffix(from: 1)
+    }
+
+    // MARK: Lifecycle
 
     public init(raw: Data) throws {
         var prefixedRaw = raw
@@ -47,14 +60,6 @@ public struct Address {
         }
 
         try self.init(raw: hex)
-    }
-
-    public var hex: String {
-        raw.ww.hex
-    }
-
-    public var nonPrefixed: Data {
-        raw.suffix(from: 1)
     }
 }
 
@@ -98,7 +103,7 @@ extension Address: DatabaseValueConvertible {
 
     public static func fromDatabaseValue(_ dbValue: DatabaseValue) -> Address? {
         switch dbValue.storage {
-        case .blob(let data):
+        case let .blob(data):
             try! Address(raw: data)
         default:
             nil
@@ -109,7 +114,6 @@ extension Address: DatabaseValueConvertible {
 // MARK: Address.ValidationError
 
 extension Address {
-    
     public enum ValidationError: Error {
         case invalidHex
         case invalidChecksum

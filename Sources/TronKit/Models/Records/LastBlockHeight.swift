@@ -1,8 +1,7 @@
 //
 //  LastBlockHeight.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/2.
 //
 
 import Foundation
@@ -10,22 +9,33 @@ import Foundation
 import GRDB
 
 class LastBlockHeight: Record {
+    // MARK: Nested Types
+
+    enum Columns: String, ColumnExpression {
+        case primaryKey
+        case height
+    }
+
+    // MARK: Static Properties
+
     private static let primaryKey = "primaryKey"
 
-    private let primaryKey: String = LastBlockHeight.primaryKey
-    var height: Int?
-
-    override init() {
-        super.init()
-    }
+    // MARK: Overridden Properties
 
     override class var databaseTableName: String {
         "last_block_height"
     }
 
-    enum Columns: String, ColumnExpression {
-        case primaryKey
-        case height
+    // MARK: Properties
+
+    var height: Int?
+
+    private let primaryKey: String = LastBlockHeight.primaryKey
+
+    // MARK: Lifecycle
+
+    override init() {
+        super.init()
     }
 
     required init(row: Row) throws {
@@ -33,6 +43,8 @@ class LastBlockHeight: Record {
 
         try super.init(row: row)
     }
+
+    // MARK: Overridden Functions
 
     override func encode(to container: inout PersistenceContainer) {
         container[Columns.primaryKey] = primaryKey

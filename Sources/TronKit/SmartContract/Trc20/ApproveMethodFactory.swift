@@ -1,8 +1,18 @@
+//
+//  ApproveMethodFactory.swift
+//
+//  Created by Sun on 2023/5/17.
+//
+
 import BigInt
 import Foundation
 
 class ApproveMethodFactory: IContractMethodFactory {
-    let methodId: Data = ContractMethodHelper.methodId(signature: ApproveMethod.methodSignature)
+    // MARK: Properties
+
+    let methodID: Data = ContractMethodHelper.methodID(signature: ApproveMethod.methodSignature)
+
+    // MARK: Functions
 
     func createMethod(inputArguments: Data) throws -> ContractMethod {
         let spender = try Address(raw: inputArguments[12 ..< 32])

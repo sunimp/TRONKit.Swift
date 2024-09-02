@@ -1,3 +1,9 @@
+//
+//  asset_issue_contract.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,6 +31,34 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_AssetIssueContract
 
 struct Protocol_AssetIssueContract {
+    // MARK: Nested Types
+
+    struct FrozenSupply {
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var frozenAmount: Int64 = 0
+
+        var frozenDays: Int64 = 0
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
+        init() { }
+    }
+
+    // MARK: Properties
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    private var _storage = _StorageClass.defaultInstance
+
+    // MARK: Computed Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -125,35 +159,22 @@ struct Protocol_AssetIssueContract {
         set { _uniqueStorage()._publicLatestFreeNetTime = newValue }
     }
 
-    var unknownFields = SwiftProtobuf.UnknownStorage()
-
-    struct FrozenSupply {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        var frozenAmount: Int64 = 0
-
-        var frozenDays: Int64 = 0
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
-
-        init() { }
-    }
+    // MARK: Lifecycle
 
     init() { }
-
-    private var _storage = _StorageClass.defaultInstance
 }
 
 // MARK: - Protocol_TransferAssetContract
 
 struct Protocol_TransferAssetContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
-    /// this field is token name before the proposal ALLOW_SAME_TOKEN_NAME is active, otherwise it is token id and token is should be in string format.
+    /// this field is token name before the proposal ALLOW_SAME_TOKEN_NAME is active, otherwise it is token id and token
+    /// is should be in string format.
     var assetName: Data = .init()
 
     var ownerAddress: Data = .init()
@@ -164,12 +185,16 @@ struct Protocol_TransferAssetContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_UnfreezeAssetContract
 
 struct Protocol_UnfreezeAssetContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -178,12 +203,16 @@ struct Protocol_UnfreezeAssetContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_UpdateAssetContract
 
 struct Protocol_UpdateAssetContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -200,12 +229,16 @@ struct Protocol_UpdateAssetContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_ParticipateAssetIssueContract
 
 struct Protocol_ParticipateAssetIssueContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -214,13 +247,16 @@ struct Protocol_ParticipateAssetIssueContract {
 
     var toAddress: Data = .init()
 
-    /// this field is token name before the proposal ALLOW_SAME_TOKEN_NAME is active, otherwise it is token id and token is should be in string format.
+    /// this field is token name before the proposal ALLOW_SAME_TOKEN_NAME is active, otherwise it is token id and token
+    /// is should be in string format.
     var assetName: Data = .init()
 
     /// the amount of drops
     var amount: Int64 = 0
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -241,8 +277,7 @@ private let _protobuf_package = "protocol"
 // MARK: - Protocol_AssetIssueContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_AssetIssueContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".AssetIssueContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         41: .same(proto: "id"),
@@ -267,6 +302,12 @@ extension Protocol_AssetIssueContract: SwiftProtobuf.Message, SwiftProtobuf._Mes
     ]
 
     fileprivate class _StorageClass {
+        // MARK: Static Properties
+
+        static let defaultInstance = _StorageClass()
+
+        // MARK: Properties
+
         var _id: String = .init()
         var _ownerAddress: Data = .init()
         var _name: Data = .init()
@@ -287,9 +328,7 @@ extension Protocol_AssetIssueContract: SwiftProtobuf.Message, SwiftProtobuf._Mes
         var _publicFreeAssetNetUsage: Int64 = 0
         var _publicLatestFreeNetTime: Int64 = 0
 
-        static let defaultInstance = _StorageClass()
-
-        private init() { }
+        // MARK: Lifecycle
 
         init(copying source: _StorageClass) {
             _id = source._id
@@ -312,6 +351,8 @@ extension Protocol_AssetIssueContract: SwiftProtobuf.Message, SwiftProtobuf._Mes
             _publicFreeAssetNetUsage = source._publicFreeAssetNetUsage
             _publicLatestFreeNetTime = source._publicLatestFreeNetTime
         }
+
+        private init() { }
     }
 
     fileprivate mutating func _uniqueStorage() -> _StorageClass {
@@ -425,30 +466,72 @@ extension Protocol_AssetIssueContract: SwiftProtobuf.Message, SwiftProtobuf._Mes
             )) { (_args: (_StorageClass, _StorageClass)) in
                 let _storage = _args.0
                 let rhs_storage = _args.1
-                if _storage._id != rhs_storage._id { return false }
-                if _storage._ownerAddress != rhs_storage._ownerAddress { return false }
-                if _storage._name != rhs_storage._name { return false }
-                if _storage._abbr != rhs_storage._abbr { return false }
-                if _storage._totalSupply != rhs_storage._totalSupply { return false }
-                if _storage._frozenSupply != rhs_storage._frozenSupply { return false }
-                if _storage._trxNum != rhs_storage._trxNum { return false }
-                if _storage._precision != rhs_storage._precision { return false }
-                if _storage._num != rhs_storage._num { return false }
-                if _storage._startTime != rhs_storage._startTime { return false }
-                if _storage._endTime != rhs_storage._endTime { return false }
-                if _storage._order != rhs_storage._order { return false }
-                if _storage._voteScore != rhs_storage._voteScore { return false }
-                if _storage._description_p != rhs_storage._description_p { return false }
-                if _storage._url != rhs_storage._url { return false }
-                if _storage._freeAssetNetLimit != rhs_storage._freeAssetNetLimit { return false }
-                if _storage._publicFreeAssetNetLimit != rhs_storage._publicFreeAssetNetLimit { return false }
-                if _storage._publicFreeAssetNetUsage != rhs_storage._publicFreeAssetNetUsage { return false }
-                if _storage._publicLatestFreeNetTime != rhs_storage._publicLatestFreeNetTime { return false }
+                if _storage._id != rhs_storage._id {
+                    return false
+                }
+                if _storage._ownerAddress != rhs_storage._ownerAddress {
+                    return false
+                }
+                if _storage._name != rhs_storage._name {
+                    return false
+                }
+                if _storage._abbr != rhs_storage._abbr {
+                    return false
+                }
+                if _storage._totalSupply != rhs_storage._totalSupply {
+                    return false
+                }
+                if _storage._frozenSupply != rhs_storage._frozenSupply {
+                    return false
+                }
+                if _storage._trxNum != rhs_storage._trxNum {
+                    return false
+                }
+                if _storage._precision != rhs_storage._precision {
+                    return false
+                }
+                if _storage._num != rhs_storage._num {
+                    return false
+                }
+                if _storage._startTime != rhs_storage._startTime {
+                    return false
+                }
+                if _storage._endTime != rhs_storage._endTime {
+                    return false
+                }
+                if _storage._order != rhs_storage._order {
+                    return false
+                }
+                if _storage._voteScore != rhs_storage._voteScore {
+                    return false
+                }
+                if _storage._description_p != rhs_storage._description_p {
+                    return false
+                }
+                if _storage._url != rhs_storage._url {
+                    return false
+                }
+                if _storage._freeAssetNetLimit != rhs_storage._freeAssetNetLimit {
+                    return false
+                }
+                if _storage._publicFreeAssetNetLimit != rhs_storage._publicFreeAssetNetLimit {
+                    return false
+                }
+                if _storage._publicFreeAssetNetUsage != rhs_storage._publicFreeAssetNetUsage {
+                    return false
+                }
+                if _storage._publicLatestFreeNetTime != rhs_storage._publicLatestFreeNetTime {
+                    return false
+                }
                 return true
             }
-            if !storagesAreEqual { return false }
+            if !storagesAreEqual {
+                return false
+            }
         }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -456,8 +539,7 @@ extension Protocol_AssetIssueContract: SwiftProtobuf.Message, SwiftProtobuf._Mes
 // MARK: - Protocol_AssetIssueContract.FrozenSupply + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_AssetIssueContract.FrozenSupply: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_AssetIssueContract.protoMessageName + ".FrozenSupply"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "frozen_amount"),
@@ -487,10 +569,20 @@ extension Protocol_AssetIssueContract.FrozenSupply: SwiftProtobuf.Message, Swift
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_AssetIssueContract.FrozenSupply, rhs: Protocol_AssetIssueContract.FrozenSupply) -> Bool {
-        if lhs.frozenAmount != rhs.frozenAmount { return false }
-        if lhs.frozenDays != rhs.frozenDays { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (
+        lhs: Protocol_AssetIssueContract.FrozenSupply,
+        rhs: Protocol_AssetIssueContract.FrozenSupply
+    )
+        -> Bool {
+        if lhs.frozenAmount != rhs.frozenAmount {
+            return false
+        }
+        if lhs.frozenDays != rhs.frozenDays {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -498,8 +590,7 @@ extension Protocol_AssetIssueContract.FrozenSupply: SwiftProtobuf.Message, Swift
 // MARK: - Protocol_TransferAssetContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_TransferAssetContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".TransferAssetContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "asset_name"),
@@ -540,11 +631,21 @@ extension Protocol_TransferAssetContract: SwiftProtobuf.Message, SwiftProtobuf._
     }
 
     static func == (lhs: Protocol_TransferAssetContract, rhs: Protocol_TransferAssetContract) -> Bool {
-        if lhs.assetName != rhs.assetName { return false }
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.toAddress != rhs.toAddress { return false }
-        if lhs.amount != rhs.amount { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.assetName != rhs.assetName {
+            return false
+        }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.toAddress != rhs.toAddress {
+            return false
+        }
+        if lhs.amount != rhs.amount {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -552,8 +653,7 @@ extension Protocol_TransferAssetContract: SwiftProtobuf.Message, SwiftProtobuf._
 // MARK: - Protocol_UnfreezeAssetContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_UnfreezeAssetContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".UnfreezeAssetContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -579,8 +679,12 @@ extension Protocol_UnfreezeAssetContract: SwiftProtobuf.Message, SwiftProtobuf._
     }
 
     static func == (lhs: Protocol_UnfreezeAssetContract, rhs: Protocol_UnfreezeAssetContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -588,8 +692,7 @@ extension Protocol_UnfreezeAssetContract: SwiftProtobuf.Message, SwiftProtobuf._
 // MARK: - Protocol_UpdateAssetContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_UpdateAssetContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".UpdateAssetContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -635,12 +738,24 @@ extension Protocol_UpdateAssetContract: SwiftProtobuf.Message, SwiftProtobuf._Me
     }
 
     static func == (lhs: Protocol_UpdateAssetContract, rhs: Protocol_UpdateAssetContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.description_p != rhs.description_p { return false }
-        if lhs.url != rhs.url { return false }
-        if lhs.newLimit != rhs.newLimit { return false }
-        if lhs.newPublicLimit != rhs.newPublicLimit { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.description_p != rhs.description_p {
+            return false
+        }
+        if lhs.url != rhs.url {
+            return false
+        }
+        if lhs.newLimit != rhs.newLimit {
+            return false
+        }
+        if lhs.newPublicLimit != rhs.newPublicLimit {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -648,8 +763,7 @@ extension Protocol_UpdateAssetContract: SwiftProtobuf.Message, SwiftProtobuf._Me
 // MARK: - Protocol_ParticipateAssetIssueContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_ParticipateAssetIssueContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".ParticipateAssetIssueContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -690,11 +804,21 @@ extension Protocol_ParticipateAssetIssueContract: SwiftProtobuf.Message, SwiftPr
     }
 
     static func == (lhs: Protocol_ParticipateAssetIssueContract, rhs: Protocol_ParticipateAssetIssueContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.toAddress != rhs.toAddress { return false }
-        if lhs.assetName != rhs.assetName { return false }
-        if lhs.amount != rhs.amount { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.toAddress != rhs.toAddress {
+            return false
+        }
+        if lhs.assetName != rhs.assetName {
+            return false
+        }
+        if lhs.amount != rhs.amount {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

@@ -1,3 +1,9 @@
+//
+//  storage_contract.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,6 +31,8 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_BuyStorageBytesContract
 
 struct Protocol_BuyStorageBytesContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -36,12 +44,16 @@ struct Protocol_BuyStorageBytesContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_BuyStorageContract
 
 struct Protocol_BuyStorageContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -53,12 +65,16 @@ struct Protocol_BuyStorageContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_SellStorageContract
 
 struct Protocol_SellStorageContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -69,12 +85,16 @@ struct Protocol_SellStorageContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_UpdateBrokerageContract
 
 struct Protocol_UpdateBrokerageContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -85,6 +105,8 @@ struct Protocol_UpdateBrokerageContract {
     var brokerage: Int32 = 0
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -103,8 +125,7 @@ private let _protobuf_package = "protocol"
 // MARK: - Protocol_BuyStorageBytesContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_BuyStorageBytesContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".BuyStorageBytesContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -135,9 +156,15 @@ extension Protocol_BuyStorageBytesContract: SwiftProtobuf.Message, SwiftProtobuf
     }
 
     static func == (lhs: Protocol_BuyStorageBytesContract, rhs: Protocol_BuyStorageBytesContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.bytes != rhs.bytes { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.bytes != rhs.bytes {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -145,8 +172,7 @@ extension Protocol_BuyStorageBytesContract: SwiftProtobuf.Message, SwiftProtobuf
 // MARK: - Protocol_BuyStorageContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_BuyStorageContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".BuyStorageContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -177,9 +203,15 @@ extension Protocol_BuyStorageContract: SwiftProtobuf.Message, SwiftProtobuf._Mes
     }
 
     static func == (lhs: Protocol_BuyStorageContract, rhs: Protocol_BuyStorageContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.quant != rhs.quant { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.quant != rhs.quant {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -187,8 +219,7 @@ extension Protocol_BuyStorageContract: SwiftProtobuf.Message, SwiftProtobuf._Mes
 // MARK: - Protocol_SellStorageContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_SellStorageContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".SellStorageContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -219,9 +250,15 @@ extension Protocol_SellStorageContract: SwiftProtobuf.Message, SwiftProtobuf._Me
     }
 
     static func == (lhs: Protocol_SellStorageContract, rhs: Protocol_SellStorageContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.storageBytes != rhs.storageBytes { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.storageBytes != rhs.storageBytes {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -229,8 +266,7 @@ extension Protocol_SellStorageContract: SwiftProtobuf.Message, SwiftProtobuf._Me
 // MARK: - Protocol_UpdateBrokerageContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_UpdateBrokerageContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".UpdateBrokerageContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -261,9 +297,15 @@ extension Protocol_UpdateBrokerageContract: SwiftProtobuf.Message, SwiftProtobuf
     }
 
     static func == (lhs: Protocol_UpdateBrokerageContract, rhs: Protocol_UpdateBrokerageContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.brokerage != rhs.brokerage { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.brokerage != rhs.brokerage {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

@@ -1,8 +1,7 @@
 //
 //  Kit.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/4/26.
 //
 
 import Combine
@@ -16,21 +15,25 @@ import WWToolKit
 // MARK: - Kit
 
 public class Kit {
+    // MARK: Properties
+
+    public let address: Address
+    public let network: Network
+    public let uniqueID: String
+    public let logger: Logger
+
     private let syncer: Syncer
     private let accountInfoManager: AccountInfoManager
     private let transactionManager: TransactionManager
     private let transactionSender: TransactionSender
     private let feeProvider: FeeProvider
 
-    public let address: Address
-    public let network: Network
-    public let uniqueId: String
-    public let logger: Logger
+    // MARK: Lifecycle
 
     init(
         address: Address,
         network: Network,
-        uniqueId: String,
+        uniqueID: String,
         syncer: Syncer,
         accountInfoManager: AccountInfoManager,
         transactionManager: TransactionManager,
@@ -40,7 +43,7 @@ public class Kit {
     ) {
         self.address = address
         self.network = network
-        self.uniqueId = uniqueId
+        self.uniqueID = uniqueID
         self.accountInfoManager = accountInfoManager
         self.transactionManager = transactionManager
         self.transactionSender = transactionSender
@@ -53,7 +56,6 @@ public class Kit {
 // Public API Extension
 
 extension Kit {
-    
     public var lastBlockHeight: Int? {
         syncer.lastBlockHeight
     }
@@ -102,7 +104,12 @@ extension Kit {
         transactionManager.fullTransactionsPublisher(tagQueries: tagQueries)
     }
 
-    public func transactions(tagQueries: [TransactionTagQuery], fromHash: Data? = nil, limit: Int? = nil) -> [FullTransaction] {
+    public func transactions(
+        tagQueries: [TransactionTagQuery],
+        fromHash: Data? = nil,
+        limit: Int? = nil
+    )
+        -> [FullTransaction] {
         transactionManager.fullTransactions(tagQueries: tagQueries, fromHash: fromHash, limit: limit)
     }
 
@@ -122,10 +129,11 @@ extension Kit {
         contractAddress: Address,
         toAddress: Address,
         amount: BigUInt
-    ) -> TriggerSmartContract {
+    )
+        -> TriggerSmartContract {
         let transferMethod = TransferMethod(to: toAddress, value: amount)
         let data = transferMethod.encodedABI().ww.hex
-        let parameter = ContractMethodHelper.encodedABI(methodId: Data(), arguments: transferMethod.arguments).ww.hex
+        let parameter = ContractMethodHelper.encodedABI(methodID: Data(), arguments: transferMethod.arguments).ww.hex
 
         return TriggerSmartContract(
             data: data,
@@ -133,7 +141,7 @@ extension Kit {
             contractAddress: contractAddress,
             callValue: nil,
             callTokenValue: nil,
-            tokenId: nil,
+            tokenID: nil,
             functionSelector: TransferMethod.methodSignature,
             parameter: parameter
         )
@@ -144,7 +152,11 @@ extension Kit {
     }
 
     public func send(contract: Contract, signer: Signer, feeLimit: Int? = 0) async throws {
-        let newTransaction = try await transactionSender.sendTransaction(contract: contract, signer: signer, feeLimit: feeLimit)
+        let newTransaction = try await transactionSender.sendTransaction(
+            contract: contract,
+            signer: signer,
+            feeLimit: feeLimit
+        )
         transactionManager.handle(newTransaction: newTransaction)
     }
 
@@ -170,12 +182,11 @@ extension Kit {
 }
 
 extension Kit {
-    
     public static func clear(exceptFor excludedFiles: [String]) throws {
         let fileManager = FileManager.default
-        let fileUrls = try fileManager.contentsOfDirectory(at: dataDirectoryUrl(), includingPropertiesForKeys: nil)
+        let fileURLs = try fileManager.contentsOfDirectory(at: dataDirectoryURL(), includingPropertiesForKeys: nil)
 
-        for filename in fileUrls {
+        for filename in fileURLs {
             if !excludedFiles.contains(where: { filename.lastPathComponent.contains($0) }) {
                 try fileManager.removeItem(at: filename)
             }
@@ -185,27 +196,28 @@ extension Kit {
     public static func instance(
         address: Address,
         network: Network,
-        walletId: String,
+        walletID: String,
         apiKey: String?,
         minLogLevel: Logger.Level = .error
-    ) throws -> Kit {
+    ) throws
+        -> Kit {
         let logger = Logger(minLogLevel: minLogLevel)
-        let uniqueId = "\(walletId)-\(network.rawValue)"
+        let uniqueID = "\(walletID)-\(network.rawValue)"
 
         let networkManager = NetworkManager(logger: logger)
         let reachabilityManager = ReachabilityManager()
-        let databaseDirectoryUrl = try dataDirectoryUrl()
+        let databaseDirectoryURL = try dataDirectoryURL()
         let syncerStorage = SyncerStorage(
-            databaseDirectoryUrl: databaseDirectoryUrl,
-            databaseFileName: "syncer-state-storage-\(uniqueId)"
+            databaseDirectoryURL: databaseDirectoryURL,
+            databaseFileName: "syncer-state-storage-\(uniqueID)"
         )
         let accountInfoStorage = AccountInfoStorage(
-            databaseDirectoryUrl: databaseDirectoryUrl,
-            databaseFileName: "account-info-storage-\(uniqueId)"
+            databaseDirectoryURL: databaseDirectoryURL,
+            databaseFileName: "account-info-storage-\(uniqueID)"
         )
         let transactionStorage = TransactionStorage(
-            databaseDirectoryUrl: databaseDirectoryUrl,
-            databaseFileName: "transactions-storage-\(uniqueId)"
+            databaseDirectoryURL: databaseDirectoryURL,
+            databaseFileName: "transactions-storage-\(uniqueID)"
         )
 
         let accountInfoManager = AccountInfoManager(storage: accountInfoStorage)
@@ -218,7 +230,7 @@ extension Kit {
 
         let tronGridProvider = TronGridProvider(
             networkManager: networkManager,
-            baseUrl: providerUrl(network: network),
+            baseURL: providerURL(network: network),
             apiKey: apiKey
         )
         let chainParameterManager = ChainParameterManager(tronGridProvider: tronGridProvider, storage: syncerStorage)
@@ -237,7 +249,7 @@ extension Kit {
         let transactionSender = TransactionSender(tronGridProvider: tronGridProvider)
 
         let kit = Kit(
-            address: address, network: network, uniqueId: uniqueId,
+            address: address, network: network, uniqueID: uniqueID,
             syncer: syncer,
             accountInfoManager: accountInfoManager,
             transactionManager: transactionManager,
@@ -257,10 +269,11 @@ extension Kit {
         contractAddress: Address,
         data: Data,
         apiKey: String?
-    ) async throws -> Data {
+    ) async throws
+        -> Data {
         let tronGridProvider = TronGridProvider(
             networkManager: networkManager,
-            baseUrl: providerUrl(network: network),
+            baseURL: providerURL(network: network),
             apiKey: apiKey
         )
         let rpc = CallJsonRpc(contractAddress: contractAddress, data: data)
@@ -268,7 +281,7 @@ extension Kit {
         return try await tronGridProvider.fetch(rpc: rpc)
     }
 
-    private static func dataDirectoryUrl() throws -> URL {
+    private static func dataDirectoryURL() throws -> URL {
         let fileManager = FileManager.default
 
         let url = try fileManager
@@ -280,7 +293,7 @@ extension Kit {
         return url
     }
 
-    private static func providerUrl(network: Network) -> String {
+    private static func providerURL(network: Network) -> String {
         switch network {
         case .mainNet: "https://api.trongrid.io/"
         case .nileTestnet: "https://nile.trongrid.io/"

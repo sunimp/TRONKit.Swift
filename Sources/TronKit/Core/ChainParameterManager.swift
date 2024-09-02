@@ -1,8 +1,7 @@
 //
 //  ChainParameterManager.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/26.
 //
 
 import Foundation
@@ -10,8 +9,12 @@ import Foundation
 // MARK: - ChainParameterManager
 
 class ChainParameterManager {
+    // MARK: Properties
+
     private let tronGridProvider: TronGridProvider
     private let storage: SyncerStorage
+
+    // MARK: Lifecycle
 
     init(tronGridProvider: TronGridProvider, storage: SyncerStorage) {
         self.tronGridProvider = tronGridProvider
@@ -21,11 +24,11 @@ class ChainParameterManager {
 
 extension ChainParameterManager {
     var сreateNewAccountFeeInSystemContract: Int {
-        storage.chainParameter(key: "getCreateNewAccountFeeInSystemContract") ?? 1_000_000
+        storage.chainParameter(key: "getCreateNewAccountFeeInSystemContract") ?? 1000000
     }
 
     var сreateAccountFee: Int {
-        storage.chainParameter(key: "getCreateAccountFee") ?? 100_000
+        storage.chainParameter(key: "getCreateAccountFee") ?? 100000
     }
 
     var transactionFee: Int {

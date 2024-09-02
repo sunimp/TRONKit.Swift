@@ -1,14 +1,17 @@
 //
 //  TransactionDecoration.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
 
 open class TransactionDecoration {
+    // MARK: Lifecycle
+
     public init() { }
+
+    // MARK: Functions
 
     open func tags(userAddress _: Address) -> [TransactionTag] {
         []

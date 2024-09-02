@@ -1,3 +1,9 @@
+//
+//  smart_contract.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,52 +31,129 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_SmartContract
 
 struct Protocol_SmartContract {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
-
-    var originAddress: Data = .init()
-
-    var contractAddress: Data = .init()
-
-    var abi: Protocol_SmartContract.ABI {
-        get { _abi ?? Protocol_SmartContract.ABI() }
-        set { _abi = newValue }
-    }
-
-    /// Returns true if `abi` has been explicitly set.
-    var hasAbi: Bool { _abi != nil }
-    /// Clears the value of `abi`. Subsequent reads from it will return its default value.
-    mutating func clearAbi() { _abi = nil }
-
-    var bytecode: Data = .init()
-
-    var callValue: Int64 = 0
-
-    var consumeUserResourcePercent: Int64 = 0
-
-    var name: String = .init()
-
-    var originEnergyLimit: Int64 = 0
-
-    var codeHash: Data = .init()
-
-    var trxHash: Data = .init()
-
-    var version: Int32 = 0
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Nested Types
 
     struct ABI {
-        // SwiftProtobuf.Message conformance is added in an extension below. See the
-        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-        // methods supported on all messages.
-
-        var entrys: [Protocol_SmartContract.ABI.Entry] = []
-
-        var unknownFields = SwiftProtobuf.UnknownStorage()
+        // MARK: Nested Types
 
         struct Entry {
+            // MARK: Nested Types
+
+            enum EntryType: SwiftProtobuf.Enum {
+                case unknownEntryType // = 0
+                case constructor // = 1
+                case function // = 2
+                case event // = 3
+                case fallback // = 4
+                case receive // = 5
+                case error // = 6
+                case UNRECOGNIZED(Int)
+
+                // MARK: Nested Types
+
+                typealias RawValue = Int
+
+                // MARK: Computed Properties
+
+                var rawValue: Int {
+                    switch self {
+                    case .unknownEntryType: 0
+                    case .constructor: 1
+                    case .function: 2
+                    case .event: 3
+                    case .fallback: 4
+                    case .receive: 5
+                    case .error: 6
+                    case let .UNRECOGNIZED(i): i
+                    }
+                }
+
+                // MARK: Lifecycle
+
+                init() {
+                    self = .unknownEntryType
+                }
+
+                init?(rawValue: Int) {
+                    switch rawValue {
+                    case 0: self = .unknownEntryType
+                    case 1: self = .constructor
+                    case 2: self = .function
+                    case 3: self = .event
+                    case 4: self = .fallback
+                    case 5: self = .receive
+                    case 6: self = .error
+                    default: self = .UNRECOGNIZED(rawValue)
+                    }
+                }
+            }
+
+            enum StateMutabilityType: SwiftProtobuf.Enum {
+                case unknownMutabilityType // = 0
+                case pure // = 1
+                case view // = 2
+                case nonpayable // = 3
+                case payable // = 4
+                case UNRECOGNIZED(Int)
+
+                // MARK: Nested Types
+
+                typealias RawValue = Int
+
+                // MARK: Computed Properties
+
+                var rawValue: Int {
+                    switch self {
+                    case .unknownMutabilityType: 0
+                    case .pure: 1
+                    case .view: 2
+                    case .nonpayable: 3
+                    case .payable: 4
+                    case let .UNRECOGNIZED(i): i
+                    }
+                }
+
+                // MARK: Lifecycle
+
+                init() {
+                    self = .unknownMutabilityType
+                }
+
+                init?(rawValue: Int) {
+                    switch rawValue {
+                    case 0: self = .unknownMutabilityType
+                    case 1: self = .pure
+                    case 2: self = .view
+                    case 3: self = .nonpayable
+                    case 4: self = .payable
+                    default: self = .UNRECOGNIZED(rawValue)
+                    }
+                }
+            }
+
+            struct Param {
+                // MARK: Properties
+
+                // SwiftProtobuf.Message conformance is added in an extension below. See the
+                // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+                // methods supported on all messages.
+
+                var indexed = false
+
+                var name: String = .init()
+
+                /// SolidityType type = 3;
+                var type: String = .init()
+
+                var unknownFields = SwiftProtobuf.UnknownStorage()
+
+                // MARK: Lifecycle
+
+                init() { }
+            }
+
+            // MARK: Properties
+
             // SwiftProtobuf.Message conformance is added in an extension below. See the
             // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
             // methods supported on all messages.
@@ -93,110 +176,74 @@ struct Protocol_SmartContract {
 
             var unknownFields = SwiftProtobuf.UnknownStorage()
 
-            enum EntryType: SwiftProtobuf.Enum {
-                typealias RawValue = Int
-                case unknownEntryType // = 0
-                case constructor // = 1
-                case function // = 2
-                case event // = 3
-                case fallback // = 4
-                case receive // = 5
-                case error // = 6
-                case UNRECOGNIZED(Int)
-
-                init() {
-                    self = .unknownEntryType
-                }
-
-                init?(rawValue: Int) {
-                    switch rawValue {
-                    case 0: self = .unknownEntryType
-                    case 1: self = .constructor
-                    case 2: self = .function
-                    case 3: self = .event
-                    case 4: self = .fallback
-                    case 5: self = .receive
-                    case 6: self = .error
-                    default: self = .UNRECOGNIZED(rawValue)
-                    }
-                }
-
-                var rawValue: Int {
-                    switch self {
-                    case .unknownEntryType: 0
-                    case .constructor: 1
-                    case .function: 2
-                    case .event: 3
-                    case .fallback: 4
-                    case .receive: 5
-                    case .error: 6
-                    case .UNRECOGNIZED(let i): i
-                    }
-                }
-            }
-
-            enum StateMutabilityType: SwiftProtobuf.Enum {
-                typealias RawValue = Int
-                case unknownMutabilityType // = 0
-                case pure // = 1
-                case view // = 2
-                case nonpayable // = 3
-                case payable // = 4
-                case UNRECOGNIZED(Int)
-
-                init() {
-                    self = .unknownMutabilityType
-                }
-
-                init?(rawValue: Int) {
-                    switch rawValue {
-                    case 0: self = .unknownMutabilityType
-                    case 1: self = .pure
-                    case 2: self = .view
-                    case 3: self = .nonpayable
-                    case 4: self = .payable
-                    default: self = .UNRECOGNIZED(rawValue)
-                    }
-                }
-
-                var rawValue: Int {
-                    switch self {
-                    case .unknownMutabilityType: 0
-                    case .pure: 1
-                    case .view: 2
-                    case .nonpayable: 3
-                    case .payable: 4
-                    case .UNRECOGNIZED(let i): i
-                    }
-                }
-            }
-
-            struct Param {
-                // SwiftProtobuf.Message conformance is added in an extension below. See the
-                // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-                // methods supported on all messages.
-
-                var indexed = false
-
-                var name: String = .init()
-
-                /// SolidityType type = 3;
-                var type: String = .init()
-
-                var unknownFields = SwiftProtobuf.UnknownStorage()
-
-                init() { }
-            }
+            // MARK: Lifecycle
 
             init() { }
         }
 
+        // MARK: Properties
+
+        // SwiftProtobuf.Message conformance is added in an extension below. See the
+        // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+        // methods supported on all messages.
+
+        var entrys: [Protocol_SmartContract.ABI.Entry] = []
+
+        var unknownFields = SwiftProtobuf.UnknownStorage()
+
+        // MARK: Lifecycle
+
         init() { }
     }
 
-    init() { }
+    // MARK: Properties
+
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var originAddress: Data = .init()
+
+    var contractAddress: Data = .init()
+
+    var bytecode: Data = .init()
+
+    var callValue: Int64 = 0
+
+    var consumeUserResourcePercent: Int64 = 0
+
+    var name: String = .init()
+
+    var originEnergyLimit: Int64 = 0
+
+    var codeHash: Data = .init()
+
+    var trxHash: Data = .init()
+
+    var version: Int32 = 0
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
 
     fileprivate var _abi: Protocol_SmartContract.ABI?
+
+    // MARK: Computed Properties
+
+    var abi: Protocol_SmartContract.ABI {
+        get { _abi ?? Protocol_SmartContract.ABI() }
+        set { _abi = newValue }
+    }
+
+    /// Returns true if `abi` has been explicitly set.
+    var hasAbi: Bool { _abi != nil }
+
+    // MARK: Lifecycle
+
+    init() { }
+
+    // MARK: Functions
+
+    /// Clears the value of `abi`. Subsequent reads from it will return its default value.
+    mutating func clearAbi() { _abi = nil }
 }
 
 #if swift(>=4.2)
@@ -230,6 +277,8 @@ extension Protocol_SmartContract.ABI.Entry.StateMutabilityType: CaseIterable {
 // MARK: - Protocol_ContractState
 
 struct Protocol_ContractState {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -242,17 +291,31 @@ struct Protocol_ContractState {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_CreateSmartContract
 
 struct Protocol_CreateSmartContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
     var ownerAddress: Data = .init()
+
+    var callTokenValue: Int64 = 0
+
+    var tokenID: Int64 = 0
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    private var _newContract: Protocol_SmartContract?
+
+    // MARK: Computed Properties
 
     var newContract: Protocol_SmartContract {
         get { _newContract ?? Protocol_SmartContract() }
@@ -261,23 +324,22 @@ struct Protocol_CreateSmartContract {
 
     /// Returns true if `newContract` has been explicitly set.
     var hasNewContract: Bool { _newContract != nil }
-    /// Clears the value of `newContract`. Subsequent reads from it will return its default value.
-    mutating func clearNewContract() { _newContract = nil }
 
-    var callTokenValue: Int64 = 0
-
-    var tokenID: Int64 = 0
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Lifecycle
 
     init() { }
 
-    private var _newContract: Protocol_SmartContract?
+    // MARK: Functions
+
+    /// Clears the value of `newContract`. Subsequent reads from it will return its default value.
+    mutating func clearNewContract() { _newContract = nil }
 }
 
 // MARK: - Protocol_TriggerSmartContract
 
 struct Protocol_TriggerSmartContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -296,12 +358,16 @@ struct Protocol_TriggerSmartContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_ClearABIContract
 
 struct Protocol_ClearABIContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -312,12 +378,16 @@ struct Protocol_ClearABIContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_UpdateSettingContract
 
 struct Protocol_UpdateSettingContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -330,12 +400,16 @@ struct Protocol_UpdateSettingContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_UpdateEnergyLimitContract
 
 struct Protocol_UpdateEnergyLimitContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -348,12 +422,25 @@ struct Protocol_UpdateEnergyLimitContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_SmartContractDataWrapper
 
 struct Protocol_SmartContractDataWrapper {
+    // MARK: Properties
+
+    var runtimecode: Data = .init()
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    private var _smartContract: Protocol_SmartContract?
+    private var _contractState: Protocol_ContractState?
+
+    // MARK: Computed Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -365,11 +452,6 @@ struct Protocol_SmartContractDataWrapper {
 
     /// Returns true if `smartContract` has been explicitly set.
     var hasSmartContract: Bool { _smartContract != nil }
-    /// Clears the value of `smartContract`. Subsequent reads from it will return its default value.
-    mutating func clearSmartContract() { _smartContract = nil }
-
-    var runtimecode: Data = .init()
-
     var contractState: Protocol_ContractState {
         get { _contractState ?? Protocol_ContractState() }
         set { _contractState = newValue }
@@ -377,15 +459,18 @@ struct Protocol_SmartContractDataWrapper {
 
     /// Returns true if `contractState` has been explicitly set.
     var hasContractState: Bool { _contractState != nil }
-    /// Clears the value of `contractState`. Subsequent reads from it will return its default value.
-    mutating func clearContractState() { _contractState = nil }
 
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Lifecycle
 
     init() { }
 
-    private var _smartContract: Protocol_SmartContract?
-    private var _contractState: Protocol_ContractState?
+    // MARK: Functions
+
+    /// Clears the value of `smartContract`. Subsequent reads from it will return its default value.
+    mutating func clearSmartContract() { _smartContract = nil }
+
+    /// Clears the value of `contractState`. Subsequent reads from it will return its default value.
+    mutating func clearContractState() { _contractState = nil }
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
@@ -411,8 +496,7 @@ private let _protobuf_package = "protocol"
 // MARK: - Protocol_SmartContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_SmartContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".SmartContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "origin_address"),
@@ -492,18 +576,42 @@ extension Protocol_SmartContract: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     }
 
     static func == (lhs: Protocol_SmartContract, rhs: Protocol_SmartContract) -> Bool {
-        if lhs.originAddress != rhs.originAddress { return false }
-        if lhs.contractAddress != rhs.contractAddress { return false }
-        if lhs._abi != rhs._abi { return false }
-        if lhs.bytecode != rhs.bytecode { return false }
-        if lhs.callValue != rhs.callValue { return false }
-        if lhs.consumeUserResourcePercent != rhs.consumeUserResourcePercent { return false }
-        if lhs.name != rhs.name { return false }
-        if lhs.originEnergyLimit != rhs.originEnergyLimit { return false }
-        if lhs.codeHash != rhs.codeHash { return false }
-        if lhs.trxHash != rhs.trxHash { return false }
-        if lhs.version != rhs.version { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.originAddress != rhs.originAddress {
+            return false
+        }
+        if lhs.contractAddress != rhs.contractAddress {
+            return false
+        }
+        if lhs._abi != rhs._abi {
+            return false
+        }
+        if lhs.bytecode != rhs.bytecode {
+            return false
+        }
+        if lhs.callValue != rhs.callValue {
+            return false
+        }
+        if lhs.consumeUserResourcePercent != rhs.consumeUserResourcePercent {
+            return false
+        }
+        if lhs.name != rhs.name {
+            return false
+        }
+        if lhs.originEnergyLimit != rhs.originEnergyLimit {
+            return false
+        }
+        if lhs.codeHash != rhs.codeHash {
+            return false
+        }
+        if lhs.trxHash != rhs.trxHash {
+            return false
+        }
+        if lhs.version != rhs.version {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -511,8 +619,7 @@ extension Protocol_SmartContract: SwiftProtobuf.Message, SwiftProtobuf._MessageI
 // MARK: - Protocol_SmartContract.ABI + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_SmartContract.ABI: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_SmartContract.protoMessageName + ".ABI"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "entrys"),
@@ -538,8 +645,12 @@ extension Protocol_SmartContract.ABI: SwiftProtobuf.Message, SwiftProtobuf._Mess
     }
 
     static func == (lhs: Protocol_SmartContract.ABI, rhs: Protocol_SmartContract.ABI) -> Bool {
-        if lhs.entrys != rhs.entrys { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.entrys != rhs.entrys {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -547,8 +658,7 @@ extension Protocol_SmartContract.ABI: SwiftProtobuf.Message, SwiftProtobuf._Mess
 // MARK: - Protocol_SmartContract.ABI.Entry + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_SmartContract.ABI.Entry: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_SmartContract.ABI.protoMessageName + ".Entry"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "anonymous"),
@@ -609,15 +719,33 @@ extension Protocol_SmartContract.ABI.Entry: SwiftProtobuf.Message, SwiftProtobuf
     }
 
     static func == (lhs: Protocol_SmartContract.ABI.Entry, rhs: Protocol_SmartContract.ABI.Entry) -> Bool {
-        if lhs.anonymous != rhs.anonymous { return false }
-        if lhs.constant != rhs.constant { return false }
-        if lhs.name != rhs.name { return false }
-        if lhs.inputs != rhs.inputs { return false }
-        if lhs.outputs != rhs.outputs { return false }
-        if lhs.type != rhs.type { return false }
-        if lhs.payable != rhs.payable { return false }
-        if lhs.stateMutability != rhs.stateMutability { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.anonymous != rhs.anonymous {
+            return false
+        }
+        if lhs.constant != rhs.constant {
+            return false
+        }
+        if lhs.name != rhs.name {
+            return false
+        }
+        if lhs.inputs != rhs.inputs {
+            return false
+        }
+        if lhs.outputs != rhs.outputs {
+            return false
+        }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.payable != rhs.payable {
+            return false
+        }
+        if lhs.stateMutability != rhs.stateMutability {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -651,8 +779,7 @@ extension Protocol_SmartContract.ABI.Entry.StateMutabilityType: SwiftProtobuf._P
 // MARK: - Protocol_SmartContract.ABI.Entry.Param + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_SmartContract.ABI.Entry.Param: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = Protocol_SmartContract.ABI.Entry.protoMessageName + ".Param"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "indexed"),
@@ -688,10 +815,18 @@ extension Protocol_SmartContract.ABI.Entry.Param: SwiftProtobuf.Message, SwiftPr
     }
 
     static func == (lhs: Protocol_SmartContract.ABI.Entry.Param, rhs: Protocol_SmartContract.ABI.Entry.Param) -> Bool {
-        if lhs.indexed != rhs.indexed { return false }
-        if lhs.name != rhs.name { return false }
-        if lhs.type != rhs.type { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.indexed != rhs.indexed {
+            return false
+        }
+        if lhs.name != rhs.name {
+            return false
+        }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -699,8 +834,7 @@ extension Protocol_SmartContract.ABI.Entry.Param: SwiftProtobuf.Message, SwiftPr
 // MARK: - Protocol_ContractState + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_ContractState: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".ContractState"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "energy_usage"),
@@ -736,10 +870,18 @@ extension Protocol_ContractState: SwiftProtobuf.Message, SwiftProtobuf._MessageI
     }
 
     static func == (lhs: Protocol_ContractState, rhs: Protocol_ContractState) -> Bool {
-        if lhs.energyUsage != rhs.energyUsage { return false }
-        if lhs.energyFactor != rhs.energyFactor { return false }
-        if lhs.updateCycle != rhs.updateCycle { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.energyUsage != rhs.energyUsage {
+            return false
+        }
+        if lhs.energyFactor != rhs.energyFactor {
+            return false
+        }
+        if lhs.updateCycle != rhs.updateCycle {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -747,8 +889,7 @@ extension Protocol_ContractState: SwiftProtobuf.Message, SwiftProtobuf._MessageI
 // MARK: - Protocol_CreateSmartContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_CreateSmartContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".CreateSmartContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -793,11 +934,21 @@ extension Protocol_CreateSmartContract: SwiftProtobuf.Message, SwiftProtobuf._Me
     }
 
     static func == (lhs: Protocol_CreateSmartContract, rhs: Protocol_CreateSmartContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs._newContract != rhs._newContract { return false }
-        if lhs.callTokenValue != rhs.callTokenValue { return false }
-        if lhs.tokenID != rhs.tokenID { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs._newContract != rhs._newContract {
+            return false
+        }
+        if lhs.callTokenValue != rhs.callTokenValue {
+            return false
+        }
+        if lhs.tokenID != rhs.tokenID {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -805,8 +956,7 @@ extension Protocol_CreateSmartContract: SwiftProtobuf.Message, SwiftProtobuf._Me
 // MARK: - Protocol_TriggerSmartContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_TriggerSmartContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".TriggerSmartContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -857,13 +1007,27 @@ extension Protocol_TriggerSmartContract: SwiftProtobuf.Message, SwiftProtobuf._M
     }
 
     static func == (lhs: Protocol_TriggerSmartContract, rhs: Protocol_TriggerSmartContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.contractAddress != rhs.contractAddress { return false }
-        if lhs.callValue != rhs.callValue { return false }
-        if lhs.data != rhs.data { return false }
-        if lhs.callTokenValue != rhs.callTokenValue { return false }
-        if lhs.tokenID != rhs.tokenID { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.contractAddress != rhs.contractAddress {
+            return false
+        }
+        if lhs.callValue != rhs.callValue {
+            return false
+        }
+        if lhs.data != rhs.data {
+            return false
+        }
+        if lhs.callTokenValue != rhs.callTokenValue {
+            return false
+        }
+        if lhs.tokenID != rhs.tokenID {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -871,8 +1035,7 @@ extension Protocol_TriggerSmartContract: SwiftProtobuf.Message, SwiftProtobuf._M
 // MARK: - Protocol_ClearABIContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_ClearABIContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".ClearABIContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -903,9 +1066,15 @@ extension Protocol_ClearABIContract: SwiftProtobuf.Message, SwiftProtobuf._Messa
     }
 
     static func == (lhs: Protocol_ClearABIContract, rhs: Protocol_ClearABIContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.contractAddress != rhs.contractAddress { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.contractAddress != rhs.contractAddress {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -913,8 +1082,7 @@ extension Protocol_ClearABIContract: SwiftProtobuf.Message, SwiftProtobuf._Messa
 // MARK: - Protocol_UpdateSettingContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_UpdateSettingContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".UpdateSettingContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -950,10 +1118,18 @@ extension Protocol_UpdateSettingContract: SwiftProtobuf.Message, SwiftProtobuf._
     }
 
     static func == (lhs: Protocol_UpdateSettingContract, rhs: Protocol_UpdateSettingContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.contractAddress != rhs.contractAddress { return false }
-        if lhs.consumeUserResourcePercent != rhs.consumeUserResourcePercent { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.contractAddress != rhs.contractAddress {
+            return false
+        }
+        if lhs.consumeUserResourcePercent != rhs.consumeUserResourcePercent {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -961,8 +1137,7 @@ extension Protocol_UpdateSettingContract: SwiftProtobuf.Message, SwiftProtobuf._
 // MARK: - Protocol_UpdateEnergyLimitContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_UpdateEnergyLimitContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".UpdateEnergyLimitContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -998,10 +1173,18 @@ extension Protocol_UpdateEnergyLimitContract: SwiftProtobuf.Message, SwiftProtob
     }
 
     static func == (lhs: Protocol_UpdateEnergyLimitContract, rhs: Protocol_UpdateEnergyLimitContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.contractAddress != rhs.contractAddress { return false }
-        if lhs.originEnergyLimit != rhs.originEnergyLimit { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.contractAddress != rhs.contractAddress {
+            return false
+        }
+        if lhs.originEnergyLimit != rhs.originEnergyLimit {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -1009,8 +1192,7 @@ extension Protocol_UpdateEnergyLimitContract: SwiftProtobuf.Message, SwiftProtob
 // MARK: - Protocol_SmartContractDataWrapper + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_SmartContractDataWrapper: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".SmartContractDataWrapper"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "smart_contract"),
@@ -1050,10 +1232,18 @@ extension Protocol_SmartContractDataWrapper: SwiftProtobuf.Message, SwiftProtobu
     }
 
     static func == (lhs: Protocol_SmartContractDataWrapper, rhs: Protocol_SmartContractDataWrapper) -> Bool {
-        if lhs._smartContract != rhs._smartContract { return false }
-        if lhs.runtimecode != rhs.runtimecode { return false }
-        if lhs._contractState != rhs._contractState { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs._smartContract != rhs._smartContract {
+            return false
+        }
+        if lhs.runtimecode != rhs.runtimecode {
+            return false
+        }
+        if lhs._contractState != rhs._contractState {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

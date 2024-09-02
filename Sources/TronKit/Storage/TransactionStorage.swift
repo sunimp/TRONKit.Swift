@@ -1,8 +1,7 @@
 //
 //  TransactionStorage.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
@@ -12,15 +11,11 @@ import GRDB
 // MARK: - TransactionStorage
 
 class TransactionStorage {
+    // MARK: Properties
+
     private let dbPool: DatabasePool
 
-    init(databaseDirectoryUrl: URL, databaseFileName: String) {
-        let databaseURL = databaseDirectoryUrl.appendingPathComponent("\(databaseFileName).sqlite")
-
-        dbPool = try! DatabasePool(path: databaseURL.path)
-
-        try! migrator.migrate(dbPool)
-    }
+    // MARK: Computed Properties
 
     var migrator: DatabaseMigrator {
         var migrator = DatabaseMigrator()
@@ -45,7 +40,8 @@ class TransactionStorage {
 
         migrator.registerMigration("create InternalTransaction") { db in
             try db.create(table: InternalTransaction.databaseTableName) { t in
-                t.column(InternalTransaction.Columns.internalTxId.name, .text).notNull().primaryKey(onConflict: .replace)
+                t.column(InternalTransaction.Columns.internalTxID.name, .text).notNull()
+                    .primaryKey(onConflict: .replace)
                 t.column(InternalTransaction.Columns.transactionHash.name, .text).notNull().indexed()
                 t.column(InternalTransaction.Columns.timestamp.name, .integer).notNull()
                 t.column(InternalTransaction.Columns.from.name, .text).notNull()
@@ -118,6 +114,16 @@ class TransactionStorage {
 
         return migrator
     }
+
+    // MARK: Lifecycle
+
+    init(databaseDirectoryURL: URL, databaseFileName: String) {
+        let databaseURL = databaseDirectoryURL.appendingPathComponent("\(databaseFileName).sqlite")
+
+        dbPool = try! DatabasePool(path: databaseURL.path)
+
+        try! migrator.migrate(dbPool)
+    }
 }
 
 extension TransactionStorage {
@@ -173,8 +179,7 @@ extension TransactionStorage {
 
             if
                 let fromHash = hash,
-                let fromTransaction = try Transaction.filter(Transaction.Columns.hash == fromHash).fetchOne(db)
-            {
+                let fromTransaction = try Transaction.filter(Transaction.Columns.hash == fromHash).fetchOne(db) {
                 let fromCondition = """
                     (
                      \(Transaction.Columns.timestamp.name) < ? OR

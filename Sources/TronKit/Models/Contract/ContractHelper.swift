@@ -1,8 +1,7 @@
 //
 //  ContractHelper.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
@@ -53,7 +52,7 @@ enum ContractHelper {
                 case ProposalCreateContract.type: contract = try ProposalCreateContract(JSON: valueMap)
                 case ProposalApproveContract.type: contract = try ProposalApproveContract(JSON: valueMap)
                 case ProposalDeleteContract.type: contract = try ProposalDeleteContract(JSON: valueMap)
-                case SetAccountIdContract.type: contract = try SetAccountIdContract(JSON: valueMap)
+                case SetAccountIDContract.type: contract = try SetAccountIDContract(JSON: valueMap)
                 case CreateSmartContract.type: contract = try CreateSmartContract(JSON: valueMap)
                 case TriggerSmartContract.type: contract = try TriggerSmartContract(JSON: valueMap)
                 case UpdateSettingContract.type: contract = try UpdateSettingContract(JSON: valueMap)

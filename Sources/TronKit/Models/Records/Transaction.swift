@@ -1,8 +1,7 @@
 //
 //  Transaction.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
@@ -11,6 +10,32 @@ import BigInt
 import GRDB
 
 public class Transaction: Record {
+    // MARK: Nested Types
+
+    enum Columns: String, ColumnExpression {
+        case hash
+        case timestamp
+        case isFailed
+        case blockNumber
+        case confirmed
+        case processed
+        case fee
+        case netUsage
+        case netFee
+        case energyUsage
+        case energyFee
+        case energyUsageTotal
+        case contractsRaw
+    }
+
+    // MARK: Overridden Properties
+
+    override public class var databaseTableName: String {
+        "transactions"
+    }
+
+    // MARK: Properties
+
     public let hash: Data
     public let timestamp: Int
     public var isFailed: Bool
@@ -36,9 +61,7 @@ public class Transaction: Record {
         return contracts?.first
     }()
 
-    public func ownTransaction(ownAddress: Address) -> Bool {
-        contract.flatMap { $0.ownTransaction(ownAddress: ownAddress) } ?? false
-    }
+    // MARK: Lifecycle
 
     public init(
         hash: Data,
@@ -78,26 +101,6 @@ public class Transaction: Record {
         }
     }
 
-    override public class var databaseTableName: String {
-        "transactions"
-    }
-
-    enum Columns: String, ColumnExpression {
-        case hash
-        case timestamp
-        case isFailed
-        case blockNumber
-        case confirmed
-        case processed
-        case fee
-        case netUsage
-        case netFee
-        case energyUsage
-        case energyFee
-        case energyUsageTotal
-        case contractsRaw
-    }
-
     required init(row: Row) throws {
         hash = row[Columns.hash]
         timestamp = row[Columns.timestamp]
@@ -116,6 +119,8 @@ public class Transaction: Record {
         try super.init(row: row)
     }
 
+    // MARK: Overridden Functions
+
     override public func encode(to container: inout PersistenceContainer) {
         container[Columns.hash] = hash
         container[Columns.timestamp] = timestamp
@@ -130,5 +135,11 @@ public class Transaction: Record {
         container[Columns.energyFee] = energyFee
         container[Columns.energyUsageTotal] = energyUsageTotal
         container[Columns.contractsRaw] = contractsRaw
+    }
+
+    // MARK: Functions
+
+    public func ownTransaction(ownAddress: Address) -> Bool {
+        contract.flatMap { $0.ownTransaction(ownAddress: ownAddress) } ?? false
     }
 }

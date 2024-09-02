@@ -1,15 +1,18 @@
 //
 //  FullTransaction.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/4/26.
 //
 
 import Foundation
 
 public class FullTransaction {
+    // MARK: Properties
+
     public let transaction: Transaction
     public let decoration: TransactionDecoration
+
+    // MARK: Lifecycle
 
     init(transaction: Transaction, decoration: TransactionDecoration) {
         self.transaction = transaction

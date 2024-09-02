@@ -1,8 +1,7 @@
 //
 //  ChainParameterResponse.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/26.
 //
 
 import Foundation
@@ -10,8 +9,12 @@ import Foundation
 import ObjectMapper
 
 struct ChainParameterResponse: ImmutableMappable {
+    // MARK: Properties
+
     let key: String
     let value: Int?
+
+    // MARK: Lifecycle
 
     public init(map: Map) throws {
         key = try map.value("key")

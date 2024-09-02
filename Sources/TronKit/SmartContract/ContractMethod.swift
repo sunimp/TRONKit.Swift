@@ -1,14 +1,13 @@
 //
 //  ContractMethod.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
 
 open class ContractMethod {
-    public init() { }
+    // MARK: Computed Properties
 
     open var methodSignature: String {
         fatalError("Subclasses must override.")
@@ -18,11 +17,17 @@ open class ContractMethod {
         fatalError("Subclasses must override.")
     }
 
-    public var methodId: Data {
-        ContractMethodHelper.methodId(signature: methodSignature)
+    public var methodID: Data {
+        ContractMethodHelper.methodID(signature: methodSignature)
     }
 
+    // MARK: Lifecycle
+
+    public init() { }
+
+    // MARK: Functions
+
     public func encodedABI() -> Data {
-        ContractMethodHelper.encodedABI(methodId: methodId, arguments: arguments)
+        ContractMethodHelper.encodedABI(methodID: methodID, arguments: arguments)
     }
 }

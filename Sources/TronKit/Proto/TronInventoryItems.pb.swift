@@ -1,3 +1,9 @@
+//
+//  TronInventoryItems.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,6 +31,8 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_InventoryItems
 
 struct Protocol_InventoryItems {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -34,6 +42,8 @@ struct Protocol_InventoryItems {
     var items: [Data] = []
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    // MARK: Lifecycle
 
     init() { }
 }
@@ -49,8 +59,7 @@ private let _protobuf_package = "protocol"
 // MARK: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_InventoryItems: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".InventoryItems"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .same(proto: "type"),
@@ -81,9 +90,15 @@ extension Protocol_InventoryItems: SwiftProtobuf.Message, SwiftProtobuf._Message
     }
 
     static func == (lhs: Protocol_InventoryItems, rhs: Protocol_InventoryItems) -> Bool {
-        if lhs.type != rhs.type { return false }
-        if lhs.items != rhs.items { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.items != rhs.items {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

@@ -1,8 +1,7 @@
 //
 //  CreatedTransactionResponse.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/26.
 //
 
 import Foundation
@@ -10,9 +9,13 @@ import Foundation
 import ObjectMapper
 
 struct CreatedTransactionResponse: ImmutableMappable {
+    // MARK: Properties
+
     let txID: Data
     let rawData: TransactionResponse.RawData
     let rawDataHex: Data
+
+    // MARK: Lifecycle
 
     public init(map: Map) throws {
         txID = try map.value("txID", using: HexDataTransform())

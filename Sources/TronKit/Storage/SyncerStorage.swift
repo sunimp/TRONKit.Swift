@@ -1,8 +1,7 @@
 //
 //  SyncerStorage.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/2.
 //
 
 import Foundation
@@ -12,15 +11,11 @@ import GRDB
 // MARK: - SyncerStorage
 
 class SyncerStorage {
+    // MARK: Properties
+
     private let dbPool: DatabasePool
 
-    init(databaseDirectoryUrl: URL, databaseFileName: String) {
-        let databaseURL = databaseDirectoryUrl.appendingPathComponent("\(databaseFileName).sqlite")
-
-        dbPool = try! DatabasePool(path: databaseURL.path)
-
-        try! migrator.migrate(dbPool)
-    }
+    // MARK: Computed Properties
 
     var migrator: DatabaseMigrator {
         var migrator = DatabaseMigrator()
@@ -51,6 +46,16 @@ class SyncerStorage {
         }
 
         return migrator
+    }
+
+    // MARK: Lifecycle
+
+    init(databaseDirectoryURL: URL, databaseFileName: String) {
+        let databaseURL = databaseDirectoryURL.appendingPathComponent("\(databaseFileName).sqlite")
+
+        dbPool = try! DatabasePool(path: databaseURL.path)
+
+        try! migrator.migrate(dbPool)
     }
 }
 

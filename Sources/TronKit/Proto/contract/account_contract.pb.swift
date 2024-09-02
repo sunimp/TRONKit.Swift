@@ -1,3 +1,9 @@
+//
+//  account_contract.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -39,6 +45,8 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_AccountCreateContract
 
 struct Protocol_AccountCreateContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -51,6 +59,8 @@ struct Protocol_AccountCreateContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
@@ -58,6 +68,8 @@ struct Protocol_AccountCreateContract {
 
 /// Update account name. Account name is not unique now.
 struct Protocol_AccountUpdateContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -68,13 +80,17 @@ struct Protocol_AccountUpdateContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
-// MARK: - Protocol_SetAccountIdContract
+// MARK: - Protocol_SetAccountIDContract
 
 /// Set account id if the account has no id. Account id is unique and case insensitive.
-struct Protocol_SetAccountIdContract {
+struct Protocol_SetAccountIDContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
@@ -85,17 +101,31 @@ struct Protocol_SetAccountIdContract {
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
+    // MARK: Lifecycle
+
     init() { }
 }
 
 // MARK: - Protocol_AccountPermissionUpdateContract
 
 struct Protocol_AccountPermissionUpdateContract {
+    // MARK: Properties
+
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
     var ownerAddress: Data = .init()
+
+    /// Empty is invalidate
+    var actives: [Protocol_Permission] = []
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    private var _owner: Protocol_Permission?
+    private var _witness: Protocol_Permission?
+
+    // MARK: Computed Properties
 
     /// Empty is invalidate
     var owner: Protocol_Permission {
@@ -105,9 +135,6 @@ struct Protocol_AccountPermissionUpdateContract {
 
     /// Returns true if `owner` has been explicitly set.
     var hasOwner: Bool { _owner != nil }
-    /// Clears the value of `owner`. Subsequent reads from it will return its default value.
-    mutating func clearOwner() { _owner = nil }
-
     /// Can be empty
     var witness: Protocol_Permission {
         get { _witness ?? Protocol_Permission() }
@@ -116,24 +143,24 @@ struct Protocol_AccountPermissionUpdateContract {
 
     /// Returns true if `witness` has been explicitly set.
     var hasWitness: Bool { _witness != nil }
-    /// Clears the value of `witness`. Subsequent reads from it will return its default value.
-    mutating func clearWitness() { _witness = nil }
 
-    /// Empty is invalidate
-    var actives: [Protocol_Permission] = []
-
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+    // MARK: Lifecycle
 
     init() { }
 
-    private var _owner: Protocol_Permission?
-    private var _witness: Protocol_Permission?
+    // MARK: Functions
+
+    /// Clears the value of `owner`. Subsequent reads from it will return its default value.
+    mutating func clearOwner() { _owner = nil }
+
+    /// Clears the value of `witness`. Subsequent reads from it will return its default value.
+    mutating func clearWitness() { _witness = nil }
 }
 
 #if swift(>=5.5) && canImport(_Concurrency)
 extension Protocol_AccountCreateContract: @unchecked Sendable { }
 extension Protocol_AccountUpdateContract: @unchecked Sendable { }
-extension Protocol_SetAccountIdContract: @unchecked Sendable { }
+extension Protocol_SetAccountIDContract: @unchecked Sendable { }
 extension Protocol_AccountPermissionUpdateContract: @unchecked Sendable { }
 #endif // swift(>=5.5) && canImport(_Concurrency)
 
@@ -144,8 +171,7 @@ private let _protobuf_package = "protocol"
 // MARK: - Protocol_AccountCreateContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_AccountCreateContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".AccountCreateContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -181,10 +207,18 @@ extension Protocol_AccountCreateContract: SwiftProtobuf.Message, SwiftProtobuf._
     }
 
     static func == (lhs: Protocol_AccountCreateContract, rhs: Protocol_AccountCreateContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.accountAddress != rhs.accountAddress { return false }
-        if lhs.type != rhs.type { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.accountAddress != rhs.accountAddress {
+            return false
+        }
+        if lhs.type != rhs.type {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -192,8 +226,7 @@ extension Protocol_AccountCreateContract: SwiftProtobuf.Message, SwiftProtobuf._
 // MARK: - Protocol_AccountUpdateContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_AccountUpdateContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".AccountUpdateContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "account_name"),
@@ -224,18 +257,23 @@ extension Protocol_AccountUpdateContract: SwiftProtobuf.Message, SwiftProtobuf._
     }
 
     static func == (lhs: Protocol_AccountUpdateContract, rhs: Protocol_AccountUpdateContract) -> Bool {
-        if lhs.accountName != rhs.accountName { return false }
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+        if lhs.accountName != rhs.accountName {
+            return false
+        }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
 
-// MARK: - Protocol_SetAccountIdContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
+// MARK: - Protocol_SetAccountIDContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
-extension Protocol_SetAccountIdContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+extension Protocol_SetAccountIDContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".SetAccountIdContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "account_id"),
@@ -265,10 +303,16 @@ extension Protocol_SetAccountIdContract: SwiftProtobuf.Message, SwiftProtobuf._M
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_SetAccountIdContract, rhs: Protocol_SetAccountIdContract) -> Bool {
-        if lhs.accountID != rhs.accountID { return false }
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (lhs: Protocol_SetAccountIDContract, rhs: Protocol_SetAccountIDContract) -> Bool {
+        if lhs.accountID != rhs.accountID {
+            return false
+        }
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }
@@ -276,8 +320,7 @@ extension Protocol_SetAccountIdContract: SwiftProtobuf.Message, SwiftProtobuf._M
 // MARK: - Protocol_AccountPermissionUpdateContract + SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding
 
 extension Protocol_AccountPermissionUpdateContract: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase,
-    SwiftProtobuf._ProtoNameProviding
-{
+    SwiftProtobuf._ProtoNameProviding {
     static let protoMessageName: String = _protobuf_package + ".AccountPermissionUpdateContract"
     static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
         1: .standard(proto: "owner_address"),
@@ -321,12 +364,26 @@ extension Protocol_AccountPermissionUpdateContract: SwiftProtobuf.Message, Swift
         try unknownFields.traverse(visitor: &visitor)
     }
 
-    static func == (lhs: Protocol_AccountPermissionUpdateContract, rhs: Protocol_AccountPermissionUpdateContract) -> Bool {
-        if lhs.ownerAddress != rhs.ownerAddress { return false }
-        if lhs._owner != rhs._owner { return false }
-        if lhs._witness != rhs._witness { return false }
-        if lhs.actives != rhs.actives { return false }
-        if lhs.unknownFields != rhs.unknownFields { return false }
+    static func == (
+        lhs: Protocol_AccountPermissionUpdateContract,
+        rhs: Protocol_AccountPermissionUpdateContract
+    )
+        -> Bool {
+        if lhs.ownerAddress != rhs.ownerAddress {
+            return false
+        }
+        if lhs._owner != rhs._owner {
+            return false
+        }
+        if lhs._witness != rhs._witness {
+            return false
+        }
+        if lhs.actives != rhs.actives {
+            return false
+        }
+        if lhs.unknownFields != rhs.unknownFields {
+            return false
+        }
         return true
     }
 }

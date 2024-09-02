@@ -1,8 +1,7 @@
 //
 //  AccountInfoManager.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/2.
 //
 
 import Combine
@@ -14,20 +13,26 @@ import WWExtensions
 // MARK: - AccountInfoManager
 
 class AccountInfoManager {
-    private let storage: AccountInfoStorage
+    // MARK: Properties
 
-    init(storage: AccountInfoStorage) {
-        self.storage = storage
-    }
+    var accountActive = true
+
+    private let storage: AccountInfoStorage
 
     private let trxBalanceSubject = PassthroughSubject<BigUInt, Never>()
     private let trc20BalanceSubject = PassthroughSubject<(Address, BigUInt), Never>()
+
+    // MARK: Computed Properties
 
     var trxBalance: BigUInt {
         storage.trxBalance ?? 0
     }
 
-    var accountActive = true
+    // MARK: Lifecycle
+
+    init(storage: AccountInfoStorage) {
+        self.storage = storage
+    }
 }
 
 extension AccountInfoManager {

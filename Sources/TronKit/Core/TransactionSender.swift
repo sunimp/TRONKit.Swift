@@ -1,8 +1,7 @@
 //
 //  TransactionSender.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/26.
 //
 
 import Foundation
@@ -10,7 +9,11 @@ import Foundation
 // MARK: - TransactionSender
 
 class TransactionSender {
+    // MARK: Properties
+
     private let tronGridProvider: TronGridProvider
+
+    // MARK: Lifecycle
 
     init(tronGridProvider: TronGridProvider) {
         self.tronGridProvider = tronGridProvider
@@ -18,7 +21,12 @@ class TransactionSender {
 }
 
 extension TransactionSender {
-    func sendTransaction(contract: Contract, signer: Signer, feeLimit: Int?) async throws -> CreatedTransactionResponse {
+    func sendTransaction(
+        contract: Contract,
+        signer: Signer,
+        feeLimit: Int?
+    ) async throws
+        -> CreatedTransactionResponse {
         var createdTransaction: CreatedTransactionResponse
 
         guard let contract = contract as? SupportedContract else {

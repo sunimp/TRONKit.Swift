@@ -1,8 +1,7 @@
 //
 //  TransactionManager.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/2.
 //
 
 import Combine
@@ -11,6 +10,8 @@ import Foundation
 // MARK: - TransactionManager
 
 class TransactionManager {
+    // MARK: Properties
+
     private let userAddress: Address
     private let storage: TransactionStorage
     private let decorationManager: DecorationManager
@@ -20,6 +21,8 @@ class TransactionManager {
         [(transaction: FullTransaction, tags: [TransactionTag])],
         Never
     >()
+
+    // MARK: Lifecycle
 
     init(userAddress: Address, storage: TransactionStorage, decorationManager: DecorationManager) {
         self.userAddress = userAddress
@@ -36,16 +39,20 @@ extension TransactionManager {
     func fullTransactionsPublisher(tagQueries: [TransactionTagQuery]) -> AnyPublisher<[FullTransaction], Never> {
         fullTransactionsWithTagsSubject
             .map { transactionsWithTags in
-                transactionsWithTags.compactMap { (transaction: FullTransaction, tags: [TransactionTag]) -> FullTransaction? in
-                    for tagQuery in tagQueries {
-                        for tag in tags {
-                            if tag.conforms(tagQuery: tagQuery) {
-                                return transaction
-                            }
+                transactionsWithTags.compactMap { (
+                    transaction: FullTransaction,
+                    tags: [TransactionTag]
+                )
+                    -> FullTransaction? in
+                for tagQuery in tagQueries {
+                    for tag in tags {
+                        if tag.conforms(tagQuery: tagQuery) {
+                            return transaction
                         }
                     }
+                }
 
-                    return nil
+                return nil
                 }
             }
             .filter { transactions in
@@ -70,17 +77,22 @@ extension TransactionManager {
             }
 
             return InternalTransaction(
-                transactionHash: response.txId,
+                transactionHash: response.txID,
                 timestamp: response.blockTimestamp,
                 from: response.fromAddress,
                 to: response.toAddress,
                 value: response.data.value,
-                internalTxId: response.internalTxId
+                internalTxID: response.internalTxID
             )
         }
 
         var transactionRecords = internalTransactionRecords.map { internalTx in
-            Transaction(hash: internalTx.transactionHash, timestamp: internalTx.timestamp, isFailed: false, confirmed: true)
+            Transaction(
+                hash: internalTx.transactionHash,
+                timestamp: internalTx.timestamp,
+                isFailed: false,
+                confirmed: true
+            )
         }
         storage.save(transactions: transactionRecords, replaceOnConflict: false)
         storage.save(internalTransactions: internalTransactionRecords)
@@ -91,7 +103,7 @@ extension TransactionManager {
             }
 
             return Transaction(
-                hash: response.txId,
+                hash: response.txID,
                 timestamp: response.blockTimestamp,
                 isFailed: response.ret.contains(where: { $0.contractRet != "SUCCESS" }),
                 blockNumber: response.blockNumber,
@@ -111,7 +123,7 @@ extension TransactionManager {
     func save(trc20TransferResponses: [Trc20TransactionResponse]) {
         let trc20TransferRecords = trc20TransferResponses.compactMap { response -> Trc20EventRecord? in
             Trc20EventRecord(
-                transactionHash: response.transactionId,
+                transactionHash: response.transactionID,
                 type: response.type,
                 blockTimestamp: response.blockTimestamp,
                 contractAddress: response.tokenInfo.address,
@@ -125,7 +137,12 @@ extension TransactionManager {
         }
 
         let transactionRecords = trc20TransferRecords.map { transfer in
-            Transaction(hash: transfer.transactionHash, timestamp: transfer.blockTimestamp, isFailed: false, confirmed: true)
+            Transaction(
+                hash: transfer.transactionHash,
+                timestamp: transfer.blockTimestamp,
+                isFailed: false,
+                confirmed: true
+            )
         }
 
         storage.save(transactions: transactionRecords, replaceOnConflict: false)

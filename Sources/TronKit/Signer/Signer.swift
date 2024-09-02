@@ -1,8 +1,7 @@
 //
 //  Signer.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/4/26.
 //
 
 import Foundation
@@ -15,11 +14,17 @@ import WWToolKit
 // MARK: - Signer
 
 public class Signer {
+    // MARK: Properties
+
     private let privateKey: Data
+
+    // MARK: Lifecycle
 
     init(privateKey: Data) {
         self.privateKey = privateKey
     }
+
+    // MARK: Functions
 
     func signature(hash: Data) throws -> Data {
         try Crypto.ellipticSign(hash, privateKey: privateKey)
@@ -27,7 +32,6 @@ public class Signer {
 }
 
 extension Signer {
-    
     public static func instance(seed: Data) throws -> Signer {
         try Signer(privateKey: privateKey(seed: seed))
     }

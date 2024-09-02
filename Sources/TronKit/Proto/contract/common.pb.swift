@@ -1,3 +1,9 @@
+//
+//  common.pb.swift
+//
+//  Created by Sun on 2023/5/26.
+//
+
 // DO NOT EDIT.
 // swift-format-ignore-file
 //
@@ -25,11 +31,27 @@ private struct _GeneratedWithProtocGenSwiftVersion: SwiftProtobuf.ProtobufAPIVer
 // MARK: - Protocol_ResourceCode
 
 enum Protocol_ResourceCode: SwiftProtobuf.Enum {
-    typealias RawValue = Int
     case bandwidth // = 0
     case energy // = 1
     case tronPower // = 2
     case UNRECOGNIZED(Int)
+
+    // MARK: Nested Types
+
+    typealias RawValue = Int
+
+    // MARK: Computed Properties
+
+    var rawValue: Int {
+        switch self {
+        case .bandwidth: 0
+        case .energy: 1
+        case .tronPower: 2
+        case let .UNRECOGNIZED(i): i
+        }
+    }
+
+    // MARK: Lifecycle
 
     init() {
         self = .bandwidth
@@ -41,15 +63,6 @@ enum Protocol_ResourceCode: SwiftProtobuf.Enum {
         case 1: self = .energy
         case 2: self = .tronPower
         default: self = .UNRECOGNIZED(rawValue)
-        }
-    }
-
-    var rawValue: Int {
-        switch self {
-        case .bandwidth: 0
-        case .energy: 1
-        case .tronPower: 2
-        case .UNRECOGNIZED(let i): i
         }
     }
 }

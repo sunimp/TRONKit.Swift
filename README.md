@@ -23,7 +23,7 @@ let address = try Address(hex: "0x...")
 
 let TronKit = try Kit.instance(
         address: address,
-        walletId: "unique_wallet_id",
+        walletID: "unique_wallet_id",
         minLogLevel: .error
 )
 ```
@@ -45,16 +45,14 @@ TronKit.stop()
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/sunimp/TronKit.Swift.git", .upToNextMajor(from: "1.1.2"))
+    .package(url: "https://github.com/sunimp/TronKit.Swift.git", .upToNextMajor(from: "1.2.0"))
 ]
 ```
+## Requirements
 
-## Prerequisites
-
-* Xcode 15.0+
+* Xcode 15.4+
 * Swift 5.10+
-* iOS 14+
-
+* iOS 14.0+
 
 ## Example Project
 
@@ -62,5 +60,5 @@ All features of the library are used in example project located in `iOS Example`
 
 ## License
 
-The `TronKit.Swift` toolkit is open source and available under the terms of the [MIT License](https://github.com/sunimp/TronKit.Swift/blob/master/LICENSE).
+The `TronKit.Swift` toolkit is open source and available under the terms of the [MIT License](https://github.com/sunimp/TronKit.Swift/blob/main/LICENSE).
 

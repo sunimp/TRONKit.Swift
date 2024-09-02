@@ -1,8 +1,7 @@
 //
 //  InternalTransaction.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
@@ -10,27 +9,7 @@ import Foundation
 import GRDB
 
 public class InternalTransaction: Record {
-    public let transactionHash: Data
-    public let timestamp: Int
-    public let from: Address
-    public let to: Address
-    public let value: Int
-    public let internalTxId: String
-
-    init(transactionHash: Data, timestamp: Int, from: Address, to: Address, value: Int, internalTxId: String) {
-        self.transactionHash = transactionHash
-        self.timestamp = timestamp
-        self.from = from
-        self.to = to
-        self.value = value
-        self.internalTxId = internalTxId
-
-        super.init()
-    }
-
-    override public class var databaseTableName: String {
-        "internal_transactions"
-    }
+    // MARK: Nested Types
 
     enum Columns: String, ColumnExpression, CaseIterable {
         case transactionHash
@@ -38,7 +17,35 @@ public class InternalTransaction: Record {
         case from
         case to
         case value
-        case internalTxId
+        case internalTxID
+    }
+
+    // MARK: Overridden Properties
+
+    override public class var databaseTableName: String {
+        "internal_transactions"
+    }
+
+    // MARK: Properties
+
+    public let transactionHash: Data
+    public let timestamp: Int
+    public let from: Address
+    public let to: Address
+    public let value: Int
+    public let internalTxID: String
+
+    // MARK: Lifecycle
+
+    init(transactionHash: Data, timestamp: Int, from: Address, to: Address, value: Int, internalTxID: String) {
+        self.transactionHash = transactionHash
+        self.timestamp = timestamp
+        self.from = from
+        self.to = to
+        self.value = value
+        self.internalTxID = internalTxID
+
+        super.init()
     }
 
     required init(row: Row) throws {
@@ -47,10 +54,12 @@ public class InternalTransaction: Record {
         from = row[Columns.from]
         to = row[Columns.to]
         value = row[Columns.value]
-        internalTxId = row[Columns.internalTxId]
+        internalTxID = row[Columns.internalTxID]
 
         try super.init(row: row)
     }
+
+    // MARK: Overridden Functions
 
     override public func encode(to container: inout PersistenceContainer) {
         container[Columns.transactionHash] = transactionHash
@@ -58,6 +67,6 @@ public class InternalTransaction: Record {
         container[Columns.from] = from
         container[Columns.to] = to
         container[Columns.value] = value
-        container[Columns.internalTxId] = internalTxId
+        container[Columns.internalTxID] = internalTxID
     }
 }

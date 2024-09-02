@@ -1,8 +1,7 @@
 //
 //  UnknownTransactionDecoration.swift
-//  TronKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2023/5/17.
 //
 
 import Foundation
@@ -10,15 +9,19 @@ import Foundation
 import BigInt
 
 open class UnknownTransactionDecoration: TransactionDecoration {
+    // MARK: Properties
+
     public let toAddress: Address?
     public let fromAddress: Address?
     public let data: Data?
     public let value: Int?
     public let tokenValue: Int?
-    public let tokenId: Int?
+    public let tokenID: Int?
 
     public let internalTransactions: [InternalTransaction]
     public let events: [Event]
+
+    // MARK: Lifecycle
 
     init(contract: TriggerSmartContract?, internalTransactions: [InternalTransaction], events: [Event]) {
         fromAddress = contract?.ownerAddress
@@ -26,14 +29,21 @@ open class UnknownTransactionDecoration: TransactionDecoration {
         data = contract?.data.ww.hexData
         value = contract?.callValue
         tokenValue = contract?.callTokenValue
-        tokenId = contract?.tokenId
+        tokenID = contract?.tokenID
         self.internalTransactions = internalTransactions
         self.events = events
     }
 
+    // MARK: Overridden Functions
+
     override public func tags(userAddress: Address) -> [TransactionTag] {
-        Array(Set(tagsFromInternalTransactions(userAddress: userAddress) + tagsFromEventInstances(userAddress: userAddress)))
+        Array(Set(
+            tagsFromInternalTransactions(userAddress: userAddress) +
+                tagsFromEventInstances(userAddress: userAddress)
+        ))
     }
+
+    // MARK: Functions
 
     private func tagsFromInternalTransactions(userAddress: Address) -> [TransactionTag] {
         let value = value ?? 0
