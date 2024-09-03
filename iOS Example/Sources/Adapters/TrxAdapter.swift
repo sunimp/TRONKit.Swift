@@ -1,6 +1,6 @@
 //
 //  TransactionRecord.swift
-//  TronKit-Demo
+//  TRONKit-Demo
 //
 //  Created by Sun on 2024/8/21.
 //
@@ -9,15 +9,15 @@ import Foundation
 import Combine
 
 import BigInt
-import TronKit
+import TRONKit
 
 class TrxAdapter {
     private let tronKit: Kit
     private let signer: Signer?
     private let decimal = 6
 
-    init(TronKit: Kit, signer: Signer?) {
-        tronKit = TronKit
+    init(TRONKit: Kit, signer: Signer?) {
+        tronKit = TRONKit
         self.signer = signer
     }
 

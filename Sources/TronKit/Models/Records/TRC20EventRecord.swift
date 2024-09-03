@@ -1,5 +1,5 @@
 //
-//  Trc20EventRecord.swift
+//  TRC20EventRecord.swift
 //
 //  Created by Sun on 2023/5/17.
 //
@@ -9,7 +9,7 @@ import Foundation
 import BigInt
 import GRDB
 
-public class Trc20EventRecord: Record {
+public class TRC20EventRecord: Record {
     // MARK: Nested Types
 
     enum Columns: String, ColumnExpression {

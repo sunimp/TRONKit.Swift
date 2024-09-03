@@ -1,6 +1,6 @@
-# TronKit.Swift
+# TRONKit.Swift
 
-`TronKit.Swift` is a native(Swift) toolkit for TRON network.
+`TRONKit.Swift` is a native(Swift) toolkit for TRON network.
 
 ## Core Features
 
@@ -14,14 +14,14 @@
 
 ### Initialization
 
-First you need to initialize an `TronKit.Kit` instance
+First you need to initialize an `TRONKit.Kit` instance
 
 ```swift
-import TronKit
+import TRONKit
 
 let address = try Address(hex: "0x...")
 
-let TronKit = try Kit.instance(
+let TRONKit = try Kit.instance(
         address: address,
         walletID: "unique_wallet_id",
         minLogLevel: .error
@@ -30,11 +30,11 @@ let TronKit = try Kit.instance(
 
 ### Starting and Stopping
 
-`TronKit.Kit` instance requires to be started with `start` command. This start the process of synchronization with the blockchain state.
+`TRONKit.Kit` instance requires to be started with `start` command. This start the process of synchronization with the blockchain state.
 
 ```swift
-TronKit.start()
-TronKit.stop()
+TRONKit.start()
+TRONKit.stop()
 ```
 
 ## Installation
@@ -45,7 +45,7 @@ TronKit.stop()
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/sunimp/TronKit.Swift.git", .upToNextMajor(from: "1.2.0"))
+    .package(url: "https://github.com/sunimp/TRONKit.Swift.git", .upToNextMajor(from: "1.2.0"))
 ]
 ```
 ## Requirements
@@ -60,5 +60,5 @@ All features of the library are used in example project located in `iOS Example`
 
 ## License
 
-The `TronKit.Swift` toolkit is open source and available under the terms of the [MIT License](https://github.com/sunimp/TronKit.Swift/blob/main/LICENSE).
+The `TRONKit.Swift` toolkit is open source and available under the terms of the [MIT License](https://github.com/sunimp/TRONKit.Swift/blob/main/LICENSE).
 

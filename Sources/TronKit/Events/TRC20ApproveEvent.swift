@@ -1,5 +1,5 @@
 //
-//  Trc20ApproveEvent.swift
+//  TRC20ApproveEvent.swift
 //
 //  Created by Sun on 2023/5/17.
 //
@@ -8,7 +8,7 @@ import Foundation
 
 import BigInt
 
-public class Trc20ApproveEvent: Event {
+public class TRC20ApproveEvent: Event {
     // MARK: Properties
 
     public let owner: Address
@@ -19,7 +19,7 @@ public class Trc20ApproveEvent: Event {
 
     // MARK: Lifecycle
 
-    init(record: Trc20EventRecord) {
+    init(record: TRC20EventRecord) {
         owner = record.from
         spender = record.to
         value = record.value

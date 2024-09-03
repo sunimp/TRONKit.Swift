@@ -228,7 +228,7 @@ extension Kit {
             decorationManager: decorationManager
         )
 
-        let tronGridProvider = TronGridProvider(
+        let tronGridProvider = TRONGridProvider(
             networkManager: networkManager,
             baseURL: providerURL(network: network),
             apiKey: apiKey
@@ -258,7 +258,7 @@ extension Kit {
             logger: logger
         )
 
-        decorationManager.add(transactionDecorator: Trc20TransactionDecorator(address: address))
+        decorationManager.add(transactionDecorator: TRC20TransactionDecorator(address: address))
 
         return kit
     }
@@ -271,7 +271,7 @@ extension Kit {
         apiKey: String?
     ) async throws
         -> Data {
-        let tronGridProvider = TronGridProvider(
+        let tronGridProvider = TRONGridProvider(
             networkManager: networkManager,
             baseURL: providerURL(network: network),
             apiKey: apiKey

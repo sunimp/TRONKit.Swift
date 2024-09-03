@@ -1,6 +1,6 @@
 //
 //  Configuration.swift
-//  TronKit-Demo
+//  TRONKit-Demo
 //
 //  Created by Sun on 2024/8/21.
 //
@@ -8,7 +8,7 @@
 import UIKit
 
 import WWToolKit
-import TronKit
+import TRONKit
 
 class Configuration {
     static let shared = Configuration()

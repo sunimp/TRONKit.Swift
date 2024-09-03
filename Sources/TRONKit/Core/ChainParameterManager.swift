@@ -11,12 +11,12 @@ import Foundation
 class ChainParameterManager {
     // MARK: Properties
 
-    private let tronGridProvider: TronGridProvider
+    private let tronGridProvider: TRONGridProvider
     private let storage: SyncerStorage
 
     // MARK: Lifecycle
 
-    init(tronGridProvider: TronGridProvider, storage: SyncerStorage) {
+    init(tronGridProvider: TRONGridProvider, storage: SyncerStorage) {
         self.tronGridProvider = tronGridProvider
         self.storage = storage
     }

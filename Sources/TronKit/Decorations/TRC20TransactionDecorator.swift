@@ -1,5 +1,5 @@
 //
-//  Trc20TransactionDecorator.swift
+//  TRC20TransactionDecorator.swift
 //
 //  Created by Sun on 2023/5/17.
 //
@@ -8,9 +8,9 @@ import Foundation
 
 import BigInt
 
-// MARK: - Trc20TransactionDecorator
+// MARK: - TRC20TransactionDecorator
 
-class Trc20TransactionDecorator {
+class TRC20TransactionDecorator {
     // MARK: Properties
 
     private let address: Address
@@ -26,7 +26,7 @@ class Trc20TransactionDecorator {
 
 // MARK: ITransactionDecorator
 
-extension Trc20TransactionDecorator: ITransactionDecorator {
+extension TRC20TransactionDecorator: ITransactionDecorator {
     func decoration(
         contract: TriggerSmartContract,
         internalTransactions _: [InternalTransaction],
@@ -39,19 +39,19 @@ extension Trc20TransactionDecorator: ITransactionDecorator {
 
         if let transferMethod = contractMethod as? TransferMethod {
             if contract.ownerAddress == address {
-                return OutgoingEip20Decoration(
+                return OutgoingEIP20Decoration(
                     contractAddress: contract.contractAddress,
                     to: transferMethod.to,
                     value: transferMethod.value,
                     sentToSelf: transferMethod.to == address,
-                    tokenInfo: events.compactMap { $0 as? Trc20TransferEvent }
+                    tokenInfo: events.compactMap { $0 as? TRC20TransferEvent }
                         .first { $0.contractAddress == contract.contractAddress }?.tokenInfo
                 )
             }
         }
 
         if let approveMethod = contractMethod as? ApproveMethod {
-            return ApproveEip20Decoration(
+            return ApproveEIP20Decoration(
                 contractAddress: contract.contractAddress,
                 spender: approveMethod.spender,
                 value: approveMethod.value

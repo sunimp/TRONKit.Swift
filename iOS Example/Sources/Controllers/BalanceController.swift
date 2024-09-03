@@ -1,6 +1,6 @@
 //
 //  BalanceController.swift
-//  TronKit-Demo
+//  TRONKit-Demo
 //
 //  Created by Sun on 2024/8/21.
 //
@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 import SnapKit
-import TronKit
+import TRONKit
 import UIExtensions
 
 class BalanceController: UIViewController {

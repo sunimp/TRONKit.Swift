@@ -1,5 +1,5 @@
 //
-//  Trc20DataProvider.swift
+//  TRC20DataProvider.swift
 //
 //  Created by Sun on 2023/6/9.
 //
@@ -10,9 +10,9 @@ import BigInt
 import WWExtensions
 import WWToolKit
 
-// MARK: - Trc20DataProvider
+// MARK: - TRC20DataProvider
 
-public enum Trc20DataProvider {
+public enum TRC20DataProvider {
     public static func fetchName(
         networkManager: NetworkManager,
         network: Network,
@@ -20,7 +20,7 @@ public enum Trc20DataProvider {
         contractAddress: Address
     ) async throws
         -> String {
-        let data = try await TronKit.Kit.call(
+        let data = try await TRONKit.Kit.call(
             networkManager: networkManager,
             network: network,
             contractAddress: contractAddress,
@@ -52,7 +52,7 @@ public enum Trc20DataProvider {
         contractAddress: Address
     ) async throws
         -> String {
-        let data = try await TronKit.Kit.call(
+        let data = try await TRONKit.Kit.call(
             networkManager: networkManager,
             network: network,
             contractAddress: contractAddress,
@@ -84,7 +84,7 @@ public enum Trc20DataProvider {
         contractAddress: Address
     ) async throws
         -> Int {
-        let data = try await TronKit.Kit.call(
+        let data = try await TRONKit.Kit.call(
             networkManager: networkManager,
             network: network,
             contractAddress: contractAddress,
@@ -108,7 +108,7 @@ public enum Trc20DataProvider {
     }
 }
 
-extension Trc20DataProvider {
+extension TRC20DataProvider {
     class NameMethod: ContractMethod {
         override var methodSignature: String { "name()" }
         override var arguments: [Any] { [] }

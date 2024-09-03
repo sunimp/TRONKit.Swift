@@ -1,13 +1,13 @@
 //
 //  MainController.swift
-//  TronKit-Demo
+//  TRONKit-Demo
 //
 //  Created by Sun on 2024/8/21.
 //
 
 import UIKit
 
-import TronKit
+import TRONKit
 
 class MainController: UITabBarController {
     override func viewDidLoad() {

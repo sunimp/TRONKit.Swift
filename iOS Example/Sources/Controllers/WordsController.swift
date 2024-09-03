@@ -1,6 +1,6 @@
 //
 //  WordsController.swift
-//  TronKit-Demo
+//  TRONKit-Demo
 //
 //  Created by Sun on 2024/8/21.
 //
@@ -9,7 +9,7 @@ import UIKit
 
 import HDWalletKit
 import SnapKit
-import TronKit
+import TRONKit
 import UIExtensions
 
 class WordsController: UIViewController {
@@ -28,7 +28,7 @@ class WordsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "TronKit Demo"
+        title = "TRONKit Demo"
 
         let wordsDescriptionLabel = UILabel()
 

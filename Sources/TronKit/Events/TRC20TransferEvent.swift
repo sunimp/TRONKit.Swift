@@ -1,5 +1,5 @@
 //
-//  Trc20TransferEvent.swift
+//  TRC20TransferEvent.swift
 //
 //  Created by Sun on 2023/5/17.
 //
@@ -8,7 +8,7 @@ import Foundation
 
 import BigInt
 
-public class Trc20TransferEvent: Event {
+public class TRC20TransferEvent: Event {
     // MARK: Properties
 
     public let from: Address
@@ -19,7 +19,7 @@ public class Trc20TransferEvent: Event {
 
     // MARK: Lifecycle
 
-    init(record: Trc20EventRecord) {
+    init(record: TRC20EventRecord) {
         from = record.from
         to = record.to
         value = record.value

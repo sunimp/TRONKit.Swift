@@ -1,6 +1,6 @@
 //
 //  Manager.swift
-//  TronKit-Demo
+//  TRONKit-Demo
 //
 //  Created by Sun on 2024/8/21.
 //
@@ -8,7 +8,7 @@
 import Foundation
 
 import HDWalletKit
-import TronKit
+import TRONKit
 
 class Manager {
     static let shared = Manager()
@@ -29,7 +29,7 @@ class Manager {
     }
 
     private func initKit(address: Address, configuration: Configuration, signer: Signer?) throws {
-        let TronKit = try Kit.instance(
+        let TRONKit = try Kit.instance(
             address: address,
             network: configuration.network,
             walletID: "walletID",
@@ -37,12 +37,12 @@ class Manager {
             minLogLevel: configuration.minLogLevel
         )
 
-        adapter = TrxAdapter(TronKit: TronKit, signer: signer)
+        adapter = TrxAdapter(TRONKit: TRONKit, signer: signer)
 
-        tronKit = TronKit
+        tronKit = TRONKit
         self.signer = signer
 
-        TronKit.start()
+        TRONKit.start()
     }
 
     private func initKit(words: [String]) throws {

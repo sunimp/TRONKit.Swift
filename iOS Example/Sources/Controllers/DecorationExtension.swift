@@ -1,13 +1,13 @@
 //
 //  DecorationExtension.swift
-//  TronKit-Demo
+//  TRONKit-Demo
 //
 //  Created by Sun on 2024/8/21.
 //
 
 import Foundation
 
-import TronKit
+import TRONKit
 
 private func shortAddress(address: Address) -> String {
     let str = address.base58
@@ -32,13 +32,13 @@ extension NativeTransactionDecoration: CustomStringConvertible {
     }
 }
 
-extension ApproveEip20Decoration: CustomStringConvertible {
+extension ApproveEIP20Decoration: CustomStringConvertible {
     public var description: String {
-        "ApproveEip20Decoration \(value.description) -> \(shortAddress(address: spender))"
+        "ApproveEIP20Decoration \(value.description) -> \(shortAddress(address: spender))"
     }
 }
 
-extension OutgoingEip20Decoration: CustomStringConvertible {
+extension OutgoingEIP20Decoration: CustomStringConvertible {
     public var description: String {
         guard let significand = Decimal(string: value.description),
               let tokenInfo
@@ -48,6 +48,6 @@ extension OutgoingEip20Decoration: CustomStringConvertible {
 
         let d = Decimal(sign: .plus, exponent: -tokenInfo.tokenDecimal, significand: significand)
 
-        return "OutgoingEip20Decoration \(d.description)\(tokenInfo.tokenSymbol) -> \(shortAddress(address: to))"
+        return "OutgoingEIP20Decoration \(d.description)\(tokenInfo.tokenSymbol) -> \(shortAddress(address: to))"
     }
 }

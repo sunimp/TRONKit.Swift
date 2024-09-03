@@ -11,11 +11,11 @@ import Foundation
 class TransactionSender {
     // MARK: Properties
 
-    private let tronGridProvider: TronGridProvider
+    private let tronGridProvider: TRONGridProvider
 
     // MARK: Lifecycle
 
-    init(tronGridProvider: TronGridProvider) {
+    init(tronGridProvider: TRONGridProvider) {
         self.tronGridProvider = tronGridProvider
     }
 }

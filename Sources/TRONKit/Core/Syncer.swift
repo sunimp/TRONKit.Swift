@@ -24,7 +24,7 @@ class Syncer {
     private let transactionManager: TransactionManager
     private let chainParameterManager: ChainParameterManager
     private let syncTimer: SyncTimer
-    private let tronGridProvider: TronGridProvider
+    private let tronGridProvider: TRONGridProvider
     private let storage: SyncerStorage
     private let address: Address
     private var syncing = false
@@ -36,7 +36,7 @@ class Syncer {
         transactionManager: TransactionManager,
         chainParameterManager: ChainParameterManager,
         syncTimer: SyncTimer,
-        tronGridProvider: TronGridProvider,
+        tronGridProvider: TRONGridProvider,
         storage: SyncerStorage,
         address: Address
     ) {
@@ -130,7 +130,7 @@ extension Syncer: ISyncTimerDelegate {
                 self?.accountInfoManager.handle(accountInfoResponse: response)
 
                 let lastTrc20TxTimestamp = storage
-                    .lastTransactionTimestamp(apiPath: TronGridProvider.ApiPath.transactionsTrc20.rawValue) ?? 0
+                    .lastTransactionTimestamp(apiPath: TRONGridProvider.ApiPath.transactionsTrc20.rawValue) ?? 0
                 var fingerprint: String?
                 var completed = false
                 repeat {
@@ -143,7 +143,7 @@ extension Syncer: ISyncTimerDelegate {
                     if let lastTransaction = fetchResult.transactions.last {
                         self?.transactionManager.save(trc20TransferResponses: fetchResult.transactions)
                         storage.save(
-                            apiPath: TronGridProvider.ApiPath.transactionsTrc20.rawValue,
+                            apiPath: TRONGridProvider.ApiPath.transactionsTrc20.rawValue,
                             lastTransactionTimestamp: lastTransaction.blockTimestamp
                         )
                     }
@@ -153,7 +153,7 @@ extension Syncer: ISyncTimerDelegate {
                     !completed
                     
                 let lastTxTimestamp = storage
-                    .lastTransactionTimestamp(apiPath: TronGridProvider.ApiPath.transactions.rawValue) ?? 0
+                    .lastTransactionTimestamp(apiPath: TRONGridProvider.ApiPath.transactions.rawValue) ?? 0
                 fingerprint = nil
                 completed = false
                 repeat {
@@ -166,7 +166,7 @@ extension Syncer: ISyncTimerDelegate {
                     if let lastTransaction = fetchResult.transactions.last {
                         self?.transactionManager.save(transactionResponses: fetchResult.transactions)
                         storage.save(
-                            apiPath: TronGridProvider.ApiPath.transactions.rawValue,
+                            apiPath: TRONGridProvider.ApiPath.transactions.rawValue,
                             lastTransactionTimestamp: lastTransaction.blockTimestamp
                         )
                     }
@@ -179,7 +179,7 @@ extension Syncer: ISyncTimerDelegate {
                 self?.set(state: .synced)
             } catch {
                 if
-                    let requestError = error as? TronGridProvider.RequestError,
+                    let requestError = error as? TRONGridProvider.RequestError,
                     case .failedToFetchAccountInfo = requestError {
                     self?.accountInfoManager.handleInactiveAccount()
                     self?.set(state: .synced)

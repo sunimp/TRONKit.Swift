@@ -1,13 +1,13 @@
 //
 //  TransactionRecord.swift
-//  TronKit-Demo
+//  TRONKit-Demo
 //
 //  Created by Sun on 2024/8/21.
 //
 
 import Foundation
 
-import TronKit
+import TRONKit
 
 struct TransactionRecord {
     let transactionHash: String

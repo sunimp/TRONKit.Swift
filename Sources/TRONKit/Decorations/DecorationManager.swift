@@ -47,7 +47,7 @@ class DecorationManager {
     }
 
     private func eventsMap(transactions: [Transaction]) -> [Data: [Event]] {
-        let trc20Records: [Trc20EventRecord]
+        let trc20Records: [TRC20EventRecord]
 
         if transactions.count > 100 {
             trc20Records = storage.trc20Events()

@@ -120,9 +120,9 @@ extension TransactionManager {
         storage.save(transactions: transactionRecords, replaceOnConflict: true)
     }
 
-    func save(trc20TransferResponses: [Trc20TransactionResponse]) {
-        let trc20TransferRecords = trc20TransferResponses.compactMap { response -> Trc20EventRecord? in
-            Trc20EventRecord(
+    func save(trc20TransferResponses: [TRC20TransactionResponse]) {
+        let trc20TransferRecords = trc20TransferResponses.compactMap { response -> TRC20EventRecord? in
+            TRC20EventRecord(
                 transactionHash: response.transactionID,
                 type: response.type,
                 blockTimestamp: response.blockTimestamp,

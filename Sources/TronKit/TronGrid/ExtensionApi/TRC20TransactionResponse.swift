@@ -1,5 +1,5 @@
 //
-//  Trc20TransactionResponse.swift
+//  TRC20TransactionResponse.swift
 //
 //  Created by Sun on 2023/5/2.
 //
@@ -9,9 +9,9 @@ import Foundation
 import BigInt
 import ObjectMapper
 
-// MARK: - Trc20TransactionResponse
+// MARK: - TRC20TransactionResponse
 
-struct Trc20TransactionResponse: ImmutableMappable {
+struct TRC20TransactionResponse: ImmutableMappable {
     // MARK: Properties
 
     let transactionID: Data
@@ -35,9 +35,9 @@ struct Trc20TransactionResponse: ImmutableMappable {
     }
 }
 
-// MARK: Trc20TransactionResponse.TokenInfo
+// MARK: TRC20TransactionResponse.TokenInfo
 
-extension Trc20TransactionResponse {
+extension TRC20TransactionResponse {
     struct TokenInfo: ImmutableMappable {
         // MARK: Properties
 

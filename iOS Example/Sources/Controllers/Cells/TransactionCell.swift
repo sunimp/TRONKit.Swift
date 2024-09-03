@@ -1,6 +1,6 @@
 //
 //  TransactionCell.swift
-//  TronKit-Demo
+//  TRONKit-Demo
 //
 //  Created by Sun on 2024/8/21.
 //
@@ -9,7 +9,7 @@ import UIKit
 
 import BigInt
 import SnapKit
-import TronKit
+import TRONKit
 
 class TransactionCell: UITableViewCell {
     private static let dateFormatter: DateFormatter = {

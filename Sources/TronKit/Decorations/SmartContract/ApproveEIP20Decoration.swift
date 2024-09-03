@@ -1,5 +1,5 @@
 //
-//  ApproveEip20Decoration.swift
+//  ApproveEIP20Decoration.swift
 //
 //  Created by Sun on 2023/5/17.
 //
@@ -8,7 +8,7 @@ import Foundation
 
 import BigInt
 
-public class ApproveEip20Decoration: TransactionDecoration {
+public class ApproveEIP20Decoration: TransactionDecoration {
     // MARK: Properties
 
     public let contractAddress: Address

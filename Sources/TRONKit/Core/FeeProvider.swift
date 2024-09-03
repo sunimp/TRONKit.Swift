@@ -14,12 +14,12 @@ import SwiftProtobuf
 class FeeProvider {
     // MARK: Properties
 
-    private let tronGridProvider: TronGridProvider
+    private let tronGridProvider: TRONGridProvider
     private let chainParameterManager: ChainParameterManager
 
     // MARK: Lifecycle
 
-    init(tronGridProvider: TronGridProvider, chainParameterManager: ChainParameterManager) {
+    init(tronGridProvider: TRONGridProvider, chainParameterManager: ChainParameterManager) {
         self.tronGridProvider = tronGridProvider
         self.chainParameterManager = chainParameterManager
     }
@@ -30,7 +30,7 @@ class FeeProvider {
         do {
             _ = try await tronGridProvider.fetchAccountInfo(address: address.base58)
             return true
-        } catch let error as TronGridProvider.RequestError {
+        } catch let error as TRONGridProvider.RequestError {
             guard case .failedToFetchAccountInfo = error else {
                 throw error
             }

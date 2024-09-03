@@ -60,20 +60,20 @@ class TransactionStorage {
         }
 
         migrator.registerMigration("create Trc20TransferRecord") { db in
-            try db.create(table: Trc20EventRecord.databaseTableName) { t in
-                t.column(Trc20EventRecord.Columns.transactionHash.name, .text).notNull().indexed()
-                t.column(Trc20EventRecord.Columns.type.name, .text).notNull()
-                t.column(Trc20EventRecord.Columns.blockNumber.name, .integer).notNull()
-                t.column(Trc20EventRecord.Columns.contractAddress.name, .text).notNull()
-                t.column(Trc20EventRecord.Columns.from.name, .text).notNull()
-                t.column(Trc20EventRecord.Columns.to.name, .text).notNull()
-                t.column(Trc20EventRecord.Columns.value.name, .text).notNull()
-                t.column(Trc20EventRecord.Columns.tokenName.name, .text).notNull()
-                t.column(Trc20EventRecord.Columns.tokenSymbol.name, .text).notNull()
-                t.column(Trc20EventRecord.Columns.tokenDecimal.name, .integer).notNull()
+            try db.create(table: TRC20EventRecord.databaseTableName) { t in
+                t.column(TRC20EventRecord.Columns.transactionHash.name, .text).notNull().indexed()
+                t.column(TRC20EventRecord.Columns.type.name, .text).notNull()
+                t.column(TRC20EventRecord.Columns.blockNumber.name, .integer).notNull()
+                t.column(TRC20EventRecord.Columns.contractAddress.name, .text).notNull()
+                t.column(TRC20EventRecord.Columns.from.name, .text).notNull()
+                t.column(TRC20EventRecord.Columns.to.name, .text).notNull()
+                t.column(TRC20EventRecord.Columns.value.name, .text).notNull()
+                t.column(TRC20EventRecord.Columns.tokenName.name, .text).notNull()
+                t.column(TRC20EventRecord.Columns.tokenSymbol.name, .text).notNull()
+                t.column(TRC20EventRecord.Columns.tokenDecimal.name, .integer).notNull()
 
                 t.foreignKey(
-                    [Trc20EventRecord.Columns.transactionHash.name],
+                    [TRC20EventRecord.Columns.transactionHash.name],
                     references: Transaction.databaseTableName,
                     columns: [Transaction.Columns.hash.name],
                     onDelete: .cascade,
@@ -104,7 +104,7 @@ class TransactionStorage {
         migrator.registerMigration("add addresses to TransactionTagRecord") { db in
             try Transaction.deleteAll(db)
             try InternalTransaction.deleteAll(db)
-            try Trc20EventRecord.deleteAll(db)
+            try TRC20EventRecord.deleteAll(db)
             try TransactionTagRecord.deleteAll(db)
 
             try db.alter(table: TransactionTagRecord.databaseTableName) { t in
@@ -253,16 +253,16 @@ extension TransactionStorage {
         }
     }
 
-    func trc20Events() -> [Trc20EventRecord] {
+    func trc20Events() -> [TRC20EventRecord] {
         try! dbPool.read { db in
-            try Trc20EventRecord.fetchAll(db)
+            try TRC20EventRecord.fetchAll(db)
         }
     }
 
-    func trc20Events(hashes: [Data]) -> [Trc20EventRecord] {
+    func trc20Events(hashes: [Data]) -> [TRC20EventRecord] {
         try! dbPool.read { db in
-            try Trc20EventRecord
-                .filter(hashes.contains(Trc20EventRecord.Columns.transactionHash))
+            try TRC20EventRecord
+                .filter(hashes.contains(TRC20EventRecord.Columns.transactionHash))
                 .fetchAll(db)
         }
     }
@@ -287,7 +287,7 @@ extension TransactionStorage {
         }
     }
 
-    func save(trc20Transfers: [Trc20EventRecord]) {
+    func save(trc20Transfers: [TRC20EventRecord]) {
         try! dbPool.write { db in
             for transfer in trc20Transfers {
                 try transfer.save(db)

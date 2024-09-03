@@ -2,15 +2,15 @@
 import PackageDescription
 
 let package = Package(
-    name: "TronKit",
+    name: "TRONKit",
     platforms: [
         .iOS(.v14),
         .macOS(.v12)
     ],
     products: [
         .library(
-            name: "TronKit",
-            targets: ["TronKit"]
+            name: "TRONKit",
+            targets: ["TRONKit"]
         ),
     ],
     dependencies: [
@@ -27,7 +27,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "TronKit",
+            name: "TRONKit",
             dependencies: [
                 "BigInt",
                 .product(name: "Socket", package: "BlueSocket"),

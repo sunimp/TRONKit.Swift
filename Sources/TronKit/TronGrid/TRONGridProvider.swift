@@ -1,5 +1,5 @@
 //
-//  TronGridProvider.swift
+//  TRONGridProvider.swift
 //
 //  Created by Sun on 2023/5/2.
 //
@@ -10,9 +10,9 @@ import Alamofire
 import BigInt
 import WWToolKit
 
-// MARK: - TronGridProvider
+// MARK: - TRONGridProvider
 
-class TronGridProvider {
+class TRONGridProvider {
     // MARK: Properties
 
     private let networkManager: NetworkManager
@@ -121,7 +121,7 @@ class TronGridProvider {
 
 // MARK: RequestInterceptor
 
-extension TronGridProvider: RequestInterceptor {
+extension TRONGridProvider: RequestInterceptor {
     func retry(_: Request, for _: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
         if case let JsonRpcResponse.ResponseError.rpcError(rpcError) = error, rpcError.code == -32005 {
             var backoffSeconds = 1.0
@@ -139,7 +139,7 @@ extension TronGridProvider: RequestInterceptor {
     }
 }
 
-extension TronGridProvider {
+extension TRONGridProvider {
     var source: String {
         baseURL
     }
@@ -202,7 +202,7 @@ extension TronGridProvider {
         minTimestamp: Int,
         fingerprint: String?
     ) async throws
-        -> (transactions: [Trc20TransactionResponse], fingerprint: String?, completed: Bool) {
+        -> (transactions: [TRC20TransactionResponse], fingerprint: String?, completed: Bool) {
         let path = "v1/accounts/\(address)/\(ApiPath.transactionsTrc20.rawValue)"
         var parameters: Parameters = [
             "only_confirmed": true,
@@ -214,7 +214,7 @@ extension TronGridProvider {
         fingerprint.flatMap { parameters["fingerprint"] = $0 }
 
         let result = try await extensionApiFetch(path: path, parameters: parameters)
-        let transactions = result.data.compactMap { try? Trc20TransactionResponse(JSON: $0) }
+        let transactions = result.data.compactMap { try? TRC20TransactionResponse(JSON: $0) }
         let fingerprint = result.meta["fingerprint"] as? String
         let completed = transactions.count < pageLimit
 
@@ -336,9 +336,9 @@ extension TronGridProvider {
     }
 }
 
-// MARK: TronGridProvider.RequestError
+// MARK: TRONGridProvider.RequestError
 
-extension TronGridProvider {
+extension TRONGridProvider {
     public enum RequestError: Error {
         case invalidResponse
         case invalidStatus
@@ -347,9 +347,9 @@ extension TronGridProvider {
     }
 }
 
-// MARK: TronGridProvider.ApiPath
+// MARK: TRONGridProvider.ApiPath
 
-extension TronGridProvider {
+extension TRONGridProvider {
     enum ApiPath: String {
         case transactions
         case transactionsTrc20 = "transactions/trc20"
